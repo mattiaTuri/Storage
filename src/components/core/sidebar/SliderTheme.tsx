@@ -1,0 +1,61 @@
+import Box from "@mui/material/Box";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { ChangeTheme } from "./sidebarFunctions";
+import { Button, Typography } from "@mui/material";
+
+function SliderTheme() {
+  return (
+    <Box id="themeMenu" className="relative top-10 flex flex-col gap-2">
+      <Box className="flex flex-col items-center gap-2">
+        {true ? (
+          <DarkModeIcon color="action" />
+        ) : (
+          <LightModeIcon color="action" />
+        )}
+        <Typography variant="body1" component="span" color="#cfcde7">
+          Choose your style
+        </Typography>
+      </Box>
+      <Box
+        id="themeButton"
+        className="bg-[#cfcde7] h-10 grid grid-cols-2 relative rounded-md"
+      >
+        <Button
+          id="lightMode"
+          className="flex justify-center items-center z-10"
+          onClick={() => ChangeTheme("lightMode")}
+        >
+          <Typography
+            variant="body1"
+            component="span"
+            color="white"
+            className="normal-case"
+          >
+            Light
+          </Typography>
+        </Button>
+        <Button
+          id="darkMode"
+          className="flex justify-center items-center z-10"
+          onClick={() => ChangeTheme("darkMode")}
+        >
+          <Typography
+            variant="body1"
+            component="span"
+            color="white"
+            className="normal-case"
+          >
+            Dark
+          </Typography>
+        </Button>
+        <Box
+          id="sliderTheme"
+          className="absolute top-0 h-10 w-[50%] bg-[#0066ff] rounded-md duration-300"
+        ></Box>
+      </Box>
+    </Box>
+  );
+}
+
+export default SliderTheme;
