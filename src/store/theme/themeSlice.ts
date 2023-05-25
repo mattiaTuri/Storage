@@ -3,14 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const themeSlice = createSlice({
     name:"theme",
     initialState:{
-        value:false
+        value:"light"
     },
     reducers:{
         lightMode: (state) => {
-            state.value = false
+            state.value = "light"
+            const root = window.document.documentElement
+            root.classList.remove("dark")
+            root.classList.add("light")
         },
         darkMode: (state) => {
-            state.value = true
+            state.value = "dark"
+            const root = window.document.documentElement
+            root.classList.remove("light")
+            root.classList.add(state.value)
         }
     }
 })

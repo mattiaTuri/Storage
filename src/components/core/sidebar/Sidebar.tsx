@@ -22,7 +22,7 @@ function Sidebar() {
   }, []);
 
   return (
-    <Box className="h-screen w-48 bg-white flex justify-center">
+    <Box className="h-screen w-48 bg-white dark:bg-black flex justify-center">
       <Box className="h-full flex flex-col items-center justify-between w-[80%]">
         <Box className="relative top-10">
           <Typography variant="h5" component="h1" color="#0066ff">

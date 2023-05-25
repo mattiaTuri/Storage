@@ -5,10 +5,10 @@ import Topbar from "./components/core/topbar/Topbar";
 function App() {
   return (
     <div className="flex">
-      <Sidebar/>
+      <Sidebar />
       <div>
-        <Topbar/>
-        <Outlet/>
+        <Topbar />
+        <Outlet />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import { darkMode, lightMode } from "../../../store/theme/themeSlice";
 import { themeSelector } from "../../../store/theme/selector";
 
 function SliderTheme() {
-  const theme = useSelector(themeSelector);
+  const theme: string = useSelector(themeSelector);
   const dispatch = useDispatch();
   return (
     <Box id="themeMenu" className="relative top-10 flex flex-col gap-2">
