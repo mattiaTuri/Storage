@@ -15,15 +15,15 @@ function SidebarLink({ id, title, href, children }: SidebarLinkProps) {
     <Link
       id={id}
       to={href}
-      className="flex items-center gap-2 h-10 z-10 pl-2 duration-300"
+      className="h-10 w-full flex items-center justify-center z-10 duration-300"
       onClick={() => ChangeMenu(id)}
       onMouseEnter={() => ShowHoverLink(id)}
       onMouseLeave={() => HideHoverLink(id)}
     >
       {children}
-      <Typography variant="body1" component="span">
+      {/* <Typography variant="body1" component="span">
         {title}
-      </Typography>
+      </Typography> */}
     </Link>
   );
 }

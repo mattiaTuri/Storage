@@ -15,58 +15,48 @@ import SliderTheme from "./SliderTheme";
 function Sidebar() {
   useEffect(() => {
     let sectionActive: string = window.location.pathname.replace("/", "");
-
     if (sectionActive === "") sectionActive = "dashboard";
-
     ChangeMenu(sectionActive);
   }, []);
 
   return (
-    <Box className="h-screen w-48 bg-white dark:bg-black flex justify-center">
-      <Box className="h-full flex flex-col items-center justify-between w-[80%]">
-        <Box className="relative top-10">
-          <Typography variant="h5" component="h1" color="#0066ff">
-            STORAGE
-          </Typography>
-        </Box>
-        <Box id="actionsMenu" className="w-full">
-          <Box
-            id="sectionsMenu"
-            className="flex flex-col relative text-[#cfcde7]"
-          >
-            <SidebarLink id="dashboard" title="Dashboard" href="/">
-              <DashboardIcon />
-            </SidebarLink>
-            <SidebarLink id="books" title="Books" href="books">
-              <MenuBookIcon />
-            </SidebarLink>
-            <SidebarLink id="calendar" title="Calendar" href="calendar">
-              <CalendarMonthIcon />
-            </SidebarLink>
-            <SidebarLink id="profile" title="Profile" href="profile">
-              <PersonIcon />
-            </SidebarLink>
-            <SidebarLink id="settings" title="Settings" href="settings">
-              <SettingsIcon />
-            </SidebarLink>
-            <Box
-              id="sliderSections"
-              className="absolute h-10 w-full bg-[#0066ff] rounded-md duration-300"
-            ></Box>
-          </Box>
-          <SliderTheme />
-        </Box>
-        <Box className="relative bottom-10 w-full text-[#cfcde7]">
-          <Link
-            to="/"
-            className="flex items-center gap-2 h-10 pl-2 hover:text-[#0066ff] duration-300"
-          >
-            <LogoutIcon />
-            <Typography variant="body1" component="span">
-              Logout
-            </Typography>
-          </Link>
-        </Box>
+    <Box className="h-[90%] bg-white dark:bg-[#252627] flex flex-col justify-between items-center w-32 rounded-lg m-10">
+      <Box className="relative top-10">
+        <Typography variant="h6" component="h1" color="#0066ff">
+          STORAGE
+        </Typography>
+      </Box>
+      <Box
+        id="actionsMenu"
+        className="relative flex flex-col items-center gap-2 w-[50%] text-[#e5e5e5]"
+      >
+        <SidebarLink id="dashboard" title="Dashboard" href="/">
+          <DashboardIcon />
+        </SidebarLink>
+        <SidebarLink id="books" title="Books" href="books">
+          <MenuBookIcon />
+        </SidebarLink>
+        <SidebarLink id="calendar" title="Calendar" href="calendar">
+          <CalendarMonthIcon />
+        </SidebarLink>
+        <SidebarLink id="profile" title="Profile" href="profile">
+          <PersonIcon />
+        </SidebarLink>
+        <SidebarLink id="settings" title="Settings" href="settings">
+          <SettingsIcon />
+        </SidebarLink>
+        <Box
+          id="sliderSections"
+          className="absolute top-0 h-10 w-full bg-[#0066ff] rounded-md duration-300"
+        ></Box>
+      </Box>
+      <Box className="relative bottom-10 w-[50%]" color="#e5e5e5">
+        <Link
+          to="/"
+          className="flex justify-center items-center h-10 hover:text-[#0066ff] dark:hover:text-white duration-300"
+        >
+          <LogoutIcon />
+        </Link>
       </Box>
     </Box>
   );

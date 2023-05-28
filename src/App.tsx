@@ -4,7 +4,7 @@ import Topbar from "./components/core/topbar/Topbar";
 
 function App() {
   return (
-    <div className="flex">
+    <div className="h-screen flex bg-[#F3F3F3] dark:bg-[#0a0903]">
       <Sidebar />
       <div>
         <Topbar />
