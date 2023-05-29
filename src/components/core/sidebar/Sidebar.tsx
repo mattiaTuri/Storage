@@ -8,19 +8,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Typography } from "@mui/material";
 import SidebarLink from "./SidebarLink";
-import { useEffect } from "react";
-import { ChangeMenu } from "./sidebarFunctions";
-import SliderTheme from "./SliderTheme";
 
 function Sidebar() {
-  useEffect(() => {
-    let sectionActive: string = window.location.pathname.replace("/", "");
-    if (sectionActive === "") sectionActive = "dashboard";
-    ChangeMenu(sectionActive);
-  }, []);
-
   return (
-    <Box className="h-[90%] bg-white dark:bg-[#252627] flex flex-col justify-between items-center w-32 rounded-lg m-10">
+    <Box className="h-full bg-white dark:bg-[#252627] flex flex-col justify-between items-center w-32 rounded-lg">
       <Box className="relative top-10">
         <Typography variant="h6" component="h1" color="#0066ff">
           STORAGE
@@ -30,19 +21,19 @@ function Sidebar() {
         id="actionsMenu"
         className="relative flex flex-col items-center gap-2 w-[50%] text-[#e5e5e5]"
       >
-        <SidebarLink id="dashboard" title="Dashboard" href="/">
+        <SidebarLink id="dashboard" href="/">
           <DashboardIcon />
         </SidebarLink>
-        <SidebarLink id="books" title="Books" href="books">
+        <SidebarLink id="books" href="books">
           <MenuBookIcon />
         </SidebarLink>
-        <SidebarLink id="calendar" title="Calendar" href="calendar">
+        <SidebarLink id="calendar" href="calendar">
           <CalendarMonthIcon />
         </SidebarLink>
-        <SidebarLink id="profile" title="Profile" href="profile">
+        <SidebarLink id="profile" href="profile">
           <PersonIcon />
         </SidebarLink>
-        <SidebarLink id="settings" title="Settings" href="settings">
+        <SidebarLink id="settings" href="settings">
           <SettingsIcon />
         </SidebarLink>
         <Box
@@ -63,3 +54,4 @@ function Sidebar() {
 }
 
 export default Sidebar;
+

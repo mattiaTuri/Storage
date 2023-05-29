@@ -11,7 +11,7 @@ export const ChangeMenu = (selected_link:string) => {
 
     slider.style.transform = `translateY(${active_link.offsetTop}px)`
     active_link.style.color = "white";
-    active_link.classList.add("active");
+    active_link.classList.add("active");  
 }
 
 export const ShowHoverLink = (selected_link:string) => {
@@ -34,3 +34,4 @@ export const ChangeTheme = (selected_theme:string) => {
 
     slider.style.transform = `translateX(${active_theme.offsetLeft}px)`
 }
+

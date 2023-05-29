@@ -1,26 +1,23 @@
 import Box from "@mui/material/Box";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { ChangeTheme } from "./sidebarFunctions";
+import { ChangeTheme } from "../core/sidebar/sidebarFunctions";
 import { Button, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { darkMode, lightMode } from "../../../store/theme/themeSlice";
-import { themeSelector } from "../../../store/theme/selector";
+import { darkMode, lightMode } from "../../store/theme/themeSlice";
+import { themeSelector } from "../../store/theme/selector";
 
 function SliderTheme() {
   const theme: string = useSelector(themeSelector);
   const dispatch = useDispatch();
   return (
-    <Box id="themeMenu" className="relative top-10 flex flex-col gap-2">
-      <Box className="flex flex-col items-center gap-2">
-        {theme ? (
-          <DarkModeIcon color="action" />
+    <Box id="themeMenu" className="flex items-center gap-2">
+      <Box>
+        {theme == "light" ? (
+          <LightModeIcon className="text-[#474862] dark:text-white" />
         ) : (
-          <LightModeIcon color="action" />
+          <DarkModeIcon className="text-[#474862] dark:text-white" />
         )}
-        <Typography variant="body1" component="span" color="#cfcde7">
-          Choose your style
-        </Typography>
       </Box>
       <Box
         id="themeButton"

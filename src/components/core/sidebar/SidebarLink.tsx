@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
-import { Typography } from "@mui/material";
 import { ChangeMenu, HideHoverLink, ShowHoverLink } from "./sidebarFunctions";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 
 interface SidebarLinkProps {
   id: string;
-  title: string;
   href: string;
   children: ReactNode;
 }
 
-function SidebarLink({ id, title, href, children }: SidebarLinkProps) {
+function SidebarLink({ id, href, children }: SidebarLinkProps) {
+
+  useEffect(() => {
+    let sectionActive: string = window.location.pathname.replace("/", "");
+    if (sectionActive === "") sectionActive = "dashboard";
+    ChangeMenu(sectionActive);
+  }, []);
+
   return (
     <Link
       id={id}
@@ -21,11 +26,9 @@ function SidebarLink({ id, title, href, children }: SidebarLinkProps) {
       onMouseLeave={() => HideHoverLink(id)}
     >
       {children}
-      {/* <Typography variant="body1" component="span">
-        {title}
-      </Typography> */}
     </Link>
   );
 }
 
-export default SidebarLink;
+export default SidebarLink
+
