@@ -21,7 +21,7 @@ function SliderTheme() {
       </Box>
       <Box
         id="themeButton"
-        className="bg-[#cfcde7] h-10 grid grid-cols-2 relative rounded-md"
+        className="bg-[#bbc3ce] h-10 grid grid-cols-2 relative rounded-md"
       >
         <Button
           id="lightMode"

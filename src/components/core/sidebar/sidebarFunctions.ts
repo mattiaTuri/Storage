@@ -2,7 +2,7 @@
 export const ChangeMenu = (selected_link:string) => {
 
     document.querySelectorAll("#actionsMenu a").forEach((elem:any) => {
-        elem.style.color = "#e5e5e5"
+        elem.style.color = "#bbc3ce"
         elem.classList.remove("active")
     })
 
@@ -24,7 +24,7 @@ export const ShowHoverLink = (selected_link:string) => {
 export const HideHoverLink = (selected_link:string) => {
     const active_link: HTMLElement = document.getElementById(selected_link)!;
     if(!active_link.classList.contains("active")){
-        active_link.style.color = "#e5e5e5";
+        active_link.style.color = "#bbc3ce";
     }
 }
 

@@ -5,7 +5,8 @@ import CurrentDate from "../../shared/Date/CurrentDate";
 function Topbar() {
 
   return (
-    <Container id="topbar" maxWidth="xl">
+    <Box className="hidden lg:block">
+    <Container id="topbar" maxWidth="xl" >
       <Box className="flex justify-between items-center">
         <Box></Box>
         <CurrentDate/>
@@ -13,7 +14,8 @@ function Topbar() {
       </Box>
       
     </Container>
-  );
-}
+    </Box>
+
+)}  
 
 export default Topbar;

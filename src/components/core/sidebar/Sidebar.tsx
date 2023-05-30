@@ -11,7 +11,7 @@ import SidebarLink from "./SidebarLink";
 
 function Sidebar() {
   return (
-    <Box className="h-full bg-white dark:bg-[#252627] flex flex-col justify-between items-center w-32 rounded-lg">
+    <Box className="h-full bg-white dark:bg-[#252627] lg:flex flex-col justify-between items-center w-32 rounded-lg hidden">
       <Box className="relative top-10">
         <Typography variant="h6" component="h1" color="#0066ff">
           STORAGE
@@ -19,7 +19,7 @@ function Sidebar() {
       </Box>
       <Box
         id="actionsMenu"
-        className="relative flex flex-col items-center gap-2 w-[50%] text-[#e5e5e5]"
+        className="relative flex flex-col items-center gap-2 w-[50%]" color="#bbc3ce"
       >
         <SidebarLink id="dashboard" href="/">
           <DashboardIcon />
@@ -41,7 +41,7 @@ function Sidebar() {
           className="absolute top-0 h-10 w-full bg-[#0066ff] rounded-md duration-300"
         ></Box>
       </Box>
-      <Box className="relative bottom-10 w-[50%]" color="#e5e5e5">
+      <Box className="relative bottom-10 w-[50%]" color="#bbc3ce">
         <Link
           to="/"
           className="flex justify-center items-center h-10 hover:text-[#0066ff] dark:hover:text-white duration-300"
