@@ -7,7 +7,7 @@ export const ChangeMenu = (selected_link:string) => {
     })
 
     const active_link: HTMLElement = document.getElementById(selected_link)!;
-    const slider : HTMLElement = document.getElementById("sliderSections")!;
+    const slider : HTMLElement = document.getElementById("sliderActions")!;
 
     slider.style.transform = `translateY(${active_link.offsetTop}px)`
     active_link.style.color = "white";
@@ -28,10 +28,4 @@ export const HideHoverLink = (selected_link:string) => {
     }
 }
 
-export const ChangeTheme = (selected_theme:string) => {
-    const active_theme: HTMLElement = document.getElementById(selected_theme)!;
-    const slider : HTMLElement = document.getElementById("sliderTheme")!;
-
-    slider.style.transform = `translateX(${active_theme.offsetLeft}px)`
-}
 

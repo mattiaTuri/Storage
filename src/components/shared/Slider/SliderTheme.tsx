@@ -1,11 +1,11 @@
 import Box from "@mui/material/Box";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import { ChangeTheme } from "../core/sidebar/sidebarFunctions";
 import { Button, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { darkMode, lightMode } from "../../store/theme/themeSlice";
-import { themeSelector } from "../../store/theme/selector";
+import { themeSelector } from "../../../store/theme/selector";
+import { lightMode, darkMode } from "../../../store/theme/themeSlice";
+import { ChangeTheme } from "./sliderThemeFunction";
 
 function SliderTheme() {
   const theme: string = useSelector(themeSelector);

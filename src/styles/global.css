@@ -12,14 +12,23 @@
   src: url("../../public/font/Poppins-Bold.ttf");
 }
 
+@font-face {
+  font-family: "Poppins-Black";
+  src: url("../../public/font/Poppins-Black.ttf");
+}
+
 *{
   padding: 0;
   margin:0;
   box-sizing: border-box;
 }
 
-h1, span{
+h2, span{
   font-family: "Poppins-Bold" !important;
+}
+
+h1{
+  font-family: "Poppins-Black" !important;
 }
 
 /*

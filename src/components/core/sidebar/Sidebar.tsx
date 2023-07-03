@@ -13,13 +13,14 @@ function Sidebar() {
   return (
     <Box className="h-full bg-white dark:bg-[#252627] lg:flex flex-col justify-between items-center w-32 rounded-lg hidden">
       <Box className="relative top-10">
-        <Typography variant="h6" component="h1" color="#0066ff">
+        <Typography variant="h6" component="h2" color="#0066ff">
           STORAGE
         </Typography>
       </Box>
       <Box
         id="actionsMenu"
-        className="relative flex flex-col items-center gap-2 w-[50%]" color="#bbc3ce"
+        className="relative flex flex-col items-center gap-2 w-[50%]"
+        color="#bbc3ce"
       >
         <SidebarLink id="dashboard" href="/">
           <DashboardIcon />
@@ -27,7 +28,7 @@ function Sidebar() {
         <SidebarLink id="books" href="books">
           <MenuBookIcon />
         </SidebarLink>
-        <SidebarLink id="calendar" href="calendar">
+        <SidebarLink id="diary" href="diary">
           <CalendarMonthIcon />
         </SidebarLink>
         <SidebarLink id="profile" href="profile">
@@ -37,7 +38,7 @@ function Sidebar() {
           <SettingsIcon />
         </SidebarLink>
         <Box
-          id="sliderSections"
+          id="sliderActions"
           className="absolute top-0 h-10 w-full bg-[#0066ff] rounded-md duration-300"
         ></Box>
       </Box>
@@ -54,4 +55,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-
