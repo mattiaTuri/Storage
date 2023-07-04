@@ -4,8 +4,8 @@ import Calendar from "./Calendar";
 import CardActions from "@mui/material/CardActions";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
+import { IconButton } from "@mui/material";
 
 function Scheduler() {
   return (
@@ -15,25 +15,22 @@ function Scheduler() {
           SCHEDULER
         </Typography>
       </Box>
-      <Card className="bg-white flex" sx={{ minWidth: 275 }}>
+      {/* <Card className="bg-white flex" sx={{ minWidth: 275, borderRadius:"0.5rem", height:"100px", width:"320px"}}>
         <CardActions>
-          <Button size="small">
-            <AddIcon />
-          </Button>
+          <IconButton size="small">
+            <AddIcon className="text-[#0066ff]"/>
+          </IconButton>
         </CardActions>
         <CardContent
-          className="w-full flex justify-between"
-          sx={{ paddingTop: "24px" }}
+          className="w-full flex justify-between items-center"
+          sx={{ paddingTop: "24px"}}
         >
-          <Typography sx={{ fontSize: 14 }} color="text.secondary">
-            [Title]
-          </Typography>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary">
-            [Date]
+          <Typography variant="subtitle1" component="span" color="#0066ff">
+            Add new task
           </Typography>
         </CardContent>
       </Card>
-      <Calendar />
+      <Calendar /> */}
     </Box>
   );
 }

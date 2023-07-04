@@ -1,16 +1,15 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import DailyTask from "../../feature/diary/DailyTask";
+import DailyTasks from "../../feature/diary/DailyTasks";
 import Scheduler from "../../feature/diary/Scheduler";
 
 function Diary() {
   return (
     <Box className="h-full">
       <Container maxWidth="xl" className="border h-full">
-        <Box className="h-full grid grid-cols-3">
+        <Box className="h-full flex">
           <Scheduler />
-          <DailyTask />
-          <Box>Prova</Box>
+          <DailyTasks />
         </Box>
       </Container>
     </Box>
