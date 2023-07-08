@@ -8,7 +8,7 @@ function Dashboard() {
       <Container maxWidth="xl" className="border h-full">
         <Box>
           <Box>
-            <Typography variant="h2" component="h1" color="#0066ff">
+            <Typography variant="h2" component="h1" color="#efa135">
               DASHBOARD
             </Typography>
           </Box>

@@ -6,14 +6,13 @@ import Footer from "./components/core/footer/Footer";
 
 function App() {
   return (
-    <div className="h-screen bg-[#F3F3F3] dark:bg-[#0a0903]">
-      <div className="h-full flex p-10">
+    <div className="h-screen bg-[#f4f4f7] dark:bg-[#0a0903]">
+      <div className="h-full flex">
         <Sidebar />
-        <div className="w-full flex flex-col">
+        <div className="flex flex-col w-full p-10">
           <NavbarMobile />
-          <Topbar />
+          {/* <Topbar /> */}
           <Outlet />
-          <Footer />
         </div>
       </div>
     </div>
