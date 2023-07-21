@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../components/pages/dashboard/Dashboard";
-import Books from "../components/pages/books/Books";
+import Storage from "../components/pages/storage/Storage";
 import Schedule from "../components/pages/schedule/Schedule";
 import Settings from "../components/pages/settings/Settings";
 import Profile from "../components/pages/profile/Profile";
@@ -16,8 +16,8 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/books",
-        element: <Books />,
+        path: "/storage",
+        element: <Storage />,
       },
       {
         path: "/schedule",

@@ -25,7 +25,7 @@ function Sidebar() {
         <SidebarLink id="dashboard" href="/" link="Dashboard">
           <DashboardIcon className="ml-2" />
         </SidebarLink>
-        <SidebarLink id="books" href="books" link="Books">
+        <SidebarLink id="storage" href="storage" link="Storage">
           <MenuBookIcon className="ml-2" />
         </SidebarLink>
         <SidebarLink id="schedule" href="schedule" link="Schedule">
