@@ -23,16 +23,13 @@ const style = {
 };
 
 interface ModalProps {
-  bookValues: BooksProps;
   onValChanges: (event: any) => void;
   addNewBook: (event: any) => void;
 }
 
-function CustomModal({ bookValues, onValChanges, addNewBook }: ModalProps) {
+function CustomModal({ onValChanges, addNewBook }: ModalProps) {
   const customModal: boolean = useSelector(modalSelector);
   const dispatch = useDispatch();
-
-  const { id, title, author, editor, genre, pages } = bookValues;
 
   return (
     <div>
@@ -62,15 +59,13 @@ function CustomModal({ bookValues, onValChanges, addNewBook }: ModalProps) {
               variant="outlined"
               className="w-full"
               name="title"
-              value={title}
               onChange={onValChanges}
             />
             <TextField
               label="Author"
               variant="outlined"
               className="w-full"
-              name="author"
-              value={author}
+              name="author"   
               onChange={onValChanges}
             />
             <TextField
@@ -78,8 +73,7 @@ function CustomModal({ bookValues, onValChanges, addNewBook }: ModalProps) {
               label="Editor"
               variant="outlined"
               className="w-full"
-              name="editor"
-              value={editor}
+              name="editor"            
               onChange={onValChanges}
             />
             <div className="flex gap-4">
@@ -88,8 +82,7 @@ function CustomModal({ bookValues, onValChanges, addNewBook }: ModalProps) {
                 label="Genre"
                 variant="outlined"
                 className="w-[70%]"
-                name="genre"
-                value={genre}
+                name="genre"               
                 onChange={onValChanges}
               />
               <TextField
@@ -97,8 +90,7 @@ function CustomModal({ bookValues, onValChanges, addNewBook }: ModalProps) {
                 label="Pages"
                 variant="outlined"
                 className="w-[30%]"
-                name="pages"
-                value={pages}
+                name="pages"         
                 onChange={onValChanges}
               />
             </div>

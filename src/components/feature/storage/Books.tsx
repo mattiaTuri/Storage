@@ -8,9 +8,10 @@ import { ReactEventHandler, useState } from "react";
 import { BooksProps } from "../../../Models/Books";
 import { closeModal } from "../../../store/modal/modalSlice";
 import { useDispatch } from "react-redux";
+import { database } from "../../../firebase";
+import { push, ref, set } from "firebase/database";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "Id", width: 100 },
   {
     field: "title",
     headerName: "Title",
@@ -117,7 +118,6 @@ const rows = [
 function Books() {
   const dispatch = useDispatch();
   const [bookValues, setBookValues] = useState<BooksProps>({
-    id: 0,
     title: "",
     author: "",
     editor: "",
@@ -135,6 +135,19 @@ function Books() {
     setBooksList(dataObj);
     console.log(bookValues);
     dispatch(closeModal());
+    writeBook(bookValues)
+  };
+
+  const writeBook = (data:any) => {
+    const {title, author, editor, genre, pages } = data
+    set(ref(database, 'books/' + title.replaceAll(" ", "_")), {
+        title: title || null,
+        author: author || null,
+        editor: editor || null,
+        genre: genre || null,
+        pages: pages || null
+    });
+  
   };
 
   return (
@@ -147,12 +160,11 @@ function Books() {
           /> */}
       </Box>
       <CustomModal
-        bookValues={bookValues}
         onValChanges={onValChanges}
         addNewBook={addNewBook}
       />
       <DataGrid
-        rows={booksList}
+        rows={booksList.map((book, index) => ({id: index + 1, ...book}))}
         columns={columns}
         initialState={{
           pagination: {
