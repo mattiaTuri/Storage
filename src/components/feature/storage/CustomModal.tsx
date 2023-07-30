@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
-import { BooksProps } from "../../../Models/Books";
+import { BooksProps } from "../../../models/Books";
 
 const style = {
   position: "absolute" as "absolute",
@@ -65,7 +65,7 @@ function CustomModal({ onValChanges, addNewBook }: ModalProps) {
               label="Author"
               variant="outlined"
               className="w-full"
-              name="author"   
+              name="author"
               onChange={onValChanges}
             />
             <TextField
@@ -73,7 +73,7 @@ function CustomModal({ onValChanges, addNewBook }: ModalProps) {
               label="Editor"
               variant="outlined"
               className="w-full"
-              name="editor"            
+              name="editor"
               onChange={onValChanges}
             />
             <div className="flex gap-4">
@@ -82,7 +82,7 @@ function CustomModal({ onValChanges, addNewBook }: ModalProps) {
                 label="Genre"
                 variant="outlined"
                 className="w-[70%]"
-                name="genre"               
+                name="genre"
                 onChange={onValChanges}
               />
               <TextField
@@ -90,7 +90,7 @@ function CustomModal({ onValChanges, addNewBook }: ModalProps) {
                 label="Pages"
                 variant="outlined"
                 className="w-[30%]"
-                name="pages"         
+                name="pages"
                 onChange={onValChanges}
               />
             </div>

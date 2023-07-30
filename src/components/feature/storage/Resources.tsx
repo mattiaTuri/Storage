@@ -9,7 +9,7 @@ import Link from "@mui/material/Link";
 import Table from "./Table";
 import CustomModal from "./CustomModal";
 import { useState } from "react";
-import { ResourcesProps } from "../../../Models/Resources";
+import { ResourcesProps } from "../../../models/Resources";
 import { database } from "../../../firebase";
 import { ref, set } from "firebase/database";
 import { closeModal } from "../../../store/modal/modalSlice";
