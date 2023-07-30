@@ -4,14 +4,15 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import CustomButton from "../../shared/CustomButton";
 import { Typography } from "@mui/material";
 import CustomModal from "./CustomModal";
-import { ReactEventHandler, useState } from "react";
+import { useEffect, useState } from "react";
 import { BooksProps } from "../../../Models/Books";
 import { closeModal } from "../../../store/modal/modalSlice";
 import { useDispatch } from "react-redux";
 import { database } from "../../../firebase";
-import { push, ref, set } from "firebase/database";
+import { child, get, getDatabase, ref, set } from "firebase/database";
+import Table from "./Table";
 
-const columns: GridColDef[] = [
+const bookCol: GridColDef[] = [
   {
     field: "title",
     headerName: "Title",
@@ -100,21 +101,6 @@ const columns: GridColDef[] = [
   },
 ];
 
-const rows = [
-  // { id: 1, title: 'Il trono di spade', author: "George R.R. Martin", genre: 'Fantasy', editor: "Mondadori", pages: 35 },
-  // { id: 2, title: 'Nevernight: mai dimenticare', author: "Joy Kristoff", genre: 'Fantasy', editor: "Mondadori", pages: 42 },
-  // { id: 3, title: 'Il sussurro del destino', author: "Turina Mattia", genre: 'Fantasy', editor: "", pages: 132 },
-  // { id: 4, title: 'Il club delle cinque del mattino', author: "", genre: 'Psicology', editor: "", pages: 16 },
-  // { id: 5, title: 'Harry Potter: il calice di fuoco', author: "", genre: 'Fantasy', editor: "", pages: 50 },
-  // { id: 6, title: 'Detriti', author: "", genre: 'Fantasy', editor: "Lumien", pages: 300 },
-  // { id: 7, title: 'Detriti', author: "", genre: 'Fantasy', editor: "Lumien", pages: 300 },
-  // { id: 8, title: 'Detriti', author: "", genre: 'Fantasy', editor: "Lumien", pages: 300 },
-  // { id: 9, title: 'Detriti', author: "", genre: 'Fantasy', editor: "Lumien", pages: 300 },
-  // { id: 10, title: 'Detriti', author: "", genre: 'Fantasy', editor: "Lumien", pages: 300 },
-  // { id: 11, title: 'Detriti', author: "", genre: 'Fantasy', editor: "Lumien", pages: 300 },
-  // { id: 12, title: 'Detriti', author: "", genre: 'Fantasy', editor: "Lumien", pages: 300 },
-];
-
 function Books() {
   const dispatch = useDispatch();
   const [bookValues, setBookValues] = useState<BooksProps>({
@@ -135,56 +121,32 @@ function Books() {
     setBooksList(dataObj);
     console.log(bookValues);
     dispatch(closeModal());
-    writeBook(bookValues)
+    writeBook(bookValues);
   };
 
-  const writeBook = (data:any) => {
-    const {title, author, editor, genre, pages } = data
-    set(ref(database, 'books/' + title.replaceAll(" ", "_")), {
-        title: title || null,
-        author: author || null,
-        editor: editor || null,
-        genre: genre || null,
-        pages: pages || null
+  const writeBook = (data: any) => {
+    const { title, author, editor, genre, pages } = data;
+    set(ref(database, "books" + title.replaceAll(" ", "_")), {
+      title: title || null,
+      author: author || null,
+      editor: editor || null,
+      genre: genre || null,
+      pages: pages || null,
     });
-  
   };
 
   return (
     <Box sx={{ height: 630, width: "100%" }}>
       <Box className="flex justify-end my-4">
         <CustomButton title="Add new book" />
-        {/* <AddBoxRoundedIcon
-            fontSize="medium"
-            className="text-[#efa135] group-hover:text-white duration-500 z-10"
-          /> */}
       </Box>
-      <CustomModal
-        onValChanges={onValChanges}
-        addNewBook={addNewBook}
+      <CustomModal onValChanges={onValChanges} addNewBook={addNewBook} />
+      <Table
+        list={booksList}
+        setList={setBooksList}
+        table="books"
+        columns={bookCol}
       />
-      <DataGrid
-        rows={booksList.map((book, index) => ({id: index + 1, ...book}))}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 10,
-            },
-          },
-        }}
-        slots={{ noRowsOverlay: CustomNoRowsOverlay }}
-        pageSizeOptions={[10]}
-        disableRowSelectionOnClick
-      />
-    </Box>
-  );
-}
-
-function CustomNoRowsOverlay() {
-  return (
-    <Box className="h-full flex items-center justify-center">
-      <p>No data available</p>
     </Box>
   );
 }

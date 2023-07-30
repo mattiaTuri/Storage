@@ -6,8 +6,16 @@ import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import Table from "./Table";
+import CustomModal from "./CustomModal";
+import { useState } from "react";
+import { ResourcesProps } from "../../../Models/Resources";
+import { database } from "../../../firebase";
+import { ref, set } from "firebase/database";
+import { closeModal } from "../../../store/modal/modalSlice";
+import { useDispatch } from "react-redux";
 
-const columns: GridColDef[] = [
+const resourceCol: GridColDef[] = [
   { field: "id", headerName: "Id", width: 100 },
   {
     field: "title",
@@ -124,30 +132,52 @@ const rows = [
 ];
 
 function Resources() {
+  const dispatch = useDispatch();
+  const [resourceValues, setResourceValues] = useState<ResourcesProps>({
+    title: "",
+    link: "",
+    tag: "",
+    short_description: "",
+  });
+  const [resourcesList, setResourcesList] = useState<ResourcesProps[]>([]);
+
+  const onValChanges = (event: any) => {
+    setResourceValues({
+      ...resourceValues,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const addNewBook = (event: any) => {
+    const dataObj = (data: any) => [...data, resourceValues];
+    setResourcesList(dataObj);
+    console.log(resourceValues);
+    dispatch(closeModal());
+    writeBook(resourceValues);
+  };
+
+  const writeBook = (data: any) => {
+    const { title, link, tag, short_description } = data;
+    set(ref(database, "resources" + title.replaceAll(" ", "_")), {
+      title: title || null,
+      link: link || null,
+      tag: tag || null,
+      short_description: short_description || null,
+    });
+  };
+
   return (
-    <Box>
+    <Box sx={{ height: 630, width: "100%" }}>
       <Box className="flex justify-end my-4">
         <CustomButton title="Add new resource" />
-        {/* <AddBoxRoundedIcon
-            fontSize="medium"
-            className="text-[#efa135] group-hover:text-white duration-500 z-10"
-          /> */}
       </Box>
-      <Box sx={{ height: 630, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 10,
-              },
-            },
-          }}
-          pageSizeOptions={[10]}
-          disableRowSelectionOnClick
-        />
-      </Box>
+      <CustomModal onValChanges={onValChanges} addNewBook={addNewBook} />
+      <Table
+        list={resourcesList}
+        setList={setResourcesList}
+        table="resources"
+        columns={resourceCol}
+      />
     </Box>
   );
 }
