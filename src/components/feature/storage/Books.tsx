@@ -11,31 +11,25 @@ import CustomModal from "./CustomModal";
 import { useEffect, useState } from "react";
 import { BooksProps } from "../../../models/Books";
 import { closeModal } from "../../../store/modal/modalSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { database } from "../../../firebase";
 import { child, get, getDatabase, ref, remove, set } from "firebase/database";
 import Table from "./Table";
-import { bookCol } from "./BookCol";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { bookRowsSelector } from "../../../store/booksRows/selector";
+import { updateBookValues } from "../../../store/booksRows/bookRowsSlice";
 
 function Books() {
   const dispatch = useDispatch();
+  let bookValues: BooksProps = useSelector(bookRowsSelector);
+  
   const [booksList, setBooksList] = useState<BooksProps[]>([]);
-  const [bookValues, setBookValues] = useState<BooksProps>({
-    id: "",
-    title: "",
-    author: "",
-    editor: "",
-    genre: "",
-    pages: 0,
-  });
 
   const onValChanges = (event: any) => {
-    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+    dispatch(updateBookValues({ ...bookValues, [event.target.name]: event.target.value }))
   };
 
   const addNewBook = (event: any) => {
-    bookValues.id = bookValues.title.replaceAll(" ", "_");
     const dataObj = (data: any) => [...data, bookValues];
     setBooksList(dataObj);
     dispatch(closeModal());
@@ -51,17 +45,13 @@ function Books() {
   const writeBook = (data: any) => {
     const { id, title, author, editor, genre, pages } = data;
     set(ref(database, "books/" + id), {
-      id: id,
-      title: title || null,
-      author: author || null,
-      editor: editor || null,
-      genre: genre || null,
-      pages: pages || null,
+      id,
+      title,
+      author,
+      editor,
+      genre,
+      pages,
     });
-  };
-
-  const getId = () => {
-    return booksList.length + 1;
   };
 
   const bookCol: GridColDef[] = [
@@ -85,7 +75,25 @@ function Books() {
     {
       field: "author",
       headerName: "Author",
-      width: 250,
+      width: 300,
+      editable: true,
+      renderCell: (params) => {
+        return (
+          <Typography
+            variant="caption"
+            component="p"
+            className="text-[#474862]"
+          >
+            {params.value}
+          </Typography>
+        );
+      },
+    },
+    {
+      field: "editor",
+      headerName: "Editor",
+      type: "string",
+      width: 300,
       editable: true,
       renderCell: (params) => {
         return (
@@ -118,28 +126,10 @@ function Books() {
       },
     },
     {
-      field: "editor",
-      headerName: "Editor",
-      type: "string",
-      width: 200,
-      editable: true,
-      renderCell: (params) => {
-        return (
-          <Typography
-            variant="caption"
-            component="p"
-            className="text-[#474862]"
-          >
-            {params.value}
-          </Typography>
-        );
-      },
-    },
-    {
       field: "pages",
       headerName: "Pages",
       type: "number",
-      width: 150,
+      width: 200,
       headerAlign: "center",
       align: "center",
       editable: true,
@@ -174,14 +164,14 @@ function Books() {
   ];
 
   return (
-    <Box sx={{ height: 630, width: "100%" }}>
+    <Box sx={{ width: "100%" }}>
       <Box className="flex justify-end my-4">
-        <CustomButton title="Add new book" />
+        <CustomButton title="Add" />
       </Box>
-      <CustomModal onValChanges={onValChanges} addNewBook={addNewBook} />
+      <CustomModal input={bookValues} onValChanges={onValChanges} addNewBook={addNewBook} />
       <Table
-        list={booksList}
-        setList={setBooksList}
+        rows={booksList}
+        setRows={setBooksList}
         table="books"
         columns={bookCol}
       />

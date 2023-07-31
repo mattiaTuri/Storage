@@ -9,6 +9,8 @@ import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { BooksProps } from "../../../models/Books";
+import { ResourcesProps } from "../../../models/Resources";
+import { useEffect, useRef } from "react";
 
 const style = {
   position: "absolute" as "absolute",
@@ -23,13 +25,16 @@ const style = {
 };
 
 interface ModalProps {
+  input: BooksProps | ResourcesProps
   onValChanges: (event: any) => void;
   addNewBook: (event: any) => void;
 }
 
-function CustomModal({ onValChanges, addNewBook }: ModalProps) {
+function CustomModal({input, onValChanges, addNewBook }: ModalProps) {
   const customModal: boolean = useSelector(modalSelector);
   const dispatch = useDispatch();
+
+  const firstChildRef = useRef<HTMLInputElement>(null)
 
   return (
     <div>
@@ -53,47 +58,21 @@ function CustomModal({ onValChanges, addNewBook }: ModalProps) {
             className="flex flex-col gap-10 mt-10"
             component="form"
           >
-            <TextField
-              id="outlined-basic"
-              label="Title"
-              variant="outlined"
-              className="w-full"
-              name="title"
-              onChange={onValChanges}
-            />
-            <TextField
-              label="Author"
-              variant="outlined"
-              className="w-full"
-              name="author"
-              onChange={onValChanges}
-            />
-            <TextField
-              id="outlined-basic"
-              label="Editor"
-              variant="outlined"
-              className="w-full"
-              name="editor"
-              onChange={onValChanges}
-            />
-            <div className="flex gap-4">
-              <TextField
+            {Object.keys(input).map((key:string) => {
+              if(key != "id")
+              return (
+                <TextField 
+                autoFocus={key == "title" ? true : false}          
+                key={key}
                 id="outlined-basic"
-                label="Genre"
+                label={key.charAt(0).toUpperCase() + key.slice(1)}
                 variant="outlined"
-                className="w-[70%]"
-                name="genre"
-                onChange={onValChanges}
-              />
-              <TextField
-                id="outlined-basic"
-                label="Pages"
-                variant="outlined"
-                className="w-[30%]"
-                name="pages"
-                onChange={onValChanges}
-              />
-            </div>
+                className="w-full"
+                name={key}
+                ref={firstChildRef}
+                onChange={onValChanges}/>
+              )
+            })}
           </Box>
           <div className="mt-10 flex justify-center gap-4">
             <Button variant="outlined" onClick={() => dispatch(closeModal())}>

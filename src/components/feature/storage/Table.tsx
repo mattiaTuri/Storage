@@ -7,14 +7,13 @@ import { child, get, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 
-function Table({ list, setList, table, columns }: any) {
-  const [loading, setLoading] = useState(false);
+function Table({ rows, setRows, table, columns }: any) {
 
   useEffect(() => {
     get(child(ref(database), table)).then((snapshot: any) => {
       snapshot.forEach((elem: any) => {
         const dataObj = (data: any) => [...data, elem.val()];
-        setList(dataObj);
+        setRows(dataObj);
         console.log(dataObj);
       });
     });
@@ -22,11 +21,7 @@ function Table({ list, setList, table, columns }: any) {
 
   return (
     <DataGrid
-      // rows={list.map((elem: any, index: number) => ({
-      //   id: index + 1,
-      //   ...elem,
-      // }))}
-      rows={list}
+      rows={rows}
       columns={columns}
       initialState={{
         pagination: {

@@ -35,6 +35,10 @@ p{
   font-family: "Poppins-Regular" !important;
 }
 
+.MuiDataGrid-main{
+  height: 630px;
+}
+
 .MuiButtonBase-root > .MuiSvgIcon-root, .MuiDayCalendar-header > span{
   /* color: #efa135; */
 }

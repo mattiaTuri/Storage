@@ -13,10 +13,11 @@ import { ResourcesProps } from "../../../models/Resources";
 import { database } from "../../../firebase";
 import { ref, set } from "firebase/database";
 import { closeModal } from "../../../store/modal/modalSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateResourceValues } from "../../../store/resourcesRows/resourceRowsSlice";
+import { resourceRowSelector } from "../../../store/resourcesRows/selector";
 
 const resourceCol: GridColDef[] = [
-  { field: "id", headerName: "Id", width: 100 },
   {
     field: "title",
     headerName: "Title",
@@ -33,7 +34,7 @@ const resourceCol: GridColDef[] = [
   {
     field: "link",
     headerName: "Link",
-    width: 320,
+    width: 400,
     renderCell: (params) => {
       return (
         <Link
@@ -51,7 +52,7 @@ const resourceCol: GridColDef[] = [
     field: "short_description",
     headerName: "Short description",
     type: "string",
-    width: 320,
+    width: 400,
     editable: true,
     renderCell: (params) => {
       return (
@@ -93,76 +94,31 @@ const resourceCol: GridColDef[] = [
   },
 ];
 
-const rows = [
-  {
-    id: 1,
-    title: "Lost frequences",
-    link: "https://www.youtube.com/watch?v=O9w2jIys60o",
-    tag: "Fantasy",
-    short_description: "",
-  },
-  {
-    id: 2,
-    title: "Nevernight: mai dimenticare",
-    link: "Joy Kristoff",
-    tag: "Fantasy",
-    short_description: "",
-  },
-  {
-    id: 3,
-    title: "Il sussurro del destino",
-    link: "Turina Mattia",
-    tag: "Fantasy",
-    short_description: "",
-  },
-  {
-    id: 4,
-    title: "Il club delle cinque del mattino",
-    link: "",
-    tag: "Psicology",
-    short_description: "",
-  },
-  {
-    id: 5,
-    title: "Harry Potter: il calice di fuoco",
-    link: "",
-    tag: "Fantasy",
-    short_description: "",
-  },
-];
-
 function Resources() {
   const dispatch = useDispatch();
-  const [resourceValues, setResourceValues] = useState<ResourcesProps>({
-    title: "",
-    link: "",
-    tag: "",
-    short_description: "",
-  });
+  const resourceValues = useSelector(resourceRowSelector)
+
   const [resourcesList, setResourcesList] = useState<ResourcesProps[]>([]);
 
   const onValChanges = (event: any) => {
-    setResourceValues({
-      ...resourceValues,
-      [event.target.name]: event.target.value,
-    });
+    dispatch(updateResourceValues({...resourceValues, [event.target.name]: event.target.value}))
   };
 
   const addNewBook = (event: any) => {
     const dataObj = (data: any) => [...data, resourceValues];
     setResourcesList(dataObj);
-    console.log(resourceValues);
     dispatch(closeModal());
     writeBook(resourceValues);
   };
 
   const writeBook = (data: any) => {
-    const { title, link, tag, short_description } = data;
-    set(ref(database, "resources" + title.replaceAll(" ", "_")), {
-      title: title || null,
-      link: link || null,
-      tag: tag || null,
-      short_description: short_description || null,
+    const {id, title, link, tag, short_description } = data;
+    set(ref(database, "resources" + id), {
+      id,
+      title,
+      link,
+      tag,
+      short_description
     });
   };
 
@@ -171,10 +127,10 @@ function Resources() {
       <Box className="flex justify-end my-4">
         <CustomButton title="Add new resource" />
       </Box>
-      <CustomModal onValChanges={onValChanges} addNewBook={addNewBook} />
+      <CustomModal input={resourceValues} onValChanges={onValChanges} addNewBook={addNewBook} />
       <Table
-        list={resourcesList}
-        setList={setResourcesList}
+        rows={resourcesList}
+        setRows={setResourcesList}
         table="resources"
         columns={resourceCol}
       />
