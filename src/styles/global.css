@@ -36,11 +36,7 @@ p{
 }
 
 .MuiDataGrid-main{
-  height: 630px;
-}
-
-.MuiButtonBase-root > .MuiSvgIcon-root, .MuiDayCalendar-header > span{
-  /* color: #efa135; */
+  height: 576px;
 }
 
 .MuiPickersDay-today{
@@ -53,17 +49,18 @@ p{
   border-radius: 0.375rem !important;
 } */
 
-.MuiTabs-indicator{
+/* .MuiTabs-indicator{
   background-color: #efa135 !important;
-}
-
-.Mui-selected{
-  color: #efa135 !important;
-}
+} */
 
 .MuiDataGrid-cell{
   white-space: normal !important;
   word-break: break-all;
+}
+
+.MuiSvgIcon-root[data-testid="AddCircleOutlinedIcon"] > path, .MuiSvgIcon-root[data-testid="CloseIcon"] > path{
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /*
@@ -76,10 +73,13 @@ black   #474862
 blue    #0066ff
 yellow  #efa135
 
+
 DARK MODE
 
+purple #522AA7
 white
 grey
-black 
-
+black #030204
+252627
+48443e
 */

@@ -11,7 +11,7 @@ import SidebarLink from "./SidebarLink";
 
 function Sidebar() {
   return (
-    <Box className="h-full bg-white dark:bg-[#252627] lg:flex flex-col justify-between items-center w-60 border-r hidden">
+    <Box className="h-full bg-white dark:bg-[#030204] lg:flex flex-col justify-between items-center w-60 border-r hidden">
       <Box className="relative top-10">
         <Typography variant="h6" component="h2" color="#efa135">
           STORAGE
@@ -39,7 +39,7 @@ function Sidebar() {
         </SidebarLink>
         <Box
           id="sliderActions"
-          className="absolute top-0 h-10 w-full bg-[#efa135] rounded-md duration-300"
+          className="absolute top-0 h-10 w-full bg-[#efa135] dark:bg-[#522AA7] rounded-md duration-300"
         ></Box>
       </Box>
       <Box className="relative bottom-10 w-[80%]" color="#bbc3ce">

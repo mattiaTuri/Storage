@@ -3,15 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./styles/global.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { store } from "./store/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </Provider>
 );
 

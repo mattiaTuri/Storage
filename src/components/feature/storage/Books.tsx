@@ -5,7 +5,7 @@ import {
   GridColDef,
   GridRowId,
 } from "@mui/x-data-grid";
-import CustomButton from "../../shared/CustomButton";
+import CustomButton from "../../shared/ModalButton";
 import { Typography } from "@mui/material";
 import CustomModal from "./CustomModal";
 import { useEffect, useState } from "react";
@@ -65,7 +65,7 @@ function Books() {
           <Typography
             variant="caption"
             component="p"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Typography>
@@ -82,7 +82,7 @@ function Books() {
           <Typography
             variant="caption"
             component="p"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Typography>
@@ -100,7 +100,7 @@ function Books() {
           <Typography
             variant="caption"
             component="p"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Typography>
@@ -118,7 +118,7 @@ function Books() {
           <Typography
             variant="caption"
             component="p"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Typography>
@@ -138,7 +138,7 @@ function Books() {
           <Typography
             variant="caption"
             component="p"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Typography>
@@ -157,6 +157,7 @@ function Books() {
             label="Delete"
             onClick={() => deleteRow(id)}
             color="inherit"
+            className="dark:text-white"
           />,
         ];
       },

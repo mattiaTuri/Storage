@@ -1,9 +1,10 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Icon, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modalSelector } from "../../store/modal/selector";
 import { openModal } from "../../store/modal/modalSlice";
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 interface CustomButtonProps {
   title: string;
@@ -14,17 +15,14 @@ function CustomButton({ title }: CustomButtonProps) {
 
   return (
     <Button
-      sx={{
-        ":hover": { bgcolor: "initial", borderColor: "#efa135" },
-        border: "1px solid #efa135",
-      }}
       variant="outlined"
-      className="group relative overflow-hidden h-12 w-24 after:content-[''] after:absolute after:bg-[#efa135] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
+      className="group relative flex gap-2 overflow-hidden h-12 w-24 after:content-[''] after:absolute after:bg-[#efa135] after:dark:bg-[#522AA7] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
       onClick={() => dispatch(openModal())}
     >
+      <AddCircleOutlinedIcon className="text-[#474862] dark:text-white group-hover:text-white ease-in-out z-10"/> 
       <Typography
         component="span"
-        className="text-[#474862] group-hover:text-white duration-500 px-4 z-10"
+        className="text-[#474862] dark:text-white group-hover:text-white duration-500 ease-in-out z-10"
       >
         {title}
       </Typography>

@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CustomButton from "../../shared/CustomButton";
+import CustomButton from "../../shared/ModalButton";
 import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -123,9 +123,9 @@ function Resources() {
   };
 
   return (
-    <Box sx={{ height: 630, width: "100%" }}>
+    <Box sx={{width: "100%" }}>
       <Box className="flex justify-end my-4">
-        <CustomButton title="Add new resource" />
+        <CustomButton title="Add" />
       </Box>
       <CustomModal input={resourceValues} onValChanges={onValChanges} addNewBook={addNewBook} />
       <Table

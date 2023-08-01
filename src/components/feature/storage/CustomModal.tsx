@@ -18,8 +18,6 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #efa135",
   borderRadius: "0.5rem",
   p: 2,
 };
@@ -34,8 +32,6 @@ function CustomModal({input, onValChanges, addNewBook }: ModalProps) {
   const customModal: boolean = useSelector(modalSelector);
   const dispatch = useDispatch();
 
-  const firstChildRef = useRef<HTMLInputElement>(null)
-
   return (
     <div>
       <Modal
@@ -44,13 +40,13 @@ function CustomModal({input, onValChanges, addNewBook }: ModalProps) {
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} className="bg-white dark:bg-[#030204] border border-[#522AA7]">
           <div className="flex justify-between items-center">
             <Typography id="modal-title" variant="h6" component="span">
               Add new book
             </Typography>
-            <IconButton onClick={() => dispatch(closeModal())}>
-              <CloseIcon />
+            <IconButton onClick={() => dispatch(closeModal())} sx={{borderRadius:9999, overflow:"hidden"}} className="close-button group relative w-10 after:content-[''] after:absolute after:bg-[#efa135] after:dark:bg-[#522AA7] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full">
+              <CloseIcon className="text-[#262626] dark:text-[#522aa7] z-10 group-hover:text-white ease-in-out"/>
             </IconButton>
           </div>
           <Box
@@ -69,7 +65,6 @@ function CustomModal({input, onValChanges, addNewBook }: ModalProps) {
                 variant="outlined"
                 className="w-full"
                 name={key}
-                ref={firstChildRef}
                 onChange={onValChanges}/>
               )
             })}

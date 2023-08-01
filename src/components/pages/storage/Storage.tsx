@@ -18,18 +18,18 @@ function Storage() {
 
   return (
     <Box className="h-full">
-      <Container maxWidth="xl" className="border h-full">
+      <Container maxWidth="xl" className="h-full">
         <Box>
           <Box>
-            <Typography variant="h2" component="h1" color="#efa135">
+            {/* <Typography variant="h2" component="h1" color="#efa135">
               STORAGE
-            </Typography>
+            </Typography> */}
           </Box>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className="border-[#252627] dark:border-white">
               <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Tab label="Books" value="1" />
-                <Tab label="Resources" value="2" />
+                <Tab label="Books" value="1"/>
+                <Tab label="Resources" value="2"/>
               </TabList>
             </Box>
             <TabPanel value="1" sx={{padding:"initial"}}><Books/></TabPanel>
