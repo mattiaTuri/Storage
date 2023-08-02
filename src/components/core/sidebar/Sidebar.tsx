@@ -11,7 +11,7 @@ import SidebarLink from "./SidebarLink";
 
 function Sidebar() {
   return (
-    <Box className="h-full bg-white dark:bg-[#262626] lg:flex flex-col justify-between items-center w-60 border-r hidden">
+    <Box className="h-full bg-white dark:bg-[#262626] lg:flex flex-col justify-between items-center w-60 dark:border-[#434343] border-r hidden">
       <Box className="relative top-10">
         <Typography
           variant="h6"
@@ -22,19 +22,34 @@ function Sidebar() {
         </Typography>
       </Box>
       <Box id="actionsMenu" className="relative flex flex-col gap-2 w-[80%]">
-        <SidebarLink id="dashboard" href="/" link="Dashboard">
+        <SidebarLink id="dashboard" href="/" link="Dashboard" disabled={false}>
           <DashboardIcon className="ml-2" />
         </SidebarLink>
-        <SidebarLink id="storage" href="storage" link="Storage">
+        <SidebarLink
+          id="storage"
+          href="storage"
+          link="Storage"
+          disabled={false}
+        >
           <MenuBookIcon className="ml-2" />
         </SidebarLink>
-        <SidebarLink id="schedule" href="schedule" link="Schedule">
+        <SidebarLink
+          id="schedule"
+          href="schedule"
+          link="Schedule"
+          disabled={true}
+        >
           <CalendarMonthIcon className="ml-2" />
         </SidebarLink>
-        <SidebarLink id="profile" href="profile" link="Profile">
+        <SidebarLink id="profile" href="profile" link="Profile" disabled={true}>
           <PersonIcon className="ml-2" />
         </SidebarLink>
-        <SidebarLink id="settings" href="settings" link="Settings">
+        <SidebarLink
+          id="settings"
+          href="settings"
+          link="Settings"
+          disabled={false}
+        >
           <SettingsIcon className="ml-2" />
         </SidebarLink>
         <Box
@@ -45,7 +60,7 @@ function Sidebar() {
       <Box className="relative bottom-10 w-[80%]">
         <Link
           to="/"
-          className="flex items-center gap-2 h-10 text-[#bbc3ce] hover:text-[#efa135] dark:hover:text-[#522aa7] duration-300"
+          className="flex items-center gap-2 h-10 text-[#c4c4c4] hover:text-[#efa135] dark:hover:text-[#522aa7] duration-300"
         >
           <LogoutIcon className="ml-2" />
           <Typography component="span">Logout</Typography>

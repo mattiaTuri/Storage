@@ -35,7 +35,7 @@ function Books() {
     );
   };
 
-  const addNewBook = (event: any) => {
+  const addNewBook = () => {
     const dataObj = (data: any) => [...data, bookValues];
     setBooksList(dataObj);
     dispatch(closeModal());
@@ -180,7 +180,7 @@ function Books() {
       <CustomModal
         input={bookValues}
         onValChanges={onValChanges}
-        addNewBook={addNewBook}
+        addFunction={addNewBook}
       />
       <Table
         rows={booksList}

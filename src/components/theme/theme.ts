@@ -17,11 +17,11 @@ export const dark = {
 export const GlobalStyles = createGlobalStyle`
 
     .MuiButton-outlined{
-        border: 1px solid ${props => props.theme.main};
+        border: 2px solid ${props => props.theme.main};
     }
 
     .MuiButton-outlined:hover{
-        border: 1px solid ${props => props.theme.main};
+        border: 2px solid ${props => props.theme.main};
     }
 
     .Mui-selected{
@@ -37,7 +37,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .close-button{
-        border: 1px solid ${props => props.theme.main};
+        border: 2px solid ${props => props.theme.main};
     }
 
     .MuiInputBase-root{

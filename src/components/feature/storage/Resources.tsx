@@ -109,7 +109,7 @@ function Resources() {
     );
   };
 
-  const addNewBook = (event: any) => {
+  const addNewBook = () => {
     const dataObj = (data: any) => [...data, resourceValues];
     setResourcesList(dataObj);
     dispatch(closeModal());
@@ -135,7 +135,7 @@ function Resources() {
       <CustomModal
         input={resourceValues}
         onValChanges={onValChanges}
-        addNewBook={addNewBook}
+        addFunction={addNewBook}
       />
       <Table
         rows={resourcesList}

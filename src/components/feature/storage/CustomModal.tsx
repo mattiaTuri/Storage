@@ -26,10 +26,10 @@ const style = {
 interface ModalProps {
   input: BooksProps | ResourcesProps;
   onValChanges: (event: any) => void;
-  addNewBook: (event: any) => void;
+  addFunction: () => void;
 }
 
-function CustomModal({ input, onValChanges, addNewBook }: ModalProps) {
+function CustomModal({ input, onValChanges, addFunction }: ModalProps) {
   const customModal: boolean = useSelector(modalSelector);
   const dispatch = useDispatch();
 
@@ -88,7 +88,7 @@ function CustomModal({ input, onValChanges, addNewBook }: ModalProps) {
               title="Cancel"
               functionClick={() => dispatch(closeModal())}
             />
-            <CustomButton title="Save" functionClick={() => addNewBook} />
+            <CustomButton title="Save" functionClick={addFunction} />
           </div>
         </Box>
       </Modal>
