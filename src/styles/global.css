@@ -23,7 +23,7 @@
   box-sizing: border-box;
 }
 
-h2, button, .MuiPickersCalendarHeader-label, span {
+h2, button, .MuiPickersCalendarHeader-label, span, .MuiDataGrid-columnHeaderTitle {
   font-family: "Poppins-Bold" !important;
 }
 
@@ -39,10 +39,10 @@ p{
   height: 576px;
 }
 
-.MuiPickersDay-today{
+/* .MuiPickersDay-today{
   border: 1px solid #efa135 !important;
   border-radius: 0.375rem !important;
-}
+} */
 
 /* .Mui-selected{
   background-color: #efa135 !important;
@@ -76,10 +76,21 @@ yellow  #efa135
 
 DARK MODE
 
-purple #522AA7
+purple #522aa7
 white
 grey
 black #030204
 252627
 48443e
+
+LIGHT MODE
+text, icon = #474862
+
+
+
+DARK MODE
+sidebar, bordo tabelle = #262626
+body = #121212
+text, icon = white
+
 */

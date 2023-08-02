@@ -2,7 +2,7 @@
 export const ChangeMenu = (selected_link:string) => {
 
     document.querySelectorAll("#actionsMenu a").forEach((elem:any) => {
-        elem.style.color = "#bbc3ce"
+        elem.style.color = ""
         elem.classList.remove("active")
     })
 
@@ -10,21 +10,14 @@ export const ChangeMenu = (selected_link:string) => {
     const slider : HTMLElement = document.getElementById("sliderActions")!;
 
     slider.style.transform = `translateY(${active_link.offsetTop}px)`
-    active_link.style.color = "white";
+    active_link.style.color = "white"
     active_link.classList.add("active");  
 }
 
-export const ShowHoverLink = (selected_link:string) => {
+export const CheckActiveLink = (selected_link:string) => {
     const active_link: HTMLElement = document.getElementById(selected_link)!;
-    if(!active_link.classList.contains("active")){
-        active_link.style.color = "#0066ff";
-    }
-}
-
-export const HideHoverLink = (selected_link:string) => {
-    const active_link: HTMLElement = document.getElementById(selected_link)!;
-    if(!active_link.classList.contains("active")){
-        active_link.style.color = "#bbc3ce";
+    if(active_link.classList.contains("active")){
+        active_link.style.color = "white";
     }
 }
 

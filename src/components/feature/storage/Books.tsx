@@ -5,12 +5,12 @@ import {
   GridColDef,
   GridRowId,
 } from "@mui/x-data-grid";
-import CustomButton from "../../shared/ModalButton";
+import CustomButton from "../../shared/CustomButton";
 import { Typography } from "@mui/material";
 import CustomModal from "./CustomModal";
 import { useEffect, useState } from "react";
 import { BooksProps } from "../../../models/Books";
-import { closeModal } from "../../../store/modal/modalSlice";
+import { closeModal, openModal } from "../../../store/modal/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { database } from "../../../firebase";
 import { child, get, getDatabase, ref, remove, set } from "firebase/database";
@@ -18,15 +18,21 @@ import Table from "./Table";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { bookRowsSelector } from "../../../store/booksRows/selector";
 import { updateBookValues } from "../../../store/booksRows/bookRowsSlice";
+import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 
 function Books() {
   const dispatch = useDispatch();
   let bookValues: BooksProps = useSelector(bookRowsSelector);
-  
+
   const [booksList, setBooksList] = useState<BooksProps[]>([]);
 
   const onValChanges = (event: any) => {
-    dispatch(updateBookValues({ ...bookValues, [event.target.name]: event.target.value }))
+    dispatch(
+      updateBookValues({
+        ...bookValues,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   const addNewBook = (event: any) => {
@@ -167,9 +173,15 @@ function Books() {
   return (
     <Box sx={{ width: "100%" }}>
       <Box className="flex justify-end my-4">
-        <CustomButton title="Add" />
+        <CustomButton title="Add" functionClick={() => dispatch(openModal())}>
+          <AddCircleOutlinedIcon className="text-[#474862] dark:text-white group-hover:text-white ease-in-out z-10" />
+        </CustomButton>
       </Box>
-      <CustomModal input={bookValues} onValChanges={onValChanges} addNewBook={addNewBook} />
+      <CustomModal
+        input={bookValues}
+        onValChanges={onValChanges}
+        addNewBook={addNewBook}
+      />
       <Table
         rows={booksList}
         setRows={setBooksList}

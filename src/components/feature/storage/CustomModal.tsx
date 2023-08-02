@@ -11,6 +11,7 @@ import { Button } from "@mui/material";
 import { BooksProps } from "../../../models/Books";
 import { ResourcesProps } from "../../../models/Resources";
 import { useEffect, useRef } from "react";
+import CustomButton from "../../shared/CustomButton";
 
 const style = {
   position: "absolute" as "absolute",
@@ -23,12 +24,12 @@ const style = {
 };
 
 interface ModalProps {
-  input: BooksProps | ResourcesProps
+  input: BooksProps | ResourcesProps;
   onValChanges: (event: any) => void;
   addNewBook: (event: any) => void;
 }
 
-function CustomModal({input, onValChanges, addNewBook }: ModalProps) {
+function CustomModal({ input, onValChanges, addNewBook }: ModalProps) {
   const customModal: boolean = useSelector(modalSelector);
   const dispatch = useDispatch();
 
@@ -40,13 +41,25 @@ function CustomModal({input, onValChanges, addNewBook }: ModalProps) {
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
       >
-        <Box sx={style} className="bg-white dark:bg-[#030204] border border-[#522AA7]">
+        <Box
+          sx={style}
+          className="bg-white dark:bg-[#262626] border-[#434343] border"
+        >
           <div className="flex justify-between items-center">
-            <Typography id="modal-title" variant="h6" component="span">
+            <Typography
+              id="modal-title"
+              variant="h6"
+              component="span"
+              className="text-[#474862] dark:text-white"
+            >
               Add new book
             </Typography>
-            <IconButton onClick={() => dispatch(closeModal())} sx={{borderRadius:9999, overflow:"hidden"}} className="close-button group relative w-10 after:content-[''] after:absolute after:bg-[#efa135] after:dark:bg-[#522AA7] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full">
-              <CloseIcon className="text-[#262626] dark:text-[#522aa7] z-10 group-hover:text-white ease-in-out"/>
+            <IconButton
+              onClick={() => dispatch(closeModal())}
+              sx={{ borderRadius: 9999, overflow: "hidden" }}
+              className="close-button group relative w-10 h-10 after:content-[''] after:absolute after:bg-[#efa135] after:dark:bg-[#522AA7] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
+            >
+              <CloseIcon className="text-[#474862] dark:text-white group-hover:text-white z-10 ease-in-out" />
             </IconButton>
           </div>
           <Box
@@ -54,28 +67,28 @@ function CustomModal({input, onValChanges, addNewBook }: ModalProps) {
             className="flex flex-col gap-10 mt-10"
             component="form"
           >
-            {Object.keys(input).map((key:string) => {
-              if(key != "id")
-              return (
-                <TextField 
-                autoFocus={key == "title" ? true : false}          
-                key={key}
-                id="outlined-basic"
-                label={key.charAt(0).toUpperCase() + key.slice(1)}
-                variant="outlined"
-                className="w-full"
-                name={key}
-                onChange={onValChanges}/>
-              )
+            {Object.keys(input).map((key: string) => {
+              if (key != "id")
+                return (
+                  <TextField
+                    autoFocus={key == "title" ? true : false}
+                    key={key}
+                    id="outlined-basic"
+                    label={key.charAt(0).toUpperCase() + key.slice(1)}
+                    variant="outlined"
+                    className="w-full"
+                    name={key}
+                    onChange={onValChanges}
+                  />
+                );
             })}
           </Box>
-          <div className="mt-10 flex justify-center gap-4">
-            <Button variant="outlined" onClick={() => dispatch(closeModal())}>
-              Cancel
-            </Button>
-            <Button variant="outlined" onClick={addNewBook}>
-              Save
-            </Button>
+          <div className="mt-10 flex justify-end gap-4">
+            <CustomButton
+              title="Cancel"
+              functionClick={() => dispatch(closeModal())}
+            />
+            <CustomButton title="Save" functionClick={() => addNewBook} />
           </div>
         </Box>
       </Modal>

@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 
 function Table({ rows, setRows, table, columns }: any) {
-
   useEffect(() => {
     get(child(ref(database), table)).then((snapshot: any) => {
       snapshot.forEach((elem: any) => {
@@ -40,7 +39,7 @@ function Table({ rows, setRows, table, columns }: any) {
 function CustomNoRowsOverlay() {
   return (
     <Box className="h-full flex items-center justify-center">
-      <p>No data available</p>
+      <p className=" text-[#474862] dark:text-white">No data available</p>
     </Box>
   );
 }

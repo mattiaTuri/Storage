@@ -12,7 +12,7 @@ import Resources from "../../feature/storage/Resources";
 function Storage() {
   const [value, setValue] = useState("1");
 
-  const handleChange = (event:React.SyntheticEvent, newValue:string) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
@@ -21,19 +21,33 @@ function Storage() {
       <Container maxWidth="xl" className="h-full">
         <Box>
           <Box>
-            {/* <Typography variant="h2" component="h1" color="#efa135">
+            <Typography
+              variant="h2"
+              component="h1"
+              className="text-[#efa135] dark:text-[#522aa7]"
+            >
               STORAGE
-            </Typography> */}
+            </Typography>
           </Box>
           <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }} className="border-[#252627] dark:border-white">
-              <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Tab label="Books" value="1"/>
-                <Tab label="Resources" value="2"/>
+            <Box
+              sx={{ borderBottom: 1, borderColor: "divider" }}
+              className="border-[#252627] dark:border-white"
+            >
+              <TabList
+                onChange={handleChange}
+                aria-label="lab API tabs example"
+              >
+                <Tab label="Books" value="1" />
+                <Tab label="Resources" value="2" />
               </TabList>
             </Box>
-            <TabPanel value="1" sx={{padding:"initial"}}><Books/></TabPanel>
-            <TabPanel value="2" sx={{padding:"initial"}}><Resources/></TabPanel>
+            <TabPanel value="1" sx={{ padding: "initial" }}>
+              <Books />
+            </TabPanel>
+            <TabPanel value="2" sx={{ padding: "initial" }}>
+              <Resources />
+            </TabPanel>
           </TabContext>
         </Box>
       </Container>

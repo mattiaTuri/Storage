@@ -4,22 +4,22 @@ import { ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modalSelector } from "../../store/modal/selector";
 import { openModal } from "../../store/modal/modalSlice";
-import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 
 interface CustomButtonProps {
   title: string;
+  functionClick: () => void;
+  children?: ReactNode;
 }
 
-function CustomButton({ title }: CustomButtonProps) {
-  const dispatch = useDispatch();
-
+function CustomButton({ title, functionClick, children }: CustomButtonProps) {
   return (
     <Button
       variant="outlined"
       className="group relative flex gap-2 overflow-hidden h-12 w-24 after:content-[''] after:absolute after:bg-[#efa135] after:dark:bg-[#522AA7] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
-      onClick={() => dispatch(openModal())}
+      onClick={functionClick}
     >
-      <AddCircleOutlinedIcon className="text-[#474862] dark:text-white group-hover:text-white ease-in-out z-10"/> 
+      {children}
       <Typography
         component="span"
         className="text-[#474862] dark:text-white group-hover:text-white duration-500 ease-in-out z-10"

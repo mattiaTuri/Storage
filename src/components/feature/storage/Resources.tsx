@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CustomButton from "../../shared/ModalButton";
+import CustomButton from "../../shared/CustomButton";
 import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -12,7 +12,7 @@ import { useState } from "react";
 import { ResourcesProps } from "../../../models/Resources";
 import { database } from "../../../firebase";
 import { ref, set } from "firebase/database";
-import { closeModal } from "../../../store/modal/modalSlice";
+import { closeModal, openModal } from "../../../store/modal/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { updateResourceValues } from "../../../store/resourcesRows/resourceRowsSlice";
 import { resourceRowSelector } from "../../../store/resourcesRows/selector";
@@ -96,12 +96,17 @@ const resourceCol: GridColDef[] = [
 
 function Resources() {
   const dispatch = useDispatch();
-  const resourceValues = useSelector(resourceRowSelector)
+  const resourceValues = useSelector(resourceRowSelector);
 
   const [resourcesList, setResourcesList] = useState<ResourcesProps[]>([]);
 
   const onValChanges = (event: any) => {
-    dispatch(updateResourceValues({...resourceValues, [event.target.name]: event.target.value}))
+    dispatch(
+      updateResourceValues({
+        ...resourceValues,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   const addNewBook = (event: any) => {
@@ -112,22 +117,26 @@ function Resources() {
   };
 
   const writeBook = (data: any) => {
-    const {id, title, link, tag, short_description } = data;
+    const { id, title, link, tag, short_description } = data;
     set(ref(database, "resources" + id), {
       id,
       title,
       link,
       tag,
-      short_description
+      short_description,
     });
   };
 
   return (
-    <Box sx={{width: "100%" }}>
+    <Box sx={{ width: "100%" }}>
       <Box className="flex justify-end my-4">
-        <CustomButton title="Add" />
+        <CustomButton title="Add" functionClick={() => dispatch(openModal())} />
       </Box>
-      <CustomModal input={resourceValues} onValChanges={onValChanges} addNewBook={addNewBook} />
+      <CustomModal
+        input={resourceValues}
+        onValChanges={onValChanges}
+        addNewBook={addNewBook}
+      />
       <Table
         rows={resourcesList}
         setRows={setResourcesList}
