@@ -6,21 +6,22 @@ import { database } from "../../../firebase";
 import { child, get, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
+import { useDispatch, useSelector } from "react-redux";
+import { booksListSelector } from "../../../store/booksList/selector";
+import { BooksProps } from "../../../models/Books";
+import { getBooksList } from "../../../store/booksList/booksListSlice";
 
 function Table({ rows, setRows, table, columns }: any) {
+  const dispatch = useDispatch();
+  const booksList: BooksProps[] = useSelector(booksListSelector);
+
   useEffect(() => {
-    get(child(ref(database), table)).then((snapshot: any) => {
-      snapshot.forEach((elem: any) => {
-        const dataObj = (data: any) => [...data, elem.val()];
-        setRows(dataObj);
-        console.log(dataObj);
-      });
-    });
+    dispatch(getBooksList(table));
   }, []);
 
   return (
     <DataGrid
-      rows={rows}
+      rows={booksList}
       columns={columns}
       initialState={{
         pagination: {

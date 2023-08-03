@@ -2,8 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./theme/themeSlice"
 import hamburgerReducer from "./hamburgerMenu/hamburgerSlice"
 import modalReducer from "./modal/modalSlice"
-import bookRowsReducer from "./booksRows/bookRowsSlice"
+import bookRowsReducer from "./bookRow/bookRowsSlice"
 import resourceRowsReducer from "./resourcesRows/resourceRowsSlice"
+import booksListReducer from "./booksList/booksListSlice"
 
 export const store = configureStore({
     reducer:{
@@ -11,7 +12,8 @@ export const store = configureStore({
         leftMenu: hamburgerReducer,
         modal: modalReducer,
         bookRows:bookRowsReducer,
-        resourceRows:resourceRowsReducer
+        resourceRows:resourceRowsReducer,
+        booksList:booksListReducer
     }
 })
 

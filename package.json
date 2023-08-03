@@ -19,6 +19,7 @@
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "dayjs": "^1.11.9",
+    "echarts": "^5.4.3",
     "firebase": "^10.1.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

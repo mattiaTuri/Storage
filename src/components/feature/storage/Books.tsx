@@ -16,15 +16,16 @@ import { database } from "../../../firebase";
 import { child, get, getDatabase, ref, remove, set } from "firebase/database";
 import Table from "./Table";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { bookRowsSelector } from "../../../store/booksRows/selector";
-import { updateBookValues } from "../../../store/booksRows/bookRowsSlice";
+import { bookRowsSelector } from "../../../store/bookRow/selector";
+import { updateBookValues } from "../../../store/bookRow/bookRowsSlice";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import { booksListSelector } from "../../../store/booksList/selector";
+import { addBook, removeBook } from "../../../store/booksList/booksListSlice";
 
 function Books() {
   const dispatch = useDispatch();
   let bookValues: BooksProps = useSelector(bookRowsSelector);
-
-  const [booksList, setBooksList] = useState<BooksProps[]>([]);
+  let booksList: BooksProps[] = useSelector(booksListSelector);
 
   const onValChanges = (event: any) => {
     dispatch(
@@ -36,28 +37,12 @@ function Books() {
   };
 
   const addNewBook = () => {
-    const dataObj = (data: any) => [...data, bookValues];
-    setBooksList(dataObj);
+    dispatch(addBook(bookValues));
     dispatch(closeModal());
-    writeBook(bookValues);
   };
 
   const deleteRow = (id: GridRowId) => {
-    setBooksList(booksList.filter((row) => row.id != id));
-
-    remove(ref(database, "books/" + id));
-  };
-
-  const writeBook = (data: any) => {
-    const { id, title, author, editor, genre, pages } = data;
-    set(ref(database, "books/" + id), {
-      id,
-      title,
-      author,
-      editor,
-      genre,
-      pages,
-    });
+    dispatch(removeBook({ id, booksList }));
   };
 
   const bookCol: GridColDef[] = [
@@ -184,7 +169,8 @@ function Books() {
       />
       <Table
         rows={booksList}
-        setRows={setBooksList}
+        // rows={booksList}
+        // setRows={setBooksList}
         table="books"
         columns={bookCol}
       />

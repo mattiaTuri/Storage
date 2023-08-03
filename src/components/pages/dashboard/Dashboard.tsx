@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import BookChart from "../../feature/dashboard/BookChart";
 
 function Dashboard() {
   return (
@@ -12,6 +13,7 @@ function Dashboard() {
               DASHBOARD
             </Typography>
           </Box>
+          <BookChart />
         </Box>
       </Container>
     </Box>
