@@ -80,7 +80,7 @@ const resourceCol: GridColDef[] = [
     field: "actions",
     headerName: "Actions",
     type: "actions",
-    width: 150,
+    width: 100,
     getActions: ({ id }) => {
       return [
         <GridActionsCellItem

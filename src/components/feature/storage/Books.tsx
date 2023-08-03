@@ -120,7 +120,7 @@ function Books() {
       field: "pages",
       headerName: "Pages",
       type: "number",
-      width: 200,
+      width: 150,
       headerAlign: "center",
       align: "center",
       editable: true,

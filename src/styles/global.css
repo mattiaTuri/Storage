@@ -36,7 +36,11 @@ p{
 }
 
 .MuiDataGrid-main{
-  height: 576px;
+  height: 500px;
+}
+
+.echarts-for-react{
+  height: 100% !important;
 }
 
 /* .MuiPickersDay-today{
