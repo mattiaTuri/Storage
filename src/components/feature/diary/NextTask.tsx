@@ -1,13 +1,10 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Calendar from "./Calendar";
 import CardActions from "@mui/material/CardActions";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-import { Button, Chip, IconButton } from "@mui/material";
-import Task from "./Task";
+import { Chip, IconButton } from "@mui/material";
 
 interface TaskProps {
   title: string;

@@ -1,18 +1,7 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-
-import DeleteIcon from "@mui/icons-material/Delete";
-import { database } from "../../../firebase";
-import { child, get, ref } from "firebase/database";
-import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
-import { useDispatch, useSelector } from "react-redux";
-import { booksListSelector } from "../../../store/booksList/selector";
-import { BooksProps } from "../../../models/Books";
-import { getBooksList } from "../../../store/booksList/booksListSlice";
 
 function Table({ rows, columns }: any) {
-
   return (
     <DataGrid
       rows={rows}

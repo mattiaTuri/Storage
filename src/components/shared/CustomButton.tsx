@@ -1,10 +1,5 @@
 import { Button, Icon, Typography } from "@mui/material";
-import Box from "@mui/material/Box";
 import { ReactNode } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { modalSelector } from "../../store/modal/selector";
-import { openModal } from "../../store/modal/modalSlice";
-import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 
 interface CustomButtonProps {
   title: string;

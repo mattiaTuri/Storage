@@ -3,23 +3,16 @@ import { useSelector } from "react-redux";
 import * as echarts from "echarts/core";
 import { PieChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
-import {
-  GridComponent,
-  LegendComponent,
-  TooltipComponent,
-  TitleComponent,
-  DatasetComponent,
-} from "echarts/components";
+import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
-import { BooksProps } from "../../../models/Books";
 import { themeSelector } from "../../../store/theme/selector";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
 import { ResourcesProps } from "../../../models/Resources";
 
 function ResourcesChart() {
   const resourcesList = useSelector(resourcesListSelector);
-  const theme = useSelector(themeSelector)
-  echarts.use([PieChart, CanvasRenderer,TitleComponent, TooltipComponent]);
+  const theme = useSelector(themeSelector);
+  echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
   const [data, setData] = useState<any>(null);
   useEffect(() => {
@@ -55,20 +48,20 @@ function ResourcesChart() {
 
   const option = {
     title: {
-      text: 'Resources',
-      subtext: 'Divided by tag',
-      left: 'center',
-      top:20,
+      text: "Resources",
+      subtext: "Divided by tag",
+      left: "center",
+      top: 20,
       textStyle: {
         color: theme === "light" ? "#474862" : "white",
         fontSize: 20,
-        fontFamily: "Poppins-Bold"
+        fontFamily: "Poppins-Bold",
       },
     },
-    color:["#ffbf00", "#522aa7", "#17c0fd", "#ff0087", "#00C49A"],
+    color: ["#ffbf00", "#522aa7", "#17c0fd", "#ff0087", "#00C49A"],
     tooltip: {
-      textStyle:{
-        fontFamily:"Poppins-Regular",
+      textStyle: {
+        fontFamily: "Poppins-Regular",
       },
       trigger: "item",
     },
@@ -76,9 +69,9 @@ function ResourcesChart() {
       top: "5%",
       left: "center",
     },
-    label:{
-      fontSize:12,
-      fontFamily:"Poppins-Bold",
+    label: {
+      fontSize: 12,
+      fontFamily: "Poppins-Bold",
       color: theme === "light" ? "#474862" : "white",
     },
     series: [

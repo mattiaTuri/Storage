@@ -13,10 +13,10 @@ function Schedule() {
             SCHEDULER
           </Typography>
         </Box>
-        <Box className="h-full flex">
+        {/* <Box className="h-full flex">
           <Diary />
           <DailyTasks />
-        </Box>
+        </Box> */}
       </Box>
     </Container>
   );

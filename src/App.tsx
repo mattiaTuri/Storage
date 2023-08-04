@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./components/core/sidebar/Sidebar";
-import Topbar from "./components/core/topbar/Topbar";
 import NavbarMobile from "./components/core/navbarMobile/NavbarMobile";
-import Footer from "./components/core/footer/Footer";
 import { useSelector } from "react-redux";
 import { themeSelector } from "./store/theme/selector";
 import { GlobalStyles, dark, light } from "./components/theme/theme";

@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import CurrentDate from "../../shared/Date/CurrentDate";
 
 function Topbar() {
