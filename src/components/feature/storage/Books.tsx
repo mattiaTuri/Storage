@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import {
-  DataGrid,
   GridActionsCellItem,
   GridColDef,
   GridRowId,
@@ -8,24 +7,26 @@ import {
 import CustomButton from "../../shared/CustomButton";
 import { Typography } from "@mui/material";
 import CustomModal from "./CustomModal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BooksProps } from "../../../models/Books";
 import { closeModal, openModal } from "../../../store/modal/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { database } from "../../../firebase";
-import { child, get, getDatabase, ref, remove, set } from "firebase/database";
 import Table from "./Table";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { bookRowsSelector } from "../../../store/bookRow/selector";
 import { updateBookValues } from "../../../store/bookRow/bookRowsSlice";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import { booksListSelector } from "../../../store/booksList/selector";
-import { addBook, removeBook } from "../../../store/booksList/booksListSlice";
+import { addBook, getBooksList, removeBook } from "../../../store/booksList/booksListSlice";
 
 function Books() {
   const dispatch = useDispatch();
   let bookValues: BooksProps = useSelector(bookRowsSelector);
   let booksList: BooksProps[] = useSelector(booksListSelector);
+
+  useEffect(() => {
+    dispatch(getBooksList("books"));
+  }, []);
 
   const onValChanges = (event: any) => {
     dispatch(
@@ -169,7 +170,6 @@ function Books() {
       />
       <Table
         rows={booksList}
-        // rows={booksList}
         // setRows={setBooksList}
         table="books"
         columns={bookCol}

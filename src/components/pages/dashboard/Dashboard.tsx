@@ -1,8 +1,9 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import BookChart from "../../feature/dashboard/BookChart";
+import BooksChart from "../../feature/dashboard/BooksChart";
 import Card from "@mui/material/Card";
+import ResourcesChart from "../../feature/dashboard/ResourcesChart";
 
 function Dashboard() {
   return (
@@ -21,10 +22,10 @@ function Dashboard() {
           </div>
           <div className="grid grid-cols-2 gap-10 h-[60%]">
             <Card className="bg-white dark:bg-[#262626] h-full">
-              <BookChart />
+              <BooksChart />
             </Card>
             <Card className="bg-white dark:bg-[#262626] h-full">
-              <BookChart />
+              <ResourcesChart />
             </Card>
           </div>
         </Box>

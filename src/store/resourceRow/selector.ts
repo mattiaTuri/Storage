@@ -1,5 +1,5 @@
 import { RootState } from "../store";
 
-export function resourceRowSelector (state: RootState) {
+export function resourceRowsSelector (state: RootState) {
   return state.resourceRows;
 }

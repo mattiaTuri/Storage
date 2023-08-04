@@ -11,17 +11,11 @@ import { booksListSelector } from "../../../store/booksList/selector";
 import { BooksProps } from "../../../models/Books";
 import { getBooksList } from "../../../store/booksList/booksListSlice";
 
-function Table({ rows, setRows, table, columns }: any) {
-  const dispatch = useDispatch();
-  const booksList: BooksProps[] = useSelector(booksListSelector);
-
-  useEffect(() => {
-    dispatch(getBooksList(table));
-  }, []);
+function Table({ rows, columns }: any) {
 
   return (
     <DataGrid
-      rows={booksList}
+      rows={rows}
       columns={columns}
       initialState={{
         pagination: {
