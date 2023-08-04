@@ -13,10 +13,12 @@ import {
 } from "echarts/components";
 import { useEffect, useState } from "react";
 import { BooksProps } from "../../../models/Books";
+import { themeSelector } from "../../../store/theme/selector";
 
 function BookChart() {
   const bookList = useSelector(booksListSelector);
-  echarts.use([PieChart, CanvasRenderer, TooltipComponent]);
+  const theme = useSelector(themeSelector)
+  echarts.use([PieChart, CanvasRenderer,TitleComponent, TooltipComponent]);
 
   const [data, setData] = useState<any>(null);
   useEffect(() => {
@@ -51,31 +53,47 @@ function BookChart() {
   };
 
   const option = {
+    title: {
+      text: 'Books',
+      subtext: 'Divided by genre',
+      left: 'center',
+      top:20,
+      textStyle: {
+        color: theme === "light" ? "#474862" : "white",
+        fontSize: 20,
+        fontFamily: "Poppins-Bold"
+      },
+    },
+    color:["#ffbf00", "#522aa7", "#17c0fd", "#ff0087", "#00C49A"],
     tooltip: {
+      textStyle:{
+        fontFamily:"Poppins-Regular",
+      },
       trigger: "item",
     },
     legend: {
       top: "5%",
       left: "center",
     },
+    label:{
+      fontSize:12,
+      fontFamily:"Poppins-Bold",
+      color: theme === "light" ? "#474862" : "white",
+    },
     series: [
       {
         name: "Genre",
         type: "pie",
         radius: "50%",
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: "rgba(0, 0, 0, 0.5)",
-          },
-        },
+        // emphasis: {
+        //   itemStyle: {
+        //     color: theme === "light" ? "#474862" : "white",
+        //     //shadowBlur: 10,
+        //     shadowOffsetX: 0,
+        //     //shadowColor: "rgba(0, 0, 0, 0.5)",
+        //   },
+        // },
         data: data,
-        // { value: 1048, name: "Search Engine" },
-        // { value: 735, name: "Direct" },
-        // { value: 580, name: "Email" },
-        // { value: 484, name: "Union Ads" },
-        // { value: 300, name: "Video Ads" },
       },
     ],
   };

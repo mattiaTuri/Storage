@@ -15,15 +15,15 @@ function Dashboard() {
         </Box>
         <Box className="h-full flex flex-col gap-10">
           <div className="grid grid-cols-3 gap-10 h-[40%]">
-            <Card className="bg-white">a</Card>
-            <Card className="bg-white">a</Card>
-            <Card className="bg-white">a</Card>
+            <Card className="bg-white dark:bg-[#262626]">a</Card>
+            <Card className="bg-white dark:bg-[#262626]">a</Card>
+            <Card className="bg-white dark:bg-[#262626]">a</Card>
           </div>
           <div className="grid grid-cols-2 gap-10 h-[60%]">
-            <Card className="bg-white h-full">
+            <Card className="bg-white dark:bg-[#262626] h-full">
               <BookChart />
             </Card>
-            <Card className="bg-white h-full">
+            <Card className="bg-white dark:bg-[#262626] h-full">
               <BookChart />
             </Card>
           </div>
