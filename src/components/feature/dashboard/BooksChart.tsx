@@ -7,7 +7,7 @@ import { CanvasRenderer } from "echarts/renderers";
 import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
 import { themeSelector } from "../../../store/theme/selector";
-import { BooksProps } from "../../../models/Books";
+//import { BooksProps } from "../../../models/Books";
 
 function BookChart() {
   const bookList = useSelector(booksListSelector);
@@ -20,7 +20,7 @@ function BookChart() {
   }, []);
 
   const getChartValue = () => {
-    const genresList = bookList.map((elem: BooksProps) => elem.genre);
+    const genresList = bookList.map((elem: any) => elem.genre);
     const genresListWithoutDuplicate: string[] = [];
     genresList.forEach((elem: string) => {
       if (!genresListWithoutDuplicate.includes(elem)) {
