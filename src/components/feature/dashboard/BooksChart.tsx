@@ -17,7 +17,7 @@ function BookChart() {
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, []);
+  }, [data]);
 
   const getChartValue = () => {
     const genresList = bookList.map((elem: BooksProps) => elem.genre);

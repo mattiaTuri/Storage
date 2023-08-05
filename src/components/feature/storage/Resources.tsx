@@ -10,20 +10,17 @@ import { closeModal, openModal } from "../../../store/modal/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { updateResourceValues } from "../../../store/resourceRow/resourceRowsSlice";
 import { resourceRowsSelector } from "../../../store/resourceRow/selector";
-import { addResource, getResourcesList, removeResource } from "../../../store/resourcesList/resourcesListSlice";
+import {
+  addResource,
+  removeResource,
+} from "../../../store/resourcesList/resourcesListSlice";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
-import { useEffect } from "react";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 
 function Resources() {
   const dispatch = useDispatch();
   const resourceValues = useSelector(resourceRowsSelector);
   const resourcesList = useSelector(resourcesListSelector);
-
-  useEffect(() => {
-    dispatch(getResourcesList("resources"));
-  }, []);
-
 
   const onValChanges = (event: any) => {
     dispatch(
@@ -34,7 +31,7 @@ function Resources() {
     );
   };
 
-  const addNewResource= () => {
+  const addNewResource = () => {
     dispatch(addResource(resourceValues));
     dispatch(closeModal());
   };
@@ -51,7 +48,11 @@ function Resources() {
       editable: true,
       renderCell: (params) => {
         return (
-          <Typography variant="caption" component="p" className="text-[#474862]">
+          <Typography
+            variant="caption"
+            component="p"
+            className="text-[#474862]"
+          >
             {params.value}
           </Typography>
         );
@@ -82,7 +83,11 @@ function Resources() {
       editable: true,
       renderCell: (params) => {
         return (
-          <Typography variant="caption" component="p" className="text-[#474862]">
+          <Typography
+            variant="caption"
+            component="p"
+            className="text-[#474862]"
+          >
             {params.value}
           </Typography>
         );
@@ -96,7 +101,11 @@ function Resources() {
       editable: true,
       renderCell: (params) => {
         return (
-          <Typography variant="caption" component="p" className="text-[#474862]">
+          <Typography
+            variant="caption"
+            component="p"
+            className="text-[#474862]"
+          >
             {params.value}
           </Typography>
         );
@@ -123,7 +132,7 @@ function Resources() {
   return (
     <Box sx={{ width: "100%" }}>
       <Box className="flex justify-end my-4">
-        <CustomButton title="Add" functionClick={() => dispatch(openModal())} >
+        <CustomButton title="Add" functionClick={() => dispatch(openModal())}>
           <AddCircleOutlinedIcon className="text-[#474862] dark:text-white group-hover:text-white ease-in-out z-10" />
         </CustomButton>
       </Box>

@@ -1,9 +1,5 @@
 import Box from "@mui/material/Box";
-import {
-  GridActionsCellItem,
-  GridColDef,
-  GridRowId,
-} from "@mui/x-data-grid";
+import { GridActionsCellItem, GridColDef, GridRowId } from "@mui/x-data-grid";
 import CustomButton from "../../shared/CustomButton";
 import { Typography } from "@mui/material";
 import CustomModal from "./CustomModal";
@@ -17,16 +13,12 @@ import { bookRowsSelector } from "../../../store/bookRow/selector";
 import { updateBookValues } from "../../../store/bookRow/bookRowsSlice";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import { booksListSelector } from "../../../store/booksList/selector";
-import { addBook, getBooksList, removeBook } from "../../../store/booksList/booksListSlice";
+import { addBook, removeBook } from "../../../store/booksList/booksListSlice";
 
 function Books() {
   const dispatch = useDispatch();
   let bookValues: BooksProps = useSelector(bookRowsSelector);
   let booksList: BooksProps[] = useSelector(booksListSelector);
-
-  useEffect(() => {
-    dispatch(getBooksList("books"));
-  }, []);
 
   const onValChanges = (event: any) => {
     dispatch(

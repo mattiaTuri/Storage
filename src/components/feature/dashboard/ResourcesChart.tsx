@@ -1,5 +1,5 @@
 import ReactEChartsCore from "echarts-for-react/lib/core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as echarts from "echarts/core";
 import { PieChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
@@ -8,16 +8,19 @@ import { useEffect, useState } from "react";
 import { themeSelector } from "../../../store/theme/selector";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
 import { ResourcesProps } from "../../../models/Resources";
+import { getResourcesList } from "../../../store/resourcesList/resourcesListSlice";
 
 function ResourcesChart() {
-  const resourcesList = useSelector(resourcesListSelector);
+  let resourcesList = useSelector(resourcesListSelector);
+  console.log(resourcesList);
+
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, []);
+  }, [data]);
 
   const getChartValue = () => {
     const tagList = resourcesList.map((elem: ResourcesProps) => elem.tag);
@@ -79,14 +82,6 @@ function ResourcesChart() {
         name: "Tag",
         type: "pie",
         radius: "50%",
-        // emphasis: {
-        //   itemStyle: {
-        //     color: theme === "light" ? "#474862" : "white",
-        //     //shadowBlur: 10,
-        //     shadowOffsetX: 0,
-        //     //shadowColor: "rgba(0, 0, 0, 0.5)",
-        //   },
-        // },
         data: data,
       },
     ],
