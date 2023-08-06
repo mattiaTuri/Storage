@@ -30,22 +30,6 @@ function Dashboard() {
           </div>
         </Box>
       </Box>
-
-      {/* <Box className="w-full">
-          <div className="h-[50%] flex">
-            <div className="h-full bg-white shadow-lg">a</div>
-            <div className="h-full shadow-lg">a</div>
-            <div className="h-full shadow-lg">a</div>
-          </div>
-          <div className="h-[50%] w-full flex">
-            <div className="bg-white h-[50%] w-[50%] shadow-lg">
-              <BookChart />
-            </div>
-            <div className="bg-white h-[50%] w-[50%] shadow-lg">
-              <BookChart />
-            </div>
-          </div>
-        </Box> */}
     </Container>
   );
 }

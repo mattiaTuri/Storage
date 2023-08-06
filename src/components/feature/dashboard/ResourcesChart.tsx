@@ -12,7 +12,6 @@ import { getResourcesList } from "../../../store/resourcesList/resourcesListSlic
 
 function ResourcesChart() {
   let resourcesList = useSelector(resourcesListSelector);
-  console.log(resourcesList);
 
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
@@ -20,7 +19,7 @@ function ResourcesChart() {
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, [data]);
+  }, []);
 
   const getChartValue = () => {
     const tagList = resourcesList.map((elem: ResourcesProps) => elem.tag);
@@ -46,7 +45,6 @@ function ResourcesChart() {
       a.push({ name: tag, value: occurences });
     });
     setData(a);
-    console.log(a);
   };
 
   const option = {

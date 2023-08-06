@@ -17,7 +17,7 @@ function BookChart() {
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, [data]);
+  }, []);
 
   const getChartValue = () => {
     const genresList = bookList.map((elem: BooksProps) => elem.genre);
@@ -43,7 +43,6 @@ function BookChart() {
       a.push({ name: genre, value: occurences });
     });
     setData(a);
-    console.log(a);
   };
 
   const option = {
