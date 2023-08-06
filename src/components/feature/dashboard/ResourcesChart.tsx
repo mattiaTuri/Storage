@@ -22,7 +22,9 @@ function ResourcesChart() {
   }, []);
 
   const getChartValue = () => {
-    const tagList = resourcesList.map((elem: ResourcesProps) => elem.tag);
+    const tagList = resourcesList.resources.map(
+      (elem: ResourcesProps) => elem.tag
+    );
     const tagListWithoutDuplicate: string[] = [];
     tagList.forEach((elem: string) => {
       if (!tagListWithoutDuplicate.includes(elem)) {
@@ -49,7 +51,7 @@ function ResourcesChart() {
 
   const option = {
     title: {
-      text: "Resources",
+      text: "Resources statistics",
       subtext: "Divided by tag",
       left: "center",
       top: 20,
@@ -59,7 +61,7 @@ function ResourcesChart() {
         fontFamily: "Poppins-Bold",
       },
     },
-    color: ["#ffbf00", "#522aa7", "#17c0fd", "#ff0087", "#00C49A"],
+    color: ["#efa135", "#522aa7", "#0066ff", "#ff0087", "#00C49A", "#17c0fd"],
     tooltip: {
       textStyle: {
         fontFamily: "Poppins-Regular",

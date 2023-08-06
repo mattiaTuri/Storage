@@ -7,11 +7,13 @@ export const booksListSlice = createSlice({
     name:"booksList",
     initialState: {
         books: [] as BooksProps[],
+        loading:false
     },
     reducers:{},
     extraReducers: (builder) => {
         builder.addCase(getBooksList.fulfilled, (state, action) => {
-            state.books = action.payload            
+            state.books = action.payload   
+            state.loading = true         
         })
         builder.addCase(addBook.fulfilled, (state, action) => {
             state.books.push(action.payload)

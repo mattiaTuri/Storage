@@ -16,10 +16,11 @@ import {
 } from "../../../store/resourcesList/resourcesListSlice";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import { ResourcesProps } from "../../../models/Resources";
 
 function Resources() {
   const dispatch = useDispatch();
-  const resourceValues = useSelector(resourceRowsSelector);
+  const resourceValues: ResourcesProps = useSelector(resourceRowsSelector);
   const resourcesList = useSelector(resourcesListSelector);
 
   const onValChanges = (event: any) => {
@@ -142,8 +143,7 @@ function Resources() {
         addFunction={addNewResource}
       />
       <Table
-        rows={resourcesList}
-        //setRows={setResourcesList}
+        rows={resourcesList.resources}
         table="resources"
         columns={resourceCol}
       />

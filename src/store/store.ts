@@ -15,8 +15,8 @@ export const store = configureStore({
         bookRows:bookRowsReducer,
         resourceRows:resourceRowsReducer,
         booksList:booksListReducer,
-        resourcesList: resourcesListReducer
-    }
+        resourcesList: resourcesListReducer,
+        }
 })
 
 export type RootState = ReturnType<typeof store.getState>;

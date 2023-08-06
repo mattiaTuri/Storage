@@ -7,11 +7,13 @@ export const resourcesListSlice = createSlice({
     name:"resourcesList",
     initialState: {
         resources: [] as ResourcesProps[],
+        loading: false
     },
     reducers:{},
     extraReducers: (builder) => {
         builder.addCase(getResourcesList.fulfilled, (state, action) => {
-            state.resources = action.payload            
+            state.resources = action.payload     
+            state.loading = true       
         })
         builder.addCase(addResource.fulfilled, (state, action) => {
             state.resources.push(action.payload)

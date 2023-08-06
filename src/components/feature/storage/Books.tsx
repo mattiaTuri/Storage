@@ -17,8 +17,8 @@ import { addBook, removeBook } from "../../../store/booksList/booksListSlice";
 
 function Books() {
   const dispatch = useDispatch();
-  let bookValues: BooksProps = useSelector(bookRowsSelector);
-  let booksList: BooksProps[] = useSelector(booksListSelector);
+  const bookValues: BooksProps = useSelector(bookRowsSelector);
+  const booksList = useSelector(booksListSelector);
 
   const onValChanges = (event: any) => {
     dispatch(
@@ -160,12 +160,7 @@ function Books() {
         onValChanges={onValChanges}
         addFunction={addNewBook}
       />
-      <Table
-        rows={booksList}
-        // setRows={setBooksList}
-        table="books"
-        columns={bookCol}
-      />
+      <Table rows={booksList.books} table="books" columns={bookCol} />
     </Box>
   );
 }

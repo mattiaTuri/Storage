@@ -20,7 +20,7 @@ function BookChart() {
   }, []);
 
   const getChartValue = () => {
-    const genresList = bookList.map((elem: BooksProps) => elem.genre);
+    const genresList = bookList.books.map((elem: BooksProps) => elem.genre);
     const genresListWithoutDuplicate: string[] = [];
     genresList.forEach((elem: string) => {
       if (!genresListWithoutDuplicate.includes(elem)) {
@@ -47,7 +47,7 @@ function BookChart() {
 
   const option = {
     title: {
-      text: "Books",
+      text: "Books statistics",
       subtext: "Divided by genre",
       left: "center",
       top: 20,
@@ -57,7 +57,7 @@ function BookChart() {
         fontFamily: "Poppins-Bold",
       },
     },
-    color: ["#ffbf00", "#522aa7", "#17c0fd", "#ff0087", "#00C49A"],
+    color: ["#efa135", "#522aa7", "#0066ff", "#ff0087", "#00C49A", "#17c0fd"],
     tooltip: {
       textStyle: {
         fontFamily: "Poppins-Regular",
@@ -78,14 +78,6 @@ function BookChart() {
         name: "Genre",
         type: "pie",
         radius: "50%",
-        // emphasis: {
-        //   itemStyle: {
-        //     color: theme === "light" ? "#474862" : "white",
-        //     //shadowBlur: 10,
-        //     shadowOffsetX: 0,
-        //     //shadowColor: "rgba(0, 0, 0, 0.5)",
-        //   },
-        // },
         data: data,
       },
     ],
