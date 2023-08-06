@@ -21,15 +21,10 @@ function App() {
   return (
     <ThemeProvider theme={theme === "light" ? light : dark}>
       <GlobalStyles />
-      <div className="lg:h-screen bg-[#f4f4f7] dark:bg-[#121212]">
-        <div className="h-full flex">
-          <Sidebar />
-          <div className="flex flex-col w-full p-10">
-            <NavbarMobile />
-            {/* <Topbar /> */}
-            <Outlet />
-          </div>
-        </div>
+      <div className="bg-[#f4f4f7] dark:bg-[#121212] lg:h-screen lg:flex">
+        <Sidebar />
+        <NavbarMobile />
+        <Outlet />
       </div>
     </ThemeProvider>
   );

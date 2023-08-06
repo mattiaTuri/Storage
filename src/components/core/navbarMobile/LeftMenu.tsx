@@ -24,18 +24,14 @@ function LeftMenu() {
         openMenu ? "left-0" : "left-[-100%]"
       } duration-300`}
     >
-      <Box className="h-full flex flex-col justify-between p-10">
+      <Box className="h-full flex flex-col justify-between">
         <Box className="flex justify-between items-center h-20">
-          <Box className="">
-            <Typography variant="h6" component="h1" color="#0066ff">
-              STORAGE
-            </Typography>
-          </Box>
-          <Box>
-            <IconButton onClick={() => dispatch(closeMenu())}>
-              <CloseIcon className="text-[#bbc3ce]" />
-            </IconButton>
-          </Box>
+          <Typography variant="h6" component="h1" color="#0066ff">
+            STORAGE
+          </Typography>
+          <IconButton onClick={() => dispatch(closeMenu())}>
+            <CloseIcon className="text-[#bbc3ce]" />
+          </IconButton>
         </Box>
         <Box className="flex flex-col gap-5" color="#bbc3ce">
           <Link to="7" className="flex gap-2">
