@@ -34,9 +34,9 @@ function Sidebar() {
           <MenuBookIcon className="ml-2" />
         </SidebarLink>
         <SidebarLink
-          id="schedule"
-          href="schedule"
-          link="Schedule"
+          id="scheduler"
+          href="scheduler"
+          link="Scheduler"
           disabled={true}
         >
           <CalendarMonthIcon className="ml-2" />

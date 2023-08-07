@@ -20,7 +20,7 @@ function LeftMenu() {
 
   return (
     <Container
-      className={`w-screen h-screen bg-white absolute top-0 ${
+      className={`w-screen h-screen bg-white z-50 absolute top-0 ${
         openMenu ? "left-0" : "left-[-100%]"
       } duration-300`}
     >
@@ -34,23 +34,23 @@ function LeftMenu() {
           </IconButton>
         </Box>
         <Box className="flex flex-col gap-5" color="#bbc3ce">
-          <Link to="7" className="flex gap-2">
+          <Link to="/" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
             <DashboardIcon />
             <Typography component="span">Dashboard</Typography>
           </Link>
-          <Link to="books" className="flex gap-2">
+          <Link to="storage" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
             <MenuBookIcon />
-            <Typography component="span">Books</Typography>
+            <Typography component="span">Storage</Typography>
           </Link>
-          <Link to="calendar" className="flex gap-2">
+          <Link to="scheduler" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
             <CalendarMonthIcon />
-            <Typography component="span">Calendar</Typography>
+            <Typography component="span">Scheduler</Typography>
           </Link>
-          <Link to="profile" className="flex gap-2">
+          <Link to="profile" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
             <PersonIcon />
             <Typography component="span">Profile</Typography>
           </Link>
-          <Link to="settings" className="flex gap-2">
+          <Link to="settings" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
             <SettingsIcon />
             <Typography component="span">Settings</Typography>
           </Link>
