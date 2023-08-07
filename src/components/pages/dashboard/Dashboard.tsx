@@ -8,6 +8,7 @@ import { Avatar, CardContent, CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { booksListSelector } from "../../../store/booksList/selector";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
+import Loader from "../../shared/Loader";
 
 function Dashboard() {
   const bookList = useSelector(booksListSelector);
@@ -80,7 +81,7 @@ function Dashboard() {
                       {bookList.loading ? (
                         bookList.books.length
                       ) : (
-                        <CircularProgress size={10} sx={{ color: "#efa135" }} />
+                        <Loader size={10} color="#efa135"/>
                       )}
                     </Typography>
                   </div>
@@ -94,7 +95,7 @@ function Dashboard() {
                       {resourcesList.loading ? (
                         resourcesList.resources.length
                       ) : (
-                        <CircularProgress size={10} sx={{ color: "#0066ff" }} />
+                        <Loader size={10} color="#0066ff"/>
                       )}
                     </Typography>
                   </div>
@@ -127,7 +128,7 @@ function Dashboard() {
                 <BooksChart />
               </Card>
               <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-                <ResourcesChart />
+                <ResourcesChart resourcesList={resourcesList}/>
               </Card>
             </div>
           </div>

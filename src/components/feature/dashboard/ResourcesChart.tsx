@@ -1,17 +1,17 @@
 import ReactEChartsCore from "echarts-for-react/lib/core";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import * as echarts from "echarts/core";
 import { PieChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
 import { themeSelector } from "../../../store/theme/selector";
-import { resourcesListSelector } from "../../../store/resourcesList/selector";
 import { ResourcesProps } from "../../../models/Resources";
-import { getResourcesList } from "../../../store/resourcesList/resourcesListSlice";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import Loader from "../../shared/Loader";
 
-function ResourcesChart() {
-  let resourcesList = useSelector(resourcesListSelector);
+function ResourcesChart({resourcesList}: {resourcesList:any}) {
 
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
@@ -19,7 +19,7 @@ function ResourcesChart() {
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, []);
+  }, [resourcesList.resources]);
 
   const getChartValue = () => {
     const tagList = resourcesList.resources.map(
@@ -89,7 +89,7 @@ function ResourcesChart() {
 
   return (
     <>
-      <ReactEChartsCore echarts={echarts} option={option} />
+    {resourcesList.loading ? <ReactEChartsCore echarts={echarts} option={option} /> : <Box className="h-full flex justify-center items-center"><Loader size={40} color="#0066ff"/></Box>}
     </>
   );
 }

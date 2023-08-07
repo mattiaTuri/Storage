@@ -8,6 +8,8 @@ import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
 import { themeSelector } from "../../../store/theme/selector";
 import { BooksProps } from "../../../models/Books";
+import Box from "@mui/material/Box";
+import Loader from "../../shared/Loader";
 
 function BookChart() {
   const bookList = useSelector(booksListSelector);
@@ -17,7 +19,7 @@ function BookChart() {
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, []);
+  }, [bookList]);
 
   const getChartValue = () => {
     const genresList = bookList.books.map((elem: BooksProps) => elem.genre);
@@ -85,7 +87,7 @@ function BookChart() {
 
   return (
     <>
-      <ReactEChartsCore echarts={echarts} option={option} />{" "}
+      {bookList.loading ? <ReactEChartsCore echarts={echarts} option={option} /> : <Box className="h-full flex justify-center items-center"><Loader size={40} color="#0066ff"/></Box>}
     </>
   );
 }
