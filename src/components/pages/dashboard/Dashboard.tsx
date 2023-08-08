@@ -15,25 +15,11 @@ import AnimatedNumber from "../../shared/AnimatedNumber";
 function Dashboard() {
   const bookList = useSelector(booksListSelector);
   const resourcesList = useSelector(resourcesListSelector);
-  const [count, setCount] = useState(0)
-
-  let i = 0;
-  useEffect(() => {
-    counter()
-  })
-
-  const counter = () => {
-    if(i <= bookList.books.length){
-      setCount(i)
-      i++
-      counter()
-    }
-  }
 
   return (
     <Container maxWidth="xl" className="h-full ">
       <Box className="flex flex-col h-full p-10">
-        <Box className="text-center lg:text-left pb-10 lg:pb-0">
+        <Box className="text-center lg:text-left pb-10">
           <Typography
             sx={{ fontSize: 40 }}
             variant="h2"
@@ -44,8 +30,8 @@ function Dashboard() {
           </Typography>
         </Box>
         <Box className="h-full">
-          <div className="flex flex-col justify-end gap-10 h-full">
-            <div className="flex flex-col gap-10 md:grid grid-cols-3 h-[30%]">
+          <div className="flex flex-col gap-10 h-full">
+            <div className="flex flex-col gap-10 md:grid grid-cols-3 h-[40%]">
               <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
                 <CardContent className="flex justify-between items-center h-full ">
                   <Box>

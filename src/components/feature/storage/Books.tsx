@@ -42,7 +42,7 @@ function Books() {
     {
       field: "title",
       headerName: "Title",
-      width: 300,
+      width: 400,
       editable: true,
       renderCell: (params) => {
         return (
@@ -77,7 +77,7 @@ function Books() {
       field: "editor",
       headerName: "Editor",
       type: "string",
-      width: 300,
+      width: 200,
       editable: true,
       renderCell: (params) => {
         return (
@@ -133,7 +133,7 @@ function Books() {
       field: "actions",
       headerName: "Actions",
       type: "actions",
-      width: 150,
+      width: 100,
       getActions: ({ id }) => {
         return [
           <GridActionsCellItem
@@ -149,7 +149,7 @@ function Books() {
   ];
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%" }} className="flex flex-col h-full">
       <Box className="flex justify-end my-4">
         <CustomButton title="Add" functionClick={() => dispatch(openModal())}>
           <AddCircleOutlinedIcon className="text-[#474862] dark:text-white group-hover:text-white ease-in-out z-10" />

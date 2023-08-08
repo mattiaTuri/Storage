@@ -3,20 +3,23 @@ import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 
 function Table({ rows, columns }: any) {
   return (
-    <DataGrid
-      rows={rows}
-      columns={columns}
-      initialState={{
-        pagination: {
-          paginationModel: {
-            pageSize: 10,
+    <Box className="relative h-full">
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 10,
+            },
           },
-        },
-      }}
-      slots={{ noRowsOverlay: CustomNoRowsOverlay }}
-      pageSizeOptions={[10]}
-      disableRowSelectionOnClick
-    />
+        }}
+        slots={{ noRowsOverlay: CustomNoRowsOverlay }}
+        pageSizeOptions={[10]}
+        disableRowSelectionOnClick
+      />
+    </Box>
+
   );
 }
 

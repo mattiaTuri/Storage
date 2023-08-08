@@ -17,14 +17,14 @@ function Storage() {
   };
 
   return (
-    <Box className="h-full">
-      <Container maxWidth="xl" className="h-full">
-        <Box>
-          <Box>
+      <Container maxWidth="xl" className="h-screen lg:h-full">
+        <Box className="p-10 h-full flex flex-col">
+          <Box className="text-center lg:text-left pb-10">
             <Typography
+              sx={{ fontSize: 40 }}
               variant="h2"
               component="h1"
-              className="text-[#efa135] dark:text-[#522aa7]"
+              color="#efa135"
             >
               STORAGE
             </Typography>
@@ -42,16 +42,15 @@ function Storage() {
                 <Tab label="Resources" value="2" />
               </TabList>
             </Box>
-            <TabPanel value="1" sx={{ padding: "initial" }}>
+            <TabPanel value="1" sx={{ padding: "initial" }} className="h-full">
               <Books />
             </TabPanel>
-            <TabPanel value="2" sx={{ padding: "initial" }}>
+            <TabPanel value="2" sx={{ padding: "initial" }} className="h-full">
               <Resources />
             </TabPanel>
           </TabContext>
         </Box>
       </Container>
-    </Box>
   );
 }
 
