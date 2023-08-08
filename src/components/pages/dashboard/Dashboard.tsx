@@ -1,16 +1,15 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import BooksChart from "../../feature/dashboard/BooksChart";
+import BooksChart from "../../feature/dashboard/charts/BooksChart";
 import Card from "@mui/material/Card";
-import ResourcesChart from "../../feature/dashboard/ResourcesChart";
-import { Avatar, CardContent, CircularProgress } from "@mui/material";
+import ResourcesChart from "../../feature/dashboard/charts/ResourcesChart";
+import { Avatar, CardContent } from "@mui/material";
 import { useSelector } from "react-redux";
 import { booksListSelector } from "../../../store/booksList/selector";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
-import Loader from "../../shared/Loader";
-import { useEffect, useState } from "react";
-import AnimatedNumber from "../../shared/AnimatedNumber";
+import TasksCard from "../../feature/dashboard/cards/tasks/TasksCard";
+import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
 
 function Dashboard() {
   const bookList = useSelector(booksListSelector);
@@ -64,65 +63,8 @@ function Dashboard() {
                   </Avatar>
                 </CardContent>
               </Card>
-              <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-                <CardContent className="text-white flex flex-col justify-center h-full gap-2">
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    className="text-[#474862] dark:text-white"
-                  >
-                    Summary
-                  </Typography>
-                  <div className="flex justify-between items-center p-3 bg-[#efa135] rounded-md">
-                    <Typography component="p">Books</Typography>
-                    <Typography
-                      className="bg-[#ffbf00] max-w-max px-4 text-center rounded-md"
-                      component="span"
-                    >
-                      {bookList.loading ? (
-                        <AnimatedNumber listLength={bookList.books.length}/>
-                      ) : (
-                        <Loader size={10} color="#efa135"/>
-                      )}
-                    </Typography>
-                  </div>
-                  <div className="flex justify-between items-center p-3 bg-[#0066ff] rounded-md w-full">
-                    <Typography component="p">Resources</Typography>
-
-                    <div
-                      className="bg-[#17c0fd] max-w-max px-4 text-center rounded-md"
-                    >
-                      {resourcesList.loading ? (
-                        <AnimatedNumber listLength={resourcesList.resources.length}/>
-                      ) : (
-                        <Loader size={10} color="#0066ff"/>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center p-3 bg-[#522aa7] rounded-md w-full">
-                    <Typography component="p">Tasks</Typography>
-                    <Typography
-                      className="bg-[#6d39de] max-w-max px-4 text-center rounded-md"
-                      component="span"
-                    >
-                      0
-                    </Typography>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    className="text-[#474862] dark:text-white"
-                    variant="h5"
-                    component="h2"
-                  >
-                    Tasks
-                  </Typography>
-                </CardContent>
-              </Card>
+              <SummaryCard/>
+              <TasksCard/>
             </div>
             <div className="flex flex-col gap-10 lg:grid grid-cols-2 h-[60%]">
               <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">

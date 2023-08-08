@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 
 function Table({ rows, columns }: any) {
   return (
-    <Box className="relative h-full">
+    <Box className="relative h-full dark:bg-[#262626]">
       <DataGrid
         rows={rows}
         columns={columns}

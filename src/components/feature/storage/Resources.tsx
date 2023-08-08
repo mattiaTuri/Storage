@@ -52,7 +52,7 @@ function Resources() {
           <Typography
             variant="caption"
             component="p"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Typography>
@@ -69,7 +69,7 @@ function Resources() {
             href={params.value}
             target="_blank"
             variant="caption"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Link>
@@ -87,7 +87,7 @@ function Resources() {
           <Typography
             variant="caption"
             component="p"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Typography>
@@ -105,7 +105,7 @@ function Resources() {
           <Typography
             variant="caption"
             component="p"
-            className="text-[#474862]"
+            className="text-[#474862] dark:text-white"
           >
             {params.value}
           </Typography>

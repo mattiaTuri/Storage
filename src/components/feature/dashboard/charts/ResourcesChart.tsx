@@ -1,56 +1,58 @@
 import ReactEChartsCore from "echarts-for-react/lib/core";
 import { useSelector } from "react-redux";
-import { booksListSelector } from "../../../store/booksList/selector";
 import * as echarts from "echarts/core";
 import { PieChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
-import { themeSelector } from "../../../store/theme/selector";
-import { BooksProps } from "../../../models/Books";
+import { themeSelector } from "../../../../store/theme/selector";
+import { ResourcesProps } from "../../../../models/Resources";
+import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import Loader from "../../shared/Loader";
+import Loader from "../../../shared/Loader";
 
-function BookChart() {
-  const bookList = useSelector(booksListSelector);
+function ResourcesChart({resourcesList}: {resourcesList:any}) {
+
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, [bookList]);
+  }, [resourcesList.resources]);
 
   const getChartValue = () => {
-    const genresList = bookList.books.map((elem: BooksProps) => elem.genre);
-    const genresListWithoutDuplicate: string[] = [];
-    genresList.forEach((elem: string) => {
-      if (!genresListWithoutDuplicate.includes(elem)) {
-        genresListWithoutDuplicate.push(elem);
+    const tagList = resourcesList.resources.map(
+      (elem: ResourcesProps) => elem.tag
+    );
+    const tagListWithoutDuplicate: string[] = [];
+    tagList.forEach((elem: string) => {
+      if (!tagListWithoutDuplicate.includes(elem)) {
+        tagListWithoutDuplicate.push(elem);
       }
     });
-    countBookGenres(genresList, genresListWithoutDuplicate);
+    countBookGenres(tagList, tagListWithoutDuplicate);
   };
 
   const countBookGenres = (
-    genresList: string[],
-    genresListWithoutDuplicate: string[]
+    tagList: string[],
+    tagListWithoutDuplicate: string[]
   ) => {
     let a: any[] = [];
-    genresListWithoutDuplicate.forEach((genre) => {
+    tagListWithoutDuplicate.forEach((tag) => {
       let occurences = 0;
-      genresList.forEach((elem: string) => {
-        if (genre == elem) occurences++;
+      tagList.forEach((elem: string) => {
+        if (tag == elem) occurences++;
       });
-      a.push({ name: genre, value: occurences });
+      a.push({ name: tag, value: occurences });
     });
     setData(a);
   };
 
   const option = {
     title: {
-      text: "Books statistics",
-      subtext: "Divided by genre",
+      text: "Resources statistics",
+      subtext: "Divided by tag",
       left: "center",
       top: 20,
       textStyle: {
@@ -77,7 +79,7 @@ function BookChart() {
     },
     series: [
       {
-        name: "Genre",
+        name: "Tag",
         type: "pie",
         radius: "50%",
         data: data,
@@ -87,9 +89,9 @@ function BookChart() {
 
   return (
     <>
-      {bookList.loading ? <ReactEChartsCore echarts={echarts} option={option} /> : <Box className="h-full flex justify-center items-center"><Loader size={40} color="#0066ff"/></Box>}
+    {resourcesList.loading ? <ReactEChartsCore echarts={echarts} option={option} /> : <Box className="h-full flex justify-center items-center"><Loader size={40} color="#0066ff"/></Box>}
     </>
   );
 }
 
-export default BookChart;
+export default ResourcesChart;
