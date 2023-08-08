@@ -5,14 +5,30 @@ import BooksChart from "../../feature/dashboard/BooksChart";
 import Card from "@mui/material/Card";
 import ResourcesChart from "../../feature/dashboard/ResourcesChart";
 import { Avatar, CardContent, CircularProgress } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { booksListSelector } from "../../../store/booksList/selector";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
 import Loader from "../../shared/Loader";
+import { useEffect, useState } from "react";
+import AnimatedNumber from "../../shared/AnimatedNumber";
 
 function Dashboard() {
   const bookList = useSelector(booksListSelector);
   const resourcesList = useSelector(resourcesListSelector);
+  const [count, setCount] = useState(0)
+
+  let i = 0;
+  useEffect(() => {
+    counter()
+  })
+
+  const counter = () => {
+    if(i <= bookList.books.length){
+      setCount(i)
+      i++
+      counter()
+    }
+  }
 
   return (
     <Container maxWidth="xl" className="h-full ">
@@ -63,7 +79,7 @@ function Dashboard() {
                 </CardContent>
               </Card>
               <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-                <CardContent className="text-white flex flex-col gap-2">
+                <CardContent className="text-white flex flex-col justify-center h-full gap-2">
                   <Typography
                     gutterBottom
                     variant="h5"
@@ -72,34 +88,33 @@ function Dashboard() {
                   >
                     Summary
                   </Typography>
-                  <div className="flex justify-between items-center px-3 bg-[#efa135] rounded-md h-10">
+                  <div className="flex justify-between items-center p-3 bg-[#efa135] rounded-md">
                     <Typography component="p">Books</Typography>
                     <Typography
                       className="bg-[#ffbf00] max-w-max px-4 text-center rounded-md"
                       component="span"
                     >
                       {bookList.loading ? (
-                        bookList.books.length
+                        <AnimatedNumber listLength={bookList.books.length}/>
                       ) : (
                         <Loader size={10} color="#efa135"/>
                       )}
                     </Typography>
                   </div>
-                  <div className="flex justify-between items-center px-3 bg-[#0066ff] rounded-md h-10">
+                  <div className="flex justify-between items-center p-3 bg-[#0066ff] rounded-md w-full">
                     <Typography component="p">Resources</Typography>
 
-                    <Typography
+                    <div
                       className="bg-[#17c0fd] max-w-max px-4 text-center rounded-md"
-                      component="span"
                     >
                       {resourcesList.loading ? (
-                        resourcesList.resources.length
+                        <AnimatedNumber listLength={resourcesList.resources.length}/>
                       ) : (
                         <Loader size={10} color="#0066ff"/>
                       )}
-                    </Typography>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center px-3 bg-[#522aa7] rounded-md h-10">
+                  <div className="flex justify-between items-center p-3 bg-[#522aa7] rounded-md w-full">
                     <Typography component="p">Tasks</Typography>
                     <Typography
                       className="bg-[#6d39de] max-w-max px-4 text-center rounded-md"
