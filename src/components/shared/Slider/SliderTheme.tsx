@@ -12,7 +12,8 @@ function SliderTheme() {
   const dispatch = useDispatch();
   return (
     <Box id="themeMenu" className="flex items-center gap-2">
-      <Box>
+      <Typography component="span">Tema</Typography>
+      <Box className="flex items-center">
         {theme == "light" ? (
           <LightModeIcon className="text-[#474862] dark:text-white" />
         ) : (

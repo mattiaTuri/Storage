@@ -11,7 +11,7 @@ function CustomButton({ title, functionClick, children }: CustomButtonProps) {
   return (
     <Button
       variant="outlined"
-      className="group relative flex gap-2 overflow-hidden h-12 w-24 after:content-[''] after:absolute after:bg-[#efa135] after:dark:bg-[#522AA7] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
+      className="group relative flex gap-2 overflow-hidden h-[40px] after:content-[''] after:absolute after:bg-[#efa135] after:dark:bg-[#522AA7] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
       onClick={functionClick}
     >
       {children}
