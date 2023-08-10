@@ -53,7 +53,7 @@ export const addBook:any = createAsyncThunk (
 
 export const removeBook:any = createAsyncThunk(
     "booksList/removeBook", async (val:any) => {
-        const newList = val.booksList.filter((row: BooksProps) => row.id != val.id);
+        const newList = val.booksList.books.filter((row: BooksProps) => row.id != val.id);
         await remove(ref(database, "books/" + val.id));
         return newList
     }

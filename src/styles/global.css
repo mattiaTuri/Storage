@@ -43,6 +43,8 @@ p, input{
 
 .echarts-for-react{
   height: 100% !important;
+  width: 100%;
+  position:absolute !important
 }
 
 /* .MuiPickersDay-today{

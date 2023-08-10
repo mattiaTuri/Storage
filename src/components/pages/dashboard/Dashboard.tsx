@@ -12,6 +12,7 @@ import TasksCard from "../../feature/dashboard/cards/tasks/TasksCard";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
 import UserAvatar from "../../shared/UserAvatar";
 import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
+import Loader from "../../shared/Loader";
 
 function Dashboard() {
   const bookList = useSelector(booksListSelector);
@@ -38,11 +39,23 @@ function Dashboard() {
               <TasksCard />
             </div>
             <div className="flex flex-col gap-10 lg:grid grid-cols-2 h-[60%]">
-              <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-                <BooksChart />
+              <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border grid grid-rows-[100px_auto] relative">
+                {bookList.loading ? (
+                  <BooksChart />
+                ) : (
+                  <Box className="absolute w-full h-full flex justify-center items-center">
+                    <Loader size={40} color="#0066ff" />
+                  </Box>
+                )}
               </Card>
-              <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-                <ResourcesChart resourcesList={resourcesList} />
+              <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border grid grid-rows-[100px_auto] relative">
+                {resourcesList.loading ? (
+                  <ResourcesChart resourcesList={resourcesList} />
+                ) : (
+                  <Box className="absolute w-full h-full flex justify-center items-center">
+                    <Loader size={40} color="#0066ff" />
+                  </Box>
+                )}
               </Card>
             </div>
           </div>

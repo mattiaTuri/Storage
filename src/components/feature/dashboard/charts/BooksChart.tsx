@@ -10,6 +10,7 @@ import { themeSelector } from "../../../../store/theme/selector";
 import { BooksProps } from "../../../../models/Books";
 import Box from "@mui/material/Box";
 import Loader from "../../../shared/Loader";
+import { Typography } from "@mui/material";
 
 function BookChart() {
   const bookList = useSelector(booksListSelector);
@@ -49,8 +50,8 @@ function BookChart() {
 
   const option = {
     title: {
-      text: "Books statistics",
-      subtext: "Divided by genre",
+      // text: "Books statistics",
+      // subtext: "Divided by genre",
       left: "center",
       top: 20,
       textStyle: {
@@ -87,7 +88,15 @@ function BookChart() {
 
   return (
     <>
-      {bookList.loading ? <ReactEChartsCore echarts={echarts} option={option} /> : <Box className="h-full flex justify-center items-center"><Loader size={40} color="#0066ff"/></Box>}
+      <div className="flex flex-col justify-center items-center">
+        <Typography component="span" gutterBottom>
+          Books
+        </Typography>
+        <Typography component="p">Divided by genre</Typography>
+      </div>
+      <div className="relative">
+        <ReactEChartsCore echarts={echarts} option={option} />
+      </div>
     </>
   );
 }

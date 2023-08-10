@@ -10,9 +10,9 @@ import { ResourcesProps } from "../../../../models/Resources";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Loader from "../../../shared/Loader";
+import Typography from "@mui/material/Typography";
 
-function ResourcesChart({resourcesList}: {resourcesList:any}) {
-
+function ResourcesChart({ resourcesList }: { resourcesList: any }) {
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
@@ -51,8 +51,8 @@ function ResourcesChart({resourcesList}: {resourcesList:any}) {
 
   const option = {
     title: {
-      text: "Resources statistics",
-      subtext: "Divided by tag",
+      // text: "Resources statistics",
+      // subtext: "Divided by tag",
       left: "center",
       top: 20,
       textStyle: {
@@ -89,7 +89,15 @@ function ResourcesChart({resourcesList}: {resourcesList:any}) {
 
   return (
     <>
-    {resourcesList.loading ? <ReactEChartsCore echarts={echarts} option={option} /> : <Box className="h-full flex justify-center items-center"><Loader size={40} color="#0066ff"/></Box>}
+      <div className="flex flex-col justify-center items-center">
+        <Typography component="span" gutterBottom>
+          Resources
+        </Typography>
+        <Typography component="p">Divided by tag</Typography>
+      </div>
+      <div className="relative">
+        <ReactEChartsCore echarts={echarts} option={option} />
+      </div>
     </>
   );
 }
