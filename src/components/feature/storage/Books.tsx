@@ -151,7 +151,11 @@ function Books() {
   return (
     <Box sx={{ width: "100%" }} className="flex flex-col h-full">
       <Box className="flex justify-end my-4">
-        <CustomButton title="Add" functionClick={() => dispatch(openModal())}>
+        <CustomButton
+          id="btnAddBook"
+          title="Add"
+          functionClick={() => dispatch(openModal())}
+        >
           <AddCircleOutlinedIcon className="text-[#474862] dark:text-white group-hover:text-white ease-in-out z-10" />
         </CustomButton>
       </Box>

@@ -15,6 +15,8 @@ import {
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
+import InputSettings from "../../feature/settings/InputSettings";
+import UserAvatar from "../../shared/UserAvatar";
 
 function Settings() {
   const [age, setAge] = useState("");
@@ -24,7 +26,7 @@ function Settings() {
   };
 
   return (
-    <Container maxWidth="xl" className="border h-full">
+    <Container maxWidth="xl" className="h-full">
       <Box className="flex flex-col h-full p-10">
         <Box className="text-center lg:text-left pb-10">
           <Typography
@@ -37,30 +39,25 @@ function Settings() {
           </Typography>
         </Box>
         <Box className="flex flex-col gap-10">
-          <Typography component="span" className="text-center lg:text-left">
+          <Typography
+            component="span"
+            className="text-center lg:text-left text-[#474862] dark:text-white"
+          >
             Il tuo account
           </Typography>
           <Box
             id="imgSection"
-            className="flex flex-col items-center sm:flex-row sm:justify-between lg:items-center lg:w-[50%] gap-4"
+            className="flex items-center flex-row justify-between lg:items-center lg:w-[50%] gap-4"
           >
-            <Avatar
-              sx={{ backgroundColor: "#0066ff", height: 120, width: 120 }}
-            >
-              <Typography
-                component="span"
-                className="text-white"
-                sx={{ fontSize: 30 }}
-              >
-                TM
-              </Typography>
-            </Avatar>
+            <UserAvatar />
             <Box className="flex flex-col lg:flex-row gap-4 lg:pr-10">
               <CustomButton
+                id="btnRemoveImg"
                 title="Rimuovi foto"
                 functionClick={() => console.log()}
               />
               <CustomButton
+                id="btnEditImg"
                 title="Cambia foto"
                 functionClick={() => console.log()}
               />
@@ -68,80 +65,56 @@ function Settings() {
           </Box>
           <Divider />
           <Box className="lg:grid lg:grid-cols-2 gap-20">
-            <Box id="userSection" className="flex flex-col gap-10 pb-10">
-              <Box id="nameSection" className="flex gap-4 justify-between">
-                <TextField
-                  disabled
-                  id="outlined-basic"
-                  label="Name"
-                  variant="outlined"
-                  value="Mattia"
-                />
-                <CustomButton
-                  title="Modifica"
-                  functionClick={() => console.log()}
-                />
-              </Box>
-              <Box id="surnameSection" className="flex gap-4 justify-between">
-                <TextField
-                  disabled
-                  id="outlined-basic"
-                  label="Name"
-                  variant="outlined"
-                  value="Turina"
-                />
-                <CustomButton
-                  title="Modifica"
-                  functionClick={() => console.log()}
-                />
-              </Box>
+            <Box id="userSection" className="flex flex-col gap-4 pb-10">
+              <InputSettings
+                id="nameSection"
+                inputId="name"
+                labelText="Name"
+                inputValue="Mattia"
+              />
+              <InputSettings
+                id="surnameSection"
+                inputId="surname"
+                labelText="Surname"
+                inputValue="Turina"
+              />
               <Divider />
-              <Box id="emailSection" className="flex gap-4 justify-between">
-                <TextField
-                  disabled
-                  id="outlined-basic"
-                  label="Email"
-                  variant="outlined"
-                  value="turina.mattia@gmail.com"
-                />
-                <CustomButton
-                  title="Modifica"
-                  functionClick={() => console.log()}
-                />
-              </Box>
+              <InputSettings
+                id="emailSection"
+                inputId="email"
+                labelText="Email"
+                inputValue="turina.mattia@gmail.com"
+              />
               <Divider />
-              <Box id="passwordSection" className="flex gap-4 justify-between">
-                <TextField
-                  disabled
-                  id="outlined-basic"
-                  label="Password"
-                  variant="outlined"
-                  value="*****"
-                />
-                <CustomButton
-                  title="Modifica"
-                  functionClick={() => console.log()}
-                />
-              </Box>
+              <InputSettings
+                id="passwordSection"
+                inputId="password"
+                labelText="Password"
+                inputValue="****"
+              />
             </Box>
-            <Box className="flex flex-col gap-10 pt-10 lg:pt-0">
-              <FormControl id="languageSection">
-                <InputLabel id="demo-simple-select-label">Lingua</InputLabel>
+            <Box className="flex flex-col gap-4 pt-10 lg:pt-0">
+              <Box className="flex flex-col gap-4">
+                <label>
+                  <Typography
+                    component="span"
+                    className="text-[#474862] dark:text-white"
+                  >
+                    Lingua
+                  </Typography>
+                </label>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value="IT"
-                  label="Lingua"
                   onChange={handleChange}
                 >
                   <MenuItem value="IT">Italiano</MenuItem>
                   <MenuItem value="EN">Inglese</MenuItem>
                   <MenuItem value="SPA">Spagnolo</MenuItem>
                 </Select>
-              </FormControl>
-              <Box id="themeSection">
-                <SliderTheme />
               </Box>
+              <SliderTheme />
             </Box>
           </Box>
         </Box>

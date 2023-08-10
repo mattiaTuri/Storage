@@ -4,14 +4,16 @@ export const light = {
     main: "#efa135",
     text: "#474862",
     bgInput: "white",
-    labelInput:"#00000099"
+    labelInput:"#00000099",
+    divider:"#0000001f"
 }
 
 export const dark = {
     main: "#522aa7",
     text: "white",
     bgInput: "#434343",
-    labelInput:"#c4c4c4"
+    labelInput:"#c4c4c4",
+    divider:"#c4c4c4"
 }
 
 export const GlobalStyles = createGlobalStyle`
@@ -52,4 +54,11 @@ export const GlobalStyles = createGlobalStyle`
         color:${props => props.theme.labelInput};
     }
 
+    .MuiSelect-icon,{
+        color:${props => props.theme.text};
+    }
+
+    .MuiDivider-root{
+        background-color:${props => props.theme.divider};
+    }
 `;

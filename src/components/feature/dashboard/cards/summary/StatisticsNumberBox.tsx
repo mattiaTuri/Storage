@@ -31,7 +31,7 @@ function StatisticsNumberBox({
         {loading ? (
           <AnimatedNumber listLength={data} />
         ) : (
-          <Loader size={10} color={secondaryColor} />
+          <Loader size={10} color={primaryColor} />
         )}
       </Box>
     </Box>

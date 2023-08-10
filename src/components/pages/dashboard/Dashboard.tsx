@@ -10,6 +10,8 @@ import { booksListSelector } from "../../../store/booksList/selector";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
 import TasksCard from "../../feature/dashboard/cards/tasks/TasksCard";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
+import UserAvatar from "../../shared/UserAvatar";
+import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
 
 function Dashboard() {
   const bookList = useSelector(booksListSelector);
@@ -31,47 +33,16 @@ function Dashboard() {
         <Box className="h-full">
           <div className="flex flex-col gap-10 h-full">
             <div className="flex flex-col gap-10 md:grid grid-cols-3 h-[40%]">
-              <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-                <CardContent className="flex justify-between items-center h-full ">
-                  <Box>
-                    <Typography
-                      gutterBottom
-                      className="text-[#474862] dark:text-white"
-                      variant="h5"
-                      component="h2"
-                    >
-                      Hello Mattia!
-                    </Typography>
-                    <Typography
-                      className="text-[#474862] dark:text-white"
-                      component="p"
-                    >
-                      It is good to see you again
-                    </Typography>
-                  </Box>
-
-                  <Avatar
-                    sx={{ backgroundColor: "#0066ff", height: 120, width: 120 }}
-                  >
-                    <Typography
-                      component="span"
-                      className="text-white"
-                      sx={{ fontSize: 30 }}
-                    >
-                      TM
-                    </Typography>
-                  </Avatar>
-                </CardContent>
-              </Card>
-              <SummaryCard/>
-              <TasksCard/>
+              <WelcomeCard />
+              <SummaryCard />
+              <TasksCard />
             </div>
             <div className="flex flex-col gap-10 lg:grid grid-cols-2 h-[60%]">
               <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
                 <BooksChart />
               </Card>
               <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-                <ResourcesChart resourcesList={resourcesList}/>
+                <ResourcesChart resourcesList={resourcesList} />
               </Card>
             </div>
           </div>

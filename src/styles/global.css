@@ -31,7 +31,7 @@ h1{
   font-family: "Poppins-Black" !important;
 }
 
-p{
+p, input{
   font-family: "Poppins-Regular" !important;
 }
 
@@ -71,6 +71,10 @@ p{
 
 .MuiInputBase-root{
   height: 40px !important;
+}
+
+#outlined-basic-label{
+  top:-5px;
 }
 
 /*

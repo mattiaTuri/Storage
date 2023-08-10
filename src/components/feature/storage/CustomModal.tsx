@@ -83,10 +83,15 @@ function CustomModal({ input, onValChanges, addFunction }: ModalProps) {
           </Box>
           <div className="mt-10 flex justify-end gap-4">
             <CustomButton
+              id="btnCloseModal"
               title="Cancel"
               functionClick={() => dispatch(closeModal())}
             />
-            <CustomButton title="Save" functionClick={addFunction} />
+            <CustomButton
+              id="btnSaveInputModal"
+              title="Save"
+              functionClick={addFunction}
+            />
           </div>
         </Box>
       </Modal>
