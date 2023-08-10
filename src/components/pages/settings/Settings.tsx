@@ -26,7 +26,7 @@ function Settings() {
   };
 
   return (
-    <Container maxWidth="xl" className="h-full">
+    <Container maxWidth="xl" className="h-full overflow-auto">
       <Box className="flex flex-col h-full p-10">
         <Box className="text-center lg:text-left pb-10">
           <Typography
