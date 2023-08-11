@@ -67,28 +67,24 @@ function Settings() {
           <Box className="lg:grid lg:grid-cols-2 gap-20">
             <Box id="userSection" className="flex flex-col gap-4 pb-10">
               <InputSettings
-                id="nameSection"
-                inputId="name"
+                id="name"
                 labelText="Name"
                 inputValue="Mattia"
               />
               <InputSettings
-                id="surnameSection"
-                inputId="surname"
+                id="surname"
                 labelText="Surname"
                 inputValue="Turina"
               />
               <Divider />
               <InputSettings
-                id="emailSection"
-                inputId="email"
+                id="email"
                 labelText="Email"
                 inputValue="turina.mattia@gmail.com"
               />
               <Divider />
               <InputSettings
-                id="passwordSection"
-                inputId="password"
+                id="password"
                 labelText="Password"
                 inputValue="****"
               />
