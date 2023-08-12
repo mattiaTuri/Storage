@@ -36,7 +36,7 @@ function Dashboard() {
               <SummaryCard />
               <TasksCard />
             </div>
-            <div className="flex flex-col gap-10 lg:grid grid-cols-2 h-[60%]">
+            <div className="flex flex-col gap-10 md:grid grid-cols-2 h-[60%]">
               <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border grid grid-rows-[100px_auto] relative h-[300px] lg:h-full">
                 {bookList.loading ? (
                   <BooksChart />
