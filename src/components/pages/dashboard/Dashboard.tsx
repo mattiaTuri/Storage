@@ -4,13 +4,11 @@ import Typography from "@mui/material/Typography";
 import BooksChart from "../../feature/dashboard/charts/BooksChart";
 import Card from "@mui/material/Card";
 import ResourcesChart from "../../feature/dashboard/charts/ResourcesChart";
-import { Avatar, CardContent } from "@mui/material";
 import { useSelector } from "react-redux";
 import { booksListSelector } from "../../../store/booksList/selector";
 import { resourcesListSelector } from "../../../store/resourcesList/selector";
 import TasksCard from "../../feature/dashboard/cards/tasks/TasksCard";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
-import UserAvatar from "../../shared/UserAvatar";
 import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
 import Loader from "../../shared/Loader";
 

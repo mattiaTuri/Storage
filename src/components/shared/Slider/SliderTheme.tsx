@@ -25,7 +25,7 @@ function SliderTheme() {
         </Box>
         <Box
           id="themeButton"
-          className="bg-[#bbc3ce] h-10 grid grid-cols-2 relative rounded-md"
+          className="bg-[#474862] bg-[#434343] h-10 grid grid-cols-2 relative rounded-md"
         >
           <Button
             id="lightMode"
@@ -65,7 +65,7 @@ function SliderTheme() {
           </Button>
           <Box
             id="sliderTheme"
-            className="absolute top-0 h-10 w-[50%] bg-[#0066ff] rounded-md duration-300"
+            className="absolute top-0 h-10 w-[50%] bg-[#efa135] rounded-md duration-300"
           ></Box>
         </Box>
       </Box>
