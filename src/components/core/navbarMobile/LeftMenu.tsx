@@ -19,51 +19,85 @@ function LeftMenu() {
   const dispatch = useDispatch();
 
   return (
-    <Container
-      className={`w-screen h-screen bg-white z-50 absolute top-0 ${
+    <div
+      id="leftMenu"
+      className={`fixed bg-white h-screen w-screen z-50 top-0 duration-300 ${
         openMenu ? "left-0" : "left-[-100%]"
-      } duration-300`}
+      }`}
     >
-      <Box className="h-full flex flex-col justify-between">
-        <Box className="flex justify-between items-center h-20">
-          <Typography variant="h6" component="h1" color="#0066ff">
-            STORAGE
-          </Typography>
-          <IconButton onClick={() => dispatch(closeMenu())}>
-            <CloseIcon className="text-[#bbc3ce]" />
-          </IconButton>
+      <Container className="h-full">
+        <Box className="h-full flex flex-col justify-between">
+          <div className="flex justify-between items-center pt-5">
+            <Typography variant="h6" component="h1" color="#0066ff">
+              STORAGE
+            </Typography>
+            <IconButton onClick={() => dispatch(closeMenu())}>
+              <CloseIcon className="text-[#bbc3ce]" />
+            </IconButton>
+          </div>
+          <div className="flex flex-col gap-5">
+            <Link
+              to="/"
+              className="flex items-center gap-2"
+              onClick={() => dispatch(closeMenu())}
+            >
+              <DashboardIcon />
+              <Typography component="span" sx={{ fontSize: 25 }}>
+                Dashboard
+              </Typography>
+            </Link>
+            <Link
+              to="storage"
+              className="flex items-center gap-2"
+              onClick={() => dispatch(closeMenu())}
+            >
+              <MenuBookIcon />
+              <Typography component="span" sx={{ fontSize: 25 }}>
+                Storage
+              </Typography>
+            </Link>
+            <Link
+              to="scheduler"
+              className="flex items-center gap-2"
+              onClick={() => dispatch(closeMenu())}
+            >
+              <CalendarMonthIcon />
+              <Typography component="span" sx={{ fontSize: 25 }}>
+                Scheduler
+              </Typography>
+            </Link>
+            <Link
+              to="profile"
+              className="flex items-center gap-2"
+              onClick={() => dispatch(closeMenu())}
+            >
+              <PersonIcon />
+              <Typography component="span" sx={{ fontSize: 25 }}>
+                Profile
+              </Typography>
+            </Link>
+            <Link
+              to="settings"
+              className="flex items-center gap-2"
+              onClick={() => dispatch(closeMenu())}
+            >
+              <SettingsIcon />
+              <Typography component="span" sx={{ fontSize: 25 }}>
+                Settings
+              </Typography>
+            </Link>
+          </div>
+          <div className="pb-5" color="#bbc3ce">
+            <Link to="" className="flex items-center gap-2">
+              <LogoutIcon />
+              <Typography component="span" sx={{ fontSize: 25 }}>
+                Logout
+              </Typography>
+            </Link>
+          </div>
         </Box>
-        <Box className="flex flex-col gap-5" color="#bbc3ce">
-          <Link to="/" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
-            <DashboardIcon />
-            <Typography component="span">Dashboard</Typography>
-          </Link>
-          <Link to="storage" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
-            <MenuBookIcon />
-            <Typography component="span">Storage</Typography>
-          </Link>
-          <Link to="scheduler" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
-            <CalendarMonthIcon />
-            <Typography component="span">Scheduler</Typography>
-          </Link>
-          <Link to="profile" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
-            <PersonIcon />
-            <Typography component="span">Profile</Typography>
-          </Link>
-          <Link to="settings" className="flex gap-2" onClick={() => dispatch(closeMenu())}>
-            <SettingsIcon />
-            <Typography component="span">Settings</Typography>
-          </Link>
-        </Box>
-        <Box>{/* <SliderTheme/> */}Sezione Tema</Box>
-        <Box color="#bbc3ce">
-          <Link to="" className="flex gap-2">
-            <LogoutIcon />
-            <Typography component="span">Logout</Typography>
-          </Link>
-        </Box>
-      </Box>
-    </Container>
+      </Container>
+    </div>
   );
 }
 
