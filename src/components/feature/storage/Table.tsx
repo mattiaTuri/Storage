@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 
-function Table({ rows, columns }: any) {
+function Table({ rows, col }: any) {
   return (
     <Box className="relative h-full dark:bg-[#262626]">
       <DataGrid
         rows={rows}
-        columns={columns}
+        columns={col}
         initialState={{
           pagination: {
             paginationModel: {
@@ -19,7 +19,6 @@ function Table({ rows, columns }: any) {
         disableRowSelectionOnClick
       />
     </Box>
-
   );
 }
 

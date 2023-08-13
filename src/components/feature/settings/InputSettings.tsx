@@ -13,19 +13,15 @@ interface InputSettingsProps {
   inputValue: string;
 }
 
-function InputSettings({
-  id,
-  labelText,
-  inputValue,
-}: InputSettingsProps) {
+function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
   const [disabledInput, setDisabledInput] = useState<boolean>(true);
   const [complete, setComplete] = useState<boolean>(false);
   const [currentValues, setCurrentValues] = useState<any>({
-    id:0,
-    name:"Mattia", 
-    surname:"Turina",
-    email:"turina.mattia@gmail.com"
+    id: 0,
+    name: "Mattia",
+    surname: "Turina",
+    email: "turina.mattia@gmail.com",
   });
 
   const showHideActionButtons = () => {
@@ -38,22 +34,25 @@ function InputSettings({
   };
 
   const saveData = () => {
-    setComplete(true) 
-    const {name, surname, email } = currentValues
+    setComplete(true);
+    const { name, surname, email } = currentValues;
     update(ref(database, "users/0/"), {
-      name:name,
-      surname:surname,
-      email:email
+      name: name,
+      surname: surname,
+      email: email,
     });
     setTimeout(() => {
-      setComplete(false)
-    },5000)
-    showHideActionButtons()
-  }
+      setComplete(false);
+    }, 5000);
+    showHideActionButtons();
+  };
 
-  const editValue = (event:any) => {
-    setCurrentValues({...currentValues, [event.target.name]: event.target.value}) 
-  }
+  const editValue = (event: any) => {
+    setCurrentValues({
+      ...currentValues,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   return (
     <Box id={id} className="flex flex-col gap-4">
@@ -61,7 +60,7 @@ function InputSettings({
         <Typography component="span" className="text-[#474862] dark:text-white">
           {labelText}
         </Typography>
-        {complete && <AnimatedCheck/>}    
+        {complete && <AnimatedCheck />}
       </label>
       <Box className="flex flex-col lg:flex-row lg:justify-between gap-4">
         <TextField

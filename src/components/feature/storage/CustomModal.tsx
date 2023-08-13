@@ -7,8 +7,8 @@ import { closeModal } from "../../../store/modal/modalSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
-import { BooksProps } from "../../../models/Books";
-import { ResourcesProps } from "../../../models/Resources";
+import { BooksProps } from "../../../models/Book";
+import { ResourcesProps } from "../../../models/Resource";
 import CustomButton from "../../shared/CustomButton";
 
 const style = {

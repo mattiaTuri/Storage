@@ -6,25 +6,27 @@ import { CanvasRenderer } from "echarts/renderers";
 import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
 import { themeSelector } from "../../../../store/theme/selector";
-import { ResourcesProps } from "../../../../models/Resources";
+import { ResourcesProps } from "../../../../models/Resource";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Loader from "../../../shared/Loader";
 import Typography from "@mui/material/Typography";
 
-function ResourcesChart({ resourcesList }: { resourcesList: any }) {
+function ResourcesChart({
+  resourcesList,
+}: {
+  resourcesList: ResourcesProps[];
+}) {
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, [resourcesList.resources]);
+  }, [resourcesList]);
 
   const getChartValue = () => {
-    const tagList = resourcesList.resources.map(
-      (elem: ResourcesProps) => elem.tag
-    );
+    const tagList = resourcesList.map((elem: ResourcesProps) => elem.tag);
     const tagListWithoutDuplicate: string[] = [];
     tagList.forEach((elem: string) => {
       if (!tagListWithoutDuplicate.includes(elem)) {

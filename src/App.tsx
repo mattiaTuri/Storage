@@ -6,16 +6,18 @@ import { themeSelector } from "./store/theme/selector";
 import { GlobalStyles, dark, light } from "./components/theme/theme";
 import { ThemeProvider } from "styled-components";
 import { useEffect } from "react";
-import { getResourcesList } from "./store/resourcesList/resourcesListSlice";
-import { getBooksList } from "./store/booksList/booksListSlice";
+import { getUser } from "./controller/userApi";
+import { getBooksList } from "./controller/booksApi";
+import { getResourcesList } from "./controller/resourcesApi";
 
 function App() {
   const theme = useSelector(themeSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBooksList("books"));
-    dispatch(getResourcesList("resources"));
+    dispatch(getBooksList());
+    dispatch(getResourcesList());
+    dispatch(getUser());
   }, []);
 
   return (

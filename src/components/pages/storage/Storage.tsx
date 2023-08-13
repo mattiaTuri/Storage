@@ -6,51 +6,111 @@ import Container from "@mui/material/Container";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import Books from "../../feature/storage/Books";
-import Resources from "../../feature/storage/Resources";
+import StorageTab from "../../feature/storage/StorageTab";
+import { useDispatch, useSelector } from "react-redux";
+import { bookCols } from "../../feature/storage/books/BookCols";
+import { closeModal } from "../../../store/modal/modalSlice";
+import { booksSelector } from "../../../store/books/selector";
+import { resourcesSelector } from "../../../store/resources/selector";
+import { resourceCol } from "../../feature/storage/resources/ResourcesCols";
+import { BooksProps } from "../../../models/Book";
+import { addBook } from "../../../controller/booksApi";
+import { ResourcesProps } from "../../../models/Resource";
+import { addResource } from "../../../controller/resourcesApi";
 
 function Storage() {
-  const [value, setValue] = useState("1");
+  const books = useSelector(booksSelector);
+  const resources = useSelector(resourcesSelector);
+  const [bookValues, setBookValues] = useState<BooksProps>({
+    id: "",
+    title: "",
+    author: "",
+    editor: "",
+    genre: "",
+    pages: 0,
+  });
+  const [resourceValues, setResourceValues] = useState<ResourcesProps>({
+    id: "",
+    title: "",
+    link: "",
+    tag: "",
+    short_description: "",
+  });
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+  const [tabValue, setTabValue] = useState("1");
+  const dispatch = useDispatch();
+
+  const TabChange = (event: React.SyntheticEvent, newValue: string) => {
+    setTabValue(newValue);
+  };
+
+  const onBookValChanges = (event: any) => {
+    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+  };
+
+  const onResourceValChanges = (event: any) => {
+    setResourceValues({
+      ...resourceValues,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const addNewBook = () => {
+    dispatch(addBook(bookValues));
+    dispatch(closeModal());
+  };
+
+  const addNewResource = () => {
+    dispatch(addResource(resourceValues));
+    dispatch(closeModal());
   };
 
   return (
-      <Container maxWidth="xl" className="h-screen lg:h-full">
-        <Box className="p-10 h-full flex flex-col">
-          <Box className="text-center lg:text-left pb-10">
-            <Typography
-              sx={{ fontSize: 40 }}
-              variant="h2"
-              component="h1"
-              color="#efa135"
-            >
-              STORAGE
-            </Typography>
-          </Box>
-          <TabContext value={value}>
-            <Box
-              sx={{ borderBottom: 1, borderColor: "divider" }}
-              className="border-[#252627] dark:border-white"
-            >
-              <TabList
-                onChange={handleChange}
-                aria-label="lab API tabs example"
-              >
-                <Tab label="Books" value="1" />
-                <Tab label="Resources" value="2" />
-              </TabList>
-            </Box>
-            <TabPanel value="1" sx={{ padding: "initial" }} className="h-full">
-              <Books />
-            </TabPanel>
-            <TabPanel value="2" sx={{ padding: "initial" }} className="h-full">
-              <Resources />
-            </TabPanel>
-          </TabContext>
+    <Container maxWidth="xl" className="h-screen lg:h-full">
+      <Box className="p-10 h-full flex flex-col">
+        <Box className="text-center lg:text-left pb-10">
+          <Typography
+            sx={{ fontSize: 40 }}
+            variant="h2"
+            component="h1"
+            color="#efa135"
+          >
+            STORAGE
+          </Typography>
         </Box>
-      </Container>
+        <TabContext value={tabValue}>
+          <Box
+            sx={{ borderBottom: 1, borderColor: "divider" }}
+            className="border-[#252627] dark:border-white"
+          >
+            <TabList onChange={TabChange} aria-label="lab API tabs example">
+              <Tab label="Books" value="1" />
+              <Tab label="Resources" value="2" />
+            </TabList>
+          </Box>
+          <TabPanel value="1" sx={{ padding: "initial" }} className="h-full">
+            <StorageTab
+              values={bookValues}
+              onValChanges={onBookValChanges}
+              addFunctionRow={addNewBook}
+              idModalBtn="btnAddBook"
+              tableCols={bookCols}
+              tableRows={books.booksList}
+            />
+          </TabPanel>
+          <TabPanel value="2" sx={{ padding: "initial" }} className="h-full">
+            <StorageTab
+              values={resourceValues}
+              onValChanges={onResourceValChanges}
+              addFunctionRow={addNewResource}
+              idModalBtn="btnAddResource"
+              tableCols={resourceCol}
+              tableRows={resources.resourcesList}
+            />
+          </TabPanel>
+        </TabContext>
+      </Box>
+    </Container>
   );
 }
 

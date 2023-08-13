@@ -1,29 +1,25 @@
 import ReactEChartsCore from "echarts-for-react/lib/core";
 import { useSelector } from "react-redux";
-import { booksListSelector } from "../../../../store/booksList/selector";
 import * as echarts from "echarts/core";
 import { PieChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
 import { themeSelector } from "../../../../store/theme/selector";
-import { BooksProps } from "../../../../models/Books";
-import Box from "@mui/material/Box";
-import Loader from "../../../shared/Loader";
+import { BooksProps } from "../../../../models/Book";
 import { Typography } from "@mui/material";
 
-function BookChart() {
-  const bookList = useSelector(booksListSelector);
+function BookChart({ booksList }: { booksList: BooksProps[] }) {
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
   const [data, setData] = useState<any>(null);
   useEffect(() => {
     getChartValue();
-  }, [bookList]);
+  }, [booksList]);
 
   const getChartValue = () => {
-    const genresList = bookList.books.map((elem: BooksProps) => elem.genre);
+    const genresList = booksList.map((elem: BooksProps) => elem.genre);
     const genresListWithoutDuplicate: string[] = [];
     genresList.forEach((elem: string) => {
       if (!genresListWithoutDuplicate.includes(elem)) {
