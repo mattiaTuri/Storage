@@ -11,6 +11,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Loader from "../../../shared/Loader";
 import Typography from "@mui/material/Typography";
+import CustomNoRows from "../../../shared/CustomNoData";
+import CustomNoData from "../../../shared/CustomNoData";
 
 function ResourcesChart({
   resourcesList,
@@ -98,7 +100,11 @@ function ResourcesChart({
         <Typography component="p">Divided by tag</Typography>
       </div>
       <div className="relative">
-        <ReactEChartsCore echarts={echarts} option={option} />
+        {resourcesList.length > 0 ? (
+          <ReactEChartsCore echarts={echarts} option={option} />
+        ) : (
+          <CustomNoData />
+        )}
       </div>
     </>
   );

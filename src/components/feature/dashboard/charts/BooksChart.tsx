@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { themeSelector } from "../../../../store/theme/selector";
 import { BooksProps } from "../../../../models/Book";
 import { Typography } from "@mui/material";
+import CustomNoData from "../../../shared/CustomNoData";
 
 function BookChart({ booksList }: { booksList: BooksProps[] }) {
   const theme = useSelector(themeSelector);
@@ -91,7 +92,11 @@ function BookChart({ booksList }: { booksList: BooksProps[] }) {
         <Typography component="p">Divided by genre</Typography>
       </div>
       <div className="relative">
-        <ReactEChartsCore echarts={echarts} option={option} />
+        {booksList.length > 0 ? (
+          <ReactEChartsCore echarts={echarts} option={option} />
+        ) : (
+          <CustomNoData />
+        )}
       </div>
     </>
   );

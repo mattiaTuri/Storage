@@ -11,6 +11,7 @@ import TasksCard from "../../feature/dashboard/cards/tasks/TasksCard";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
 import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
 import Loader from "../../shared/Loader";
+import CustomNoRows from "../../shared/CustomNoData";
 
 function Dashboard() {
   const books = useSelector(booksSelector);
@@ -50,9 +51,9 @@ function Dashboard() {
                 {resources.loading ? (
                   <ResourcesChart resourcesList={resources.resourcesList} />
                 ) : (
-                  <Box className="absolute w-full h-full flex justify-center items-center">
+                  <div className="absolute w-full h-full flex justify-center items-center">
                     <Loader size={40} color="#0066ff" />
-                  </Box>
+                  </div>
                 )}
               </Card>
             </div>
