@@ -18,6 +18,11 @@ export const router = createBrowserRouter([
       {
         path: "/storage",
         element: <Storage />,
+        children: [
+          {
+            path: ":id",
+          },
+        ],
       },
       {
         path: "/schedule",

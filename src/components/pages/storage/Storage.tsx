@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StorageTab from "../../feature/storage/StorageTab";
 import { useDispatch, useSelector } from "react-redux";
 import { bookCols } from "../../feature/storage/books/BookCols";
@@ -17,6 +17,7 @@ import { BooksProps } from "../../../models/Book";
 import { addBook } from "../../../controller/booksApi";
 import { ResourcesProps } from "../../../models/Resource";
 import { addResource } from "../../../controller/resourcesApi";
+import { Link, useLocation } from "react-router-dom";
 
 function Storage() {
   const books = useSelector(booksSelector);
@@ -37,8 +38,14 @@ function Storage() {
     short_description: "",
   });
 
-  const [tabValue, setTabValue] = useState("1");
+  const [tabValue, setTabValue] = useState<string>("books");
   const dispatch = useDispatch();
+  let { pathname } = useLocation();
+
+  useEffect(() => {
+    pathname = pathname.replace("/storage/", "");
+    setTabValue(pathname);
+  }, []);
 
   const TabChange = (event: React.SyntheticEvent, newValue: string) => {
     setTabValue(newValue);
@@ -83,12 +90,22 @@ function Storage() {
             sx={{ borderBottom: 1, borderColor: "divider" }}
             className="border-[#252627] dark:border-white"
           >
-            <TabList onChange={TabChange} aria-label="lab API tabs example">
-              <Tab label="Books" value="1" />
-              <Tab label="Resources" value="2" />
+            <TabList onChange={TabChange} value="">
+              <Tab component={Link} label="Books" value="books" to="books" />
+              <Tab
+                component={Link}
+                label="Resources"
+                value="resources"
+                to="resources"
+              />
             </TabList>
           </Box>
-          <TabPanel value="1" sx={{ padding: "initial" }} className="h-full">
+          <TabPanel
+            id="books"
+            value="books"
+            sx={{ padding: "initial" }}
+            className="h-full"
+          >
             <StorageTab
               values={bookValues}
               onValChanges={onBookValChanges}
@@ -98,7 +115,12 @@ function Storage() {
               tableRows={books.booksList}
             />
           </TabPanel>
-          <TabPanel value="2" sx={{ padding: "initial" }} className="h-full">
+          <TabPanel
+            id="resources"
+            value="resources"
+            sx={{ padding: "initial" }}
+            className="h-full"
+          >
             <StorageTab
               values={resourceValues}
               onValChanges={onResourceValChanges}

@@ -23,6 +23,7 @@ function SummaryCard() {
         </Typography>
         <StatisticsNumberBox
           title="Books"
+          link="storage/books"
           data={books.booksList.length}
           loading={books.loading}
           primaryColor="#efa135"
@@ -30,6 +31,7 @@ function SummaryCard() {
         />
         <StatisticsNumberBox
           title="Resources"
+          link="storage/resources"
           data={resources.resourcesList.length}
           loading={resources.loading}
           primaryColor="#0066ff"
@@ -37,6 +39,7 @@ function SummaryCard() {
         />
         <StatisticsNumberBox
           title="Tasks"
+          link=""
           data={0}
           loading={books.loading}
           primaryColor="#522aa7"

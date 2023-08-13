@@ -23,7 +23,7 @@
   box-sizing: border-box;
 }
 
-h2, button, .MuiPickersCalendarHeader-label, span, .MuiDataGrid-columnHeaderTitle {
+h2, button, .MuiPickersCalendarHeader-label, span, .MuiDataGrid-columnHeaderTitle, a {
   font-family: "Poppins-Bold" !important;
 }
 

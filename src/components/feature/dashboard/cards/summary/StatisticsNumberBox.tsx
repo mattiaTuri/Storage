@@ -3,8 +3,12 @@ import AnimatedNumber from "../../../../shared/AnimatedNumber";
 import Loader from "../../../../shared/Loader";
 import Box from "@mui/material/Box";
 
+import { ChangeMenu } from "../../../../core/sidebar/sidebarFunctions";
+import { Link } from "react-router-dom";
+
 interface StatisticsNumberBoxProps {
   title: string;
+  link: string;
   data: number;
   loading: boolean;
   primaryColor: string;
@@ -13,15 +17,18 @@ interface StatisticsNumberBoxProps {
 
 function StatisticsNumberBox({
   title,
+  link,
   data,
   loading,
   primaryColor,
   secondaryColor,
 }: StatisticsNumberBoxProps) {
   return (
-    <Box
+    <Link
+      to={link}
       className="flex justify-between items-center p-3 rounded-md w-full"
-      sx={{ backgroundColor: primaryColor }}
+      onClick={() => ChangeMenu("storage")}
+      style={{ backgroundColor: primaryColor }}
     >
       <Typography component="p">{title}</Typography>
       <Box
@@ -34,7 +41,7 @@ function StatisticsNumberBox({
           <Loader size={10} color={primaryColor} />
         )}
       </Box>
-    </Box>
+    </Link>
   );
 }
 
