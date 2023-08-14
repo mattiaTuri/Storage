@@ -35,20 +35,17 @@ function Settings() {
       <Box className="flex flex-col h-full p-10">
         <Box className="text-center lg:text-left pb-10">
           <Typography
+            color="primary"
             sx={{ fontSize: 40 }}
             variant="h2"
             component="h1"
-            color="#efa135"
           >
             SETTINGS
           </Typography>
         </Box>
         {user.loading ? (
           <Box className="flex flex-col gap-10">
-            <Typography
-              component="span"
-              className="text-center lg:text-left text-[#474862] dark:text-white"
-            >
+            <Typography component="span" className="text-center lg:text-left">
               Il tuo account
             </Typography>
             <Box
@@ -98,15 +95,11 @@ function Settings() {
               <Box className="flex flex-col gap-4 pt-10 lg:pt-0">
                 <Box className="flex flex-col gap-4">
                   <label>
-                    <Typography
-                      component="span"
-                      className="text-[#474862] dark:text-white"
-                    >
-                      Lingua
-                    </Typography>
+                    <Typography component="span">Lingua</Typography>
                   </label>
                   <Select
                     labelId="demo-simple-select-label"
+                    sx={{ backgroundColor: "background.paper" }}
                     id="demo-simple-select"
                     value="IT"
                     onChange={handleChange}

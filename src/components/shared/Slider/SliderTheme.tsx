@@ -12,20 +12,15 @@ function SliderTheme() {
   const dispatch = useDispatch();
   return (
     <Box id="themeMenu" className="flex flex-col gap-4">
-      <Typography component="span" className="text-[#474862] dark:text-white">
-        Tema
-      </Typography>
+      <Typography component="span">Tema</Typography>
       <Box className="flex gap-4">
         <Box className="flex items-center">
-          {theme == "light" ? (
-            <LightModeIcon className="text-[#474862] dark:text-white" />
-          ) : (
-            <DarkModeIcon className="text-[#474862] dark:text-white" />
-          )}
+          {theme == "light" ? <LightModeIcon /> : <DarkModeIcon />}
         </Box>
         <Box
           id="themeButton"
-          className="bg-[#474862] bg-[#434343] h-10 grid grid-cols-2 relative rounded-md"
+          sx={{ backgroundColor: "#262626" }}
+          className="h-10 grid grid-cols-2 relative rounded-md"
         >
           <Button
             id="lightMode"
@@ -65,7 +60,8 @@ function SliderTheme() {
           </Button>
           <Box
             id="sliderTheme"
-            className="absolute top-0 h-10 w-[50%] bg-[#efa135] rounded-md duration-300"
+            sx={{ backgroundColor: "primary.main" }}
+            className="absolute top-0 h-10 w-[50%] rounded-md duration-300"
           ></Box>
         </Box>
       </Box>

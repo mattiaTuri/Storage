@@ -1,20 +1,44 @@
+import { createTheme } from "@mui/material/styles";
 import { createGlobalStyle } from "styled-components"
 
-export const light = {
-    main: "#efa135",
-    text: "#474862",
-    bgInput: "white",
-    labelInput:"#00000099",
-    divider:"#0000001f"
-}
+// export const light = {
+//     main: "#efa135",
+//     text: "#474862",
+//     bgInput: "white",
+//     labelInput:"#00000099",
+//     divider:"#0000001f"
+// }
 
-export const dark = {
-    main: "#522aa7",
-    text: "white",
-    bgInput: "#434343",
-    labelInput:"#c4c4c4",
-    divider:"#c4c4c4"
-}
+// export const dark = {
+//     main: "#522aa7",
+//     text: "white",
+//     bgInput: "#434343",
+//     labelInput:"#c4c4c4",
+//     divider:"#c4c4c4"
+// }
+
+export const light = createTheme({
+    palette:{
+        primary: {
+            main: "#f4f4f7",
+        },
+        secondary:{
+            main:"#ffff"
+        }
+    }
+})
+
+export const dark = createTheme({
+    palette:{
+        primary:{
+            main: "#121212",
+        },
+        secondary:{
+            main:"#262626"
+        }
+        
+    }
+})
 
 export const GlobalStyles = createGlobalStyle`
 

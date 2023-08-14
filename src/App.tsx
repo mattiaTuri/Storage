@@ -3,12 +3,13 @@ import Sidebar from "./components/core/sidebar/Sidebar";
 import NavbarMobile from "./components/core/navbarMobile/NavbarMobile";
 import { useDispatch, useSelector } from "react-redux";
 import { themeSelector } from "./store/theme/selector";
-import { GlobalStyles, dark, light } from "./components/theme/theme";
-import { ThemeProvider } from "styled-components";
 import { useEffect } from "react";
 import { getUser } from "./controller/userApi";
 import { getBooksList } from "./controller/booksApi";
 import { getResourcesList } from "./controller/resourcesApi";
+import Box from "@mui/material/Box";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 function App() {
   const theme = useSelector(themeSelector);
@@ -20,14 +21,57 @@ function App() {
     dispatch(getUser());
   }, []);
 
+  const light = createTheme({
+    palette: {
+      background: {
+        default: "#f4f4f7",
+        paper: "#ffff",
+      },
+      text: {
+        primary: "#474862",
+        secondary: "#ffff", //Input bg color
+      },
+      primary: {
+        main: "#efa135", //Primary color (button and h1 txt)
+      },
+      secondary: {
+        main: "#474862", //Icon color
+      },
+      divider: "#0000001fe",
+    },
+  });
+
+  const dark = createTheme({
+    palette: {
+      background: {
+        default: "#121212",
+        paper: "#262626",
+      },
+      text: {
+        primary: "#ffff",
+        secondary: "#434343", //Input bg color
+      },
+      primary: {
+        main: "#0066ff", //Primary color (button and h1 txt)
+      },
+      secondary: {
+        main: "#ffff", //Icon color
+      },
+      divider: "#c4c4c4",
+    },
+  });
+
   return (
-    <ThemeProvider theme={theme === "light" ? light : dark}>
-      <GlobalStyles />
-      <div className="bg-[#f4f4f7] dark:bg-[#121212] lg:h-screen lg:flex">
+    <ThemeProvider theme={theme == "light" ? light : dark}>
+      <CssBaseline />
+      <Box
+        sx={{ backgroundColor: "background.default" }}
+        className="lg:h-screen lg:flex"
+      >
         <Sidebar />
         <NavbarMobile />
         <Outlet />
-      </div>
+      </Box>
     </ThemeProvider>
   );
 }

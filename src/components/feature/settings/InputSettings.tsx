@@ -57,14 +57,13 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
   return (
     <Box id={id} className="flex flex-col gap-4">
       <label className="flex items-center gap-4">
-        <Typography component="span" className="text-[#474862] dark:text-white">
-          {labelText}
-        </Typography>
+        <Typography component="span">{labelText}</Typography>
         {complete && <AnimatedCheck />}
       </label>
       <Box className="flex flex-col lg:flex-row lg:justify-between gap-4">
         <TextField
           disabled={disabledInput}
+          sx={{ backgroundColor: "background.paper", borderRadius: "4px" }}
           id={id}
           name={id}
           variant="outlined"

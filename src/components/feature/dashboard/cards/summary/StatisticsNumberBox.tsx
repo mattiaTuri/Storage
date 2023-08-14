@@ -26,7 +26,7 @@ function StatisticsNumberBox({
   return (
     <Link
       to={link}
-      className="flex justify-between items-center p-3 rounded-md w-full"
+      className="flex justify-between items-center p-3 rounded-md w-full text-white"
       onClick={() => ChangeMenu("storage")}
       style={{ backgroundColor: primaryColor }}
     >

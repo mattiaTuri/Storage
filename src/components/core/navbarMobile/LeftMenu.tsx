@@ -19,20 +19,21 @@ function LeftMenu() {
   const dispatch = useDispatch();
 
   return (
-    <div
+    <Box
+      sx={{ backgroundColor: "background.paper" }}
       id="leftMenu"
-      className={`fixed bg-white h-screen w-screen z-50 top-0 duration-300 ${
+      className={`fixed h-screen w-screen z-50 top-0 duration-300 ${
         openMenu ? "left-0" : "left-[-100%]"
       }`}
     >
       <Container className="h-full">
         <Box className="h-full flex flex-col justify-between">
           <div className="flex justify-between items-center pt-5">
-            <Typography variant="h6" component="h1" color="#0066ff">
+            <Typography color="primary" variant="h6" component="h1">
               STORAGE
             </Typography>
             <IconButton onClick={() => dispatch(closeMenu())}>
-              <CloseIcon className="text-[#bbc3ce]" />
+              <CloseIcon color="secondary" />
             </IconButton>
           </div>
           <div className="flex flex-col gap-5">
@@ -67,16 +68,6 @@ function LeftMenu() {
               </Typography>
             </Link>
             <Link
-              to="profile"
-              className="flex items-center gap-2"
-              onClick={() => dispatch(closeMenu())}
-            >
-              <PersonIcon />
-              <Typography component="span" sx={{ fontSize: 25 }}>
-                Profile
-              </Typography>
-            </Link>
-            <Link
               to="settings"
               className="flex items-center gap-2"
               onClick={() => dispatch(closeMenu())}
@@ -97,7 +88,7 @@ function LeftMenu() {
           </div>
         </Box>
       </Container>
-    </div>
+    </Box>
   );
 }
 

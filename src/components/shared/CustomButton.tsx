@@ -18,13 +18,23 @@ function CustomButton({
     <Button
       id={id}
       variant="outlined"
-      className="group relative flex gap-2 overflow-hidden h-[40px] after:content-[''] after:absolute after:bg-[#efa135] after:dark:bg-[#522AA7] after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
+      sx={{
+        border: 2,
+        "&:hover": {
+          border: 2,
+        },
+        "&:hover:after": {
+          backgroundColor: "primary.main",
+        },
+      }}
+      className="group relative flex gap-2 overflow-hidden after:content-[''] after:absolute after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
       onClick={functionClick}
     >
       {children}
       <Typography
         component="span"
-        className="text-[#474862] dark:text-white group-hover:text-white duration-500 ease-in-out z-10"
+        className="group-hover:text-white duration-500 ease-in-out z-10"
+        color="text.primary"
       >
         {title}
       </Typography>

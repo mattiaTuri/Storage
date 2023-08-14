@@ -6,22 +6,14 @@ import Box from "@mui/material/Box";
 
 function WelcomeCard() {
   return (
-    <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
+    <Card className="border border-[#434343]">
       <CardContent className="flex justify-between items-center h-full ">
         <Box>
-          <Typography
-            gutterBottom
-            className="text-[#474862] dark:text-white"
-            variant="h5"
-            component="h2"
-          >
+          <Typography gutterBottom variant="h5" component="h2">
             Hello Mattia!
           </Typography>
-          <Typography className="text-[#474862] dark:text-white" component="p">
-            It is good to see you again
-          </Typography>
+          <Typography component="p">It is good to see you again</Typography>
         </Box>
-
         <UserAvatar />
       </CardContent>
     </Card>

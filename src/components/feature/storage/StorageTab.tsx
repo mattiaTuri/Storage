@@ -35,7 +35,10 @@ function StorageTab({
           title="Add"
           functionClick={() => dispatch(openModal())}
         >
-          <AddCircleOutlinedIcon className="text-[#474862] dark:text-white group-hover:text-white ease-in-out z-10" />
+          <AddCircleOutlinedIcon
+            color="secondary"
+            className="group-hover:text-white ease-in-out z-10"
+          />
         </CustomButton>
       </Box>
       <CustomModal

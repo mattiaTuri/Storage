@@ -11,11 +11,7 @@ export const bookCols: GridColDef[] = [
     editable: true,
     renderCell: (params) => {
       return (
-        <Typography
-          variant="caption"
-          component="p"
-          className="text-[#474862] dark:text-white"
-        >
+        <Typography variant="caption" component="p">
           {params.value}
         </Typography>
       );
@@ -28,11 +24,7 @@ export const bookCols: GridColDef[] = [
     editable: true,
     renderCell: (params) => {
       return (
-        <Typography
-          variant="caption"
-          component="p"
-          className="text-[#474862] dark:text-white"
-        >
+        <Typography variant="caption" component="p">
           {params.value}
         </Typography>
       );
@@ -46,11 +38,7 @@ export const bookCols: GridColDef[] = [
     editable: true,
     renderCell: (params) => {
       return (
-        <Typography
-          variant="caption"
-          component="p"
-          className="text-[#474862] dark:text-white"
-        >
+        <Typography variant="caption" component="p">
           {params.value}
         </Typography>
       );
@@ -64,11 +52,7 @@ export const bookCols: GridColDef[] = [
     editable: true,
     renderCell: (params) => {
       return (
-        <Typography
-          variant="caption"
-          component="p"
-          className="text-[#474862] dark:text-white"
-        >
+        <Typography variant="caption" component="p">
           {params.value}
         </Typography>
       );
@@ -84,11 +68,7 @@ export const bookCols: GridColDef[] = [
     editable: true,
     renderCell: (params) => {
       return (
-        <Typography
-          variant="caption"
-          component="p"
-          className="text-[#474862] dark:text-white"
-        >
+        <Typography variant="caption" component="p">
           {params.value}
         </Typography>
       );

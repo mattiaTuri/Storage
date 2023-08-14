@@ -77,24 +77,34 @@ function Storage() {
       <Box className="p-10 h-full flex flex-col">
         <Box className="text-center lg:text-left pb-10">
           <Typography
+            color="primary"
             sx={{ fontSize: 40 }}
             variant="h2"
             component="h1"
-            color="#efa135"
           >
             STORAGE
           </Typography>
         </Box>
         <TabContext value={tabValue}>
-          <Box
-            sx={{ borderBottom: 1, borderColor: "divider" }}
-            className="border-[#252627] dark:border-white"
-          >
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList onChange={TabChange} value="">
-              <Tab component={Link} label="Books" value="books" to="books" />
               <Tab
                 component={Link}
-                label="Resources"
+                label={
+                  <Typography color="text.primary" component="span">
+                    Books
+                  </Typography>
+                }
+                value="books"
+                to="books"
+              />
+              <Tab
+                component={Link}
+                label={
+                  <Typography color="text.primary" component="span">
+                    Resources
+                  </Typography>
+                }
                 value="resources"
                 to="resources"
               />

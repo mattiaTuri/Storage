@@ -11,14 +11,9 @@ function SummaryCard() {
   const resources = useSelector(resourcesSelector);
 
   return (
-    <Card className="bg-white dark:bg-[#262626] dark:border-[#434343] border">
-      <CardContent className="text-white flex flex-col justify-center h-full gap-2">
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="h2"
-          className="text-[#474862] dark:text-white"
-        >
+    <Card className="border border-[#434343]">
+      <CardContent className="flex flex-col justify-center h-full gap-2">
+        <Typography gutterBottom variant="h5" component="h2">
           Summary
         </Typography>
         <StatisticsNumberBox

@@ -11,13 +11,12 @@ import SidebarLink from "./SidebarLink";
 
 function Sidebar() {
   return (
-    <Box className="h-full bg-white dark:bg-[#262626] lg:flex flex-col justify-between items-center w-60 dark:border-[#434343] border-r hidden">
+    <Box
+      sx={{ backgroundColor: "background.paper" }}
+      className="h-full lg:flex flex-col justify-between items-center w-60 border-[#434343] border-r hidden"
+    >
       <Box className="relative top-10">
-        <Typography
-          variant="h6"
-          component="h2"
-          className="text-[#efa135] dark:text-white"
-        >
+        <Typography color="primary" variant="h6" component="h2">
           STORAGE
         </Typography>
       </Box>
@@ -54,14 +53,15 @@ function Sidebar() {
         </SidebarLink>
         <Box
           id="sliderActions"
-          className="absolute top-0 h-10 w-full bg-[#efa135] dark:bg-[#522AA7] rounded-md duration-300"
+          sx={{ backgroundColor: "primary.main" }}
+          className="absolute top-0 h-10 w-full rounded-md duration-300"
         ></Box>
       </Box>
-      <Box className="relative bottom-10 w-[80%]">
-        <Link
-          to="/"
-          className="flex items-center gap-2 h-10 text-[#c4c4c4] hover:text-[#efa135] dark:hover:text-[#522aa7] duration-300"
-        >
+      <Box
+        className="relative bottom-10 w-[80%] text-[#c4c4c4]"
+        sx={{ "&:hover": { color: "primary.main" } }}
+      >
+        <Link to="/" className="flex items-center gap-2 h-10 duration-300">
           <LogoutIcon className="ml-2" />
           <Typography component="span">Logout</Typography>
         </Link>

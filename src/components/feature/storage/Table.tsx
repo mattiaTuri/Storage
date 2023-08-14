@@ -4,8 +4,11 @@ import CustomNoRows from "../../shared/CustomNoData";
 
 function Table({ rows, col }: any) {
   return (
-    <Box className="relative h-full dark:bg-[#262626]">
+    <Box className="relative h-full">
       <DataGrid
+        sx={{
+          border: "1px solid #434343",
+        }}
         rows={rows}
         columns={col}
         initialState={{

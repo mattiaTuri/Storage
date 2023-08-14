@@ -9,20 +9,23 @@ function NavbarMobile() {
   const dispatch = useDispatch();
 
   return (
-    <Box className="lg:hidden h-20 bg-white dark:bg-[#252627] rounded-lg">
+    <Box
+      sx={{ backgroundColor: "background.paper" }}
+      className="lg:hidden h-20 border-[#434343] border-b"
+    >
       <Container className="h-full">
-        <Box className="flex flex-row justify-between items-center h-full">
+        <nav className="flex flex-row justify-between items-center h-full">
           <Box>
-            <Typography variant="h6" component="h1" color="#0066ff">
+            <Typography color="primary" variant="h6" component="h1">
               STORAGE
             </Typography>
           </Box>
           <Box>
             <IconButton onClick={() => dispatch(openMenu())}>
-              <MenuIcon className="text-[#bbc3ce]" />
+              <MenuIcon color="secondary" />
             </IconButton>
           </Box>
-        </Box>
+        </nav>
       </Container>
       <LeftMenu />
     </Box>

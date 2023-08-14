@@ -8,15 +8,9 @@ export const themeSlice = createSlice({
     reducers:{
         lightMode: (state) => {
             state.value = "light"
-            const root = window.document.documentElement
-            root.classList.remove("dark")
-            root.classList.add("light")
         },
         darkMode: (state) => {
             state.value = "dark"
-            const root = window.document.documentElement
-            root.classList.remove("light")
-            root.classList.add(state.value)
         }
     }
 })
