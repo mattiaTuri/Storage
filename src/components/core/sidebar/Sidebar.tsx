@@ -40,9 +40,6 @@ function Sidebar() {
         >
           <CalendarMonthIcon className="ml-2" />
         </SidebarLink>
-        <SidebarLink id="profile" href="profile" link="Profile" disabled={true}>
-          <PersonIcon className="ml-2" />
-        </SidebarLink>
         <SidebarLink
           id="settings"
           href="settings"
@@ -61,7 +58,10 @@ function Sidebar() {
         className="relative bottom-10 w-[80%] text-[#c4c4c4]"
         sx={{ "&:hover": { color: "primary.main" } }}
       >
-        <Link to="/" className="flex items-center gap-2 h-10 duration-300">
+        <Link
+          to="/"
+          className="flex items-center gap-2 h-10 duration-300 pointer-events-none line-through opacity-50"
+        >
           <LogoutIcon className="ml-2" />
           <Typography component="span">Logout</Typography>
         </Link>
