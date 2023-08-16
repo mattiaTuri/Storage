@@ -34,8 +34,8 @@ function Storage() {
     id: "",
     title: "",
     link: "",
-    tag: "",
     short_description: "",
+    tag: "",
   });
 
   const [tabValue, setTabValue] = useState<string>("books");

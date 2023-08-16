@@ -9,7 +9,6 @@ function Table({ rows, col }: any) {
         sx={{
           border: "1px solid #434343", "& .MuiDataGrid-withBorderColor": {
           borderColor:"#434343"
-          // add more css for customization
           },
         }}
         rows={rows}

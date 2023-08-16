@@ -3,7 +3,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import CustomButton from "../../shared/CustomButton";
 import { useEffect, useState } from "react";
-import AnimatedCheck from "../../shared/AnimatedCheck";
 import { ref, update } from "firebase/database";
 import { database } from "../../../firebase";
 import { useDispatch, useSelector } from "react-redux";
