@@ -7,7 +7,10 @@ function Table({ rows, col }: any) {
     <Box className="relative h-full">
       <DataGrid
         sx={{
-          border: "1px solid #434343",
+          border: "1px solid #434343", "& .MuiDataGrid-withBorderColor": {
+          borderColor:"#434343"
+          // add more css for customization
+          },
         }}
         rows={rows}
         columns={col}

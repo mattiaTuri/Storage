@@ -16,7 +16,7 @@ export const light = createTheme({
       secondary: {
         main: "#474862", //Icon color
       },
-      divider: "#0000001fe",
+      divider: "#434343",
     },
   });
 
@@ -36,6 +36,6 @@ export const dark = createTheme({
       secondary: {
         main: "#ffff", //Icon color
       },
-      divider: "#c4c4c4",
+      divider: "#434343",
     },
   });

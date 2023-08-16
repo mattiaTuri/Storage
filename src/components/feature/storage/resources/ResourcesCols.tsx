@@ -14,7 +14,6 @@ export const resourceCol: GridColDef[] = [
         <Typography
           variant="caption"
           component="p"
-          className="text-[#474862] dark:text-white"
         >
           {params.value}
         </Typography>
@@ -31,7 +30,6 @@ export const resourceCol: GridColDef[] = [
           href={params.value}
           target="_blank"
           variant="caption"
-          className="text-[#474862] dark:text-white"
         >
           {params.value}
         </Link>
@@ -49,7 +47,6 @@ export const resourceCol: GridColDef[] = [
         <Typography
           variant="caption"
           component="p"
-          className="text-[#474862] dark:text-white"
         >
           {params.value}
         </Typography>
@@ -67,7 +64,6 @@ export const resourceCol: GridColDef[] = [
         <Typography
           variant="caption"
           component="p"
-          className="text-[#474862] dark:text-white"
         >
           {params.value}
         </Typography>

@@ -71,7 +71,7 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
       <Box className="flex flex-col lg:flex-row lg:justify-between gap-4">
         <TextField
           disabled={disabledInput}
-          sx={{ backgroundColor: "background.paper", borderRadius: "4px" }}
+          sx={{ backgroundColor: "text.secondary", borderRadius: "4px" }}
           id={id}
           name={id}
           variant="outlined"

@@ -99,7 +99,7 @@ function Settings() {
                   </label>
                   <Select
                     labelId="demo-simple-select-label"
-                    sx={{ backgroundColor: "background.paper" }}
+                    sx={{ backgroundColor: "text.secondary" }}
                     id="demo-simple-select"
                     value="IT"
                     onChange={handleChange}
