@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputSettings from "../../feature/settings/InputSettings";
 import UserAvatar from "../../shared/UserAvatar";
 import { useSelector } from "react-redux";
@@ -52,7 +52,7 @@ function Settings() {
               id="imgSection"
               className="flex items-center flex-row justify-between lg:items-center lg:w-[50%] gap-4"
             >
-              <UserAvatar />
+              <UserAvatar acronym={user.currentUser.acronym}/>
               <Box className="flex flex-col lg:flex-row gap-4 lg:pr-10">
                 <CustomButton
                   id="btnRemoveImg"

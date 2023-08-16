@@ -8,7 +8,12 @@ export const userSlice = createSlice({
         currentUser: {} as User,
         loading:false
     },
-    reducers:{},
+    reducers:{
+        updateUser: (state, value) => {
+            state.currentUser = value.payload
+            state.currentUser.acronym = state.currentUser.name.charAt(0).toUpperCase() + state.currentUser.surname.charAt(0).toUpperCase()
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getUser.fulfilled, (state, action) => {
             state.currentUser = action.payload   
@@ -17,4 +22,5 @@ export const userSlice = createSlice({
     }
 })
 
+export const {updateUser } = userSlice.actions
 export default userSlice.reducer
