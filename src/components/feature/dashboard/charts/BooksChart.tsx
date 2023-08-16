@@ -9,41 +9,17 @@ import { themeSelector } from "../../../../store/theme/selector";
 import { BooksProps } from "../../../../models/Book";
 import { Typography } from "@mui/material";
 import CustomNoData from "../../../shared/CustomNoData";
+import { getChartValue } from "./chartsFunctions";
 
 function BookChart({ booksList }: { booksList: BooksProps[] }) {
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
-  const [data, setData] = useState<any>(null);
+  const [chartData, setChartData] = useState<any>(null);
   useEffect(() => {
-    getChartValue();
-  }, [booksList]);
-
-  const getChartValue = () => {
     const genresList = booksList.map((elem: BooksProps) => elem.genre);
-    const genresListWithoutDuplicate: string[] = [];
-    genresList.forEach((elem: string) => {
-      if (!genresListWithoutDuplicate.includes(elem)) {
-        genresListWithoutDuplicate.push(elem);
-      }
-    });
-    countBookGenres(genresList, genresListWithoutDuplicate);
-  };
-
-  const countBookGenres = (
-    genresList: string[],
-    genresListWithoutDuplicate: string[]
-  ) => {
-    let a: any[] = [];
-    genresListWithoutDuplicate.forEach((genre) => {
-      let occurences = 0;
-      genresList.forEach((elem: string) => {
-        if (genre == elem) occurences++;
-      });
-      a.push({ name: genre, value: occurences });
-    });
-    setData(a);
-  };
+    setChartData(getChartValue(genresList));
+  }, [booksList]);
 
   const option = {
     title: {
@@ -78,7 +54,7 @@ function BookChart({ booksList }: { booksList: BooksProps[] }) {
         name: "Genre",
         type: "pie",
         radius: "50%",
-        data: data,
+        data: chartData,
       },
     ],
   };

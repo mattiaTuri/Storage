@@ -7,12 +7,9 @@ import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
 import { themeSelector } from "../../../../store/theme/selector";
 import { ResourcesProps } from "../../../../models/Resource";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import Loader from "../../../shared/Loader";
 import Typography from "@mui/material/Typography";
-import CustomNoRows from "../../../shared/CustomNoData";
 import CustomNoData from "../../../shared/CustomNoData";
+import { getChartValue } from "./chartsFunctions";
 
 function ResourcesChart({
   resourcesList,
@@ -22,36 +19,11 @@ function ResourcesChart({
   const theme = useSelector(themeSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
-  const [data, setData] = useState<any>(null);
+  const [chartData, setChartData] = useState<any>(null);
   useEffect(() => {
-    getChartValue();
-  }, [resourcesList]);
-
-  const getChartValue = () => {
     const tagList = resourcesList.map((elem: ResourcesProps) => elem.tag);
-    const tagListWithoutDuplicate: string[] = [];
-    tagList.forEach((elem: string) => {
-      if (!tagListWithoutDuplicate.includes(elem)) {
-        tagListWithoutDuplicate.push(elem);
-      }
-    });
-    countBookGenres(tagList, tagListWithoutDuplicate);
-  };
-
-  const countBookGenres = (
-    tagList: string[],
-    tagListWithoutDuplicate: string[]
-  ) => {
-    let a: any[] = [];
-    tagListWithoutDuplicate.forEach((tag) => {
-      let occurences = 0;
-      tagList.forEach((elem: string) => {
-        if (tag == elem) occurences++;
-      });
-      a.push({ name: tag, value: occurences });
-    });
-    setData(a);
-  };
+    setChartData(getChartValue(tagList));
+  }, [resourcesList]);
 
   const option = {
     title: {
@@ -86,7 +58,7 @@ function ResourcesChart({
         name: "Tag",
         type: "pie",
         radius: "50%",
-        data: data,
+        data: chartData,
       },
     ],
   };
