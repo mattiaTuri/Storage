@@ -25,7 +25,7 @@ function Sidebar() {
         </SidebarLink>
         <SidebarLink
           id="storage"
-          href="storage/books"
+          href="storage"
           link="Storage"
           disabled={false}
         >

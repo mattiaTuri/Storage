@@ -9,18 +9,16 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import BookTab from "../../feature/storage/books/BookTab";
 import ResourceTab from "../../feature/storage/resources/ResourceTab";
+import { useDispatch, useSelector } from "react-redux";
+import { storageTabSelector } from "../../../store/storageTab/selector";
+import { changeTab } from "../../../store/storageTab/storageTabSlice";
 
 function Storage() {
-  const [tabValue, setTabValue] = useState<string>("books");
-  let { pathname } = useLocation();
-
-  useEffect(() => {
-    pathname = pathname.replace("/storage/", "");
-    setTabValue(pathname);
-  }, []);
+  const tabValue = useSelector(storageTabSelector)
+  const dispatch = useDispatch()
 
   const TabChange = (event: React.SyntheticEvent, newValue: string) => {
-    setTabValue(newValue);
+    dispatch(changeTab(newValue))
   };
 
   return (
@@ -40,24 +38,20 @@ function Storage() {
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList onChange={TabChange} value="">
               <Tab
-                component={Link}
                 label={
                   <Typography color="text.primary" component="span">
                     Books
                   </Typography>
                 }
                 value="books"
-                to="books"
               />
               <Tab
-                component={Link}
                 label={
                   <Typography color="text.primary" component="span">
                     Resources
                   </Typography>
                 }
                 value="resources"
-                to="resources"
               />
             </TabList>
           </Box>
