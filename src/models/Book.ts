@@ -5,4 +5,5 @@ export interface BooksProps {
     editor: string;
     genre: string;
     pages: number;
+    isRead:boolean;
   }

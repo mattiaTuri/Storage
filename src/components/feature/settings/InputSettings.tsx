@@ -69,6 +69,7 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
       </label>
       <Box className="flex flex-col lg:flex-row lg:justify-between gap-4">
         <TextField
+          data-settings-input
           disabled={disabledInput}
           sx={{ backgroundColor: "text.secondary", borderRadius: "4px" }}
           id={id}

@@ -2,6 +2,7 @@ import Typography from "@mui/material/Typography";
 import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
 import { GridRowId } from "@mui/x-data-grid/models/gridRows";
 import ActionDeleteBook from "./ActionDeleteBook";
+import Checkbox from "@mui/material/Checkbox";
 
 export const bookCols: GridColDef[] = [
   {
@@ -20,7 +21,7 @@ export const bookCols: GridColDef[] = [
   {
     field: "author",
     headerName: "Author",
-    width: 300,
+    width: 200,
     editable: true,
     renderCell: (params) => {
       return (
@@ -71,6 +72,20 @@ export const bookCols: GridColDef[] = [
         <Typography variant="caption" component="p">
           {params.value}
         </Typography>
+      );
+    },
+  },
+  {
+    field: "read",
+    headerName: "Read",
+    type: "boolean",
+    width: 150,
+    headerAlign: "center",
+    align: "center",
+    editable: true,
+    renderCell: (params) => {
+      return (
+        <Checkbox checked={params.row.isRead}/>
       );
     },
   },

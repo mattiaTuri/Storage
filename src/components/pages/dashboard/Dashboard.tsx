@@ -11,7 +11,6 @@ import TasksCard from "../../feature/dashboard/cards/tasks/TasksCard";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
 import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
 import Loader from "../../shared/Loader";
-import CustomNoRows from "../../shared/CustomNoData";
 
 function Dashboard() {
   const books = useSelector(booksSelector);

@@ -8,7 +8,7 @@ import { getUser } from "./controller/userApi";
 import { getBooksList } from "./controller/booksApi";
 import { getResourcesList } from "./controller/resourcesApi";
 import Box from "@mui/material/Box";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { dark, light } from "./components/theme/theme";
 

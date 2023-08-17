@@ -6,40 +6,12 @@ import Container from "@mui/material/Container";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
-import StorageTab from "../../feature/storage/StorageTab";
-import { useDispatch, useSelector } from "react-redux";
-import { bookCols } from "../../feature/storage/books/BookCols";
-import { closeModal } from "../../../store/modal/modalSlice";
-import { booksSelector } from "../../../store/books/selector";
-import { resourcesSelector } from "../../../store/resources/selector";
-import { resourceCol } from "../../feature/storage/resources/ResourcesCols";
-import { BooksProps } from "../../../models/Book";
-import { addBook } from "../../../controller/booksApi";
-import { ResourcesProps } from "../../../models/Resource";
-import { addResource } from "../../../controller/resourcesApi";
 import { Link, useLocation } from "react-router-dom";
+import BookTab from "../../feature/storage/books/BookTab";
+import ResourceTab from "../../feature/storage/resources/ResourceTab";
 
 function Storage() {
-  const books = useSelector(booksSelector);
-  const resources = useSelector(resourcesSelector);
-  const [bookValues, setBookValues] = useState<BooksProps>({
-    id: "",
-    title: "",
-    author: "",
-    editor: "",
-    genre: "",
-    pages: 0,
-  });
-  const [resourceValues, setResourceValues] = useState<ResourcesProps>({
-    id: "",
-    title: "",
-    link: "",
-    short_description: "",
-    tag: "",
-  });
-
   const [tabValue, setTabValue] = useState<string>("books");
-  const dispatch = useDispatch();
   let { pathname } = useLocation();
 
   useEffect(() => {
@@ -49,27 +21,6 @@ function Storage() {
 
   const TabChange = (event: React.SyntheticEvent, newValue: string) => {
     setTabValue(newValue);
-  };
-
-  const onBookValChanges = (event: any) => {
-    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
-  };
-
-  const onResourceValChanges = (event: any) => {
-    setResourceValues({
-      ...resourceValues,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const addNewBook = () => {
-    dispatch(addBook(bookValues));
-    dispatch(closeModal());
-  };
-
-  const addNewResource = () => {
-    dispatch(addResource(resourceValues));
-    dispatch(closeModal());
   };
 
   return (
@@ -116,14 +67,7 @@ function Storage() {
             sx={{ padding: "initial" }}
             className="h-full"
           >
-            <StorageTab
-              values={bookValues}
-              onValChanges={onBookValChanges}
-              addFunctionRow={addNewBook}
-              idModalBtn="btnAddBook"
-              tableCols={bookCols}
-              tableRows={books.booksList}
-            />
+            <BookTab/>
           </TabPanel>
           <TabPanel
             id="resources"
@@ -131,14 +75,7 @@ function Storage() {
             sx={{ padding: "initial" }}
             className="h-full"
           >
-            <StorageTab
-              values={resourceValues}
-              onValChanges={onResourceValChanges}
-              addFunctionRow={addNewResource}
-              idModalBtn="btnAddResource"
-              tableCols={resourceCol}
-              tableRows={resources.resourcesList}
-            />
+            <ResourceTab/>
           </TabPanel>
         </TabContext>
       </Box>

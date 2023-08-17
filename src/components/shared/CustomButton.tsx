@@ -1,4 +1,4 @@
-import { Button, Icon, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 interface CustomButtonProps {

@@ -2,7 +2,6 @@ import Typography from "@mui/material/Typography";
 import AnimatedNumber from "../../../../shared/AnimatedNumber";
 import Loader from "../../../../shared/Loader";
 import Box from "@mui/material/Box";
-
 import { ChangeMenu } from "../../../../core/sidebar/sidebarFunctions";
 import { Link } from "react-router-dom";
 

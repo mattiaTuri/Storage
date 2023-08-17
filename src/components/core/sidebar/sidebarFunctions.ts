@@ -1,4 +1,3 @@
-
 export const ChangeMenu = (selected_link:string) => {
 
     document.querySelectorAll("#actionsMenu a").forEach((elem:any) => {

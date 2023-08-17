@@ -2,19 +2,14 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import SliderTheme from "../../shared/Slider/SliderTheme";
-import Avatar from "@mui/material/Avatar";
 import CustomButton from "../../shared/CustomButton";
 import {
   Divider,
-  Input,
-  InputLabel,
   Select,
   SelectChangeEvent,
-  TextField,
 } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InputSettings from "../../feature/settings/InputSettings";
 import UserAvatar from "../../shared/UserAvatar";
 import { useSelector } from "react-redux";
@@ -98,6 +93,7 @@ function Settings() {
                     <Typography component="span">Lingua</Typography>
                   </label>
                   <Select
+                    data-settings-select
                     labelId="demo-simple-select-label"
                     sx={{ backgroundColor: "text.secondary" }}
                     id="demo-simple-select"

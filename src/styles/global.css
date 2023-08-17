@@ -71,13 +71,18 @@ p, input{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.MuiInputBase-root{
+.MuiCheckbox-root{
+  color:#434343 !important;
+}
+
+.MuiFormControl-root[data-settings-input] > .MuiInputBase-root, .MuiInputBase-root[data-settings-select]{
   height: 40px !important;
 }
 
+/*
 #outlined-basic-label{
-  top:-5px;
-}
+  top:-5px !important;
+} */
 
 /*
 LIGHT MODE
