@@ -105,7 +105,7 @@ function Settings() {
                     <MenuItem value="SPA">Spagnolo</MenuItem>
                   </Select>
                 </Box>
-                <SliderTheme />
+                <SliderTheme themeConf={user.currentUser.theme}/>
               </Box>
             </Box>
           </Box>

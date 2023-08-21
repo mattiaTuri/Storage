@@ -3,19 +3,38 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { Button, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { themeSelector } from "../../../store/theme/selector";
-import { lightMode, darkMode } from "../../../store/theme/themeSlice";
+import { updateUser } from "../../../controller/userApi";
 import { ChangeTheme } from "./sliderThemeFunction";
+import { userSelector } from "../../../store/user/selector";
+import { useEffect, useState } from "react";
 
-function SliderTheme() {
-  const theme: string = useSelector(themeSelector);
+function SliderTheme({themeConf}: {themeConf:string}) {
   const dispatch = useDispatch();
+  const user = useSelector(userSelector);
+
+  useEffect(() => {
+    ChangeTheme(user.currentUser.theme)  
+
+  },[user.currentUser.theme])
+
+  const functionTheme = (selected_theme:string) => {
+    ChangeTheme(selected_theme)
+
+    dispatch(updateUser({id:user.currentUser.id,
+            name:user.currentUser.name,
+            surname:user.currentUser.surname,
+            email:user.currentUser.email,
+            password:user.currentUser.password,
+            theme:selected_theme
+    }));
+}
+
   return (
     <Box id="themeMenu" className="flex flex-col gap-4">
       <Typography component="span">Tema</Typography>
       <Box className="flex gap-4">
         <Box className="flex items-center">
-          {theme == "light" ? <LightModeIcon /> : <DarkModeIcon />}
+          {themeConf == "light" ? <LightModeIcon /> : <DarkModeIcon />}
         </Box>
         <Box
           id="themeButton"
@@ -23,14 +42,10 @@ function SliderTheme() {
           className="h-10 grid grid-cols-2 relative rounded-md"
         >
           <Button
-            id="lightMode"
+            id="light"
             type="button"
             className="flex justify-center items-center z-10"
-            onClick={() => {
-              ChangeTheme("lightMode");
-              dispatch(lightMode());
-            }}
-          >
+            onClick={() => functionTheme("light")}>
             <Typography
               variant="body1"
               component="span"
@@ -41,14 +56,10 @@ function SliderTheme() {
             </Typography>
           </Button>
           <Button
-            id="darkMode"
+            id="dark"
             type="button"
             className="flex justify-center items-center z-10"
-            onClick={() => {
-              ChangeTheme("darkMode");
-              dispatch(darkMode());
-            }}
-          >
+            onClick={() => functionTheme("dark")}>
             <Typography
               variant="body1"
               component="span"

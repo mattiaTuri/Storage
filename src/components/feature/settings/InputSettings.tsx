@@ -3,12 +3,10 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import CustomButton from "../../shared/CustomButton";
 import { useEffect, useState } from "react";
-import { ref, update } from "firebase/database";
-import { database } from "../../../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../../store/user/selector";
-import { updateUser } from "../../../store/user/userSlice";
 import { Icon } from '@iconify/react';
+import { updateUser } from "../../../controller/userApi";
 
 interface InputSettingsProps {
   id: string;
@@ -39,14 +37,6 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
 
   const saveData = () => {
     setComplete(true);
-    const { name, surname, email, password } = currentValues;
-    update(ref(database, "users/0/"), {
-      acronym: name.charAt(0).toUpperCase() + surname.charAt(0).toUpperCase(),
-      name: name,
-      surname: surname,
-      email: email,
-      password:password
-    });
     dispatch(updateUser(currentValues))
     setTimeout(() => {
       setComplete(false);

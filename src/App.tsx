@@ -11,10 +11,11 @@ import Box from "@mui/material/Box";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { dark, light } from "./components/theme/theme";
+import { userSelector } from "./store/user/selector";
 
 function App() {
-  const theme = useSelector(themeSelector);
   const dispatch = useDispatch();
+  const user = useSelector(userSelector)
 
   useEffect(() => {
     dispatch(getBooksList());
@@ -23,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme == "light" ? light : dark}>
+    <ThemeProvider theme={user.currentUser.theme == "light" ? light : dark}>
       <CssBaseline />
       <Box
         sx={{ backgroundColor: "background.default" }}

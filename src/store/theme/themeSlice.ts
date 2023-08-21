@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ChangeTheme } from "../../components/shared/Slider/sliderThemeFunction";
 
 export const themeSlice = createSlice({
     name:"theme",
