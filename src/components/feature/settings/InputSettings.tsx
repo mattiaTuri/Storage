@@ -72,7 +72,7 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
           {!buttonVisibility && (
             <CustomButton
               id="btnEditName"
-              title="Modifica"
+              title="Edit"
               functionClick={() => showHideActionButtons()}
             />
           )}
@@ -80,14 +80,14 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
           {buttonVisibility && (
             <CustomButton
               id="btnCancelName"
-              title="Annulla"
+              title="Cancel"
               functionClick={() => showHideActionButtons()}
             />
           )}
           {buttonVisibility && (
             <CustomButton
               id="btnSaveName"
-              title="Salva"
+              title="Save"
               functionClick={() => saveData()}
             />
           )}

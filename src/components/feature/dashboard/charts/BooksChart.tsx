@@ -5,14 +5,14 @@ import { PieChart } from "echarts/charts";
 import { CanvasRenderer } from "echarts/renderers";
 import { TooltipComponent, TitleComponent } from "echarts/components";
 import { useEffect, useState } from "react";
-import { themeSelector } from "../../../../store/theme/selector";
 import { BooksProps } from "../../../../models/Book";
 import { Typography } from "@mui/material";
 import CustomNoData from "../../../shared/CustomNoData";
 import { getChartValue } from "./chartsFunctions";
+import { userSelector } from "../../../../store/user/selector";
 
 function BookChart({ booksList }: { booksList: BooksProps[] }) {
-  const theme = useSelector(themeSelector);
+  const user = useSelector(userSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
 
   const [chartData, setChartData] = useState<any>(null);
@@ -28,7 +28,7 @@ function BookChart({ booksList }: { booksList: BooksProps[] }) {
       left: "center",
       top: 20,
       textStyle: {
-        color: theme === "light" ? "#474862" : "white",
+        color: user.currentUser.theme === "light" ? "#474862" : "white",
         fontSize: 20,
         fontFamily: "Poppins-Bold",
       },
@@ -47,7 +47,7 @@ function BookChart({ booksList }: { booksList: BooksProps[] }) {
     label: {
       fontSize: 12,
       fontFamily: "Poppins-Bold",
-      color: theme === "light" ? "#474862" : "white",
+      color: user.currentUser.theme === "light" ? "#474862" : "white",
     },
     series: [
       {

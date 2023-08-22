@@ -17,10 +17,10 @@ import { userSelector } from "../../../store/user/selector";
 import Loader from "../../shared/Loader";
 
 function Settings() {
-  const [age, setAge] = useState("");
+  const [language, setLanguage] = useState("");
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+  const changeLanguage = (event: SelectChangeEvent) => {
+    setLanguage(event.target.value);
   };
 
   const user = useSelector(userSelector);
@@ -41,7 +41,7 @@ function Settings() {
         {user.loading ? (
           <Box className="flex flex-col gap-10">
             <Typography component="span" className="text-center lg:text-left">
-              Il tuo account
+              Your account
             </Typography>
             <Box
               id="imgSection"
@@ -51,12 +51,12 @@ function Settings() {
               <Box className="flex flex-col lg:flex-row gap-4 lg:pr-10">
                 <CustomButton
                   id="btnRemoveImg"
-                  title="Rimuovi foto"
+                  title="Remove photo"
                   functionClick={() => console.log()}
                 />
                 <CustomButton
                   id="btnEditImg"
-                  title="Cambia foto"
+                  title="Edit photo"
                   functionClick={() => console.log()}
                 />
               </Box>
@@ -90,7 +90,7 @@ function Settings() {
               <Box className="flex flex-col gap-4 pt-10 lg:pt-0">
                 <Box className="flex flex-col gap-4">
                   <label>
-                    <Typography component="span">Lingua</Typography>
+                    <Typography component="span">Language</Typography>
                   </label>
                   <Select
                     data-settings-select
@@ -98,11 +98,11 @@ function Settings() {
                     sx={{ backgroundColor: "text.secondary" }}
                     id="demo-simple-select"
                     value="IT"
-                    onChange={handleChange}
+                    onChange={changeLanguage}
                   >
-                    <MenuItem value="IT">Italiano</MenuItem>
-                    <MenuItem value="EN">Inglese</MenuItem>
-                    <MenuItem value="SPA">Spagnolo</MenuItem>
+                    <MenuItem value="IT">Italian</MenuItem>
+                    <MenuItem value="EN">English</MenuItem>
+                    <MenuItem value="SPA">Spanish</MenuItem>
                   </Select>
                 </Box>
                 <SliderTheme themeConf={user.currentUser.theme}/>
