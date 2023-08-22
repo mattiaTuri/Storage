@@ -3,11 +3,12 @@ import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
 import { GridRowId } from "@mui/x-data-grid/models/gridRows";
 import ActionDeleteBook from "./ActionDeleteBook";
 import Checkbox from "@mui/material/Checkbox";
+import i18n from "i18next";
 
 export const bookCols: GridColDef[] = [
   {
     field: "title",
-    headerName: "Title",
+    headerName: i18n.t("title"),
     width: 400,
     editable: true,
     renderCell: (params) => {
@@ -20,7 +21,7 @@ export const bookCols: GridColDef[] = [
   },
   {
     field: "author",
-    headerName: "Author",
+    headerName: i18n.t("author"),
     width: 200,
     editable: true,
     renderCell: (params) => {
@@ -33,7 +34,7 @@ export const bookCols: GridColDef[] = [
   },
   {
     field: "editor",
-    headerName: "Editor",
+    headerName: i18n.t("editor"),
     type: "string",
     width: 200,
     editable: true,
@@ -47,7 +48,7 @@ export const bookCols: GridColDef[] = [
   },
   {
     field: "genre",
-    headerName: "Genre",
+    headerName: i18n.t("genre"),
     type: "string",
     width: 200,
     editable: true,
@@ -61,7 +62,7 @@ export const bookCols: GridColDef[] = [
   },
   {
     field: "pages",
-    headerName: "Pages",
+    headerName: i18n.t("pages"),
     type: "number",
     width: 150,
     headerAlign: "center",
@@ -77,7 +78,7 @@ export const bookCols: GridColDef[] = [
   },
   {
     field: "read",
-    headerName: "Read",
+    headerName: i18n.t("is_read"),
     type: "boolean",
     width: 150,
     headerAlign: "center",
@@ -91,7 +92,7 @@ export const bookCols: GridColDef[] = [
   },
   {
     field: "actions",
-    headerName: "Actions",
+    headerName: i18n.t("delete"),
     type: "actions",
     width: 100,
     getActions: ({ id }: { id: GridRowId }) => {

@@ -8,6 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import CustomButton from "../../shared/CustomButton";
 import { ReactNode } from "react";
+import { t } from "i18next";
 
 const style = {
   position: "absolute" as "absolute",
@@ -62,12 +63,12 @@ function CustomModal({title, addFunction, children }: ModalProps) {
         <div className="mt-10 flex justify-end gap-4">
           <CustomButton
             id="btnCloseModal"
-            title="Cancel"
+            title={t("cancel")}
             functionClick={() => dispatch(closeModal())}
           />
           <CustomButton
             id="btnSaveInputModal"
-            title="Save"
+            title={t("save")}
             functionClick={addFunction}
           />
         </div>

@@ -5,17 +5,17 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import BookTab from "../../feature/storage/books/BookTab";
 import ResourceTab from "../../feature/storage/resources/ResourceTab";
 import { useDispatch, useSelector } from "react-redux";
 import { storageTabSelector } from "../../../store/storageTab/selector";
 import { changeTab } from "../../../store/storageTab/storageTabSlice";
+import { useTranslation } from "react-i18next";
 
 function Storage() {
   const tabValue = useSelector(storageTabSelector)
   const dispatch = useDispatch()
+  const { t } = useTranslation();
 
   const TabChange = (event: React.SyntheticEvent, newValue: string) => {
     dispatch(changeTab(newValue))
@@ -40,7 +40,7 @@ function Storage() {
               <Tab
                 label={
                   <Typography color="text.primary" component="span">
-                    Books
+                    {t("books")}
                   </Typography>
                 }
                 value="books"
@@ -48,7 +48,7 @@ function Storage() {
               <Tab
                 label={
                   <Typography color="text.primary" component="span">
-                    Resources
+                    {t("resources")}
                   </Typography>
                 }
                 value="resources"

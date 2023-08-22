@@ -7,8 +7,10 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Typography } from "@mui/material";
 import SidebarLink from "./SidebarLink";
+import { useTranslation } from "react-i18next";
 
 function Sidebar() {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{ backgroundColor: "background.paper" }}
@@ -16,7 +18,7 @@ function Sidebar() {
     >
       <Box className="relative top-10">
         <Typography color="primary" variant="h6" component="h2">
-          STORAGE
+          {t("storage")}
         </Typography>
       </Box>
       <Box id="actionsMenu" className="relative flex flex-col gap-2 w-[80%]">
@@ -26,7 +28,7 @@ function Sidebar() {
         <SidebarLink
           id="storage"
           href="storage"
-          link="Storage"
+          link={t("storage")}
           disabled={false}
         >
           <MenuBookIcon className="ml-2" />
@@ -42,7 +44,7 @@ function Sidebar() {
         <SidebarLink
           id="settings"
           href="settings"
-          link="Settings"
+          link={t("settings")}
           disabled={false}
         >
           <SettingsIcon className="ml-2" />

@@ -4,9 +4,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { openMenu } from "../../../store/hamburgerMenu/hamburgerSlice";
 import { useDispatch } from "react-redux";
 import LeftMenu from "./LeftMenu";
+import { useTranslation } from "react-i18next";
 
 function NavbarMobile() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -17,7 +19,7 @@ function NavbarMobile() {
         <nav className="flex flex-row justify-between items-center h-full">
           <Box>
             <Typography color="primary" variant="h6" component="h1">
-              STORAGE
+            {t("storage")}
             </Typography>
           </Box>
           <Box>

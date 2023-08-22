@@ -12,10 +12,12 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useTranslation } from "react-i18next";
 
 function LeftMenu() {
   const openMenu: boolean = useSelector(hamburgerSelector);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -29,7 +31,7 @@ function LeftMenu() {
         <Box className="h-full flex flex-col justify-between">
           <div className="flex justify-between items-center pt-5">
             <Typography color="primary" variant="h6" component="h1">
-              STORAGE
+            {t("settings")}
             </Typography>
             <IconButton onClick={() => dispatch(closeMenu())}>
               <CloseIcon color="secondary" />
@@ -43,7 +45,7 @@ function LeftMenu() {
             >
               <DashboardIcon />
               <Typography component="span" sx={{ fontSize: 25 }}>
-                Dashboard
+              {t("dashboard")}
               </Typography>
             </Link>
             <Link
@@ -53,7 +55,7 @@ function LeftMenu() {
             >
               <MenuBookIcon />
               <Typography component="span" sx={{ fontSize: 25 }}>
-                Storage
+              {t("settings")}
               </Typography>
             </Link>
             <Link
@@ -63,7 +65,7 @@ function LeftMenu() {
             >
               <CalendarMonthIcon />
               <Typography component="span" sx={{ fontSize: 25 }}>
-                Scheduler
+              {t("scheduler")}
               </Typography>
             </Link>
             <Link
@@ -73,7 +75,7 @@ function LeftMenu() {
             >
               <SettingsIcon />
               <Typography component="span" sx={{ fontSize: 25 }}>
-                Settings
+              {t("settings")}
               </Typography>
             </Link>
           </div>
@@ -81,7 +83,7 @@ function LeftMenu() {
             <Link to="" className="flex items-center gap-2">
               <LogoutIcon />
               <Typography component="span" sx={{ fontSize: 25 }}>
-                Logout
+              {t("logout")}
               </Typography>
             </Link>
           </div>

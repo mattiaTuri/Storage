@@ -11,8 +11,10 @@ import { BooksProps } from "../../../../models/Book";
 import { useState } from "react";
 import { bookCols } from "./BookCols";
 import { booksSelector } from "../../../../store/books/selector";
+import { useTranslation } from "react-i18next";
 
 function BookTab(){
+    const { t } = useTranslation();
     const dispatch = useDispatch()
     const books = useSelector(booksSelector)
     const initialBooksValues: BooksProps = { id: "",
@@ -35,7 +37,7 @@ function BookTab(){
             <Box className="flex justify-end my-4">
                 <CustomButton
                 id="btnAddBook"
-                title="Add"
+                title={t("add")}
                 functionClick={() => dispatch(openModal())}
                 >
                 <AddCircleOutlinedIcon
@@ -44,7 +46,7 @@ function BookTab(){
                 />
                 </CustomButton>
             </Box>
-            <CustomModal title="Add new book" addFunction={addNewBook}>
+            <CustomModal title={t("add_new_book")} addFunction={addNewBook}>
                 <BooksField bookValues={bookValues} setBookValues={setBookValues}/>
             </CustomModal>
         <Table rows={books.booksList} col={bookCols} />

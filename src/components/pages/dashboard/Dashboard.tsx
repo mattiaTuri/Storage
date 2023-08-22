@@ -11,8 +11,10 @@ import TasksCard from "../../feature/dashboard/cards/tasks/TasksCard";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
 import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
 import Loader from "../../shared/Loader";
+import { useTranslation } from "react-i18next";
 
 function Dashboard() {
+  const { t } = useTranslation();
   const books = useSelector(booksSelector);
   const resources = useSelector(resourcesSelector);
 
@@ -26,15 +28,15 @@ function Dashboard() {
             component="h1"
             color="primary"
           >
-            DASHBOARD
+            {t("dashboard")}
           </Typography>
         </Box>
         <Box className="h-full">
           <div className="flex flex-col gap-10 h-full">
             <div className="flex flex-col gap-10 md:grid grid-cols-3 h-[40%]">
-              <WelcomeCard />
-              <SummaryCard />
-              <TasksCard />
+              <WelcomeCard t={t}/>
+              <SummaryCard t={t}/>
+              <TasksCard/>
             </div>
             <div className="flex flex-col gap-10 md:grid grid-cols-2 h-[60%]">
               <Card className="border border-[#434343] grid grid-rows-[100px_auto] relative h-[300px] lg:h-full">

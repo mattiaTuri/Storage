@@ -11,8 +11,10 @@ import { ResourcesProps } from "../../../../models/Resource";
 import { addResource } from "../../../../controller/resourcesApi";
 import { resourceCol } from "./ResourcesCols";
 import ResourceFields from "./ResourceFields";
+import { useTranslation } from "react-i18next";
 
 function ResourceTab(){
+    const { t } = useTranslation();
     const dispatch = useDispatch()
     const resources = useSelector(resourcesSelector)
     const [resourceValues, setResourceValues] = useState<ResourcesProps>({
@@ -37,7 +39,7 @@ function ResourceTab(){
             <Box className="flex justify-end my-4">
                 <CustomButton
                 id="btnAddResource"
-                title="Add"
+                title={t("add")}
                 functionClick={() => dispatch(openModal())}
                 >
                 <AddCircleOutlinedIcon
@@ -46,7 +48,7 @@ function ResourceTab(){
                 />
                 </CustomButton>
             </Box>
-            <CustomModal title="Add new book" addFunction={addNewResource}>
+            <CustomModal title={t("add_new_resource")} addFunction={addNewResource}>
                 <ResourceFields onValChanges={onValChanges}/>
             </CustomModal>
         <Table rows={resources.resourcesList} col={resourceCol} />

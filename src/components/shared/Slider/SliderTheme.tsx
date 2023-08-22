@@ -8,10 +8,12 @@ import { ChangeTheme } from "./sliderThemeFunction";
 import { userSelector } from "../../../store/user/selector";
 import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
+import { useTranslation } from "react-i18next";
 
 function SliderTheme({themeConf}: {themeConf:string}) {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
+  const { t } = useTranslation();
   const [complete, setComplete] = useState<boolean>(false);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ function SliderTheme({themeConf}: {themeConf:string}) {
   return (
     <Box id="themeMenu" className="flex flex-col gap-4">
       <Box className="flex gap-4">
-        <Typography component="span">Theme</Typography>
+        <Typography component="span">{t("theme")}</Typography>
         {complete && <Icon icon="line-md:confirm-circle" color="#4daa57"  width="24" height="24"/>}
       </Box> 
       <Box className="flex gap-4">

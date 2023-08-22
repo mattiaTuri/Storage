@@ -4,15 +4,18 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./router/router";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { Suspense } from "react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 root.render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+  <Suspense fallback="loading">
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </Suspense>
 );
 
 //<React.StrictMode>

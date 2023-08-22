@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { booksSelector } from "../../../../../store/books/selector";
 import { resourcesSelector } from "../../../../../store/resources/selector";
 
-function SummaryCard() {
+function SummaryCard({t}:{t:any}) {
   const books = useSelector(booksSelector);
   const resources = useSelector(resourcesSelector);
 
@@ -14,10 +14,10 @@ function SummaryCard() {
     <Card className="border border-[#434343]">
       <CardContent className="flex flex-col justify-center h-full gap-2">
         <Typography gutterBottom variant="h5" component="h2">
-          Summary
+          {t("summary")}
         </Typography>
         <StatisticsNumberBox
-          title="Books"
+          title={t("books")}
           tab="books"
           link="storage"
           data={books.booksList.length}
@@ -26,7 +26,7 @@ function SummaryCard() {
           secondaryColor="#ffbf00"
         />
         <StatisticsNumberBox
-          title="Resources"
+          title={t("resources")}
           tab="resources"
           link="storage"
           data={resources.resourcesList.length}

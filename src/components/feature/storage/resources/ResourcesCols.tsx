@@ -2,11 +2,12 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
 import ActionDeleteResource from "./ActionDeleteResource";
+import i18next from "i18next";
 
 export const resourceCol: GridColDef[] = [
   {
     field: "title",
-    headerName: "Title",
+    headerName: i18next.t("title"),
     width: 300,
     editable: true,
     renderCell: (params) => {
@@ -22,7 +23,7 @@ export const resourceCol: GridColDef[] = [
   },
   {
     field: "link",
-    headerName: "Link",
+    headerName: i18next.t("link"),
     width: 400,
     renderCell: (params) => {
       return (
@@ -38,7 +39,7 @@ export const resourceCol: GridColDef[] = [
   },
   {
     field: "short_description",
-    headerName: "Short description",
+    headerName: i18next.t("short_description"),
     type: "string",
     width: 400,
     editable: true,
@@ -55,7 +56,7 @@ export const resourceCol: GridColDef[] = [
   },
   {
     field: "tag",
-    headerName: "Tag",
+    headerName: i18next.t("tag"),
     type: "string",
     width: 200,
     editable: true,
@@ -72,7 +73,7 @@ export const resourceCol: GridColDef[] = [
   },
   {
     field: "actions",
-    headerName: "Actions",
+    headerName: i18next.t("delete"),
     type: "actions",
     width: 100,
     getActions: ({ id }) => {

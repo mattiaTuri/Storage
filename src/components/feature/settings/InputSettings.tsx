@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../../store/user/selector";
 import { Icon } from '@iconify/react';
 import { updateUser } from "../../../controller/userApi";
+import { t } from "i18next";
 
 interface InputSettingsProps {
   id: string;
@@ -72,7 +73,7 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
           {!buttonVisibility && (
             <CustomButton
               id="btnEditName"
-              title="Edit"
+              title={t("edit")}
               functionClick={() => showHideActionButtons()}
             />
           )}
@@ -80,14 +81,14 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
           {buttonVisibility && (
             <CustomButton
               id="btnCancelName"
-              title="Cancel"
+              title={t("cancel")}
               functionClick={() => showHideActionButtons()}
             />
           )}
           {buttonVisibility && (
             <CustomButton
               id="btnSaveName"
-              title="Save"
+              title={t("save")}
               functionClick={() => saveData()}
             />
           )}
