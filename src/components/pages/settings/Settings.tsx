@@ -17,11 +17,14 @@ import Loader from "../../shared/Loader";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
 import { updateUser } from "../../../controller/userApi";
+import { useState } from "react";
+import { Icon } from "@iconify/react";
 
 function Settings() {
   const { t } = useTranslation();
   const user = useSelector(userSelector);
   const dispatch = useDispatch();
+  const [complete, setComplete] = useState<boolean>(false);
 
   const changeLanguage = (event: SelectChangeEvent) => {
     const lang = event.target.value;
@@ -35,6 +38,10 @@ function Settings() {
       theme:user.currentUser.theme,
       language:lang
   }));
+  setComplete(true);
+    setTimeout(() => {
+      setComplete(false);
+    }, 5000);
   };
 
   return (
@@ -101,9 +108,12 @@ function Settings() {
               </Box>
               <Box className="flex flex-col gap-4 pt-10 lg:pt-0">
                 <Box className="flex flex-col gap-4">
-                  <label>
-                    <Typography component="span">{t("language")}</Typography>
-                  </label>
+                  <Box className="flex gap-4">
+                    <label>  
+                      <Typography component="span">{t("language")}</Typography>
+                    </label>
+                    {complete && <Icon icon="line-md:confirm-circle" color="#4daa57"  width="24" height="24"/>}
+                    </Box>
                   <Select
                     data-settings-select
                     labelId="demo-simple-select-label"
