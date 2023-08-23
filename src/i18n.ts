@@ -6,6 +6,7 @@ i18next
   .use(initReactI18next)
   .use(Backend)
   .init({  
+    fallbackLng: "en",
 })
 
 export default i18next;

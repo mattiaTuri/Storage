@@ -18,7 +18,7 @@ function Sidebar() {
     >
       <Box className="relative top-10">
         <Typography color="primary" variant="h6" component="h2">
-          {t("storage")}
+          {t("storage").toUpperCase()}
         </Typography>
       </Box>
       <Box id="actionsMenu" className="relative flex flex-col gap-2 w-[80%]">

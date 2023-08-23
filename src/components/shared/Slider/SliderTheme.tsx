@@ -28,7 +28,8 @@ function SliderTheme({themeConf}: {themeConf:string}) {
         surname:user.currentUser.surname,
         email:user.currentUser.email,
         password:user.currentUser.password,
-        theme:selected_theme
+        theme:selected_theme,
+        language:user.currentUser.language
     }));
     setComplete(true);
     setTimeout(() => {

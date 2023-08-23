@@ -28,7 +28,7 @@ function Dashboard() {
             component="h1"
             color="primary"
           >
-            {t("dashboard")}
+            {t("dashboard").toUpperCase()}
           </Typography>
         </Box>
         <Box className="h-full">

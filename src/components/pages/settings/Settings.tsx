@@ -9,26 +9,33 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
 import InputSettings from "../../feature/settings/InputSettings";
 import UserAvatar from "../../shared/UserAvatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../../store/user/selector";
 import Loader from "../../shared/Loader";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
+import { updateUser } from "../../../controller/userApi";
 
 function Settings() {
-  const [language, setLanguage] = useState("");
   const { t } = useTranslation();
+  const user = useSelector(userSelector);
+  const dispatch = useDispatch();
 
   const changeLanguage = (event: SelectChangeEvent) => {
     const lang = event.target.value;
-    setLanguage(lang);
     i18n.changeLanguage(lang);
+    dispatch(updateUser({
+      id:user.currentUser.id,
+      name:user.currentUser.name,
+      surname:user.currentUser.surname,
+      email:user.currentUser.email,
+      password:user.currentUser.password,
+      theme:user.currentUser.theme,
+      language:lang
+  }));
   };
-
-  const user = useSelector(userSelector);
 
   return (
     <Container maxWidth="xl" className="h-full overflow-auto">
@@ -40,7 +47,7 @@ function Settings() {
             variant="h2"
             component="h1"
           >
-            {t("settings")}
+            {t("settings").toUpperCase()}
           </Typography>
         </Box>
         {user.loading ? (
@@ -102,7 +109,7 @@ function Settings() {
                     labelId="demo-simple-select-label"
                     sx={{ backgroundColor: "text.secondary" }}
                     id="demo-simple-select"
-                    value={language}
+                    value={user.currentUser.language}
                     onChange={changeLanguage}
                   >
                     <MenuItem value="it">{t("italian")}</MenuItem>

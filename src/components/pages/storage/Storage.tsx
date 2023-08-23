@@ -31,7 +31,7 @@ function Storage() {
             variant="h2"
             component="h1"
           >
-            STORAGE
+            {t("storage").toUpperCase()}
           </Typography>
         </Box>
         <TabContext value={tabValue}>
