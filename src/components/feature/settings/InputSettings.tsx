@@ -67,6 +67,7 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
           name={id}
           variant="outlined"
           defaultValue={inputValue}
+          type={id != "password" ? "text" : "password"}
           onChange={(e) => editValue(e)}
         />
         <Box className="flex gap-4">

@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 import CustomNoRows from "../../shared/CustomNoData";
 
 function Table({ rows, col }: any) {
+  
   return (
     <Box className="relative h-full">
       <DataGrid
@@ -20,7 +21,7 @@ function Table({ rows, col }: any) {
             },
           },
         }}
-        slots={{ noRowsOverlay: CustomNoRows }}
+        slots={{ noRowsOverlay: CustomNoRows}}
         pageSizeOptions={[10]}
         disableRowSelectionOnClick
       />

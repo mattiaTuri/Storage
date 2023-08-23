@@ -9,7 +9,6 @@ function Loader({size, color}:SpinnerProps){
     return (
         <CircularProgress size={size} sx={{ color: color }} />
     )
-
 }
 
 export default Loader
