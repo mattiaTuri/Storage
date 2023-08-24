@@ -2,50 +2,62 @@ import Box from "@mui/material/Box";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { Button, Typography } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { updateUser } from "../../../controller/userApi";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../../controller/userApi";
 import { ChangeTheme } from "./sliderThemeFunction";
-import { userSelector } from "../../../store/user/selector";
 import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
-import { useTranslation } from "react-i18next";
+import { User } from "../../../../models/User";
+import { TFunction } from "i18next";
 
-function SliderTheme({themeConf}: {themeConf:string}) {
+interface SliderThemeProps {
+  t: TFunction;
+  user: User;
+}
+
+function SliderTheme({ t, user }: SliderThemeProps) {
   const dispatch = useDispatch();
-  const user = useSelector(userSelector);
-  const { t } = useTranslation();
-  const [complete, setComplete] = useState<boolean>(false);
+  const [loadComplete, setLoadComplete] = useState<boolean>(false);
 
   useEffect(() => {
-    ChangeTheme(user.currentUser.theme)  
-  },[user.currentUser.theme])
+    ChangeTheme(user.theme);
+  }, [user.theme]);
 
-  const saveTheme = (selected_theme:string) => {
-    ChangeTheme(selected_theme)
-    dispatch(updateUser({
-        id:user.currentUser.id,
-        name:user.currentUser.name,
-        surname:user.currentUser.surname,
-        email:user.currentUser.email,
-        password:user.currentUser.password,
-        theme:selected_theme,
-        language:user.currentUser.language
-    }));
-    setComplete(true);
+  const saveTheme = (selected_theme: string) => {
+    ChangeTheme(selected_theme);
+    dispatch(
+      updateUser({
+        id: user.id,
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        password: user.password,
+        theme: selected_theme,
+        language: user.language,
+      })
+    );
+    setLoadComplete(true);
     setTimeout(() => {
-      setComplete(false);
+      setLoadComplete(false);
     }, 5000);
-}
+  };
 
   return (
     <Box id="themeMenu" className="flex flex-col gap-4">
       <Box className="flex gap-4">
         <Typography component="span">{t("theme")}</Typography>
-        {complete && <Icon icon="line-md:confirm-circle" color="#4daa57"  width="24" height="24"/>}
-      </Box> 
+        {loadComplete && (
+          <Icon
+            icon="line-md:confirm-circle"
+            color="#4daa57"
+            width="24"
+            height="24"
+          />
+        )}
+      </Box>
       <Box className="flex gap-4">
         <Box className="flex items-center">
-          {themeConf == "light" ? <LightModeIcon /> : <DarkModeIcon />}
+          {user.theme == "light" ? <LightModeIcon /> : <DarkModeIcon />}
         </Box>
         <Box
           id="themeButton"
@@ -56,7 +68,8 @@ function SliderTheme({themeConf}: {themeConf:string}) {
             id="light"
             type="button"
             className="flex justify-center items-center z-10"
-            onClick={() => saveTheme("light")}>
+            onClick={() => saveTheme("light")}
+          >
             <Typography
               variant="body1"
               component="span"
@@ -70,7 +83,8 @@ function SliderTheme({themeConf}: {themeConf:string}) {
             id="dark"
             type="button"
             className="flex justify-center items-center z-10"
-            onClick={() => saveTheme("dark")}>
+            onClick={() => saveTheme("dark")}
+          >
             <Typography
               variant="body1"
               component="span"

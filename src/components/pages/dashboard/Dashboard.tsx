@@ -34,27 +34,23 @@ function Dashboard() {
         <Box className="h-full">
           <div className="flex flex-col gap-10 h-full">
             <div className="flex flex-col gap-10 md:grid grid-cols-3 h-[40%]">
-              <WelcomeCard t={t}/>
-              <SummaryCard t={t}/>
-              <TasksCard/>
+              <WelcomeCard t={t} />
+              <SummaryCard t={t} />
+              <TasksCard />
             </div>
             <div className="flex flex-col gap-10 md:grid grid-cols-2 h-[60%]">
               <Card className="border border-[#434343] grid grid-rows-[100px_auto] relative h-[300px] lg:h-full">
                 {books.loading ? (
                   <BooksChart booksList={books.booksList} />
                 ) : (
-                  <Box className="absolute w-full h-full flex justify-center items-center">
-                    <Loader size={40} color="#0066ff" />
-                  </Box>
+                  <Loader size={40} color="#0066ff" />
                 )}
               </Card>
               <Card className="border border-[#434343] grid grid-rows-[100px_auto] relative h-[300px] lg:h-full">
                 {resources.loading ? (
                   <ResourcesChart resourcesList={resources.resourcesList} />
                 ) : (
-                  <div className="absolute w-full h-full flex justify-center items-center">
-                    <Loader size={40} color="#0066ff" />
-                  </div>
+                  <Loader size={40} color="#0066ff" />
                 )}
               </Card>
             </div>

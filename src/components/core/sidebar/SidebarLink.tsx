@@ -8,10 +8,9 @@ interface SidebarLinkProps {
   href: string;
   link: string;
   children: ReactNode;
-  disabled: boolean;
 }
 
-function SidebarLink({ id, href, link, children, disabled }: SidebarLinkProps) {
+function SidebarLink({ id, href, link, children }: SidebarLinkProps) {
   useEffect(() => {
     let sectionActive: string = window.location.pathname.replace("/", "");
     if (sectionActive === "") sectionActive = "dashboard";
@@ -26,9 +25,7 @@ function SidebarLink({ id, href, link, children, disabled }: SidebarLinkProps) {
       <Link
         id={id}
         to={href}
-        className={`h-10 w-full flex items-center gap-2 duration-300 ${
-          disabled && "pointer-events-none line-through opacity-50"
-        }`}
+        className="h-10 w-full flex items-center gap-2 duration-300"
         onClick={() => ChangeMenu(id)}
         onMouseEnter={() => CheckActiveLink(id)}
       >

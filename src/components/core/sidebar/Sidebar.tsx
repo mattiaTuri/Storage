@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SettingsIcon from "@mui/icons-material/Settings";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Typography } from "@mui/material";
 import SidebarLink from "./SidebarLink";
@@ -22,31 +21,13 @@ function Sidebar() {
         </Typography>
       </Box>
       <Box id="actionsMenu" className="relative flex flex-col gap-2 w-[80%]">
-        <SidebarLink id="dashboard" href="/" link="Dashboard" disabled={false}>
+        <SidebarLink id="dashboard" href="/" link="Dashboard">
           <DashboardIcon className="ml-2" />
         </SidebarLink>
-        <SidebarLink
-          id="storage"
-          href="storage"
-          link={t("storage")}
-          disabled={false}
-        >
+        <SidebarLink id="storage" href="storage" link={t("storage")}>
           <MenuBookIcon className="ml-2" />
         </SidebarLink>
-        <SidebarLink
-          id="scheduler"
-          href="scheduler"
-          link="Scheduler"
-          disabled={true}
-        >
-          <CalendarMonthIcon className="ml-2" />
-        </SidebarLink>
-        <SidebarLink
-          id="settings"
-          href="settings"
-          link={t("settings")}
-          disabled={false}
-        >
+        <SidebarLink id="settings" href="settings" link={t("settings")}>
           <SettingsIcon className="ml-2" />
         </SidebarLink>
         <Box

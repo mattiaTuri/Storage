@@ -1,14 +1,13 @@
 import { Container, IconButton, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import MenuIcon from "@mui/icons-material/Menu";
-import { openMenu } from "../../../store/hamburgerMenu/hamburgerSlice";
-import { useDispatch } from "react-redux";
 import LeftMenu from "./LeftMenu";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 function NavbarMobile() {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
+  const [openMenu, setOpenMenu] = useState<boolean>(false);
 
   return (
     <Box
@@ -19,17 +18,17 @@ function NavbarMobile() {
         <nav className="flex flex-row justify-between items-center h-full">
           <Box>
             <Typography color="primary" variant="h6" component="h1">
-            {t("storage")}
+              {t("storage").toUpperCase()}
             </Typography>
           </Box>
           <Box>
-            <IconButton onClick={() => dispatch(openMenu())}>
+            <IconButton onClick={() => setOpenMenu(true)}>
               <MenuIcon color="secondary" />
             </IconButton>
           </Box>
         </nav>
       </Container>
-      <LeftMenu />
+      <LeftMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />
     </Box>
   );
 }

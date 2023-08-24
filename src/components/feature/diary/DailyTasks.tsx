@@ -1,12 +1,11 @@
 import Box from "@mui/material/Box";
-import { GetCurrentDate } from "../../shared/Date/currentDateFunction";
 import { IconButton, Typography } from "@mui/material";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 import Task from "./Task";
 
 function DailyTasks() {
-  const { day, dayOfTheWeek, month } = GetCurrentDate();
+  // const { day, dayOfTheWeek, month } = GetCurrentDate();
 
   const task1: string[] = [];
   const task2: string[] = [];
@@ -18,10 +17,10 @@ function DailyTasks() {
       <Box className="flex gap-5">
         <Box className="flex flex-col">
           <Typography variant="h6" component="span" className="text-[#474862]">
-            {month} 2023
+            {/* {month} 2023 */}
           </Typography>
           <Typography variant="h4" component="span" className="text-[#0066ff]">
-            {dayOfTheWeek} {day}
+            {/* {dayOfTheWeek} {day} */}
           </Typography>
         </Box>
         <Box className="flex items-end">

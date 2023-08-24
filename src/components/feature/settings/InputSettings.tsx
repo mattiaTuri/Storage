@@ -5,7 +5,7 @@ import CustomButton from "../../shared/CustomButton";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../../store/user/selector";
-import { Icon } from '@iconify/react';
+import { Icon } from "@iconify/react";
 import { updateUser } from "../../../controller/userApi";
 import { t } from "i18next";
 
@@ -18,10 +18,14 @@ interface InputSettingsProps {
 function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
   const [disabledInput, setDisabledInput] = useState<boolean>(true);
-  const [complete, setComplete] = useState<boolean>(false);
-  const user = useSelector(userSelector)
-  const dispatch = useDispatch()
-  const [currentValues, setCurrentValues] = useState<any>(user.currentUser)
+  const [loadComplete, setLoadComplete] = useState<boolean>(false);
+  const user = useSelector(userSelector);
+  const dispatch = useDispatch();
+  const [currentValues, setCurrentValues] = useState<any>(user.currentUser);
+
+  useEffect(() => {
+    setCurrentValues(user.currentUser);
+  }, [user.currentUser]);
 
   const showHideActionButtons = () => {
     buttonVisibility ? setButtonVisibility(false) : setButtonVisibility(true);
@@ -29,18 +33,26 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
   };
 
   const enableDisbaledInputEdit = () => {
-    disabledInput ? setDisabledInput(false) : setDisabledInput(true);
+    if (disabledInput) {
+      setDisabledInput(false);
+      if (id == "password") {
+        const passwordInput: any = document.getElementById("password")!;
+        passwordInput.type = "text";
+      }
+    } else {
+      setDisabledInput(true);
+      if (id == "password") {
+        const passwordInput: any = document.getElementById("password")!;
+        passwordInput.type = "password";
+      }
+    }
   };
 
-  useEffect(() => {
-    setCurrentValues(user.currentUser)
-  },[user.currentUser])
-
   const saveData = () => {
-    setComplete(true);
-    dispatch(updateUser(currentValues))
+    setLoadComplete(true);
+    dispatch(updateUser(currentValues));
     setTimeout(() => {
-      setComplete(false);
+      setLoadComplete(false);
     }, 5000);
     showHideActionButtons();
   };
@@ -53,10 +65,17 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
   };
 
   return (
-    <Box id={id} className="flex flex-col gap-4">
+    <Box className="flex flex-col gap-4">
       <label className="flex items-center gap-4">
         <Typography component="span">{labelText}</Typography>
-        {complete && <Icon icon="line-md:confirm-circle" color="#4daa57"  width="24" height="24"/>}
+        {loadComplete && (
+          <Icon
+            icon="line-md:confirm-circle"
+            color="#4daa57"
+            width="24"
+            height="24"
+          />
+        )}
       </label>
       <Box className="flex flex-col lg:flex-row lg:justify-between gap-4">
         <TextField
@@ -100,4 +119,3 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
 }
 
 export default InputSettings;
-

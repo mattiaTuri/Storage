@@ -10,7 +10,7 @@ import { changeTab } from "../../../../../store/storageTab/storageTabSlice";
 
 interface StatisticsNumberBoxProps {
   title: string;
-  tab:string;
+  tab: string;
   link: string;
   data: number;
   loading: boolean;
@@ -27,24 +27,23 @@ function StatisticsNumberBox({
   primaryColor,
   secondaryColor,
 }: StatisticsNumberBoxProps) {
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch()
-
-const goToTab = (tab:string) => {
-  dispatch(changeTab(tab))
-  ChangeMenu("storage")
-}
+  const goToTab = (tab: string) => {
+    dispatch(changeTab(tab));
+    ChangeMenu("storage");
+  };
 
   return (
-    <Link 
+    <Link
       to={link}
       className="flex justify-between items-center p-3 rounded-md w-full cursor-pointer"
       onClick={() => goToTab(tab)}
-      style={{color:"white", backgroundColor: primaryColor}}
+      style={{ color: "white", backgroundColor: primaryColor }}
     >
       <Typography component="p">{title}</Typography>
       <Box
-        className="max-w-max px-4 text-center rounded-md"
+        className="relative max-w-max flex justify-center h-full px-4 rounded-md"
         sx={{ backgroundColor: secondaryColor }}
       >
         {loading ? (
