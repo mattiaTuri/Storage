@@ -13,12 +13,12 @@ import { changeTab } from "../../../store/storageTab/storageTabSlice";
 import { useTranslation } from "react-i18next";
 
 function Storage() {
-  const tabValue = useSelector(storageTabSelector)
-  const dispatch = useDispatch()
+  const tabValue = useSelector(storageTabSelector);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const TabChange = (event: React.SyntheticEvent, newValue: string) => {
-    dispatch(changeTab(newValue))
+    dispatch(changeTab(newValue));
   };
 
   return (
@@ -27,7 +27,7 @@ function Storage() {
         <Box className="text-center lg:text-left pb-10">
           <Typography
             color="primary"
-            sx={{ fontSize: 40 }}
+            sx={{ fontSize: 25 }}
             variant="h2"
             component="h1"
           >
@@ -61,7 +61,7 @@ function Storage() {
             sx={{ padding: "initial" }}
             className="h-full"
           >
-            <BookTab/>
+            <BookTab />
           </TabPanel>
           <TabPanel
             id="resources"
@@ -69,7 +69,7 @@ function Storage() {
             sx={{ padding: "initial" }}
             className="h-full"
           >
-            <ResourceTab/>
+            <ResourceTab />
           </TabPanel>
         </TabContext>
       </Box>

@@ -23,7 +23,7 @@ function Settings() {
           <Box className="text-center lg:text-left pb-10">
             <Typography
               color="primary"
-              sx={{ fontSize: 40 }}
+              sx={{ fontSize: 25 }}
               variant="h2"
               component="h1"
             >
@@ -45,11 +45,13 @@ function Settings() {
                     id="btnRemoveImg"
                     title={t("remove_photo")}
                     functionClick={() => console.log()}
+                    disabled={true}
                   />
                   <CustomButton
                     id="btnEditImg"
                     title={t("edit_photo")}
                     functionClick={() => console.log()}
+                    disabled={true}
                   />
                 </Box>
               </Box>

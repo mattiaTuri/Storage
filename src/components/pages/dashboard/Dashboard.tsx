@@ -23,7 +23,7 @@ function Dashboard() {
       <Box className="flex flex-col h-full p-10">
         <Box className="text-center lg:text-left pb-10">
           <Typography
-            sx={{ fontSize: 40 }}
+            sx={{ fontSize: 25 }}
             variant="h2"
             component="h1"
             color="primary"

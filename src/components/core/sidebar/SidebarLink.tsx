@@ -25,7 +25,7 @@ function SidebarLink({ id, href, link, children }: SidebarLinkProps) {
       <Link
         id={id}
         to={href}
-        className="h-10 w-full flex items-center gap-2 duration-300"
+        className="h-10 w-full flex items-center gap-2 duration-300 break-all"
         onClick={() => ChangeMenu(id)}
         onMouseEnter={() => CheckActiveLink(id)}
       >
