@@ -9,13 +9,14 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useTranslation } from "react-i18next";
+import MenuLink from "../../shared/MenuLink";
 
-interface leftMenuProps {
+interface LeftMenuProps {
   openMenu: boolean;
   setOpenMenu: (action: boolean) => void;
 }
 
-function LeftMenu({ openMenu, setOpenMenu }: leftMenuProps) {
+function LeftMenu({ openMenu, setOpenMenu }: LeftMenuProps) {
   const { t } = useTranslation();
 
   return (
@@ -37,36 +38,33 @@ function LeftMenu({ openMenu, setOpenMenu }: leftMenuProps) {
             </IconButton>
           </div>
           <div className="flex flex-col gap-5">
-            <Link
-              to="/"
-              className="flex items-center gap-2"
-              onClick={() => setOpenMenu(false)}
+            <MenuLink
+              id="dashboard"
+              href="/"
+              fontSize={25}
+              link={t("dashboard")}
+              clickFunction={() => setOpenMenu(false)}
             >
               <DashboardIcon />
-              <Typography component="span" sx={{ fontSize: 25 }}>
-                {t("dashboard")}
-              </Typography>
-            </Link>
-            <Link
-              to="storage"
-              className="flex items-center gap-2"
-              onClick={() => setOpenMenu(false)}
+            </MenuLink>
+            <MenuLink
+              id="storage"
+              href="storage"
+              fontSize={25}
+              link={t("storage")}
+              clickFunction={() => setOpenMenu(false)}
             >
               <MenuBookIcon />
-              <Typography component="span" sx={{ fontSize: 25 }}>
-                {t("storage")}
-              </Typography>
-            </Link>
-            <Link
-              to="settings"
-              className="flex items-center gap-2"
-              onClick={() => setOpenMenu(false)}
+            </MenuLink>
+            <MenuLink
+              id="settings"
+              href="settings"
+              fontSize={25}
+              link={t("settings")}
+              clickFunction={() => setOpenMenu(false)}
             >
               <SettingsIcon />
-              <Typography component="span" sx={{ fontSize: 25 }}>
-                {t("settings")}
-              </Typography>
-            </Link>
+            </MenuLink>
           </div>
           <div className="pb-5" color="#bbc3ce">
             <Link to="" className="flex items-center gap-2">

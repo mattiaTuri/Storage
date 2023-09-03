@@ -16,7 +16,7 @@
     "delete": "Eliminar",
     "is_read": "Leído",
     "link": "Enlace",
-    "short_description": "Descripción corta",
+    "description": "Descripción corta",
     "tag": "Etiqueta",
     "settings": "Configuraciones",
     "your_account": "Tu cuenta",

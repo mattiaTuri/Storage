@@ -1,13 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import { ReactNode } from "react";
-
-interface CustomButtonProps {
-  id: string;
-  title: string;
-  functionClick: () => void;
-  children?: ReactNode;
-  disabled?: boolean;
-}
+import { CustomButtonProps } from "../../models/ComponentsModels";
 
 function CustomButton({
   id,

@@ -2,21 +2,11 @@ import Typography from "@mui/material/Typography";
 import AnimatedNumber from "../../../../shared/AnimatedNumber";
 import Loader from "../../../../shared/Loader";
 import Box from "@mui/material/Box";
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { ChangeMenu } from "../../../../core/sidebar/sidebarFunctions";
 import { useDispatch } from "react-redux";
 import { changeTab } from "../../../../../store/storageTab/storageTabSlice";
-
-interface StatisticsNumberBoxProps {
-  title: string;
-  tab: string;
-  link: string;
-  data: number;
-  loading: boolean;
-  primaryColor: string;
-  secondaryColor: string;
-}
+import { StatisticsNumberBoxProps } from "../../../../../models/ComponentsModels";
 
 function StatisticsNumberBox({
   title,

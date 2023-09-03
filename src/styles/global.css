@@ -47,20 +47,6 @@ p, input{
   position:absolute !important;
 }
 
-/* .MuiPickersDay-today{
-  border: 1px solid #efa135 !important;
-  border-radius: 0.375rem !important;
-} */
-
-/* .Mui-selected{
-  background-color: #efa135 !important;
-  border-radius: 0.375rem !important;
-} */
-
-/* .MuiTabs-indicator{
-  background-color: #efa135 !important;
-} */
-
 .MuiDataGrid-cell{
   white-space: normal !important;
   word-break: break-all;

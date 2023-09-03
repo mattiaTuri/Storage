@@ -11,10 +11,11 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { dark, light } from "./components/theme/theme";
 import { userSelector } from "./store/user/selector";
+import Loader from "./components/shared/Loader";
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(userSelector)
+  const user = useSelector(userSelector);
 
   useEffect(() => {
     dispatch(getBooksList());
@@ -22,10 +23,11 @@ function App() {
     dispatch(getUser());
   }, []);
 
-  return (
-    <ThemeProvider theme={user.currentUser.theme == "light" ? light : dark}>
-      <CssBaseline />
-        <Box 
+  if (user.loading) {
+    return (
+      <ThemeProvider theme={user.currentUser.theme == "light" ? light : dark}>
+        <CssBaseline />
+        <Box
           sx={{ backgroundColor: "background.default" }}
           className="lg:h-screen lg:flex"
         >
@@ -33,8 +35,11 @@ function App() {
           <NavbarMobile />
           <Outlet />
         </Box>
-    </ThemeProvider>
-  )
+      </ThemeProvider>
+    );
+  } else {
+    return <Loader size={50} color="#0066ff" />;
+  }
 }
 
 export default App;

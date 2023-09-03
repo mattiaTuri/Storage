@@ -7,13 +7,7 @@ import { updateUser } from "../../../../controller/userApi";
 import { ChangeTheme } from "./sliderThemeFunction";
 import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
-import { User } from "../../../../models/User";
-import { TFunction } from "i18next";
-
-interface SliderThemeProps {
-  t: TFunction;
-  user: User;
-}
+import { SliderThemeProps } from "../../../../models/ComponentsModels";
 
 function SliderTheme({ t, user }: SliderThemeProps) {
   const dispatch = useDispatch();

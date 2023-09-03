@@ -5,8 +5,9 @@ import StatisticsNumberBox from "./StatisticsNumberBox";
 import { useSelector } from "react-redux";
 import { booksSelector } from "../../../../../store/books/selector";
 import { resourcesSelector } from "../../../../../store/resources/selector";
+import { TFunction } from "i18next";
 
-function SummaryCard({t}:{t:any}) {
+function SummaryCard({ t }: { t: TFunction }) {
   const books = useSelector(booksSelector);
   const resources = useSelector(resourcesSelector);
 

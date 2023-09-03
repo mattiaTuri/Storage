@@ -8,12 +8,7 @@ import { userSelector } from "../../../store/user/selector";
 import { Icon } from "@iconify/react";
 import { updateUser } from "../../../controller/userApi";
 import { t } from "i18next";
-
-interface InputSettingsProps {
-  id: string;
-  labelText: string;
-  inputValue: string;
-}
+import { InputSettingsProps } from "../../../models/ComponentsModels";
 
 function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);

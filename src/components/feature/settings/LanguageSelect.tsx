@@ -7,13 +7,7 @@ import { useDispatch } from "react-redux";
 import { updateUser } from "../../../controller/userApi";
 import i18n from "../../../i18n";
 import { Icon } from "@iconify/react";
-import { TFunction } from "i18next";
-import { User } from "../../../models/User";
-
-interface LanguageSelectProps {
-  t: TFunction;
-  user: User;
-}
+import { LanguageSelectProps } from "../../../models/ComponentsModels";
 
 function LanguageSelect({ t, user }: LanguageSelectProps) {
   const dispatch = useDispatch();

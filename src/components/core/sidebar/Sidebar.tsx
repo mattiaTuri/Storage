@@ -5,15 +5,16 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Typography } from "@mui/material";
-import SidebarLink from "./SidebarLink";
+import MenuLink from "../../shared/MenuLink";
 import { useTranslation } from "react-i18next";
+import { ChangeMenu } from "./sidebarFunctions";
 
 function Sidebar() {
   const { t } = useTranslation();
   return (
     <Box
       sx={{ backgroundColor: "background.paper" }}
-      className="h-full lg:flex flex-col justify-between items-center w-60 border-[#434343] border-r hidden"
+      className="h-full lg:flex flex-col justify-between items-center w-72 border-[#434343] border-r hidden"
     >
       <Box className="relative top-10">
         <Typography color="primary" variant="h6" component="h2">
@@ -21,15 +22,33 @@ function Sidebar() {
         </Typography>
       </Box>
       <Box id="actionsMenu" className="relative flex flex-col gap-2 w-[80%]">
-        <SidebarLink id="dashboard" href="/" link="Dashboard">
+        <MenuLink
+          id="dashboard"
+          href="/"
+          link="Dashboard"
+          fontSize={16}
+          clickFunction={() => ChangeMenu("dashboard")}
+        >
           <DashboardIcon className="ml-2" />
-        </SidebarLink>
-        <SidebarLink id="storage" href="storage" link={t("storage")}>
+        </MenuLink>
+        <MenuLink
+          id="storage"
+          href="storage"
+          link={t("storage")}
+          fontSize={16}
+          clickFunction={() => ChangeMenu("storage")}
+        >
           <MenuBookIcon className="ml-2" />
-        </SidebarLink>
-        <SidebarLink id="settings" href="settings" link={t("settings")}>
+        </MenuLink>
+        <MenuLink
+          id="settings"
+          href="settings"
+          link={t("settings")}
+          fontSize={16}
+          clickFunction={() => ChangeMenu("settings")}
+        >
           <SettingsIcon className="ml-2" />
-        </SidebarLink>
+        </MenuLink>
         <Box
           id="sliderActions"
           sx={{ backgroundColor: "primary.main" }}

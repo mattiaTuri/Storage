@@ -1,12 +1,7 @@
-import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
+import { LoaderProps } from "../../models/ComponentsModels";
 
-interface SpinnerProps {
-  size: number;
-  color: string;
-}
-
-function Loader({ size, color }: SpinnerProps) {
+function Loader({ size, color }: LoaderProps) {
   return (
     <div className="absolute w-full h-full flex justify-center items-center">
       <CircularProgress size={size} sx={{ color: color }} />

@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
-import { ChangeMenu, CheckActiveLink } from "./sidebarFunctions";
-import { ReactNode, useEffect } from "react";
+import { ChangeMenu, CheckActiveLink } from "../core/sidebar/sidebarFunctions";
+import { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
+import { MenuLinkProps } from "../../models/ComponentsModels";
 
-interface SidebarLinkProps {
-  id: string;
-  href: string;
-  link: string;
-  children: ReactNode;
-}
-
-function SidebarLink({ id, href, link, children }: SidebarLinkProps) {
+function MenuLink({
+  id,
+  href,
+  link,
+  fontSize,
+  children,
+  clickFunction,
+}: MenuLinkProps) {
   useEffect(() => {
     let sectionActive: string = window.location.pathname.replace("/", "");
     if (sectionActive === "") sectionActive = "dashboard";
@@ -26,14 +27,16 @@ function SidebarLink({ id, href, link, children }: SidebarLinkProps) {
         id={id}
         to={href}
         className="h-10 w-full flex items-center gap-2 duration-300 break-all"
-        onClick={() => ChangeMenu(id)}
+        onClick={clickFunction}
         onMouseEnter={() => CheckActiveLink(id)}
       >
         {children}
-        <Typography component="span">{link}</Typography>
+        <Typography sx={{ fontSize: fontSize }} component="span">
+          {link}
+        </Typography>
       </Link>
     </Box>
   );
 }
 
-export default SidebarLink;
+export default MenuLink;
