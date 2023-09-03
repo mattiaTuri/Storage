@@ -2,7 +2,7 @@ export interface ResourcesProps {
     id: string;
     title: string;
     link: string;
-    short_description: string;
+    description: string;
     tag: string;
   }
   

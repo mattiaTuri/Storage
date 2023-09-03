@@ -28,6 +28,12 @@ export interface LanguageSelectProps {
     user: User;
 }
 
+export interface ModalProps {
+    title:string;
+    addFunction: () => void;
+    children:ReactNode;
+}
+
 export interface CustomButtonProps {
     id: string;
     title: string;

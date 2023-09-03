@@ -4,7 +4,7 @@ import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
 import ActionDeleteResource from "./ActionDeleteResource";
 import i18next from "i18next";
 
-export const resourceCol: GridColDef[] = [
+const resourceCol: GridColDef[] = [
   {
     field: "title",
     headerName: i18next.t("title"),
@@ -12,10 +12,7 @@ export const resourceCol: GridColDef[] = [
     editable: true,
     renderCell: (params) => {
       return (
-        <Typography
-          variant="caption"
-          component="p"
-        >
+        <Typography variant="caption" component="p">
           {params.value}
         </Typography>
       );
@@ -27,11 +24,7 @@ export const resourceCol: GridColDef[] = [
     width: 400,
     renderCell: (params) => {
       return (
-        <Link
-          href={params.value}
-          target="_blank"
-          variant="caption"
-        >
+        <Link href={params.value} target="_blank" variant="caption">
           {params.value}
         </Link>
       );
@@ -45,10 +38,7 @@ export const resourceCol: GridColDef[] = [
     editable: true,
     renderCell: (params) => {
       return (
-        <Typography
-          variant="caption"
-          component="p"
-        >
+        <Typography variant="caption" component="p">
           {params.value}
         </Typography>
       );
@@ -62,10 +52,7 @@ export const resourceCol: GridColDef[] = [
     editable: true,
     renderCell: (params) => {
       return (
-        <Typography
-          variant="caption"
-          component="p"
-        >
+        <Typography variant="caption" component="p">
           {params.value}
         </Typography>
       );

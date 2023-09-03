@@ -18,13 +18,13 @@ export const getResourcesList:any = createAsyncThunk(
 export const addResource:any = createAsyncThunk (
     "resourcesList/addResource", async (resourceValues:ResourcesProps) => {
         resourceValues.id = resourceValues.title.replaceAll(" ", "_")
-        const { id, title, link, tag, short_description } = resourceValues;
+        const { id, title, link, tag, description } = resourceValues;
         set(ref(database, "resources/" + id), {
             id,
             title,
             link,
             tag,
-            short_description,
+            description,
         });
         return resourceValues
     }

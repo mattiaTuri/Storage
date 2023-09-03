@@ -24,7 +24,7 @@ function ResourceTab() {
     id: "",
     title: "",
     link: "",
-    short_description: "",
+    description: "",
     tag: "",
   });
 
@@ -67,7 +67,7 @@ function ResourceTab() {
       },
     },
     {
-      field: "short_description",
+      field: "description",
       headerName: t("description"),
       type: "string",
       width: 400,

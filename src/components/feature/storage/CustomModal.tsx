@@ -7,8 +7,8 @@ import { closeModal } from "../../../store/modal/modalSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import CustomButton from "../../shared/CustomButton";
-import { ReactNode } from "react";
 import { t } from "i18next";
+import { ModalProps } from "../../../models/ComponentsModels";
 
 const style = {
   position: "absolute" as "absolute",
@@ -21,20 +21,12 @@ const style = {
   backgroundColor: "background.paper",
 };
 
-interface ModalProps {
-  title:string;
-  addFunction: () => void;
-  children:ReactNode;
-}
-
-function CustomModal({title, addFunction, children }: ModalProps) {
+function CustomModal({ title, addFunction, children }: ModalProps) {
   const customModal: boolean = useSelector(modalSelector);
   const dispatch = useDispatch();
 
   return (
-    <Modal
-      open={customModal}
-    >
+    <Modal open={customModal}>
       <Box sx={style} className="border-[#434343] border">
         <div className="flex justify-between items-center">
           <Typography id="modal-title" variant="h6" component="span">
