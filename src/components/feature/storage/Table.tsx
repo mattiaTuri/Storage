@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid/DataGrid/DataGrid";
 import CustomNoRows from "../../shared/CustomNoData";
 
-function Table({ rows, col }: any) {
+function Table({ rows, cols }: any) {
   
   return (
     <Box className="relative h-full">
@@ -13,7 +13,7 @@ function Table({ rows, col }: any) {
           },
         }}
         rows={rows}
-        columns={col}
+        columns={cols}
         initialState={{
           pagination: {
             paginationModel: {

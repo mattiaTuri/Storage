@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
 import ActionDeleteBook from "./ActionDeleteBook";
 import { GridRowId } from "@mui/x-data-grid";
+import BookCard from "./BookCard";
 
 function BookTab() {
   const { t } = useTranslation();
@@ -148,7 +149,7 @@ function BookTab() {
       <CustomModal title={t("add_new_book")} addFunction={addNewBook}>
         <BooksField bookValues={bookValues} setBookValues={setBookValues} />
       </CustomModal>
-      <Table rows={books.booksList} col={bookCols} />
+      {window.innerWidth >= 1024 ? <Table rows={books.booksList} cols={bookCols}/> : <BookCard rows={books.booksList} cols={bookCols}/>}   
     </Box>
   );
 }
