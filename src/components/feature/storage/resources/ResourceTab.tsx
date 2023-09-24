@@ -5,7 +5,7 @@ import { closeModal, openModal } from "../../../../store/modal/modalSlice";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CustomModal from "../CustomModal";
 import Table from "../Table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { resourcesSelector } from "../../../../store/resources/selector";
 import { ResourcesProps } from "../../../../models/Resource";
 import { addResource } from "../../../../controller/resourcesApi";
@@ -15,6 +15,7 @@ import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import ActionDeleteResource from "./ActionDeleteResource";
+import ResourceCard from "./ResourceCard";
 
 function ResourceTab() {
   const { t } = useTranslation();
@@ -122,7 +123,11 @@ function ResourceTab() {
       <CustomModal title={t("add_new_resource")} addFunction={addNewResource}>
         <ResourceFields onValChanges={onValChanges} />
       </CustomModal>
-      <Table rows={resources.resourcesList} col={resourceCol} />
+      {window.innerWidth >= 1024 ? (
+        <Table rows={resources.resourcesList} cols={resourceCol} />
+      ) : (
+        <ResourceCard rows={resources.resourcesList} />
+      )}
     </Box>
   );
 }

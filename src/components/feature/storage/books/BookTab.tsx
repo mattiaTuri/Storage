@@ -149,7 +149,11 @@ function BookTab() {
       <CustomModal title={t("add_new_book")} addFunction={addNewBook}>
         <BooksField bookValues={bookValues} setBookValues={setBookValues} />
       </CustomModal>
-      {window.innerWidth >= 1024 ? <Table rows={books.booksList} cols={bookCols}/> : <BookCard rows={books.booksList} cols={bookCols}/>}   
+      {window.innerWidth >= 1024 ? (
+        <Table rows={books.booksList} cols={bookCols} />
+      ) : (
+        <BookCard rows={books.booksList} />
+      )}
     </Box>
   );
 }
