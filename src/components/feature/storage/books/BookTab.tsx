@@ -17,6 +17,7 @@ import Checkbox from "@mui/material/Checkbox";
 import ActionDeleteBook from "./ActionDeleteBook";
 import { GridRowId } from "@mui/x-data-grid";
 import BookCard from "./BookCard";
+import Chip from "@mui/material/Chip";
 
 function BookTab() {
   const { t } = useTranslation();
@@ -86,11 +87,8 @@ function BookTab() {
       width: 200,
       editable: true,
       renderCell: (params) => {
-        return (
-          <Typography variant="caption" component="p">
-            {params.value}
-          </Typography>
-        );
+        const genre = params.value;
+        return <Chip label={t(`${genre}`)} color="primary" />;
       },
     },
     {

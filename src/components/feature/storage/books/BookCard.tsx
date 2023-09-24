@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import { BooksProps } from "../../../../models/Book";
 import ArrowChangeContentCard from "../ArrowChangeContentCard";
 import ActionDeleteBook from "./ActionDeleteBook";
+import { useTranslation } from "react-i18next";
 
 function BookCard({ rows }: { rows: BooksProps[] }) {
+  const { t } = useTranslation();
   const [firstElem, setFirstElem] = useState<number>(0);
   const [lastElem, setLastElem] = useState<number>(5);
   const [disabledLeftArrow, setDisabledLeftArrow] = useState<boolean>(true);
@@ -38,17 +40,18 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
   return (
     <Box className="flex flex-col gap-4">
       {rangeElements.map((row: any) => {
+        const genre = row.genre;
         return (
           <Card key={row.id}>
             <CardContent className="flex flex-col gap-1">
-              <ContentCard row={row.title} col="Title" />
-              <ContentCard row={row.author} col="Author" />
-              <ContentCard row={row.editor} col="Editor" />
-              <ContentCard row={row.genre} col="Genres" />
-              <ContentCard row={row.pages} col="Pages" />
+              <ContentCard row={row.title} col={t("title")} />
+              <ContentCard row={row.author} col={t("author")} />
+              <ContentCard row={row.editor} col={t("editor")} />
+              <ContentCard row={t(`${genre}`)} col={t("genre")} />
+              <ContentCard row={row.pages} col={t("pages")} />
               <ContentCard
                 row={row.is_read == true ? "Yes" : "No"}
-                col="Read"
+                col={t("is_read")}
               />
               <ActionDeleteBook id={row.id} />
             </CardContent>

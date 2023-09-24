@@ -14,7 +14,7 @@ function ActionDeleteResource({ id }: { id: GridRowId }) {
       sx={{ width: "50px", height: "50px" }}
       onClick={() => dispatch(removeResource({ id, resources }))}
     >
-      <DeleteIcon color="inherit" className="dark:text-white" />
+      <DeleteIcon color="secondary" />
     </IconButton>
   );
 }

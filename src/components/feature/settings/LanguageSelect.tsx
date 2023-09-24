@@ -51,7 +51,12 @@ function LanguageSelect({ t, user }: LanguageSelectProps) {
       <Select
         data-settings-select
         labelId="demo-simple-select-label"
-        sx={{ backgroundColor: "text.secondary" }}
+        sx={{
+          backgroundColor: "text.secondary",
+          "& .MuiSelect-icon": {
+            color: "text.primary",
+          },
+        }}
         id="demo-simple-select"
         value={user.language}
         onChange={changeLanguage}

@@ -37,5 +37,13 @@
     "add": "Agregar",
     "add_new_book": "Agregar nuevo libro",
     "add_new_resource": "Agregar nuevo recurso",
-    "no_data": "No hay datos disponibles"
+    "no_data": "No hay datos disponibles",
+    "yes":"Sí",
+    "no": "No",
+    "dystopian": "Distópico",
+    "fantasy": "Fantasía",
+    "yellow": "Amarillo",
+    "historian": "Historiador",
+    "personal_grow": "Crecimiento personal",
+    "psychological": "Psicológico"
 }
