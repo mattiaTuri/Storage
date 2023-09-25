@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import CustomButton from "../../shared/CustomButton";
 import { t } from "i18next";
 import { ModalProps } from "../../../models/ComponentsModels";
+import { setGenreError, setTitleError } from "../../../store/errors/errorsSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,6 +26,12 @@ function CustomModal({ title, addFunction, children }: ModalProps) {
   const customModal: boolean = useSelector(modalSelector);
   const dispatch = useDispatch();
 
+  const cancelModal = () => {
+    dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
+    dispatch(setGenreError({genreLabel:"", genreErrorVisibility:false}))
+    dispatch(closeModal())
+  }
+
   return (
     <Modal open={customModal}>
       <Box sx={style} className="border-[#434343] border">
@@ -33,7 +40,7 @@ function CustomModal({ title, addFunction, children }: ModalProps) {
             {title}
           </Typography>
           <IconButton
-            onClick={() => dispatch(closeModal())}
+            onClick={() => cancelModal()}
             sx={{
               borderRadius: 9999,
               overflow: "hidden",
@@ -56,7 +63,7 @@ function CustomModal({ title, addFunction, children }: ModalProps) {
           <CustomButton
             id="btnCloseModal"
             title={t("cancel")}
-            functionClick={() => dispatch(closeModal())}
+            functionClick={() => cancelModal()}
           />
           <CustomButton
             id="btnSaveInputModal"

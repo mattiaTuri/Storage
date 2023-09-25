@@ -18,6 +18,7 @@ import ActionDeleteBook from "./ActionDeleteBook";
 import { GridRowId } from "@mui/x-data-grid";
 import BookCard from "./BookCard";
 import Chip from "@mui/material/Chip";
+import { setGenreError, setTitleError } from "../../../../store/errors/errorsSlice";
 
 function BookTab() {
   const { t } = useTranslation();
@@ -34,14 +35,38 @@ function BookTab() {
   };
   const [bookValues, setBookValues] = useState<BooksProps>(initialBooksValues);
   const addNewBook = () => {
-    dispatch(addBook(bookValues));
-    dispatch(closeModal());
-    setBookValues(initialBooksValues);
+    if(bookValues.title != "" && bookValues.genre != ""){
+      dispatch(addBook(bookValues));
+      dispatch(closeModal());
+      setBookValues(initialBooksValues);
+    }else{
+      bookValues.title == "" && dispatch(setTitleError({titleLabel:"This field cannot be empty", titleErrorVisibility:true}))
+      bookValues.genre == "" && dispatch(setGenreError({genreLabel:"This field cannot be empty", genreErrorVisibility:true}))
+    }
   };
 
   const onValChanges = (event: any) => {
-    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+    if(event.target.name == "title"){
+      const result = books.booksList.find((book) => book.title == event.target.value)
+      if(result){
+        dispatch(setTitleError({titleLabel:"This book already exist", titleErrorVisibility:true}))
+      }else{     
+        if(event.target.value == ""){
+          dispatch(setTitleError({titleLabel:"This field cannot be empty", titleErrorVisibility:true}))
+        }else{
+          dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
+          setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+        }
+      }
+    }else{
+      setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+    }
   };
+
+  const onValSelected = (event: any) => {
+    dispatch(setGenreError({genreLabel:"", genreErrorVisibility:false}))
+    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+  }
 
   const onValChecked = (event: any) => {
     setBookValues({ ...bookValues, [event.target.name]: event.target.checked });
@@ -155,7 +180,7 @@ function BookTab() {
         </CustomButton>
       </Box>
       <CustomModal title={t("add_new_book")} addFunction={addNewBook}>
-        <BooksField onValChanges={onValChanges} onValChecked={onValChecked} />
+        <BooksField onValChanges={onValChanges} onValSelected={onValSelected} onValChecked={onValChecked}/>
       </CustomModal>
       {window.innerWidth >= 1024 ? (
         <Table rows={books.booksList} cols={bookCols} />

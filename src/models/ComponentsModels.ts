@@ -40,6 +40,8 @@ export interface TextInputProps{
     name: string;
     onChange: (e:any) => void;
     autofocus: boolean;
+    labelError:string;
+    errorVisibility:boolean;
 }
 
 export interface CustomButtonProps {

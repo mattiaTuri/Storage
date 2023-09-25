@@ -4,6 +4,7 @@ import booksReducer from "./books/booksSlice"
 import resourcesReducer from "./resources/resourcesSlice"
 import userReducer from "./user/userSlice"
 import storageTabReducer from "./storageTab/storageTabSlice"
+import errorsReducer from "./errors/errorsSlice"
 
 export const store = configureStore({
     reducer:{
@@ -11,7 +12,8 @@ export const store = configureStore({
         books:booksReducer,
         resources: resourcesReducer,
         user: userReducer,
-        storageTab: storageTabReducer
+        storageTab: storageTabReducer,
+        errors:errorsReducer
         }
 })
 

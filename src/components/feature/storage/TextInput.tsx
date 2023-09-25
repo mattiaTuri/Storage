@@ -1,23 +1,28 @@
 import TextField from "@mui/material/TextField"
 import { TextInputProps } from "../../../models/ComponentsModels"
+import Typography from "@mui/material/Typography"
 
-function TextInput({id, label, name, onChange, autofocus} : TextInputProps){
+function TextInput({id, label, name, onChange, autofocus, labelError, errorVisibility} : TextInputProps){
     return (
+      <div>
+        {errorVisibility && <Typography id={`${id}-label`} variant="caption" component="p" color="#ef233c" className="pb-2">{labelError}</Typography>}
         <TextField
-          id={id}
-          label={label}
-          name={name}
-          variant="outlined"
-          sx={{
-            backgroundColor: "text.secondary",
-            borderRadius: "4px",
-          }}
-          InputLabelProps={{
-            sx: { color: "text.primary" },
-          }}
-          onChange={onChange}
-          autoFocus={autofocus}
-        ></TextField>
+            id={id}
+            label={label}
+            name={name}
+            variant="outlined"
+            className="w-full"
+            sx={{
+              backgroundColor: "text.secondary",
+              borderRadius: "4px",
+            }}
+            InputLabelProps={{
+              sx: { color: "text.primary" },
+            }}
+            onChange={onChange}
+            autoFocus={autofocus}
+          ></TextField>
+      </div>
     )
 }
 
