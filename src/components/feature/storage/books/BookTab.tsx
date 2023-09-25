@@ -88,7 +88,7 @@ function BookTab() {
       editable: true,
       renderCell: (params) => {
         const genre = params.value;
-        return <Chip label={t(`${genre}`)} color="primary" />;
+        return <Chip label={t(`genres.${genre}`)} color="primary" />;
       },
     },
     {

@@ -10,15 +10,21 @@ import { Typography } from "@mui/material";
 import CustomNoData from "../../../shared/CustomNoData";
 import { getChartValue } from "./chartsFunctions";
 import { userSelector } from "../../../../store/user/selector";
+import { useTranslation } from "react-i18next";
 
 function BookChart({ booksList }: { booksList: BooksProps[] }) {
   const user = useSelector(userSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
-
+  const { t } = useTranslation();
   const [chartData, setChartData] = useState<any>(null);
   useEffect(() => {
     const genresList = booksList.map((elem: BooksProps) => elem.genre);
-    setChartData(getChartValue(genresList));
+    const newGenresList = getChartValue(genresList)
+    const genresTranslated = newGenresList.map((genre) => {
+      const name = genre.name
+      return {name:t(`genres.${name}`), value: genre.value }
+    })
+    setChartData(genresTranslated)
   }, [booksList]);
 
   const option = {
@@ -63,9 +69,9 @@ function BookChart({ booksList }: { booksList: BooksProps[] }) {
     <>
       <div className="flex flex-col justify-center items-center">
         <Typography component="span" gutterBottom>
-          Books
+         {t("books")}
         </Typography>
-        <Typography component="p">Divided by genre</Typography>
+        <Typography component="p">{t("divided_by_genre")}</Typography>
       </div>
       <div className="relative">
         {booksList.length > 0 ? (

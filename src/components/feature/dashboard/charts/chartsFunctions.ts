@@ -19,6 +19,7 @@ const countOccurences = (
         if (elem == originalElem) occurences++;
       });
       occurencesList.push({ name: elem, value: occurences });
+      // occurencesList.push({ name: t(`genres.${elem}`), value: occurences });
     });
     return occurencesList;
   };

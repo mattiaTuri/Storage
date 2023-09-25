@@ -40,10 +40,14 @@
     "no_data": "No hay datos disponibles",
     "yes":"Sí",
     "no": "No",
-    "dystopian": "Distópico",
-    "fantasy": "Fantasía",
-    "yellow": "Amarillo",
-    "historian": "Historiador",
-    "personal_grow": "Crecimiento personal",
-    "psychological": "Psicológico"
+    "divided_by_genre": "Dividido por géneros",
+    "divided_by_tag": "Dividido por etiqueta",
+    "genres":{
+        "dystopian": "Distópico",
+        "fantasy": "Fantasía",
+        "yellow": "Amarillo",
+        "historian": "Historiador",
+        "personal_grow": "Crecimiento personal",
+        "psychological": "Psicológico"
+    }
 }

@@ -5,7 +5,7 @@ import { closeModal, openModal } from "../../../../store/modal/modalSlice";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CustomModal from "../CustomModal";
 import Table from "../Table";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { resourcesSelector } from "../../../../store/resources/selector";
 import { ResourcesProps } from "../../../../models/Resource";
 import { addResource } from "../../../../controller/resourcesApi";

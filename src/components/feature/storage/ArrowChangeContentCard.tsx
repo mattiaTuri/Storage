@@ -24,7 +24,7 @@ function ArrowChangeContentCard({
         disabled={disabledLeftArrow}
         className={`${disabledLeftArrow && "opacity-30"}`}
       >
-        <KeyboardArrowLeftIcon fontSize="large" className="text-white" />
+        <KeyboardArrowLeftIcon fontSize="large" color="secondary"/>
       </IconButton>
       <Typography component="span"></Typography>
       <IconButton
@@ -32,7 +32,7 @@ function ArrowChangeContentCard({
         disabled={disabledRightArrow}
         className={`${disabledRightArrow && "opacity-30"}`}
       >
-        <KeyboardArrowRightIcon fontSize="large" className="text-white" />
+        <KeyboardArrowRightIcon fontSize="large" color="secondary" />
       </IconButton>
     </Box>
   );

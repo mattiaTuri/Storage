@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import CustomNoData from "../../../shared/CustomNoData";
 import { getChartValue } from "./chartsFunctions";
 import { userSelector } from "../../../../store/user/selector";
+import { useTranslation } from "react-i18next";
 
 function ResourcesChart({
   resourcesList,
@@ -18,7 +19,7 @@ function ResourcesChart({
 }) {
   const user = useSelector(userSelector);
   echarts.use([PieChart, CanvasRenderer, TitleComponent, TooltipComponent]);
-
+  const { t } = useTranslation();
   const [chartData, setChartData] = useState<any>(null);
   useEffect(() => {
     const tagList = resourcesList.map((elem: ResourcesProps) => elem.tag);
@@ -67,9 +68,9 @@ function ResourcesChart({
     <>
       <div className="flex flex-col justify-center items-center">
         <Typography component="span" gutterBottom>
-          Resources
+        {t("resources")}
         </Typography>
-        <Typography component="p">Divided by tag</Typography>
+        <Typography component="p">{t("divided_by_tag")}</Typography>
       </div>
       <div className="relative">
         {resourcesList.length > 0 ? (

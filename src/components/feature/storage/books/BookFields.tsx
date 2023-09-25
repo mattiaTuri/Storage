@@ -23,12 +23,30 @@ function BooksField({ bookValues, setBookValues }: BooksFieldProps) {
   };
 
   const genresList = [
-    t("dystopian"),
-    t("fantasy"),
-    t("yellow"),
-    t("historian"),
-    t("personal_grow"),
-    t("psychological"),
+    {
+      "key": "dystopian",
+      "translation":t("genres.dystopian"),
+    },
+    {
+      "key": "fantasy",
+      "translation":t("genres.fantasy"),
+    },
+    {
+      "key": "yellow",
+      "translation":t("genres.yellow"),
+    },
+    {
+      "key": "historian",
+      "translation":t("genres.historian"),
+    },
+    {
+      "key": "personal_grow",
+      "translation":t("genres.personal_grow"),
+    },
+    {
+      "key": "psychological",
+      "translation":t("genres.psychological"),
+    },
   ];
 
   return (
@@ -98,10 +116,10 @@ function BooksField({ bookValues, setBookValues }: BooksFieldProps) {
               },
             }}
           >
-            {genresList.map((genre: string) => {
+            {genresList.map((genre: any) => {
               return (
-                <MenuItem key={genre} value={genre}>
-                  {genre}
+                <MenuItem key={genre.key} value={genre.key}>
+                  {genre.translation}
                 </MenuItem>
               );
             })}
