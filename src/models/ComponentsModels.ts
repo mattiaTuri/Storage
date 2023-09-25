@@ -34,6 +34,14 @@ export interface ModalProps {
     children:ReactNode;
 }
 
+export interface TextInputProps{
+    id: string;
+    label:string;
+    name: string;
+    onChange: (e:any) => void;
+    autofocus: boolean;
+}
+
 export interface CustomButtonProps {
     id: string;
     title: string;

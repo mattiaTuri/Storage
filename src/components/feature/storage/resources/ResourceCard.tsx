@@ -39,7 +39,7 @@ function ResourceCard({ rows }: { rows: ResourcesProps[] }) {
       ? setDisabledRightArrow(false)
       : setDisabledRightArrow(true);
     setRangeElements(rows.slice(firstElem, lastElem));
-  }, [rows, rangeElements]);
+  }, [firstElem, lastElem, rows]);
 
   return (
     <Box className="flex flex-col gap-4">

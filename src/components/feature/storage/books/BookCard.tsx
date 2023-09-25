@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { BooksProps } from "../../../../models/Book";
 import ArrowChangeContentCard from "../ArrowChangeContentCard";
 import ActionDeleteBook from "./ActionDeleteBook";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 function BookCard({ rows }: { rows: BooksProps[] }) {
   const { t } = useTranslation();
@@ -35,7 +35,7 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
       ? setDisabledRightArrow(false)
       : setDisabledRightArrow(true);
     setRangeElements(rows.slice(firstElem, lastElem));
-  }, [rows, rangeElements]);
+  }, [firstElem, lastElem, rows]);
 
   return (
     <Box className="flex flex-col gap-4">
@@ -50,7 +50,7 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
               <ContentCard row={t(`genres.${genre}`)} col={t("genre")} />
               <ContentCard row={row.pages} col={t("pages")} />
               <ContentCard
-                row={row.is_read == true ? "Yes" : "No"}
+                row={row.isRead == true ? t("yes") : t("no")}
                 col={t("is_read")}
               />
               <ActionDeleteBook id={row.id} />

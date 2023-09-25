@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
+import TextInput from "../TextInput";
 
 interface ResourcesFieldProps {
   onValChanges: (e: any) => void;
@@ -15,63 +16,10 @@ function ResourceField({ onValChanges }: ResourcesFieldProps) {
       component="form"
     >
       <Box className="flex flex-col gap-10">
-        <TextField
-          id="title"
-          label={t("title")}
-          name="title"
-          variant="outlined"
-          sx={{
-            backgroundColor: "text.secondary",
-            borderRadius: "4px",
-          }}
-          InputLabelProps={{
-            sx: { color: "text.primary" },
-          }}
-          onChange={onValChanges}
-          autoFocus
-        ></TextField>
-        <TextField
-          id="link"
-          label={t("link")}
-          name="link"
-          variant="outlined"
-          sx={{
-            backgroundColor: "text.secondary",
-            borderRadius: "4px",
-          }}
-          InputLabelProps={{
-            sx: { color: "text.primary" },
-          }}
-          onChange={onValChanges}
-        ></TextField>
-        <TextField
-          id="description"
-          label={t("description")}
-          name="description"
-          variant="outlined"
-          sx={{
-            backgroundColor: "text.secondary",
-            borderRadius: "4px",
-          }}
-          InputLabelProps={{
-            sx: { color: "text.primary" },
-          }}
-          onChange={onValChanges}
-        ></TextField>
-        <TextField
-          id="tag"
-          label={t("tag")}
-          name="tag"
-          variant="outlined"
-          sx={{
-            backgroundColor: "text.secondary",
-            borderRadius: "4px",
-          }}
-          InputLabelProps={{
-            sx: { color: "text.primary" },
-          }}
-          onChange={onValChanges}
-        ></TextField>
+      <TextInput id="title" label={t("title")} name="title" onChange={(e) => onValChanges(e)} autofocus={true}/>
+        <TextInput id="author" label={t("author")} name="author" onChange={(e) => onValChanges(e)} autofocus={false}/>
+        <TextInput id="description" label={t("eddescriptionitor")} name="description" onChange={(e) => onValChanges(e)} autofocus={false}/>
+        <TextInput id="description" label={t("eddescriptionitor")} name="description" onChange={(e) => onValChanges(e)} autofocus={false}/>
       </Box>
     </Box>
   );

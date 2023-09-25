@@ -39,6 +39,14 @@ function BookTab() {
     setBookValues(initialBooksValues);
   };
 
+  const onValChanges = (event: any) => {
+    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+  };
+
+  const onValChecked = (event: any) => {
+    setBookValues({ ...bookValues, [event.target.name]: event.target.checked });
+  };
+
   const bookCols: GridColDef[] = [
     {
       field: "title",
@@ -116,7 +124,9 @@ function BookTab() {
       align: "center",
       editable: true,
       renderCell: (params) => {
-        return <Checkbox checked={params.row.isRead} />;
+        return <Checkbox checked={params.row.isRead} sx={{'&.Mui-checked': {
+          color: "primary"
+        }}}/>;
       },
     },
     {
@@ -145,7 +155,7 @@ function BookTab() {
         </CustomButton>
       </Box>
       <CustomModal title={t("add_new_book")} addFunction={addNewBook}>
-        <BooksField bookValues={bookValues} setBookValues={setBookValues} />
+        <BooksField onValChanges={onValChanges} onValChecked={onValChecked} />
       </CustomModal>
       {window.innerWidth >= 1024 ? (
         <Table rows={books.booksList} cols={bookCols} />
