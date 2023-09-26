@@ -50,5 +50,10 @@
         "historian": "Historian",
         "personal_grow": "Personal grow",
         "psychological": "Psychological"
+    },
+    "errors":{
+        "empty_field": "This field cannot be empty",
+        "book_present": "This book already exist",
+        "resource_present": "This resource already exist"
     }
 }

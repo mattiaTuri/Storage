@@ -16,29 +16,52 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import ActionDeleteResource from "./ActionDeleteResource";
 import ResourceCard from "./ResourceCard";
+import { setTitleError } from "../../../../store/errors/errorsSlice";
 
 function ResourceTab() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const resources = useSelector(resourcesSelector);
-  const [resourceValues, setResourceValues] = useState<ResourcesProps>({
+ 
+  const initialResourcesValues:ResourcesProps={
     id: "",
     title: "",
     link: "",
     description: "",
     tag: "",
-  });
+  }
+
+  const [resourceValues, setResourceValues] = useState<ResourcesProps>(initialResourcesValues)
 
   const addNewResource = () => {
-    dispatch(addResource(resourceValues));
-    dispatch(closeModal());
+    const result = resources.resourcesList.find((resource) => resource.title == resourceValues.title)
+    if(resourceValues.title != "" && !result ){
+      dispatch(addResource(resourceValues));
+      dispatch(closeModal());
+      setResourceValues(initialResourcesValues)
+    }else{
+      resourceValues.title == "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
+    }
   };
 
   const onValChanges = (event: any) => {
-    setResourceValues({
-      ...resourceValues,
-      [event.target.name]: event.target.value,
-    });
+    if(event.target.name == "title"){
+      const result = resources.resourcesList.find((resource) => resource.title == event.target.value)
+      if(result){
+        dispatch(setTitleError({titleLabel:t("errors.resource_present"), titleErrorVisibility:true}))
+      }else{     
+        if(event.target.value == ""){
+          dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
+        }else{
+          dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
+        }
+      }
+    }
+      setResourceValues({
+        ...resourceValues,
+        [event.target.name]: event.target.value,
+      });
+    
   };
 
   const resourceCol: GridColDef[] = [

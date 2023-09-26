@@ -50,5 +50,10 @@
         "historian": "Historiador",
         "personal_grow": "Crecimiento personal",
         "psychological": "Psicológico"
+    },
+    "errors":{
+        "empty_field": "Este campo no puede estar vacío",
+        "book_present": "Este libro ya existe",
+        "resource_present": "Este recurso ya existe"
     }
 }

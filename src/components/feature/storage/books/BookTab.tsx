@@ -35,13 +35,14 @@ function BookTab() {
   };
   const [bookValues, setBookValues] = useState<BooksProps>(initialBooksValues);
   const addNewBook = () => {
-    if(bookValues.title != "" && bookValues.genre != ""){
+    const result = books.booksList.find((book) => book.title == bookValues.title)
+    if(bookValues.title != "" && !result && bookValues.genre != ""){
       dispatch(addBook(bookValues));
       dispatch(closeModal());
       setBookValues(initialBooksValues);
     }else{
-      bookValues.title == "" && dispatch(setTitleError({titleLabel:"This field cannot be empty", titleErrorVisibility:true}))
-      bookValues.genre == "" && dispatch(setGenreError({genreLabel:"This field cannot be empty", genreErrorVisibility:true}))
+      bookValues.title == "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
+      bookValues.genre == "" && dispatch(setGenreError({genreLabel:t("errors.empty_field"), genreErrorVisibility:true}))
     }
   };
 
@@ -49,18 +50,16 @@ function BookTab() {
     if(event.target.name == "title"){
       const result = books.booksList.find((book) => book.title == event.target.value)
       if(result){
-        dispatch(setTitleError({titleLabel:"This book already exist", titleErrorVisibility:true}))
+        dispatch(setTitleError({titleLabel:t("errors.book_present"), titleErrorVisibility:true}))
       }else{     
         if(event.target.value == ""){
-          dispatch(setTitleError({titleLabel:"This field cannot be empty", titleErrorVisibility:true}))
+          dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
         }else{
           dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
-          setBookValues({ ...bookValues, [event.target.name]: event.target.value });
         }
       }
-    }else{
-      setBookValues({ ...bookValues, [event.target.name]: event.target.value });
     }
+    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
   };
 
   const onValSelected = (event: any) => {
