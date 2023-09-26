@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import TextInput from "../TextInput";
 import { useSelector } from "react-redux";
 import { errorsSelector } from "../../../../store/errors/selector";
+import Typography from "@mui/material/Typography";
 
 interface ResourcesFieldProps {
   onValChanges: (e: any) => void;
@@ -18,10 +19,13 @@ function ResourceField({ onValChanges }: ResourcesFieldProps) {
       component="form"
     >
       <Box className="flex flex-col gap-10">
-        <TextInput id="title" label={t("title")} name="title" onChange={(e) => onValChanges(e)} autofocus={true} labelError={errors.titleError.label} errorVisibility={errors.titleError.errorVisibility}/>
-        <TextInput id="author" label={t("author")} name="author" onChange={(e) => onValChanges(e)} autofocus={false} labelError="" errorVisibility={false}/>
+        <TextInput id="title" label={`${t("title")} *`} name="title" onChange={(e) => onValChanges(e)} autofocus={true} labelError={errors.titleError.label} errorVisibility={errors.titleError.errorVisibility}/>
+        <TextInput id="link" label={`${t("link")} *`} name="link" onChange={(e) => onValChanges(e)} autofocus={false} labelError={errors.linkError.label} errorVisibility={errors.linkError.errorVisibility}/>
         <TextInput id="description" label={t("description")} name="description" onChange={(e) => onValChanges(e)} autofocus={false} labelError="" errorVisibility={false}/>
-        <TextInput id="tag" label={t("tag")} name="tag" onChange={(e) => onValChanges(e)} autofocus={false} labelError="" errorVisibility={false}/>
+        <TextInput id="tag" label={`${t("tag")} *`} name="tag" onChange={(e) => onValChanges(e)} autofocus={false} labelError={errors.tagError.label} errorVisibility={errors.tagError.errorVisibility}/>
+        <Box>
+          <Typography component="span" variant="caption">* = {t("required_fields")}</Typography>
+        </Box>
       </Box>
     </Box>
   );

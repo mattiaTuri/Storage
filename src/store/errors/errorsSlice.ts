@@ -10,7 +10,15 @@ export const errorsSlice = createSlice({
         genreError:{
             label:"",
             errorVisibility:false
-        }
+        },
+        linkError:{
+            label:"",
+            errorVisibility:false
+        },
+        tagError:{
+            label:"",
+            errorVisibility:false
+        },
     },
     reducers:{
         setTitleError: (state, action) => {
@@ -21,8 +29,16 @@ export const errorsSlice = createSlice({
             state.genreError.label = action.payload.genreLabel
             state.genreError.errorVisibility = action.payload.genreErrorVisibility
         },
+        setLinkError: (state, action) => {
+            state.linkError.label = action.payload.linkLabel
+            state.linkError.errorVisibility = action.payload.linkErrorVisibility
+        },
+        setTagError: (state, action) => {
+            state.tagError.label = action.payload.tagLabel
+            state.tagError.errorVisibility = action.payload.tagErrorVisibility
+        },
     }
 })
 
-export const { setTitleError, setGenreError } = errorsSlice.actions
+export const { setTitleError, setGenreError, setLinkError, setTagError } = errorsSlice.actions
 export default errorsSlice.reducer

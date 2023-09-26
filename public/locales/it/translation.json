@@ -42,7 +42,7 @@
     "no": "No",
     "divided_by_genre": "Diviso per generi",
     "divided_by_tag": "Diviso per tag",
-    "required_field": "Campi obbligatori",
+    "required_fields": "Campi obbligatori",
     "genres":{
         "dystopian": "Distopico",
         "fantasy": "Fantasy",

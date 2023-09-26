@@ -53,19 +53,19 @@ function BooksField({ onValChanges, onValSelected, onValChecked }: BooksFieldPro
       component="form"
     >
       <Box className="flex flex-col gap-10">
-        <TextInput id="title" label={t("title")} name="title" onChange={(e) => onValChanges(e)} autofocus={true} labelError={errors.titleError.label} errorVisibility={errors.titleError.errorVisibility}/>
+        <TextInput id="title" label={`${t("title")} *`} name="title" onChange={(e) => onValChanges(e)} autofocus={true} labelError={errors.titleError.label} errorVisibility={errors.titleError.errorVisibility}/>
         <TextInput id="author" label={t("author")} name="author" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/>
         <TextInput id="editor" label={t("editor")} name="editor" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/>
         <div className="w-full">
         {errors.genreError.errorVisibility && <Typography variant="caption" component="p" color="#ef233c" className="pb-2">{errors.genreError.label}</Typography>}
           <FormControl className="w-full">
             <InputLabel sx={{ color: "text.primary" }} id="genre-label">
-              {t("genre")}
+              {`${t("genre")} *`}
             </InputLabel>
             <Select
               labelId="genre-label"
               name="genre"
-              label={t("genre")}
+              label={`${t("genre")} *`}
               onChange={onValSelected}
               sx={{
                 backgroundColor: "text.secondary",
@@ -100,14 +100,19 @@ function BooksField({ onValChanges, onValSelected, onValChecked }: BooksFieldPro
           InputLabelProps={{
             sx: { color: "text.primary" },
           }}
-          onChange={onValChecked}
+          onChange={onValChanges}
         ></TextField>
         <FormControlLabel
           control={
-            <Checkbox id="isRead" name="isRead" onChange={(e) => onValChecked(e)} />
+            <Checkbox id="isRead" name="isRead" onChange={(e) => onValChecked(e)} sx={{
+              color: "primary.main",      
+            }}/>
           }
           label={t("is_read")}
         />
+      </Box>
+      <Box>
+        <Typography component="span" variant="caption">* = {t("required_fields")}</Typography>
       </Box>
     </Box>
   );

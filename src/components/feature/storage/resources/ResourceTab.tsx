@@ -16,7 +16,8 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import ActionDeleteResource from "./ActionDeleteResource";
 import ResourceCard from "./ResourceCard";
-import { setTitleError } from "../../../../store/errors/errorsSlice";
+import { setTitleError, setLinkError, setTagError } from "../../../../store/errors/errorsSlice";
+import Chip from "@mui/material/Chip";
 
 function ResourceTab() {
   const { t } = useTranslation();
@@ -34,20 +35,22 @@ function ResourceTab() {
   const [resourceValues, setResourceValues] = useState<ResourcesProps>(initialResourcesValues)
 
   const addNewResource = () => {
-    const result = resources.resourcesList.find((resource) => resource.title == resourceValues.title)
-    if(resourceValues.title != "" && !result ){
+    const resourceExist = resources.resourcesList.find((resource) => resource.title == resourceValues.title)
+    if(!resourceExist && resourceValues.title != "" && resourceValues.link != "" && resourceValues.tag != ""){
       dispatch(addResource(resourceValues));
       dispatch(closeModal());
       setResourceValues(initialResourcesValues)
     }else{
       resourceValues.title == "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
+      resourceValues.link == "" && dispatch(setLinkError({linkLabel:t("errors.empty_field"), linkErrorVisibility:true}))
+      resourceValues.tag == "" && dispatch(setTagError({tagLabel:t("errors.empty_field"), tagErrorVisibility:true}))
     }
   };
 
   const onValChanges = (event: any) => {
     if(event.target.name == "title"){
-      const result = resources.resourcesList.find((resource) => resource.title == event.target.value)
-      if(result){
+      const resourceExist = resources.resourcesList.find((resource) => resource.title == event.target.value)
+      if(resourceExist){
         dispatch(setTitleError({titleLabel:t("errors.resource_present"), titleErrorVisibility:true}))
       }else{     
         if(event.target.value == ""){
@@ -57,11 +60,27 @@ function ResourceTab() {
         }
       }
     }
+
+    if(event.target.name == "link"){
+      if(event.target.value == ""){
+        dispatch(setLinkError({linkLabel:t("errors.empty_field"), linkErrorVisibility:true}))
+      }else{
+        dispatch(setLinkError({linkLabel:"", linkErrorVisibility:false}))
+      }
+    }
+
+    if(event.target.name == "tag"){
+      if(event.target.value == ""){
+        dispatch(setTagError({tagLabel:t("errors.empty_field"), tagErrorVisibility:true}))
+      }else{
+        dispatch(setTagError({tagLabel:"", tagErrorVisibility:false}))
+      }
+    }
+
       setResourceValues({
         ...resourceValues,
         [event.target.name]: event.target.value,
       });
-    
   };
 
   const resourceCol: GridColDef[] = [
@@ -112,9 +131,7 @@ function ResourceTab() {
       editable: true,
       renderCell: (params) => {
         return (
-          <Typography variant="caption" component="p">
-            {params.value}
-          </Typography>
+          <Chip label={params.value} color="primary" />
         );
       },
     },

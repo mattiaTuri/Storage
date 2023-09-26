@@ -148,9 +148,7 @@ function BookTab() {
       align: "center",
       editable: true,
       renderCell: (params) => {
-        return <Checkbox checked={params.row.isRead} sx={{'&.Mui-checked': {
-          color: "primary"
-        }}}/>;
+        return <Checkbox checked={params.row.isRead} sx={{color:"primary.main"}}/>;
       },
     },
     {

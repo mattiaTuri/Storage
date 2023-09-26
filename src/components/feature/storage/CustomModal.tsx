@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import CustomButton from "../../shared/CustomButton";
 import { t } from "i18next";
 import { ModalProps } from "../../../models/ComponentsModels";
-import { setGenreError, setTitleError } from "../../../store/errors/errorsSlice";
+import { setGenreError, setLinkError, setTagError, setTitleError } from "../../../store/errors/errorsSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -29,6 +29,8 @@ function CustomModal({ title, addFunction, children }: ModalProps) {
   const cancelModal = () => {
     dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
     dispatch(setGenreError({genreLabel:"", genreErrorVisibility:false}))
+    dispatch(setLinkError({linkError:"", linkErrorVisibility:false}))
+    dispatch(setTagError({tagError:"", tagErrorVisibility:false}))
     dispatch(closeModal())
   }
 
