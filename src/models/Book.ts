@@ -2,8 +2,9 @@ export interface BooksProps {
     id: string;
     title: string;
     author: string;
-    editor: string;
+    // editor: string;
+    rating:number | null;
     genre: string;
-    pages: number;
+    // pages: number;
     isRead:boolean;
   }

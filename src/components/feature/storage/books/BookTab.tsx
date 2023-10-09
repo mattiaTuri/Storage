@@ -19,6 +19,9 @@ import { GridRowId } from "@mui/x-data-grid";
 import BookCard from "./BookCard";
 import Chip from "@mui/material/Chip";
 import { setGenreError, setTitleError } from "../../../../store/errors/errorsSlice";
+import Rating from "@mui/material/Rating";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 
 function BookTab() {
   const { t } = useTranslation();
@@ -28,12 +31,14 @@ function BookTab() {
     id: "",
     title: "",
     author: "",
-    editor: "",
+    // editor: "",
     genre: "",
-    pages: 0,
+    rating: null,
+    // pages: 0,
     isRead: false,
   };
   const [bookValues, setBookValues] = useState<BooksProps>(initialBooksValues);
+  const [rating, setRating] = useState<number | null>(0);
   const addNewBook = () => {
     const result = books.booksList.find((book) => book.title == bookValues.title)
     if(bookValues.title != "" && !result && bookValues.genre != ""){
@@ -71,6 +76,10 @@ function BookTab() {
     setBookValues({ ...bookValues, [event.target.name]: event.target.checked });
   };
 
+  const onValRating = (event:any) => {
+    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+  }
+
   const bookCols: GridColDef[] = [
     {
       field: "title",
@@ -98,20 +107,20 @@ function BookTab() {
         );
       },
     },
-    {
-      field: "editor",
-      headerName: t("editor"),
-      type: "string",
-      width: 200,
-      editable: true,
-      renderCell: (params) => {
-        return (
-          <Typography variant="caption" component="p">
-            {params.value}
-          </Typography>
-        );
-      },
-    },
+    // {
+    //   field: "editor",
+    //   headerName: t("editor"),
+    //   type: "string",
+    //   width: 200,
+    //   editable: true,
+    //   renderCell: (params) => {
+    //     return (
+    //       <Typography variant="caption" component="p">
+    //         {params.value}
+    //       </Typography>
+    //     );
+    //   },
+    // },
     {
       field: "genre",
       headerName: t("genre"),
@@ -124,21 +133,31 @@ function BookTab() {
       },
     },
     {
-      field: "pages",
-      headerName: t("pages"),
-      type: "number",
-      width: 150,
-      headerAlign: "center",
-      align: "center",
-      editable: true,
+      field: "rating",
+      headerName: t("rating"),
+      type: "nuber",
+      width: 200,
+      editable: false,
       renderCell: (params) => {
-        return (
-          <Typography variant="caption" component="p">
-            {params.value}
-          </Typography>
-        );
+        return <Rating value={params.value} precision={0.5} emptyIcon={<StarBorderIcon color="primary"/>} icon={<StarIcon color="primary"/>} color="primary" />;
       },
     },
+    // {
+    //   field: "pages",
+    //   headerName: t("pages"),
+    //   type: "number",
+    //   width: 150,
+    //   headerAlign: "center",
+    //   align: "center",
+    //   editable: true,
+    //   renderCell: (params) => {
+    //     return (
+    //       <Typography variant="caption" component="p">
+    //         {params.value}
+    //       </Typography>
+    //     );
+    //   },
+    // },
     {
       field: "read",
       headerName: t("is_read"),
@@ -177,7 +196,7 @@ function BookTab() {
         </CustomButton>
       </Box>
       <CustomModal title={t("add_new_book")} addFunction={addNewBook}>
-        <BooksField onValChanges={onValChanges} onValSelected={onValSelected} onValChecked={onValChecked}/>
+        <BooksField onValChanges={onValChanges} onValSelected={onValSelected} onValChecked={onValChecked} onValRating={onValRating}/>
       </CustomModal>
       {window.innerWidth >= 1024 ? (
         <Table rows={books.booksList} cols={bookCols} />

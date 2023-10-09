@@ -1,21 +1,23 @@
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
 import Select from "@mui/material/Select";
-import { FormControl, InputLabel, MenuItem, Typography } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Rating, Typography } from "@mui/material";
 import TextInput from "../TextInput";
 import { useSelector } from "react-redux";
 import { errorsSelector } from "../../../../store/errors/selector";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 
 interface BooksFieldProps {
   onValChanges: (e: any) => void;
   onValSelected: (e:any) => void;
   onValChecked: (e: any) => void;
+  onValRating: (e: any) => void;
 }
 
-function BooksField({ onValChanges, onValSelected, onValChecked }: BooksFieldProps) {
+function BooksField({ onValChanges, onValSelected, onValChecked, onValRating }: BooksFieldProps) {
   const { t } = useTranslation();
   const errors = useSelector(errorsSelector)
 
@@ -55,7 +57,7 @@ function BooksField({ onValChanges, onValSelected, onValChecked }: BooksFieldPro
       <Box className="flex flex-col gap-10">
         <TextInput id="title" label={`${t("title")} *`} name="title" onChange={(e) => onValChanges(e)} autofocus={true} labelError={errors.titleError.label} errorVisibility={errors.titleError.errorVisibility}/>
         <TextInput id="author" label={t("author")} name="author" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/>
-        <TextInput id="editor" label={t("editor")} name="editor" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/>
+        {/* <TextInput id="editor" label={t("editor")} name="editor" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/> */}
         <div className="w-full">
         {errors.genreError.errorVisibility && <Typography variant="caption" component="p" color="#ef233c" className="pb-2">{errors.genreError.label}</Typography>}
           <FormControl className="w-full">
@@ -86,8 +88,12 @@ function BooksField({ onValChanges, onValSelected, onValChecked }: BooksFieldPro
           </FormControl>
         </div>
       </Box>
-      <Box className="flex gap-10">
-        <TextField
+      <Box className="flex items-center gap-10">
+        <Box className="flex gap-2">
+          <Typography component="legend">{t("rating")}</Typography>
+          <Rating id="rating" name="rating" precision={0.5} max={5} emptyIcon={<StarBorderIcon color="primary"/>} icon={<StarIcon color="primary"/>} onChange={onValRating}/>
+        </Box>
+        {/* <TextField
           id="pages"
           label={t("pages")}
           name="pages"
@@ -101,7 +107,7 @@ function BooksField({ onValChanges, onValSelected, onValChecked }: BooksFieldPro
             sx: { color: "text.primary" },
           }}
           onChange={onValChanges}
-        ></TextField>
+        ></TextField> */}
         <FormControlLabel
           control={
             <Checkbox id="isRead" name="isRead" onChange={(e) => onValChecked(e)} sx={{

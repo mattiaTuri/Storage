@@ -18,14 +18,13 @@ export const getBooksList:any = createAsyncThunk(
 export const addBook:any = createAsyncThunk (
     "booksList/addBook", async (bookValues:BooksProps) => {
         bookValues.id = bookValues.title.replaceAll(" ", "_")
-        const { id, title, author, editor, genre, pages, isRead } = bookValues;
+        const { id, title, author, genre, rating, isRead } = bookValues;
         set(ref(database, "books/" + id), {
             id,
             title,
             author,
-            editor,
             genre,
-            pages,
+            rating,
             isRead
         });
         return bookValues
