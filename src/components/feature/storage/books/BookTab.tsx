@@ -84,8 +84,7 @@ function BookTab() {
     {
       field: "title",
       headerName: t("title"),
-      width: 400,
-      editable: true,
+      flex:1,
       renderCell: (params) => {
         return (
           <Typography variant="caption" component="p">
@@ -97,8 +96,7 @@ function BookTab() {
     {
       field: "author",
       headerName: t("author"),
-      width: 200,
-      editable: true,
+      flex:1,
       renderCell: (params) => {
         return (
           <Typography variant="caption" component="p">
@@ -107,26 +105,11 @@ function BookTab() {
         );
       },
     },
-    // {
-    //   field: "editor",
-    //   headerName: t("editor"),
-    //   type: "string",
-    //   width: 200,
-    //   editable: true,
-    //   renderCell: (params) => {
-    //     return (
-    //       <Typography variant="caption" component="p">
-    //         {params.value}
-    //       </Typography>
-    //     );
-    //   },
-    // },
     {
       field: "genre",
       headerName: t("genre"),
       type: "string",
-      width: 200,
-      editable: true,
+      flex:1,
       renderCell: (params) => {
         const genre = params.value;
         return <Chip label={t(`genres.${genre}`)} color="primary" />;
@@ -134,38 +117,20 @@ function BookTab() {
     },
     {
       field: "rating",
+      headerAlign: "left",
       headerName: t("rating"),
-      type: "nuber",
-      width: 200,
-      editable: false,
+      flex:1,
       renderCell: (params) => {
         return <Rating value={params.value} precision={0.5} emptyIcon={<StarBorderIcon color="primary"/>} icon={<StarIcon color="primary"/>} color="primary" />;
       },
     },
-    // {
-    //   field: "pages",
-    //   headerName: t("pages"),
-    //   type: "number",
-    //   width: 150,
-    //   headerAlign: "center",
-    //   align: "center",
-    //   editable: true,
-    //   renderCell: (params) => {
-    //     return (
-    //       <Typography variant="caption" component="p">
-    //         {params.value}
-    //       </Typography>
-    //     );
-    //   },
-    // },
     {
       field: "read",
       headerName: t("is_read"),
       type: "boolean",
-      width: 100,
+      flex:1,
       headerAlign: "center",
       align: "center",
-      editable: true,
       renderCell: (params) => {
         return <Checkbox checked={params.row.isRead} sx={{color:"primary.main"}}/>;
       },
@@ -174,7 +139,7 @@ function BookTab() {
       field: "actions",
       headerName: t("delete"),
       type: "actions",
-      width: 100,
+      flex:1,
       getActions: ({ id }: { id: GridRowId }) => {
         return [<ActionDeleteBook id={id} />];
       },

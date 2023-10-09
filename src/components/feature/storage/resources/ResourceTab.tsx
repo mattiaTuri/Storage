@@ -87,8 +87,7 @@ function ResourceTab() {
     {
       field: "title",
       headerName: t("title"),
-      width: 300,
-      editable: true,
+      flex:1,
       renderCell: (params) => {
         return (
           <Typography variant="caption" component="p">
@@ -100,7 +99,7 @@ function ResourceTab() {
     {
       field: "link",
       headerName: t("link"),
-      width: 400,
+      flex:1,
       renderCell: (params) => {
         return (
           <Link href={params.value} target="_blank" variant="caption">
@@ -113,8 +112,7 @@ function ResourceTab() {
       field: "description",
       headerName: t("description"),
       type: "string",
-      width: 400,
-      editable: true,
+      flex:1,
       renderCell: (params) => {
         return (
           <Typography variant="caption" component="p">
@@ -127,8 +125,9 @@ function ResourceTab() {
       field: "tag",
       headerName: t("tag"),
       type: "string",
-      width: 150,
-      editable: true,
+      headerAlign: "center",
+      align: "center",
+      flex:1,
       renderCell: (params) => {
         return (
           <Chip label={params.value} color="primary" />
@@ -139,7 +138,7 @@ function ResourceTab() {
       field: "actions",
       headerName: t("delete"),
       type: "actions",
-      width: 100,
+      flex:1,
       getActions: ({ id }) => {
         return [<ActionDeleteResource id={id} />];
       },

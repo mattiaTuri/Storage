@@ -90,24 +90,9 @@ function BooksField({ onValChanges, onValSelected, onValChecked, onValRating }: 
       </Box>
       <Box className="flex items-center gap-10">
         <Box className="flex gap-2">
-          <Typography component="legend">{t("rating")}</Typography>
+          <Typography component="legend">{`${t("rating")} *`}</Typography>
           <Rating id="rating" name="rating" precision={0.5} max={5} emptyIcon={<StarBorderIcon color="primary"/>} icon={<StarIcon color="primary"/>} onChange={onValRating}/>
         </Box>
-        {/* <TextField
-          id="pages"
-          label={t("pages")}
-          name="pages"
-          variant="outlined"
-          className="w-1/2"
-          sx={{
-            backgroundColor: "text.secondary",
-            borderRadius: "4px",
-          }}
-          InputLabelProps={{
-            sx: { color: "text.primary" },
-          }}
-          onChange={onValChanges}
-        ></TextField> */}
         <FormControlLabel
           control={
             <Checkbox id="isRead" name="isRead" onChange={(e) => onValChecked(e)} sx={{
