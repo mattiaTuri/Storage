@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, Rating, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import ContentCard from "../ContentCard";
 import { useEffect, useState } from "react";
@@ -6,6 +6,8 @@ import { BooksProps } from "../../../../models/Book";
 import ArrowChangeContentCard from "../ArrowChangeContentCard";
 import ActionDeleteBook from "./ActionDeleteBook";
 import { useTranslation } from "react-i18next";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 
 function BookCard({ rows }: { rows: BooksProps[] }) {
   const { t } = useTranslation();
@@ -46,9 +48,11 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
             <CardContent className="flex flex-col gap-1">
               <ContentCard row={row.title} col={t("title")} />
               <ContentCard row={row.author} col={t("author")} />
-              <ContentCard row={row.editor} col={t("editor")} />
               <ContentCard row={t(`genres.${genre}`)} col={t("genre")} />
-              <ContentCard row={row.pages} col={t("pages")} />
+              <div className="grid grid-cols-[150px_auto]">
+                <Typography variant="caption" component="span">{t("rating")}:</Typography>
+                <Rating value={row.rating} precision={0.5} emptyIcon={<StarBorderIcon fontSize="small" color="primary"/>} icon={<StarIcon fontSize="small" color="primary"/>} color="primary" />
+              </div>
               <ContentCard
                 row={row.isRead == true ? t("yes") : t("no")}
                 col={t("is_read")}

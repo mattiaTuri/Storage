@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import CustomButton from "../../../shared/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, openModal } from "../../../../store/modal/modalSlice";
+import { closeModal } from "../../../../store/modal/modalSlice";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CustomModal from "../CustomModal";
 import BooksField from "./BookFields";
@@ -24,7 +24,6 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import TableFilter from "../TableFilter";
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { Button, Icon, IconButton } from "@mui/material";
 import FilterListOffIcon from '@mui/icons-material/FilterListOff';
 
 function BookTab() {
