@@ -200,7 +200,7 @@ function BookTab() {
       {window.innerWidth >= 1024 ? (
         <Table rows={filterBooks} cols={bookCols} />
       ) : (
-        <BookCard rows={books.booksList} />
+        <BookCard rows={filterBooks} />
       )}
     </Box>
   );
