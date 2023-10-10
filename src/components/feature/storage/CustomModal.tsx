@@ -1,11 +1,8 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { useDispatch, useSelector } from "react-redux";
-import { modalSelector } from "../../../store/modal/selector";
-import { closeModal } from "../../../store/modal/modalSlice";
+import { useDispatch } from "react-redux";
 import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
 import CustomButton from "../../shared/CustomButton";
 import { t } from "i18next";
 import { ModalProps } from "../../../models/ComponentsModels";
@@ -22,8 +19,7 @@ const style = {
   backgroundColor: "background.paper",
 };
 
-function CustomModal({ title, addFunction, children }: ModalProps) {
-  const customModal: boolean = useSelector(modalSelector);
+function CustomModal({ title, btnId, btnFunction, btnTitle, children, open, setModal}: ModalProps) {
   const dispatch = useDispatch();
 
   const cancelModal = () => {
@@ -31,34 +27,22 @@ function CustomModal({ title, addFunction, children }: ModalProps) {
     dispatch(setGenreError({genreLabel:"", genreErrorVisibility:false}))
     dispatch(setLinkError({linkError:"", linkErrorVisibility:false}))
     dispatch(setTagError({tagError:"", tagErrorVisibility:false}))
-    dispatch(closeModal())
+    setModal(false)
   }
 
   return (
-    <Modal open={customModal}>
+    <Modal open={open}>
       <Box sx={style} className="border-[#434343] border">
         <div className="flex justify-between items-center">
           <Typography id="modal-title" variant="h6" component="span">
             {title}
           </Typography>
-          <IconButton
-            onClick={() => cancelModal()}
-            sx={{
-              borderRadius: 9999,
-              overflow: "hidden",
-              border: 2,
-              borderColor: "primary.main",
-              "&:hover:after": {
-                backgroundColor: "primary.main",
-              },
-            }}
-            className="close-button group relative w-10 h-10 after:content-[''] after:absolute after:w-60 after:h-60 after:top-[100%] hover:after:top-[-100%] after:duration-500 after:rounded-full"
-          >
-            <CloseIcon
+          <CustomButton id="closeModalButton" functionClick={() => cancelModal()}>
+          <CloseIcon
               color="secondary"
               className="z-10 ease-in-out group-hover:text-white"
             />
-          </IconButton>
+          </CustomButton>
         </div>
         {children}
         <div className="mt-10 flex justify-end gap-4">
@@ -68,9 +52,9 @@ function CustomModal({ title, addFunction, children }: ModalProps) {
             functionClick={() => cancelModal()}
           />
           <CustomButton
-            id="btnSaveInputModal"
-            title={t("save")}
-            functionClick={addFunction}
+            id={btnId}
+            title={btnTitle}
+            functionClick={btnFunction}
           />
         </div>
       </Box>

@@ -1,6 +1,6 @@
 import { TFunction } from "i18next";
 import { User } from "./User";
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface StatisticsNumberBoxProps {
     title: string;
@@ -30,8 +30,12 @@ export interface LanguageSelectProps {
 
 export interface ModalProps {
     title:string;
-    addFunction: () => void;
+    btnId:string;
+    btnTitle:string;
+    btnFunction: () => void;
     children:ReactNode;
+    open:boolean;
+    setModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface TextInputProps{
@@ -46,7 +50,7 @@ export interface TextInputProps{
 
 export interface CustomButtonProps {
     id: string;
-    title: string;
+    title?: string;
     functionClick: () => void;
     children?: ReactNode;
     disabled?: boolean;

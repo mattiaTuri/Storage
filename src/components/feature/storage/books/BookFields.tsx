@@ -57,7 +57,6 @@ function BooksField({ onValChanges, onValSelected, onValChecked, onValRating }: 
       <Box className="flex flex-col gap-10">
         <TextInput id="title" label={`${t("title")} *`} name="title" onChange={(e) => onValChanges(e)} autofocus={true} labelError={errors.titleError.label} errorVisibility={errors.titleError.errorVisibility}/>
         <TextInput id="author" label={t("author")} name="author" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/>
-        {/* <TextInput id="editor" label={t("editor")} name="editor" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/> */}
         <div className="w-full">
         {errors.genreError.errorVisibility && <Typography variant="caption" component="p" color="#ef233c" className="pb-2">{errors.genreError.label}</Typography>}
           <FormControl className="w-full">

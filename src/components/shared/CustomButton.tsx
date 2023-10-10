@@ -27,13 +27,13 @@ function CustomButton({
       onClick={functionClick}
     >
       {children}
-      <Typography
+      {title && <Typography
         component="span"
         className="group-hover:text-white duration-500 ease-in-out z-10"
         color="text.primary"
       >
         {title}
-      </Typography>
+      </Typography>}   
     </Button>
   );
 }

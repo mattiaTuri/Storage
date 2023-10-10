@@ -44,6 +44,9 @@
     "divided_by_genre": "Dividido por géneros",
     "divided_by_tag": "Dividido por etiqueta",
     "required_fields": "Campos requeridos",
+    "filters": "Filtros",
+    "apply_filters": "Aplicar filtros",
+    "clear_filters": "Filtros limpios",
     "genres":{
         "dystopian": "Distópico",
         "fantasy": "Fantasía",

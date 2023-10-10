@@ -22,23 +22,26 @@ import { setGenreError, setTitleError } from "../../../../store/errors/errorsSli
 import Rating from "@mui/material/Rating";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
+import TableFilter from "../TableFilter";
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { Button, Icon, IconButton } from "@mui/material";
+import FilterListOffIcon from '@mui/icons-material/FilterListOff';
 
 function BookTab() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const books = useSelector(booksSelector);
+  const [filterBooks, setFilterBooks] = useState<any[]>(books.booksList)
+  const [genreName, setGenreName] = useState<string[]>([]);
   const initialBooksValues: BooksProps = {
     id: "",
     title: "",
     author: "",
-    // editor: "",
     genre: "",
     rating: null,
-    // pages: 0,
     isRead: false,
   };
   const [bookValues, setBookValues] = useState<BooksProps>(initialBooksValues);
-  const [rating, setRating] = useState<number | null>(0);
   const addNewBook = () => {
     const result = books.booksList.find((book) => book.title == bookValues.title)
     if(bookValues.title != "" && !result && bookValues.genre != ""){
@@ -146,13 +149,42 @@ function BookTab() {
     },
   ];
 
+  const ApplyFilter = () => {
+    const genres:any = document.querySelector("#genre-filter + input")
+
+    const arrayOfGenres = genres.value.split(",")
+
+    const filterBooks = books.booksList.filter(book => arrayOfGenres.find((genre:string) => {
+      if(book.genre == genre)
+      return book
+    }))
+    setFilterBooks(filterBooks)
+    setOpenFilterModal(false)
+  }
+
+  const ClearFilter = () => {
+    setGenreName([])
+    setFilterBooks(books.booksList)
+  }
+
+  const [openFilterModal, setOpenFilterModal] = useState<boolean>(false)
+  const [openAddModal, setOpenAddModal] = useState<boolean>(false)
+
   return (
     <Box sx={{ width: "100%" }} className="flex flex-col h-full">
-      <Box className="flex justify-end my-4">
+      <Box className="flex items-center justify-between my-4">
+        <Box className="flex gap-4">
+          <CustomButton id="filter" functionClick={() => setOpenFilterModal(true)}>
+            <FilterListIcon color="secondary" className="z-10 ease-in-out group-hover:text-white"/>
+          </CustomButton>
+          <CustomButton id="clearFilter" functionClick={() => ClearFilter()}>
+            <FilterListOffIcon color="secondary" className="z-10 ease-in-out group-hover:text-white"/>
+          </CustomButton>
+        </Box>
         <CustomButton
           id="btnAddBook"
           title={t("add")}
-          functionClick={() => dispatch(openModal())}
+          functionClick={() => setOpenAddModal(true)}
         >
           <AddCircleOutlinedIcon
             color="secondary"
@@ -160,11 +192,14 @@ function BookTab() {
           />
         </CustomButton>
       </Box>
-      <CustomModal title={t("add_new_book")} addFunction={addNewBook}>
+      <CustomModal title={t("filters")} btnId="btnApplyFilter" btnTitle={t("apply_filters")} btnFunction={ApplyFilter} open={openFilterModal} setModal={setOpenFilterModal}>
+        <TableFilter genreName={genreName} setGenreName={setGenreName}/>
+      </CustomModal>
+      <CustomModal title={t("add_new_book")} btnId="btnAddBook" btnTitle={t("save")} btnFunction={addNewBook} open={openAddModal} setModal={setOpenAddModal}>
         <BooksField onValChanges={onValChanges} onValSelected={onValSelected} onValChecked={onValChecked} onValRating={onValRating}/>
       </CustomModal>
       {window.innerWidth >= 1024 ? (
-        <Table rows={books.booksList} cols={bookCols} />
+        <Table rows={filterBooks} cols={bookCols} />
       ) : (
         <BookCard rows={books.booksList} />
       )}

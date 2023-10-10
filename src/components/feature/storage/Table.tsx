@@ -24,6 +24,7 @@ function Table({ rows, cols }: any) {
         slots={{ noRowsOverlay: CustomNoRows}}
         pageSizeOptions={[10]}
         disableRowSelectionOnClick
+        disableColumnFilter 
       />
     </Box>
   );

@@ -159,9 +159,9 @@ function ResourceTab() {
           />
         </CustomButton>
       </Box>
-      <CustomModal title={t("add_new_resource")} addFunction={addNewResource}>
+      {/* <CustomModal title={t("add_new_resource")} addFunction={addNewResource} open={false} setModal={setOpenFilterModal}>
         <ResourceFields onValChanges={onValChanges} />
-      </CustomModal>
+      </CustomModal> */}
       {window.innerWidth >= 1024 ? (
         <Table rows={resources.resourcesList} cols={resourceCol} />
       ) : (
