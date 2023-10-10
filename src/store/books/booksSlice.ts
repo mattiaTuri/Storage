@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { BooksProps } from "../../models/Book";
-import { addBook, getBooksList, removeBook } from "../../controller/booksApi";
+import { addBook, filterBooks, getBooksList, removeBook } from "../../controller/booksApi";
 
 export const booksSlice = createSlice({
     name:"books",
@@ -20,9 +20,10 @@ export const booksSlice = createSlice({
         builder.addCase(removeBook.fulfilled, (state, action) => {
             state.booksList = action.payload
         })
+        builder.addCase(filterBooks.fulfilled, (state, action) => {
+            state.booksList = action.payload
+        })
     }
 })
-
-
 
 export default booksSlice.reducer

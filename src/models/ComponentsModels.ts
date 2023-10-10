@@ -35,7 +35,6 @@ export interface ModalProps {
     btnFunction: () => void;
     children:ReactNode;
     open:boolean;
-    setModal: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface TextInputProps{
@@ -68,4 +67,14 @@ export interface MenuLinkProps {
     fontSize: number;
     children: ReactNode;
     clickFunction: () => void;
+}
+
+export interface TableFilterProps{
+    genreName: string[];
+    setGenreName: Dispatch<SetStateAction<string[]>>;
+}
+
+export interface RatingStarsProps {
+    starsValue?:number;
+    functionChange?:(e:any) => void;
 }

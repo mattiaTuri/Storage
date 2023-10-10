@@ -8,7 +8,6 @@ export const storageTabSlice = createSlice({
     reducers:{
         changeTab: (state, val) => {
             state.value = val.payload
- 
         },
     }
 })

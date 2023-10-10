@@ -1,13 +1,7 @@
-import { Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material"
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material"
 import Box from "@mui/material/Box"
 import { useTranslation } from "react-i18next";
-import CustomButton from "../../shared/CustomButton";
-import { Dispatch, SetStateAction } from "react";
-
-interface TableFilterProps{
-    genreName: string[];
-    setGenreName: Dispatch<SetStateAction<string[]>>;
-}
+import { TableFilterProps } from "../../../models/ComponentsModels";
 
 function TableFilter({genreName, setGenreName} : TableFilterProps){
     const { t } = useTranslation();

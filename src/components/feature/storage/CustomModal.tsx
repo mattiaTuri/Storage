@@ -7,6 +7,7 @@ import CustomButton from "../../shared/CustomButton";
 import { t } from "i18next";
 import { ModalProps } from "../../../models/ComponentsModels";
 import { setGenreError, setLinkError, setTagError, setTitleError } from "../../../store/errors/errorsSlice";
+import { setAddBooksModalVisibility, setAddResourcesModalVisibility, setFiltersBooksModalVisibility, setFiltersResourcesModalVisibility } from "../../../store/modals/modalsSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -19,7 +20,7 @@ const style = {
   backgroundColor: "background.paper",
 };
 
-function CustomModal({ title, btnId, btnFunction, btnTitle, children, open, setModal}: ModalProps) {
+function CustomModal({ title, btnId, btnFunction, btnTitle, children, open}: ModalProps) {
   const dispatch = useDispatch();
 
   const cancelModal = () => {
@@ -27,7 +28,10 @@ function CustomModal({ title, btnId, btnFunction, btnTitle, children, open, setM
     dispatch(setGenreError({genreLabel:"", genreErrorVisibility:false}))
     dispatch(setLinkError({linkError:"", linkErrorVisibility:false}))
     dispatch(setTagError({tagError:"", tagErrorVisibility:false}))
-    setModal(false)
+    dispatch(setAddBooksModalVisibility(false))
+    dispatch(setAddResourcesModalVisibility(false))
+    dispatch(setFiltersBooksModalVisibility(false))
+    dispatch(setFiltersResourcesModalVisibility(false))
   }
 
   return (
@@ -38,10 +42,10 @@ function CustomModal({ title, btnId, btnFunction, btnTitle, children, open, setM
             {title}
           </Typography>
           <CustomButton id="closeModalButton" functionClick={() => cancelModal()}>
-          <CloseIcon
-              color="secondary"
-              className="z-10 ease-in-out group-hover:text-white"
-            />
+            <CloseIcon
+                color="secondary"
+                className="z-10 ease-in-out group-hover:text-white"
+              />
           </CustomButton>
         </div>
         {children}

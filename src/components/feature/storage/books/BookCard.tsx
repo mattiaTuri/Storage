@@ -1,4 +1,4 @@
-import { Card, CardContent, Rating, Typography } from "@mui/material";
+import { Card, CardContent, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import ContentCard from "../ContentCard";
 import { useEffect, useState } from "react";
@@ -6,8 +6,7 @@ import { BooksProps } from "../../../../models/Book";
 import ArrowChangeContentCard from "../ArrowChangeContentCard";
 import ActionDeleteBook from "./ActionDeleteBook";
 import { useTranslation } from "react-i18next";
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarIcon from '@mui/icons-material/Star';
+import RatingStars from "../../../shared/RatingStars";
 
 function BookCard({ rows }: { rows: BooksProps[] }) {
   const { t } = useTranslation();
@@ -51,7 +50,7 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
               <ContentCard row={t(`genres.${genre}`)} col={t("genre")} />
               <div className="grid grid-cols-[150px_auto]">
                 <Typography variant="caption" component="span">{t("rating")}:</Typography>
-                <Rating value={row.rating} precision={0.5} emptyIcon={<StarBorderIcon fontSize="small" color="primary"/>} icon={<StarIcon fontSize="small" color="primary"/>} color="primary" />
+                <RatingStars starsValue={row.rating}/>
               </div>
               <ContentCard
                 row={row.isRead == true ? t("yes") : t("no")}

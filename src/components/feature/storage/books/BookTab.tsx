@@ -1,12 +1,11 @@
 import Box from "@mui/material/Box";
 import CustomButton from "../../../shared/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal } from "../../../../store/modal/modalSlice";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CustomModal from "../CustomModal";
 import BooksField from "./BookFields";
 import Table from "../Table";
-import { addBook } from "../../../../controller/booksApi";
+import { addBook, filterBooks, getBooksList } from "../../../../controller/booksApi";
 import { BooksProps } from "../../../../models/Book";
 import { useState } from "react";
 import { booksSelector } from "../../../../store/books/selector";
@@ -19,19 +18,19 @@ import { GridRowId } from "@mui/x-data-grid";
 import BookCard from "./BookCard";
 import Chip from "@mui/material/Chip";
 import { setGenreError, setTitleError } from "../../../../store/errors/errorsSlice";
-import Rating from "@mui/material/Rating";
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarIcon from '@mui/icons-material/Star';
 import TableFilter from "../TableFilter";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import FilterListOffIcon from '@mui/icons-material/FilterListOff';
+import RatingStars from "../../../shared/RatingStars";
+import { setAddBooksModalVisibility, setFiltersBooksModalVisibility } from "../../../../store/modals/modalsSlice";
+import { modalsSelector } from "../../../../store/modals/selector";
 
 function BookTab() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const books = useSelector(booksSelector);
-  const [filterBooks, setFilterBooks] = useState<any[]>(books.booksList)
-  const [genreName, setGenreName] = useState<string[]>([]);
+  const modals = useSelector(modalsSelector)
+  const [multipleGenre, setMultipleGenre] = useState<string[]>([]);
   const initialBooksValues: BooksProps = {
     id: "",
     title: "",
@@ -41,11 +40,12 @@ function BookTab() {
     isRead: false,
   };
   const [bookValues, setBookValues] = useState<BooksProps>(initialBooksValues);
+
   const addNewBook = () => {
     const result = books.booksList.find((book) => book.title == bookValues.title)
     if(bookValues.title != "" && !result && bookValues.genre != ""){
       dispatch(addBook(bookValues));
-      dispatch(closeModal());
+      dispatch(setAddBooksModalVisibility(false))
       setBookValues(initialBooksValues);
     }else{
       bookValues.title == "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
@@ -123,7 +123,7 @@ function BookTab() {
       headerName: t("rating"),
       flex:1,
       renderCell: (params) => {
-        return <Rating value={params.value} precision={0.5} emptyIcon={<StarBorderIcon color="primary"/>} icon={<StarIcon color="primary"/>} color="primary" />;
+        return <RatingStars starsValue={params.value}/>
       },
     },
     {
@@ -134,7 +134,10 @@ function BookTab() {
       headerAlign: "center",
       align: "center",
       renderCell: (params) => {
-        return <Checkbox checked={params.row.isRead} sx={{color:"primary.main"}}/>;
+        return <Checkbox checked={params.row.isRead} sx={{color:"secondary.main",
+          '&.Mui-checked': {
+            color: "primary.main",
+          },}}/>;
       },
     },
     {
@@ -150,30 +153,20 @@ function BookTab() {
 
   const ApplyFilter = () => {
     const genres:any = document.querySelector("#genre-filter + input")
-
-    const arrayOfGenres = genres.value.split(",")
-
-    const filterBooks = books.booksList.filter(book => arrayOfGenres.find((genre:string) => {
-      if(book.genre == genre)
-      return book
-    }))
-    setFilterBooks(filterBooks)
-    setOpenFilterModal(false)
+    dispatch(filterBooks({genres, books}))
+    dispatch(setFiltersBooksModalVisibility(false))
   }
 
   const ClearFilter = () => {
-    setGenreName([])
-    setFilterBooks(books.booksList)
+    setMultipleGenre([])
+    dispatch(getBooksList())
   }
-
-  const [openFilterModal, setOpenFilterModal] = useState<boolean>(false)
-  const [openAddModal, setOpenAddModal] = useState<boolean>(false)
 
   return (
     <Box sx={{ width: "100%" }} className="flex flex-col h-full">
       <Box className="flex items-center justify-between my-4">
         <Box className="flex gap-4">
-          <CustomButton id="filter" functionClick={() => setOpenFilterModal(true)}>
+          <CustomButton id="filter" functionClick={() => dispatch(setFiltersBooksModalVisibility(true))}>
             <FilterListIcon color="secondary" className="z-10 ease-in-out group-hover:text-white"/>
           </CustomButton>
           <CustomButton id="clearFilter" functionClick={() => ClearFilter()}>
@@ -183,7 +176,7 @@ function BookTab() {
         <CustomButton
           id="btnAddBook"
           title={t("add")}
-          functionClick={() => setOpenAddModal(true)}
+          functionClick={() => dispatch(setAddBooksModalVisibility(true))}
         >
           <AddCircleOutlinedIcon
             color="secondary"
@@ -191,16 +184,16 @@ function BookTab() {
           />
         </CustomButton>
       </Box>
-      <CustomModal title={t("filters")} btnId="btnApplyFilter" btnTitle={t("apply_filters")} btnFunction={ApplyFilter} open={openFilterModal} setModal={setOpenFilterModal}>
-        <TableFilter genreName={genreName} setGenreName={setGenreName}/>
+      <CustomModal title={t("filters")} btnId="btnApplyFilter" btnTitle={t("apply_filters")} btnFunction={ApplyFilter} open={modals.filtersBooksModal.visibility}>
+        <TableFilter genreName={multipleGenre} setGenreName={setMultipleGenre}/>
       </CustomModal>
-      <CustomModal title={t("add_new_book")} btnId="btnAddBook" btnTitle={t("save")} btnFunction={addNewBook} open={openAddModal} setModal={setOpenAddModal}>
+      <CustomModal title={t("add_new_book")} btnId="btnAddBook" btnTitle={t("save")} btnFunction={addNewBook} open={modals.addBooksModal.visibility}>
         <BooksField onValChanges={onValChanges} onValSelected={onValSelected} onValChecked={onValChecked} onValRating={onValRating}/>
       </CustomModal>
       {window.innerWidth >= 1024 ? (
-        <Table rows={filterBooks} cols={bookCols} />
+        <Table rows={books.booksList} cols={bookCols} />
       ) : (
-        <BookCard rows={filterBooks} />
+        <BookCard rows={books.booksList} />
       )}
     </Box>
   );

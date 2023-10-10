@@ -7,13 +7,13 @@ import { FormControl, InputLabel, MenuItem, Rating, Typography } from "@mui/mate
 import TextInput from "../TextInput";
 import { useSelector } from "react-redux";
 import { errorsSelector } from "../../../../store/errors/selector";
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarIcon from '@mui/icons-material/Star';
+import RatingStars from "../../../shared/RatingStars";
+import { ChangeEvent } from "react";
 
 interface BooksFieldProps {
-  onValChanges: (e: any) => void;
+  onValChanges: (e: ChangeEvent<HTMLInputElement>) => void;
   onValSelected: (e:any) => void;
-  onValChecked: (e: any) => void;
+  onValChecked: (e:any) => void;
   onValRating: (e: any) => void;
 }
 
@@ -67,7 +67,7 @@ function BooksField({ onValChanges, onValSelected, onValChecked, onValRating }: 
               labelId="genre-label"
               name="genre"
               label={`${t("genre")} *`}
-              onChange={onValSelected}
+              onChange={(e) => onValSelected(e)}
               sx={{
                 backgroundColor: "text.secondary",
                 borderRadius: "4px",
@@ -90,7 +90,7 @@ function BooksField({ onValChanges, onValSelected, onValChecked, onValRating }: 
       <Box className="flex items-center gap-10">
         <Box className="flex gap-2">
           <Typography component="legend">{`${t("rating")} *`}</Typography>
-          <Rating id="rating" name="rating" precision={0.5} max={5} emptyIcon={<StarBorderIcon color="primary"/>} icon={<StarIcon color="primary"/>} onChange={onValRating}/>
+          <RatingStars functionChange={(e) => onValRating(e)}/>
         </Box>
         <FormControlLabel
           control={

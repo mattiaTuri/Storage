@@ -38,3 +38,14 @@ export const removeBook:any = createAsyncThunk(
         return newList
     }
 )
+
+export const filterBooks:any = createAsyncThunk(
+    "booksList/filterBooks", async (obj:any) => {
+        const arrayOfGenres = obj.genres.value.split(",")
+        const filterBooks:BooksProps[] = obj.books.booksList.filter((book: BooksProps) => arrayOfGenres.find((genre:string) => {
+            if(book.genre == genre)
+            return book
+          }))
+        return filterBooks
+    }
+)

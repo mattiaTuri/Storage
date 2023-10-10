@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import CustomButton from "../../../shared/CustomButton";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal, openModal } from "../../../../store/modal/modalSlice";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CustomModal from "../CustomModal";
 import Table from "../Table";
@@ -18,12 +17,14 @@ import ActionDeleteResource from "./ActionDeleteResource";
 import ResourceCard from "./ResourceCard";
 import { setTitleError, setLinkError, setTagError } from "../../../../store/errors/errorsSlice";
 import Chip from "@mui/material/Chip";
+import { setAddResourcesModalVisibility } from "../../../../store/modals/modalsSlice";
+import { modalsSelector } from "../../../../store/modals/selector";
 
 function ResourceTab() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const resources = useSelector(resourcesSelector);
- 
+  const modals = useSelector(modalsSelector)
   const initialResourcesValues:ResourcesProps={
     id: "",
     title: "",
@@ -38,7 +39,6 @@ function ResourceTab() {
     const resourceExist = resources.resourcesList.find((resource) => resource.title == resourceValues.title)
     if(!resourceExist && resourceValues.title != "" && resourceValues.link != "" && resourceValues.tag != ""){
       dispatch(addResource(resourceValues));
-      dispatch(closeModal());
       setResourceValues(initialResourcesValues)
     }else{
       resourceValues.title == "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
@@ -151,7 +151,7 @@ function ResourceTab() {
         <CustomButton
           id="btnAddResource"
           title={t("add")}
-          functionClick={() => dispatch(openModal())}
+          functionClick={() => dispatch(setAddResourcesModalVisibility(true))}
         >
           <AddCircleOutlinedIcon
             color="secondary"
@@ -159,9 +159,9 @@ function ResourceTab() {
           />
         </CustomButton>
       </Box>
-      {/* <CustomModal title={t("add_new_resource")} addFunction={addNewResource} open={false} setModal={setOpenFilterModal}>
+      <CustomModal title={t("add_new_resource")} btnId="btnAddResource" btnTitle={t("save")} btnFunction={addNewResource} open={modals.addResourcesModal.visibility} >
         <ResourceFields onValChanges={onValChanges} />
-      </CustomModal> */}
+      </CustomModal>
       {window.innerWidth >= 1024 ? (
         <Table rows={resources.resourcesList} cols={resourceCol} />
       ) : (
