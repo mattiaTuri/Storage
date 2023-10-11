@@ -1,17 +1,16 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import BooksChart from "../../feature/dashboard/charts/BooksChart";
-import Card from "@mui/material/Card";
 import ResourcesChart from "../../feature/dashboard/charts/ResourcesChart";
 import { useSelector } from "react-redux";
 import { booksSelector } from "../../../store/books/selector";
 import { resourcesSelector } from "../../../store/resources/selector";
-import TasksCard from "../../feature/dashboard/cards/tasks/TasksCard";
+import BooksReadAnnual from "../../feature/dashboard/cards/tasks/BooksReadAnnual";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
 import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
 import Loader from "../../shared/Loader";
 import { useTranslation } from "react-i18next";
+import BookChart from "../../feature/dashboard/charts/BooksChart";
 
 function Dashboard() {
   const { t } = useTranslation();
@@ -34,25 +33,13 @@ function Dashboard() {
         <Box className="h-full">
           <div className="flex flex-col gap-10 h-full">
             <div className="flex flex-col gap-10 md:grid grid-cols-3 h-[40%]">
-              <WelcomeCard t={t} />
-              <SummaryCard t={t} />
-              <TasksCard />
+              <WelcomeCard />
+              <SummaryCard />
+              <BooksReadAnnual books={books} />
             </div>
             <div className="flex flex-col gap-10 md:grid grid-cols-2 h-[60%]">
-              <Card className="border border-[#434343] grid grid-rows-[100px_auto] relative h-[300px] lg:h-full">
-                {books.loading ? (
-                  <BooksChart booksList={books.booksList} />
-                ) : (
-                  <Loader size={40} color="#0066ff" />
-                )}
-              </Card>
-              <Card className="border border-[#434343] grid grid-rows-[100px_auto] relative h-[300px] lg:h-full">
-                {resources.loading ? (
-                  <ResourcesChart resourcesList={resources.resourcesList} />
-                ) : (
-                  <Loader size={40} color="#0066ff" />
-                )}
-              </Card>
+              <BookChart books={books} />
+              <ResourcesChart resources={resources} />
             </div>
           </div>
         </Box>

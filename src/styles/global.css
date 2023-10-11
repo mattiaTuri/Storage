@@ -41,10 +41,16 @@ p, input{
   height: 100%;
 }
 
-.echarts-for-react{
-  height: 100% !important;
-  width: 100%;
-  position:absolute !important;
+@media screen and (min-width:1024px) {
+  .echarts-for-react{
+    height: 100% !important;
+    width: 100%;
+    position:absolute !important;
+  }
+
+  .bar-chart{
+    bottom: 40px;
+  }
 }
 
 .MuiDataGrid-cell{
@@ -60,11 +66,6 @@ p, input{
 .MuiFormControl-root[data-settings-input] > .MuiInputBase-root, .MuiInputBase-root[data-settings-select]{
   height: 40px !important;
 }
-
-/*
-#outlined-basic-label{
-  top:-5px !important;
-} */
 
 /*
 LIGHT MODE

@@ -5,11 +5,12 @@ import StatisticsNumberBox from "./StatisticsNumberBox";
 import { useSelector } from "react-redux";
 import { booksSelector } from "../../../../../store/books/selector";
 import { resourcesSelector } from "../../../../../store/resources/selector";
-import { TFunction } from "i18next";
+import { useTranslation } from "react-i18next";
 
-function SummaryCard({ t }: { t: TFunction }) {
+function SummaryCard() {
   const books = useSelector(booksSelector);
   const resources = useSelector(resourcesSelector);
+  const { t } = useTranslation();
 
   return (
     <Card className="border border-[#434343]">

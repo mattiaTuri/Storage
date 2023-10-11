@@ -14,11 +14,14 @@ function Sidebar() {
   return (
     <Box
       sx={{ backgroundColor: "background.paper" }}
-      className="h-full lg:flex flex-col justify-between items-center w-72 border-[#434343] border-r hidden"
+      className="h-full lg:flex flex-col justify-between items-center w-60 border-[#434343] border-r hidden"
     >
-      <Box className="relative top-10">
-        <Typography color="primary" variant="h6" component="h2">
+      <Box className="relative top-10 text-center">
+        <Typography color="primary" variant="h6" component="h1">
           {t("storage").toUpperCase()}
+        </Typography>
+        <Typography color="primary" variant="h6" component="h1">
+          APP
         </Typography>
       </Box>
       <Box id="actionsMenu" className="relative flex flex-col gap-2 w-[80%]">

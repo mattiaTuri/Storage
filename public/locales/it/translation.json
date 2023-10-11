@@ -3,6 +3,7 @@
     "greeting": "Ciao",
     "storage":"Storage",
     "summary": "Sommario",
+    "books_read_per_year": "Libri letti per anno",
     "welcome_phrase": "E' bello vederti di nuovo",
     "subtext_book_chart": "Diviso per generi",
     "subtext_resource_chart": "Diviso per tag",

@@ -6,9 +6,11 @@ import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../../../../store/user/selector";
 import Loader from "../../../../shared/Loader";
+import { useTranslation } from "react-i18next";
 
-function WelcomeCard({ t }: { t: any }) {
+function WelcomeCard() {
   const user = useSelector(userSelector);
+  const { t } = useTranslation();
   return (
     <Card className="border border-[#434343]">
       <CardContent className="flex justify-center items-center gap-10 h-full relative">

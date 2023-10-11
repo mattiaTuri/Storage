@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ChangeMenu, CheckActiveLink } from "../core/sidebar/sidebarFunctions";
 import { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-import { MenuLinkProps } from "../../models/ComponentsModels";
+import { SidebarLinkProps } from "../../models/ComponentsModels";
 
 function MenuLink({
   id,
@@ -11,7 +11,7 @@ function MenuLink({
   fontSize,
   children,
   clickFunction,
-}: MenuLinkProps) {
+}: SidebarLinkProps) {
   useEffect(() => {
     let sectionActive: string = window.location.pathname.replace("/", "");
     if (sectionActive === "") sectionActive = "dashboard";

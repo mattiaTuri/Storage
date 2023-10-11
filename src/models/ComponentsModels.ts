@@ -60,7 +60,7 @@ export interface LoaderProps {
     color: string;
 }
 
-export interface MenuLinkProps {
+export interface SidebarLinkProps {
     id: string;
     href: string;
     link: string;
