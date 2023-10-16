@@ -11,6 +11,10 @@ export const errorsSlice = createSlice({
             label:"",
             errorVisibility:false
         },
+        readingYearError:{
+            label:"",
+            errorVisibility:false
+        },
         linkError:{
             label:"",
             errorVisibility:false
@@ -29,6 +33,10 @@ export const errorsSlice = createSlice({
             state.genreError.label = action.payload.genreLabel
             state.genreError.errorVisibility = action.payload.genreErrorVisibility
         },
+        setReadingYearError: (state, action) => {
+            state.readingYearError.label = action.payload.readingYearLabel
+            state.readingYearError.errorVisibility = action.payload.readingYearErrorVisibility
+        },
         setLinkError: (state, action) => {
             state.linkError.label = action.payload.linkLabel
             state.linkError.errorVisibility = action.payload.linkErrorVisibility
@@ -40,5 +48,5 @@ export const errorsSlice = createSlice({
     }
 })
 
-export const { setTitleError, setGenreError, setLinkError, setTagError } = errorsSlice.actions
+export const { setTitleError, setGenreError, setReadingYearError, setLinkError, setTagError } = errorsSlice.actions
 export default errorsSlice.reducer

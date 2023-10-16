@@ -17,7 +17,7 @@ import ActionDeleteBook from "./ActionDeleteBook";
 import { GridRowId } from "@mui/x-data-grid";
 import BookCard from "./BookCard";
 import Chip from "@mui/material/Chip";
-import { setGenreError, setTitleError } from "../../../../store/errors/errorsSlice";
+import { setGenreError, setReadingYearError, setTitleError } from "../../../../store/errors/errorsSlice";
 import TableFilter from "../TableFilter";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import FilterListOffIcon from '@mui/icons-material/FilterListOff';
@@ -37,19 +37,20 @@ function BookTab() {
     author: "",
     genre: "",
     rating: null,
-    isRead: false,
+    reading_year:"",
   };
   const [bookValues, setBookValues] = useState<BooksProps>(initialBooksValues);
 
   const addNewBook = () => {
     const result = books.booksList.find((book) => book.title == bookValues.title)
-    if(bookValues.title != "" && !result && bookValues.genre != ""){
+    if(bookValues.title != "" && !result && bookValues.genre != "" && bookValues.reading_year.length == 4){
       dispatch(addBook(bookValues));
       dispatch(setAddBooksModalVisibility(false))
       setBookValues(initialBooksValues);
     }else{
       bookValues.title == "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
       bookValues.genre == "" && dispatch(setGenreError({genreLabel:t("errors.empty_field"), genreErrorVisibility:true}))
+      bookValues.reading_year.length != 4 && dispatch(setReadingYearError({readingYearLabel:t("errors.digit_year"), readingYearErrorVisibility:true}))
     }
   };
 
@@ -74,8 +75,12 @@ function BookTab() {
     setBookValues({ ...bookValues, [event.target.name]: event.target.value });
   }
 
-  const onValChecked = (event: any) => {
-    setBookValues({ ...bookValues, [event.target.name]: event.target.checked });
+  const onValChangesYear = (event: any) => {
+    const year = event.target.value
+    const regex = /[a-z]/
+    if(!regex.test(year)) setBookValues({ ...bookValues, [event.target.name]: year });
+
+    if(year.length == 4) dispatch(setReadingYearError({readingYearLabel:t(""), readingYearErrorVisibility:false}))
   };
 
   const onValRating = (event:any) => {
@@ -127,18 +132,18 @@ function BookTab() {
       },
     },
     {
-      field: "read",
-      headerName: t("is_read"),
-      type: "boolean",
-      flex:1,
+      field: "reading_year",
+      headerName: t("reading_year"),
       headerAlign: "center",
       align: "center",
+      flex:1,
       renderCell: (params) => {
-        return <Checkbox checked={params.row.isRead} sx={{color:"secondary.main",
-          '&.Mui-checked': {
-            color: "primary.main",
-          },}}/>;
-      },
+        return (
+          <Typography variant="caption" component="p">
+            {params.value}
+          </Typography>
+        );
+      }
     },
     {
       field: "actions",
@@ -188,7 +193,7 @@ function BookTab() {
         <TableFilter genreName={multipleGenre} setGenreName={setMultipleGenre}/>
       </CustomModal>
       <CustomModal title={t("add_new_book")} btnId="btnAddBook" btnTitle={t("save")} btnFunction={addNewBook} open={modals.addBooksModal.visibility}>
-        <BooksField onValChanges={onValChanges} onValSelected={onValSelected} onValChecked={onValChecked} onValRating={onValRating}/>
+        <BooksField bookValues={bookValues} onValChanges={onValChanges} onValSelected={onValSelected} onValChangesYear={onValChangesYear} onValRating={onValRating}/>
       </CustomModal>
       {window.innerWidth >= 1024 ? (
         <Table rows={books.booksList} cols={bookCols} />

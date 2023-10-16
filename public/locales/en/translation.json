@@ -17,7 +17,7 @@
     "pages": "Pages",
     "delete": "Delete",
     "rating": "Rating",
-    "is_read": "Read",
+    "reading_year": "Reading year",
     "link": "Link",
     "description": "Description",
     "tag": "Tag",
@@ -60,6 +60,7 @@
     "errors":{
         "empty_field": "This field cannot be empty",
         "book_present": "This book already exist",
-        "resource_present": "This resource already exist"
+        "resource_present": "This resource already exist",
+        "digit_year": "The year must contain 4 numbers"
     }
 }

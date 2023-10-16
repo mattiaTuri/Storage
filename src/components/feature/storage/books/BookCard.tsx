@@ -52,10 +52,7 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
                 <Typography variant="caption" component="span">{t("rating")}:</Typography>
                 <RatingStars starsValue={row.rating}/>
               </div>
-              <ContentCard
-                row={row.isRead == true ? t("yes") : t("no")}
-                col={t("is_read")}
-              />
+              <ContentCard row={row.reading_year} col={t("reading_year")} />
               <ActionDeleteBook id={row.id} />
             </CardContent>
           </Card>

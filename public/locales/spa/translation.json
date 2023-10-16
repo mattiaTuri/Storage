@@ -17,7 +17,7 @@
     "pages": "Páginas",
     "delete": "Eliminar",
     "rating": "Valoración",
-    "is_read": "Leído",
+    "reading_year": "Año de lectura",
     "link": "Enlace",
     "description": "Descripción",
     "tag": "Etiqueta",
@@ -60,6 +60,7 @@
     "errors":{
         "empty_field": "Este campo no puede estar vacío",
         "book_present": "Este libro ya existe",
-        "resource_present": "Este recurso ya existe"
+        "resource_present": "Este recurso ya existe",
+        "digit_year": "El año debe contener 4 números"
     }
 }

@@ -41,6 +41,8 @@ export interface TextInputProps{
     id: string;
     label:string;
     name: string;
+    type?:string;
+    value?:string;
     onChange: (e:any) => void;
     autofocus: boolean;
     labelError:string;

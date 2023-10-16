@@ -6,7 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import CustomButton from "../../shared/CustomButton";
 import { t } from "i18next";
 import { ModalProps } from "../../../models/ComponentsModels";
-import { setGenreError, setLinkError, setTagError, setTitleError } from "../../../store/errors/errorsSlice";
+import { setGenreError, setLinkError, setReadingYearError, setTagError, setTitleError } from "../../../store/errors/errorsSlice";
 import { setAddBooksModalVisibility, setAddResourcesModalVisibility, setFiltersBooksModalVisibility, setFiltersResourcesModalVisibility } from "../../../store/modals/modalsSlice";
 
 const style = {
@@ -26,6 +26,7 @@ function CustomModal({ title, btnId, btnFunction, btnTitle, children, open}: Mod
   const cancelModal = () => {
     dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
     dispatch(setGenreError({genreLabel:"", genreErrorVisibility:false}))
+    dispatch(setReadingYearError({readingYearLabel:"", readingYearErrorVisibility:false}))
     dispatch(setLinkError({linkError:"", linkErrorVisibility:false}))
     dispatch(setTagError({tagError:"", tagErrorVisibility:false}))
     dispatch(setAddBooksModalVisibility(false))

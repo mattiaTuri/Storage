@@ -1,6 +1,4 @@
 import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import { useTranslation } from "react-i18next";
 import Select from "@mui/material/Select";
 import { FormControl, InputLabel, MenuItem, Rating, Typography } from "@mui/material";
@@ -9,15 +7,17 @@ import { useSelector } from "react-redux";
 import { errorsSelector } from "../../../../store/errors/selector";
 import RatingStars from "../../../shared/RatingStars";
 import { ChangeEvent } from "react";
+import { BooksProps } from "../../../../models/Book";
 
 interface BooksFieldProps {
+  bookValues: BooksProps
   onValChanges: (e: ChangeEvent<HTMLInputElement>) => void;
   onValSelected: (e:any) => void;
-  onValChecked: (e:any) => void;
+  onValChangesYear: (e:any) => void;
   onValRating: (e: any) => void;
 }
 
-function BooksField({ onValChanges, onValSelected, onValChecked, onValRating }: BooksFieldProps) {
+function BooksField({ bookValues, onValChanges, onValSelected, onValChangesYear, onValRating }: BooksFieldProps) {
   const { t } = useTranslation();
   const errors = useSelector(errorsSelector)
 
@@ -88,18 +88,11 @@ function BooksField({ onValChanges, onValSelected, onValChecked, onValRating }: 
         </div>
       </Box>
       <Box className="flex items-center gap-10">
-        <Box className="flex gap-2">
-          <Typography component="legend">{`${t("rating")} *`}</Typography>
+        <Box className="flex gap-2 items-center">
+          <Typography className="w-max" component="legend">{`${t("rating")} *`}</Typography>
           <RatingStars functionChange={(e) => onValRating(e)}/>
         </Box>
-        <FormControlLabel
-          control={
-            <Checkbox id="isRead" name="isRead" onChange={(e) => onValChecked(e)} sx={{
-              color: "primary.main",      
-            }}/>
-          }
-          label={t("is_read")}
-        />
+        <TextInput id="reading_year" label={`${t("reading_year")} *`} name="reading_year" type="tel" value={bookValues.reading_year} onChange={(e) => onValChangesYear(e)} autofocus={false} labelError={errors.readingYearError.label} errorVisibility={errors.readingYearError.errorVisibility}/>
       </Box>
       <Box>
         <Typography component="span" variant="caption">* = {t("required_fields")}</Typography>
