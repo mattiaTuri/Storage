@@ -8,7 +8,6 @@ import { resourcesSelector } from "../../../store/resources/selector";
 import BooksReadAnnual from "../../feature/dashboard/cards/tasks/BooksReadAnnual";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
 import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
-import Loader from "../../shared/Loader";
 import { useTranslation } from "react-i18next";
 import BookChart from "../../feature/dashboard/charts/BooksChart";
 
