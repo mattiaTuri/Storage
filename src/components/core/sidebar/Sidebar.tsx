@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SettingsIcon from "@mui/icons-material/Settings";
-import GridViewIcon from '@mui/icons-material/GridView';
+import GridViewIcon from "@mui/icons-material/GridView";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Typography } from "@mui/material";
 import MenuLink from "../../shared/MenuLink";
@@ -44,7 +44,7 @@ function Sidebar() {
         >
           <MenuBookIcon className="ml-2" />
         </MenuLink>
-        <MenuLink
+        {/* <MenuLink
           id="boards"
           href="boards"
           link={t("boards")}
@@ -52,7 +52,7 @@ function Sidebar() {
           clickFunction={() => ChangeMenu("boards")}
         >
           <GridViewIcon className="ml-2" />
-        </MenuLink>
+        </MenuLink> */}
         <MenuLink
           id="settings"
           href="settings"
