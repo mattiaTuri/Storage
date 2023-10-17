@@ -5,6 +5,7 @@ import resourcesReducer from "./resources/resourcesSlice"
 import userReducer from "./user/userSlice"
 import storageTabReducer from "./storageTab/storageTabSlice"
 import errorsReducer from "./errors/errorsSlice"
+import boardsItemsReducer from "./boardsItems/boardsItemsSlice"
 
 export const store = configureStore({
     reducer:{
@@ -13,7 +14,8 @@ export const store = configureStore({
         resources: resourcesReducer,
         user: userReducer,
         storageTab: storageTabReducer,
-        errors:errorsReducer
+        errors:errorsReducer,
+        boardsItems:boardsItemsReducer
     }
 })
 

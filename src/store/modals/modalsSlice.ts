@@ -15,6 +15,9 @@ export const modalsSlice = createSlice({
         filtersResourcesModal:{
             visibility:false
         },
+        addItemsModal:{
+            visibility:false
+        }
     },
     reducers:{
         setAddBooksModalVisibility: (state, action) => {
@@ -29,8 +32,11 @@ export const modalsSlice = createSlice({
         setFiltersResourcesModalVisibility: (state, action) => {
             state.filtersBooksModal.visibility = action.payload
         },
+        setAddItemsModalVisibility: (state, action) => {
+            state.addItemsModal.visibility = action.payload
+        },
     }
 })
 
-export const { setAddBooksModalVisibility, setFiltersBooksModalVisibility, setAddResourcesModalVisibility, setFiltersResourcesModalVisibility } = modalsSlice.actions
+export const { setAddBooksModalVisibility, setFiltersBooksModalVisibility, setAddResourcesModalVisibility, setFiltersResourcesModalVisibility, setAddItemsModalVisibility } = modalsSlice.actions
 export default modalsSlice.reducer

@@ -37,7 +37,7 @@ export interface ModalProps {
     open:boolean;
 }
 
-export interface TextInputProps{
+export interface InputProps{
     id: string;
     label:string;
     name: string;

@@ -1,8 +1,8 @@
 import TextField from "@mui/material/TextField"
-import { TextInputProps } from "../../../models/ComponentsModels"
+import { InputProps } from "../../../models/ComponentsModels"
 import Typography from "@mui/material/Typography"
 
-function TextInput({id, label, name, type, value, onChange, autofocus, labelError, errorVisibility} : TextInputProps){
+function TextInput({id, label, name, type, value, onChange, autofocus, labelError, errorVisibility} : InputProps){
     return (
       <div>
         {errorVisibility && <Typography id={`${id}-label`} variant="caption" component="p" color="#ef233c" className="pb-2">{labelError}</Typography>}

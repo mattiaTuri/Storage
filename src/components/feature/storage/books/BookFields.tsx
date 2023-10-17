@@ -8,6 +8,7 @@ import { errorsSelector } from "../../../../store/errors/selector";
 import RatingStars from "../../../shared/RatingStars";
 import { ChangeEvent } from "react";
 import { BooksProps } from "../../../../models/Book";
+import SelectInput from "../../../shared/SelectInput";
 
 interface BooksFieldProps {
   bookValues: BooksProps
@@ -18,35 +19,8 @@ interface BooksFieldProps {
 }
 
 function BooksField({ bookValues, onValChanges, onValSelected, onValChangesYear, onValRating }: BooksFieldProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const errors = useSelector(errorsSelector)
-
-  const genresList = [
-    {
-      "key": "dystopian",
-      "translation":t("genres.dystopian"),
-    },
-    {
-      "key": "fantasy",
-      "translation":t("genres.fantasy"),
-    },
-    {
-      "key": "yellow",
-      "translation":t("genres.yellow"),
-    },
-    {
-      "key": "historian",
-      "translation":t("genres.historian"),
-    },
-    {
-      "key": "personal_grow",
-      "translation":t("genres.personal_grow"),
-    },
-    {
-      "key": "psychological",
-      "translation":t("genres.psychological"),
-    },
-  ];
 
   return (
     <Box
@@ -57,35 +31,7 @@ function BooksField({ bookValues, onValChanges, onValSelected, onValChangesYear,
       <Box className="flex flex-col gap-10">
         <TextInput id="title" label={`${t("title")} *`} name="title" onChange={(e) => onValChanges(e)} autofocus={true} labelError={errors.titleError.label} errorVisibility={errors.titleError.errorVisibility}/>
         <TextInput id="author" label={t("author")} name="author" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/>
-        <div className="w-full">
-        {errors.genreError.errorVisibility && <Typography variant="caption" component="p" color="#ef233c" className="pb-2">{errors.genreError.label}</Typography>}
-          <FormControl className="w-full">
-            <InputLabel sx={{ color: "text.primary" }} id="genre-label">
-              {`${t("genre")} *`}
-            </InputLabel>
-            <Select
-              labelId="genre-label"
-              name="genre"
-              label={`${t("genre")} *`}
-              onChange={(e) => onValSelected(e)}
-              sx={{
-                backgroundColor: "text.secondary",
-                borderRadius: "4px",
-                "& .MuiSelect-icon": {
-                  color: "text.primary",
-                },
-              }}
-            >
-              {genresList.map((genre: any) => {
-                return (
-                  <MenuItem key={genre.key} value={genre.key}>
-                    {genre.translation}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
-        </div>
+        <SelectInput id="genre" label={`${t("genre")} *`} name="genre" onChange={(e) => onValSelected(e)} autofocus={false} labelError={errors.genreError.label} errorVisibility={errors.genreError.errorVisibility}/>      
       </Box>
       <Box className="flex items-center gap-10">
         <Box className="flex gap-2 items-center">

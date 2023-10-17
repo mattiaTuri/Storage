@@ -12,14 +12,18 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { dark, light } from "./components/theme/theme";
 import { userSelector } from "./store/user/selector";
 import Loader from "./components/shared/Loader";
+import { getItemsList } from "./controller/boardsApi";
+import { boardsItemsSelector } from "./store/boardsItems/selector";
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
-
+  const items = useSelector(boardsItemsSelector);
   useEffect(() => {
     dispatch(getBooksList());
     dispatch(getResourcesList());
+    dispatch(getItemsList())
+    console.log(items.items)
     dispatch(getUser());
   }, []);
 

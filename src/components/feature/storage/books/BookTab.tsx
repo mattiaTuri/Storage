@@ -12,7 +12,6 @@ import { booksSelector } from "../../../../store/books/selector";
 import { useTranslation } from "react-i18next";
 import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
 import Typography from "@mui/material/Typography";
-import Checkbox from "@mui/material/Checkbox";
 import ActionDeleteBook from "./ActionDeleteBook";
 import { GridRowId } from "@mui/x-data-grid";
 import BookCard from "./BookCard";

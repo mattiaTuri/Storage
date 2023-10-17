@@ -7,7 +7,7 @@ import CustomButton from "../../shared/CustomButton";
 import { t } from "i18next";
 import { ModalProps } from "../../../models/ComponentsModels";
 import { setGenreError, setLinkError, setReadingYearError, setTagError, setTitleError } from "../../../store/errors/errorsSlice";
-import { setAddBooksModalVisibility, setAddResourcesModalVisibility, setFiltersBooksModalVisibility, setFiltersResourcesModalVisibility } from "../../../store/modals/modalsSlice";
+import { setAddBooksModalVisibility, setAddItemsModalVisibility, setAddResourcesModalVisibility, setFiltersBooksModalVisibility, setFiltersResourcesModalVisibility } from "../../../store/modals/modalsSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -33,6 +33,7 @@ function CustomModal({ title, btnId, btnFunction, btnTitle, children, open}: Mod
     dispatch(setAddResourcesModalVisibility(false))
     dispatch(setFiltersBooksModalVisibility(false))
     dispatch(setFiltersResourcesModalVisibility(false))
+    dispatch(setAddItemsModalVisibility(false))
   }
 
   return (
