@@ -22,7 +22,7 @@ function BookChart({ books }: { books: any }) {
     const genresList = books.booksList.map((elem: BooksProps) => elem.genre);
     const newGenresList = getChartValue(genresList);
     const genresTranslated = newGenresList.map((genre) => {
-      const name = genre.name;
+      const name = genre.key;
       return { name: t(`genres.${name}`), value: genre.value };
     });
     setChartData(genresTranslated);
