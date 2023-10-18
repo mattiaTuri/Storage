@@ -42,21 +42,23 @@
     "add_new_resource": "Aggiungi nuova risorsa",
     "add_new_item": "Aggiungi nuovo item",
     "no_data": "Nessun dato disponibile",
-    "yes":"Si",
-    "no": "No",
     "divided_by_genre": "Diviso per generi",
     "divided_by_tag": "Diviso per tag",
     "required_fields": "Campi obbligatori",
     "filters": "Filtri",
     "apply_filters": "Applica filtri",
     "clear_filters": "Pulisci filtri",
+    "new": "Nuovi",
+    "active": "Attivi",
+    "complete": "Completati",
     "genres":{
         "dystopian": "Distopico",
         "fantasy": "Fantasy",
         "yellow": "Giallo",
         "historian": "Storico",
         "personal_grow": "Crescita personale",
-        "psychological": "Psicologico"
+        "psychological": "Psicologico",
+        "writing": "Scrittura"
     },
     "errors":{
         "empty_field": "Questo campo non può essere vuoto",

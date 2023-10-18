@@ -5,7 +5,7 @@ import ResourcesChart from "../../feature/dashboard/charts/ResourcesChart";
 import { useSelector } from "react-redux";
 import { booksSelector } from "../../../store/books/selector";
 import { resourcesSelector } from "../../../store/resources/selector";
-import BooksReadAnnual from "../../feature/dashboard/cards/tasks/BooksReadAnnual";
+import BooksReadAnnual from "../../feature/dashboard/cards/annual/BooksReadAnnual";
 import SummaryCard from "../../feature/dashboard/cards/summary/SummaryCard";
 import WelcomeCard from "../../feature/dashboard/cards/personal/WelcomeCard";
 import { useTranslation } from "react-i18next";

@@ -20,7 +20,7 @@ const style = {
   backgroundColor: "background.paper",
 };
 
-function CustomModal({ title, btnId, btnFunction, btnTitle, children, open}: ModalProps) {
+function CustomModal({ title, btnId, btnFunction, btnTitle, children, open, initialValues, setValues}: ModalProps) {
   const dispatch = useDispatch();
 
   const cancelModal = () => {
@@ -34,6 +34,8 @@ function CustomModal({ title, btnId, btnFunction, btnTitle, children, open}: Mod
     dispatch(setFiltersBooksModalVisibility(false))
     dispatch(setFiltersResourcesModalVisibility(false))
     dispatch(setAddItemsModalVisibility(false))
+
+    setValues(initialValues)
   }
 
   return (

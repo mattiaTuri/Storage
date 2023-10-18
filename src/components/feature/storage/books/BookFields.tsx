@@ -1,14 +1,13 @@
 import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
-import Select from "@mui/material/Select";
-import { FormControl, InputLabel, MenuItem, Rating, Typography } from "@mui/material";
+import {Typography } from "@mui/material";
 import TextInput from "../TextInput";
 import { useSelector } from "react-redux";
 import { errorsSelector } from "../../../../store/errors/selector";
 import RatingStars from "../../../shared/RatingStars";
 import { ChangeEvent } from "react";
 import { BooksProps } from "../../../../models/Book";
-import SelectInput from "../../../shared/SelectInput";
+import SelectBox from "../../../shared/SelectBox";
 
 interface BooksFieldProps {
   bookValues: BooksProps
@@ -22,6 +21,37 @@ function BooksField({ bookValues, onValChanges, onValSelected, onValChangesYear,
   const { t } = useTranslation()
   const errors = useSelector(errorsSelector)
 
+  const genresList = [
+    {
+      "key": "dystopian",
+      "translation":t("genres.dystopian"),
+    },
+    {
+      "key": "fantasy",
+      "translation":t("genres.fantasy"),
+    },
+    {
+      "key": "yellow",
+      "translation":t("genres.yellow"),
+    },
+    {
+      "key": "historian",
+      "translation":t("genres.historian"),
+    },
+    {
+      "key": "personal_grow",
+      "translation":t("genres.personal_grow"),
+    },
+    {
+      "key": "psychological",
+      "translation":t("genres.psychological"),
+    },
+    {
+      "key": "writing",
+      "translation":t("genres.writing"),
+    },
+  ];
+
   return (
     <Box
       id="modal-modal-description"
@@ -31,7 +61,7 @@ function BooksField({ bookValues, onValChanges, onValSelected, onValChangesYear,
       <Box className="flex flex-col gap-10">
         <TextInput id="title" label={`${t("title")} *`} name="title" onChange={(e) => onValChanges(e)} autofocus={true} labelError={errors.titleError.label} errorVisibility={errors.titleError.errorVisibility}/>
         <TextInput id="author" label={t("author")} name="author" onChange={(e) => onValChanges(e)} autofocus={false} labelError={""} errorVisibility={false}/>
-        <SelectInput id="genre" label={`${t("genre")} *`} name="genre" onChange={(e) => onValSelected(e)} autofocus={false} labelError={errors.genreError.label} errorVisibility={errors.genreError.errorVisibility}/>      
+        <SelectBox id="genre" label={`${t("genre")} *`} selectLabel={`${t("genre")} *`} name="genre" value={bookValues.genre} onChange={(e) => onValSelected(e)} fixedLabel={false} labelError={errors.genreError.label} errorVisibility={errors.genreError.errorVisibility} objList={genresList} multiple={false}/>
       </Box>
       <Box className="flex items-center gap-10">
         <Box className="flex gap-2 items-center">

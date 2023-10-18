@@ -4,25 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CustomModal from "../CustomModal";
 import BooksField from "./BookFields";
-import Table from "../Table";
 import { addBook, filterBooks, getBooksList } from "../../../../controller/booksApi";
 import { BooksProps } from "../../../../models/Book";
 import { useState } from "react";
 import { booksSelector } from "../../../../store/books/selector";
 import { useTranslation } from "react-i18next";
-import { GridColDef } from "@mui/x-data-grid/models/colDef/gridColDef";
-import Typography from "@mui/material/Typography";
-import ActionDeleteBook from "./ActionDeleteBook";
-import { GridRowId } from "@mui/x-data-grid";
 import BookCard from "./BookCard";
-import Chip from "@mui/material/Chip";
 import { setGenreError, setReadingYearError, setTitleError } from "../../../../store/errors/errorsSlice";
 import TableFilter from "../TableFilter";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import FilterListOffIcon from '@mui/icons-material/FilterListOff';
-import RatingStars from "../../../shared/RatingStars";
 import { setAddBooksModalVisibility, setFiltersBooksModalVisibility } from "../../../../store/modals/modalsSlice";
 import { modalsSelector } from "../../../../store/modals/selector";
+import BooksTable from "./BooksTable";
 
 function BookTab() {
   const { t } = useTranslation();
@@ -35,7 +29,7 @@ function BookTab() {
     title: "",
     author: "",
     genre: "",
-    rating: null,
+    rating: 0,
     reading_year:"",
   };
   const [bookValues, setBookValues] = useState<BooksProps>(initialBooksValues);
@@ -83,77 +77,8 @@ function BookTab() {
   };
 
   const onValRating = (event:any) => {
-    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+    setBookValues({ ...bookValues, [event.target.name]: Number(event.target.value) });
   }
-
-  const bookCols: GridColDef[] = [
-    {
-      field: "title",
-      headerName: t("title"),
-      flex:1,
-      renderCell: (params) => {
-        return (
-          <Typography variant="caption" component="p">
-            {params.value}
-          </Typography>
-        );
-      },
-    },
-    {
-      field: "author",
-      headerName: t("author"),
-      flex:1,
-      renderCell: (params) => {
-        return (
-          <Typography variant="caption" component="p">
-            {params.value}
-          </Typography>
-        );
-      },
-    },
-    {
-      field: "genre",
-      headerName: t("genre"),
-      type: "string",
-      flex:1,
-      renderCell: (params) => {
-        const genre = params.value;
-        return <Chip label={t(`genres.${genre}`)} color="primary" />;
-      },
-    },
-    {
-      field: "rating",
-      headerAlign: "left",
-      headerName: t("rating"),
-      flex:1,
-      renderCell: (params) => {
-        return <RatingStars starsValue={params.value}/>
-      },
-    },
-    {
-      field: "reading_year",
-      headerName: t("reading_year"),
-      headerAlign: "center",
-      align: "center",
-      flex:1,
-      renderCell: (params) => {
-        return (
-          <Typography variant="caption" component="p">
-            {params.value}
-          </Typography>
-        );
-      }
-    },
-    {
-      field: "actions",
-      headerName: t("delete"),
-      type: "actions",
-      flex:1,
-      getActions: ({ id }: { id: GridRowId }) => {
-        return [<ActionDeleteBook id={id} />];
-      },
-    },
-  ];
 
   const ApplyFilter = () => {
     const genres:any = document.querySelector("#genre-filter + input")
@@ -188,14 +113,14 @@ function BookTab() {
           />
         </CustomButton>
       </Box>
-      <CustomModal title={t("filters")} btnId="btnApplyFilter" btnTitle={t("apply_filters")} btnFunction={ApplyFilter} open={modals.filtersBooksModal.visibility}>
+      <CustomModal title={t("filters")} btnId="btnApplyFilter" btnTitle={t("apply_filters")} btnFunction={ApplyFilter} open={modals.filtersBooksModal.visibility} initialValues={[]} setValues={setMultipleGenre}>
         <TableFilter genreName={multipleGenre} setGenreName={setMultipleGenre}/>
       </CustomModal>
-      <CustomModal title={t("add_new_book")} btnId="btnAddBook" btnTitle={t("save")} btnFunction={addNewBook} open={modals.addBooksModal.visibility}>
+      <CustomModal title={t("add_new_book")} btnId="btnAddBook" btnTitle={t("save")} btnFunction={addNewBook} open={modals.addBooksModal.visibility} initialValues={initialBooksValues} setValues={setBookValues}>
         <BooksField bookValues={bookValues} onValChanges={onValChanges} onValSelected={onValSelected} onValChangesYear={onValChangesYear} onValRating={onValRating}/>
       </CustomModal>
       {window.innerWidth >= 1024 ? (
-        <Table rows={books.booksList} cols={bookCols} />
+        <BooksTable rows={books.booksList} />
       ) : (
         <BookCard rows={books.booksList} />
       )}

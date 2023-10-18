@@ -6,15 +6,56 @@ import CustomButton from "../../shared/CustomButton";
 import { Divider } from "@mui/material";
 import InputSettings from "../../feature/settings/InputSettings";
 import UserAvatar from "../../shared/UserAvatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../../store/user/selector";
 import Loader from "../../shared/Loader";
 import { useTranslation } from "react-i18next";
-import LanguageSelect from "../../feature/settings/LanguageSelect";
+import { useState } from "react";
+import i18n from "../../../i18n";
+import { updateUser } from "../../../controller/userApi";
+import SelectBox from "../../shared/SelectBox";
 
 function Settings() {
   const { t } = useTranslation();
   const user = useSelector(userSelector);
+
+  const dispatch = useDispatch();
+  const [loadComplete, setLoadComplete] = useState<boolean>(false);
+
+  const changeLanguage = (e: any) => {
+    const lang = e.target.value;
+    i18n.changeLanguage(lang);
+    dispatch(
+      updateUser({
+        id: user.currentUser.id,
+        name: user.currentUser.name,
+        surname: user.currentUser.surname,
+        email: user.currentUser.email,
+        password: user.currentUser.password,
+        theme: user.currentUser.theme,
+        language: lang,
+      })
+    );
+    setLoadComplete(true);
+    setTimeout(() => {
+      setLoadComplete(false);
+    }, 5000);
+  };
+
+  const languagesList = [
+    {
+      "key": "it",
+      "translation":t("italian"),
+    },
+    {
+      "key": "en",
+      "translation":t("english"),
+    },
+    {
+      "key": "spa",
+      "translation":t("spanish"),
+    },
+  ];
 
   return (
     <Container maxWidth="xl" className="h-full overflow-auto">
@@ -82,7 +123,7 @@ function Settings() {
                   />
                 </Box>
                 <Box className="flex flex-col gap-4 pt-10 lg:pt-0">
-                  <LanguageSelect t={t} user={user.currentUser} />
+                  <SelectBox id="language" label={`${t("language")}`} selectLabel="" fixedLabel={true} name="language" value={user.currentUser.language} onChange={changeLanguage} objList={languagesList} saveIconLoading={loadComplete} multiple={false}/>
                   <SliderTheme t={t} user={user.currentUser} />
                 </Box>
               </Box>

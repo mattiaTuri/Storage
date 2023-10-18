@@ -37,17 +37,17 @@ function Boards(){
         booksBoardCol = {
             "col-1":{
                 id:"col-1",
-                colName:"New",
+                colName:t("new"),
                 books: boardsItems.items
             },
             "col-2":{
                 id:"col-2",
-                colName:"Active",
+                colName:t("active"),
                 books:[]
             },
             "col-3":{
                 id:"col-3",
-                colName:"Complete",
+                colName:t("complete"),
                 books:[]
             }       
         }
@@ -90,7 +90,7 @@ function Boards(){
                     <CustomButton id="btnAddNewItem" functionClick={() => dispatch(setAddItemsModalVisibility(true))}>
                         <AddCircleOutlinedIcon color="secondary" className="group-hover:text-white ease-in-out z-10"/>
                     </CustomButton>
-                    <CustomModal title={t("add_new_item")} btnId="btnAddItem" btnTitle={t("save")} btnFunction={addNewItem} open={modals.addItemsModal.visibility}>
+                    <CustomModal title={t("add_new_item")} btnId="btnAddItem" btnTitle={t("save")} btnFunction={addNewItem} open={modals.addItemsModal.visibility} initialValues={initialItemValues} setValues={setItemValues}>
                         <ItemsField itemValues={itemValues} setItemValues={setItemValues}/>
                     </CustomModal>
                     <Card className="grid grid-cols-3 gap-10 h-full p-4">                   

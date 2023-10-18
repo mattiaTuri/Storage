@@ -65,16 +65,16 @@ function BookChart({ books }: { books: any }) {
   };
 
   return (
-    <Card className="border border-[#434343] relative">
+    <Card className="border border-[#434343] relative" >
       {books.loading ? (
-        <CardContent>
+        <CardContent className="h-full">
           <Box className="flex flex-col justify-center items-center">
             <Typography component="span" gutterBottom>
               {t("books")}
             </Typography>
             <Typography component="p">{t("divided_by_genre")}</Typography>
           </Box>
-          <Box className="relative">
+          <Box className="relative h-full">
             {books.booksList.length > 0 ? (
               <ReactEChartsCore
                 className="pie-chart"

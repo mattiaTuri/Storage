@@ -2,6 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@m
 import Box from "@mui/material/Box"
 import { useTranslation } from "react-i18next";
 import { TableFilterProps } from "../../../models/ComponentsModels";
+import SelectBox from "../../shared/SelectBox";
 
 function TableFilter({genreName, setGenreName} : TableFilterProps){
     const { t } = useTranslation();
@@ -43,35 +44,7 @@ function TableFilter({genreName, setGenreName} : TableFilterProps){
 
     return (
         <Box className="flex flex-col gap-10 h-full w-full mt-10">
-          <FormControl className="w-full">
-              <InputLabel sx={{ color: "text.primary" }} id="genre-label">
-              {t("genre")}
-              </InputLabel>
-              <Select
-                  id="genre-filter"
-                  labelId="genre-label"
-                  name="genre"
-                  value={genreName}
-                  onChange={multipleSelectionGenre}
-                  label={`${t("genre")}`}
-                  sx={{
-                      backgroundColor: "text.secondary",
-                      borderRadius: "4px",
-                      "& .MuiSelect-icon": {
-                      color: "text.primary",
-                      },
-                  }}
-                  multiple
-              >
-              {genresList.map((genre: any) => {
-                  return (
-                  <MenuItem key={genre.key} value={genre.key}>
-                      {genre.translation}
-                  </MenuItem>
-                  );
-              })}
-              </Select>
-          </FormControl>
+           <SelectBox id="genre-filter" label={`${t("genre")} *`} selectLabel={`${t("genre")} *`} name="genre" value={genreName} onChange={(e) => multipleSelectionGenre(e)} fixedLabel={false} labelError="" errorVisibility={false} objList={genresList} multiple={true}/>
         </Box>
     )
 }

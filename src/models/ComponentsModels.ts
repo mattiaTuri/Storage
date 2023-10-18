@@ -1,6 +1,7 @@
 import { TFunction } from "i18next";
 import { User } from "./User";
 import { Dispatch, ReactNode, SetStateAction } from "react";
+import { SelectChangeEvent } from "@mui/material";
 
 export interface StatisticsNumberBoxProps {
     title: string;
@@ -32,9 +33,11 @@ export interface ModalProps {
     title:string;
     btnId:string;
     btnTitle:string;
-    btnFunction: () => void;
+    btnFunction: (e:SelectChangeEvent) => void;
     children:ReactNode;
     open:boolean;
+    initialValues:any;
+    setValues:Dispatch<SetStateAction<any>>;
 }
 
 export interface InputProps{
@@ -45,14 +48,29 @@ export interface InputProps{
     value?:string;
     onChange: (e:any) => void;
     autofocus: boolean;
-    labelError:string;
-    errorVisibility:boolean;
+    labelError?:string;
+    errorVisibility?:boolean;
+}
+
+export interface SelectProps{
+    id: string;
+    label:string;
+    selectLabel:string;
+    fixedLabel:boolean;
+    name: string;
+    value?:string | string[];
+    onChange: (e:any) => void;
+    labelError?:string;
+    errorVisibility?:boolean;
+    objList:any[];
+    saveIconLoading?:boolean;
+    multiple:boolean;
 }
 
 export interface CustomButtonProps {
     id: string;
     title?: string;
-    functionClick: () => void;
+    functionClick: (e:any) => void;
     children?: ReactNode;
     disabled?: boolean;
 }

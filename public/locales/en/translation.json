@@ -42,21 +42,23 @@
     "add_new_resource": "Add new resource",
     "add_new_item": "Add new item",
     "no_data": "No data available",
-    "yes":"Yes",
-    "no": "No",
     "divided_by_genre": "Divided by genre",
     "divided_by_tag": "Divided by tag",
     "required_fields": "Required fields",
     "filters": "Filters",
     "apply_filters": "Apply filters",
     "clear_filters": "Clear filters",
+    "new": "New",
+    "active": "Active",
+    "complete": "Complete",
     "genres":{
         "dystopian": "Dystopian",
         "fantasy": "Fantasy",
         "yellow": "Yellow",
         "historian": "Historian",
         "personal_grow": "Personal grow",
-        "psychological": "Psychological"
+        "psychological": "Psychological",
+        "writing": "Writing"
     },
     "errors":{
         "empty_field": "This field cannot be empty",

@@ -30,8 +30,6 @@ function ResourcesChart({ resources }: { resources: any }) {
 
   const option = {
     title: {
-      // text: "Resources statistics",
-      // subtext: "Divided by tag",
       left: "center",
       top: 20,
       textStyle: {
@@ -69,14 +67,14 @@ function ResourcesChart({ resources }: { resources: any }) {
   return (
     <Card className="border border-[#434343] relative">
       {resources.loading ? (
-        <CardContent>
+        <CardContent className="h-full">
           <Box className="flex flex-col justify-center items-center">
             <Typography component="span" gutterBottom>
               {t("resources")}
             </Typography>
             <Typography component="p">{t("divided_by_tag")}</Typography>
           </Box>
-          <Box className="relative">
+          <Box className="relative h-full">
             {resources.resourcesList.length > 0 ? (
               <ReactEChartsCore
                 className="pie-chart"

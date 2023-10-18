@@ -5,7 +5,7 @@ function CustomNoData() {
   const { t } = useTranslation();
   return (
     <div className="h-full flex items-center justify-center">
-      <Typography component="p">{t("no_data")}</Typography>
+      <Typography component="span">{t("no_data")}</Typography>
     </div>
   );
 }

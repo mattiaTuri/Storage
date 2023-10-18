@@ -50,13 +50,17 @@
     "filters": "Filtros",
     "apply_filters": "Aplicar filtros",
     "clear_filters": "Filtros limpios",
+    "new": "Nuevo",
+    "active": "Activos",
+    "complete": "Completado",
     "genres":{
         "dystopian": "Distópico",
         "fantasy": "Fantasía",
         "yellow": "Amarillo",
         "historian": "Historiador",
         "personal_grow": "Crecimiento personal",
-        "psychological": "Psicológico"
+        "psychological": "Psicológico",
+        "writing": "Escribir"
     },
     "errors":{
         "empty_field": "Este campo no puede estar vacío",

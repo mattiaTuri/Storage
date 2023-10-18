@@ -8,16 +8,23 @@ function AnnualBooksChart() {
   echarts.use([GridComponent, BarChart, CanvasRenderer]);
 
   const option = {
+    color: "#0066ff",
+    tooltip: {
+      textStyle: {
+        fontFamily: "Poppins-Regular",
+      },
+      trigger: "item",
+    },
     xAxis: {
       type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      data: ["2019", "2020", "2021", "2022", "2023"],
     },
     yAxis: {
       type: "value",
     },
     series: [
       {
-        data: [120, 200, 150, 80, 70, 110, 130],
+        data: [2, 5, 7, 3, 3],
         type: "bar",
       },
     ],
