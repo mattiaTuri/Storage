@@ -1,12 +1,12 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import ContentCard from "../ContentCard";
 import { useEffect, useState } from "react";
 import { BooksProps } from "../../../../models/Book";
 import ArrowChangeContentCard from "../ArrowChangeContentCard";
 import ActionDeleteBook from "./ActionDeleteBook";
 import { useTranslation } from "react-i18next";
 import RatingStars from "../../../shared/RatingStars";
+import TextBox from "../../../shared/TextBox";
 
 function BookCard({ rows }: { rows: BooksProps[] }) {
   const { t } = useTranslation();
@@ -45,14 +45,14 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
         return (
           <Card key={row.id}>
             <CardContent className="flex flex-col gap-1">
-              <ContentCard row={row.title} col={t("title")} />
-              <ContentCard row={row.author} col={t("author")} />
-              <ContentCard row={t(`genres.${genre}`)} col={t("genre")} />
+              <TextBox row={row.title} col={t("title")} />
+              <TextBox row={row.author} col={t("author")} />
+              <TextBox row={t(`genres.${genre}`)} col={t("genre")} />
               <div className="grid grid-cols-[150px_auto]">
                 <Typography variant="caption" component="span">{t("rating")}:</Typography>
                 <RatingStars starsValue={row.rating}/>
               </div>
-              <ContentCard row={row.reading_year} col={t("reading_year")} />
+              <TextBox row={row.reading_year} col={t("reading_year")} />
               <ActionDeleteBook id={row.id} />
             </CardContent>
           </Card>

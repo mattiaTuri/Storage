@@ -44,7 +44,7 @@ function Sidebar() {
         >
           <MenuBookIcon className="ml-2" />
         </MenuLink>
-        {/* <MenuLink
+        <MenuLink
           id="boards"
           href="boards"
           link={t("boards")}
@@ -52,7 +52,7 @@ function Sidebar() {
           clickFunction={() => ChangeMenu("boards")}
         >
           <GridViewIcon className="ml-2" />
-        </MenuLink> */}
+        </MenuLink>
         <MenuLink
           id="settings"
           href="settings"

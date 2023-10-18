@@ -1,10 +1,10 @@
 import { Card, CardContent } from "@mui/material";
 import Box from "@mui/material/Box";
-import ContentCard from "../ContentCard";
 import { useEffect, useState } from "react";
 import ArrowChangeContentCard from "../ArrowChangeContentCard";
 import { ResourcesProps } from "../../../../models/Resource";
 import ActionDeleteResource from "./ActionDeleteResource";
+import TextBox from "../../../shared/TextBox";
 
 function ResourceCard({ rows }: { rows: ResourcesProps[] }) {
   const [firstElem, setFirstElem] = useState<number>(0);
@@ -47,10 +47,10 @@ function ResourceCard({ rows }: { rows: ResourcesProps[] }) {
         return (
           <Card key={row.id}>
             <CardContent className="flex flex-col gap-1">
-              <ContentCard row={row.title} col="Title" />
-              <ContentCard row={row.link} col="Link" />
-              <ContentCard row={row.description} col="Description" />
-              <ContentCard row={row.tag} col="Tag" />
+              <TextBox row={row.title} col="Title" />
+              <TextBox row={row.link} col="Link" />
+              <TextBox row={row.description} col="Description" />
+              <TextBox row={row.tag} col="Tag" />
               <ActionDeleteResource id={row.id} />
             </CardContent>
           </Card>

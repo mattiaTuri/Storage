@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./components/core/sidebar/Sidebar";
 import NavbarMobile from "./components/core/navbarMobile/NavbarMobile";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getUser } from "./controller/userApi";
 import { getBooksList } from "./controller/booksApi";
 import { getResourcesList } from "./controller/resourcesApi";
@@ -13,17 +13,15 @@ import { dark, light } from "./components/theme/theme";
 import { userSelector } from "./store/user/selector";
 import Loader from "./components/shared/Loader";
 import { getItemsList } from "./controller/boardsApi";
-import { boardsItemsSelector } from "./store/boardsItems/selector";
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
-  const items = useSelector(boardsItemsSelector);
+
   useEffect(() => {
     dispatch(getBooksList());
     dispatch(getResourcesList());
     dispatch(getItemsList())
-    console.log(items.items)
     dispatch(getUser());
   }, []);
 

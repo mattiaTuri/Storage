@@ -18,10 +18,10 @@ export const router = createBrowserRouter([
         path: "/storage",
         element: <Storage />,
       },
-      // {
-      //   path: "/boards",
-      //   element: <Boards />,
-      // },
+      {
+        path: "/boards",
+        element: <Boards />,
+      },
       {
         path: "/settings",
         element: <Settings />,

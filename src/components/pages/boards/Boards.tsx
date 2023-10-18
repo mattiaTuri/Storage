@@ -12,7 +12,8 @@ import { modalsSelector } from "../../../store/modals/selector";
 import { useDispatch } from "react-redux";
 import { setAddItemsModalVisibility } from "../../../store/modals/modalsSlice";
 import { boardsItemsSelector } from "../../../store/boardsItems/selector";
-import { addItem, getItemsList } from "../../../controller/boardsApi";
+import { addItem } from "../../../controller/boardsApi";
+import CardBoards from "../../feature/boards/CardBoards";
 
 function Boards(){
 
@@ -30,10 +31,9 @@ function Boards(){
       };
 
     const [itemValues, setItemValues] = useState<any>(initialItemValues)
-    const [columns, setColumns] = useState<any>(booksBoardCol)
+    const [columns, setColumns] = useState<any>()
 
     useEffect(() => {
-        console.log("ok")
         booksBoardCol = {
             "col-1":{
                 id:"col-1",
@@ -52,7 +52,7 @@ function Boards(){
             }       
         }
         setColumns(booksBoardCol)
-    }, [columns])
+    }, [boardsItems.items])
 
     const handleOnDragEnd = (result:DropResult) => {
         const {destination, source} = result
@@ -106,23 +106,7 @@ function Boards(){
                                                 <Box className="flex flex-col items-center" {...provided.droppableProps} ref={provided.innerRef} sx={{height:"100%", backgroundColor:"background.default", borderRadius:"4px"}}>
                                                     {col.books.length > 0 && col.books.map((book:any, index:number) => {
                                                         return (
-                                                            <Draggable key={book.id} draggableId={book.id} index={index}>
-                                                                {provided => (
-                                                                    <Card className="my-2 flex w-[90%] border" sx={{borderColor:"primary.main"}} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>                                       
-                                                                        <Box className="w-2 h-auto" sx={{backgroundColor:"primary.main"}}></Box>
-                                                                        <CardContent className="w-full">
-                                                                            <Box className="flex gap-2">
-                                                                                <Typography component="span">Title:</Typography>
-                                                                                <Typography component="p">{book.title}</Typography>
-                                                                            </Box>
-                                                                            <Box className="flex gap-2">
-                                                                                <Typography component="span">Data inizio lettura:</Typography>
-                                                                                <Typography component="p"></Typography>
-                                                                            </Box>
-                                                                        </CardContent>                                                                                                                                                                                     
-                                                                    </Card>
-                                                                )}
-                                                            </Draggable>
+                                                            <CardBoards key={index} book={book} index={index}/>
                                                         )
                                                     })}
                                                     {provided.placeholder}
