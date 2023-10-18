@@ -35,25 +35,25 @@ function BookTab() {
   const [bookValues, setBookValues] = useState<BooksProps>(initialBooksValues);
 
   const addNewBook = () => {
-    const result = books.booksList.find((book) => book.title == bookValues.title)
-    if(bookValues.title != "" && !result && bookValues.genre != "" && bookValues.reading_year.length == 4){
+    const result = books.booksList.find((book) => book.title === bookValues.title)
+    if(bookValues.title !== "" && !result && bookValues.genre !== "" && bookValues.reading_year.length === 4){
       dispatch(addBook(bookValues));
       dispatch(setAddBooksModalVisibility(false))
       setBookValues(initialBooksValues);
     }else{
-      bookValues.title == "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
-      bookValues.genre == "" && dispatch(setGenreError({genreLabel:t("errors.empty_field"), genreErrorVisibility:true}))
-      bookValues.reading_year.length != 4 && dispatch(setReadingYearError({readingYearLabel:t("errors.digit_year"), readingYearErrorVisibility:true}))
+      bookValues.title === "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
+      bookValues.genre === "" && dispatch(setGenreError({genreLabel:t("errors.empty_field"), genreErrorVisibility:true}))
+      bookValues.reading_year.length !== 4 && dispatch(setReadingYearError({readingYearLabel:t("errors.digit_year"), readingYearErrorVisibility:true}))
     }
   };
 
   const onValChanges = (event: any) => {
-    if(event.target.name == "title"){
-      const result = books.booksList.find((book) => book.title == event.target.value)
+    if(event.target.name === "title"){
+      const result = books.booksList.find((book) => book.title === event.target.value)
       if(result){
         dispatch(setTitleError({titleLabel:t("errors.book_present"), titleErrorVisibility:true}))
       }else{     
-        if(event.target.value == ""){
+        if(event.target.value === ""){
           dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
         }else{
           dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
@@ -73,7 +73,7 @@ function BookTab() {
     const regex = /[a-z]/
     if(!regex.test(year)) setBookValues({ ...bookValues, [event.target.name]: year });
 
-    if(year.length == 4) dispatch(setReadingYearError({readingYearLabel:t(""), readingYearErrorVisibility:false}))
+    if(year.length === 4) dispatch(setReadingYearError({readingYearLabel:t(""), readingYearErrorVisibility:false}))
   };
 
   const onValRating = (event:any) => {

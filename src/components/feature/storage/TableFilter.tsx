@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material"
+import { SelectChangeEvent } from "@mui/material"
 import Box from "@mui/material/Box"
 import { useTranslation } from "react-i18next";
 import { TableFilterProps } from "../../../models/ComponentsModels";
@@ -44,7 +44,7 @@ function TableFilter({genreName, setGenreName} : TableFilterProps){
 
     return (
         <Box className="flex flex-col gap-10 h-full w-full mt-10">
-           <SelectBox id="genre-filter" label={`${t("genre")} *`} selectLabel={`${t("genre")} *`} name="genre" value={genreName} onChange={(e) => multipleSelectionGenre(e)} fixedLabel={false} labelError="" errorVisibility={false} objList={genresList} multiple={true}/>
+           <SelectBox id="genre-filter" label={`${t("genre")}`} selectLabel={`${t("genre")} *`} name="genre" value={genreName} onChange={(e) => multipleSelectionGenre(e)} fixedLabel={false} labelError="" errorVisibility={false} objList={genresList} multiple={true}/>
         </Box>
     )
 }

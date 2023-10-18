@@ -51,7 +51,7 @@ function SliderTheme({ t, user }: SliderThemeProps) {
       </Box>
       <Box className="flex gap-4">
         <Box className="flex items-center">
-          {user.theme == "light" ? <LightModeIcon /> : <DarkModeIcon />}
+          {user.theme === "light" ? <LightModeIcon /> : <DarkModeIcon />}
         </Box>
         <Box
           id="themeButton"

@@ -32,7 +32,7 @@ export const addResource:any = createAsyncThunk (
 
 export const removeResource:any = createAsyncThunk(
     "resourcesList/removeResource", async (val:any) => {
-        const newList = val.resources.resourcesList.filter((row: ResourcesProps) => row.id != val.id);
+        const newList = val.resources.resourcesList.filter((row: ResourcesProps) => row.id !== val.id);
         await remove(ref(database, "resources/" + val.id));
         return newList
     }

@@ -18,7 +18,7 @@ const countOccurences = (
     listWithoutDuplicate.forEach((elem) => {
       let occurences = 0;
       list.forEach((originalElem: string) => {
-        if (elem == originalElem) occurences++;
+        if (elem === originalElem) occurences++;
       });
       occurencesList.push({ key: elem, value: occurences });
     });
@@ -55,9 +55,9 @@ const countOccurences = (
 
     let yearsList:any[] = []
 
-    years.map((year) => {
+    years.forEach((year) => {
       const yearFound = readingYearsBooksList.find((elem:any) => elem.key.includes(year))
-        if(yearFound == undefined)
+        if(yearFound === undefined)
         yearsList.push({ key: year.toString(), value: 0 })
       })
  

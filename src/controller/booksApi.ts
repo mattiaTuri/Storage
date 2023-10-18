@@ -33,7 +33,7 @@ export const addBook:any = createAsyncThunk (
 
 export const removeBook:any = createAsyncThunk(
     "booksList/removeBook", async (val:any) => {
-        const newList = val.books.booksList.filter((row: BooksProps) => row.id != val.id);
+        const newList = val.books.booksList.filter((row: BooksProps) => row.id !== val.id);
         await remove(ref(database, "books/" + val.id));
         return newList
     }
@@ -43,7 +43,7 @@ export const filterBooks:any = createAsyncThunk(
     "booksList/filterBooks", async (obj:any) => {
         const arrayOfGenres = obj.genres.value.split(",")
         const filterBooks:BooksProps[] = obj.books.booksList.filter((book: BooksProps) => arrayOfGenres.find((genre:string) => {
-            if(book.genre == genre)
+            if(book.genre === genre)
             return book
           }))
         return filterBooks

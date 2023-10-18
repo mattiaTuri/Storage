@@ -16,7 +16,7 @@ function ResourceCard({ rows }: { rows: ResourcesProps[] }) {
   );
 
   const loadPreviusFiveElem = () => {
-    if (firstElem != 0) {
+    if (firstElem !== 0) {
       setRangeElements(rows.slice(firstElem - 5, lastElem - 5));
       setFirstElem(firstElem - 5);
       setLastElem(lastElem - 5);
@@ -34,7 +34,7 @@ function ResourceCard({ rows }: { rows: ResourcesProps[] }) {
   };
 
   useEffect(() => {
-    firstElem != 0 ? setDisabledLeftArrow(false) : setDisabledLeftArrow(true);
+    firstElem !== 0 ? setDisabledLeftArrow(false) : setDisabledLeftArrow(true);
     rows.length > lastElem
       ? setDisabledRightArrow(false)
       : setDisabledRightArrow(true);

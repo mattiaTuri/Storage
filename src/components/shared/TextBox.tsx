@@ -11,7 +11,7 @@ function TextBox({col, row}: TextBoxProps) {
     return (
         <Box className="grid grid-cols-[150px_auto]">
             <Typography variant="caption" component="span">{col}:</Typography>
-            {col == "Link" ? <Link href={row} target="_blank" variant="caption" className="break-all">{row}</Link> : <Typography variant="caption" component="p" className="break-all">{row}</Typography>}
+            {col === "Link" ? <Link href={row} target="_blank" variant="caption" className="break-all">{row}</Link> : <Typography variant="caption" component="p" className="break-all">{row}</Typography>}
         </Box>
     )
 }

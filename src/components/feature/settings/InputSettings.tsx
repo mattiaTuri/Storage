@@ -30,13 +30,13 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
   const enableDisbaledInputEdit = () => {
     if (disabledInput) {
       setDisabledInput(false);
-      if (id == "password") {
+      if (id === "password") {
         const passwordInput: any = document.getElementById("password")!;
         passwordInput.type = "text";
       }
     } else {
       setDisabledInput(true);
-      if (id == "password") {
+      if (id === "password") {
         const passwordInput: any = document.getElementById("password")!;
         passwordInput.type = "password";
       }
@@ -81,7 +81,7 @@ function InputSettings({ id, labelText, inputValue }: InputSettingsProps) {
           name={id}
           variant="outlined"
           defaultValue={inputValue}
-          type={id != "password" ? "text" : "password"}
+          type={id !== "password" ? "text" : "password"}
           onChange={(e) => editValue(e)}
         />
         <Box className="flex gap-4">

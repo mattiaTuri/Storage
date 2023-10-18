@@ -27,7 +27,7 @@ function App() {
 
   if (user.loading) {
     return (
-      <ThemeProvider theme={user.currentUser.theme == "light" ? light : dark}>
+      <ThemeProvider theme={user.currentUser.theme === "light" ? light : dark}>
         <CssBaseline />
         <Box
           sx={{ backgroundColor: "background.default" }}

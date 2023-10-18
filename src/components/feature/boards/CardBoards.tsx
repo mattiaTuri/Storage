@@ -12,8 +12,8 @@ function CardBoards({book, index}:any){
             <Card className="my-2 flex w-[90%] border" sx={{borderColor:"primary.main"}} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>                                       
             <Box className="w-2 h-auto" sx={{backgroundColor:"primary.main"}}></Box>
             <CardContent className="w-full">
-                    <TextBox col="Title" row={title}/>
-                    <TextBox col="Author" row={author}/>
+                <TextBox col="Title" row={title}/>
+                <TextBox col="Author" row={author}/>
             </CardContent>                                                                                                                                                                                     
         </Card>
         )}

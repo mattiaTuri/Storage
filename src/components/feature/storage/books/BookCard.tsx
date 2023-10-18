@@ -31,7 +31,7 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
   };
 
   useEffect(() => {
-    firstElem != 0 ? setDisabledLeftArrow(false) : setDisabledLeftArrow(true);
+    firstElem !== 0 ? setDisabledLeftArrow(false) : setDisabledLeftArrow(true);
     rows.length > lastElem
       ? setDisabledRightArrow(false)
       : setDisabledRightArrow(true);

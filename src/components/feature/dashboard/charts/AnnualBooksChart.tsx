@@ -5,8 +5,7 @@ import * as echarts from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { useSelector } from "react-redux";
 import { booksSelector } from "../../../../store/books/selector";
-import { BooksProps } from "../../../../models/Book";
-import { checkYears, getChartValue, getLastFiverYears, getReadingBooksValues } from "./chartsFunctions";
+import { getLastFiverYears, getReadingBooksValues } from "./chartsFunctions";
 import { useState } from "react";
 
 function AnnualBooksChart() {

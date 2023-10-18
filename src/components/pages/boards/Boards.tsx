@@ -1,6 +1,6 @@
-import { Card, CardContent, Container, Typography } from "@mui/material"
+import { Card, Container, Typography } from "@mui/material"
 import Box from "@mui/material/Box"
-import {DragDropContext, Draggable, DropResult, Droppable} from "react-beautiful-dnd"
+import {DragDropContext, DropResult, Droppable} from "react-beautiful-dnd"
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CustomButton from "../../shared/CustomButton";
