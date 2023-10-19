@@ -37,8 +37,6 @@ export const editItem:any = createAsyncThunk(
             const updates:any = {}
             updates["boards/"+item.id] = item
             update(ref(database), updates)
-        })
-
-        return items   
+        }) 
     }
 )

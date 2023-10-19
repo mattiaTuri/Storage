@@ -16,9 +16,7 @@ export const boardsItemsSlice = createSlice({
         builder.addCase(addItem.fulfilled, (state, action) => {
             state.items.push(action.payload);       
         })
-        builder.addCase(editItem.fulfilled, (state, action) => {
-            state.items = action.payload;      
-        })
+        builder.addCase(editItem.fulfilled, (state, action) => {})
     }
 })
 
