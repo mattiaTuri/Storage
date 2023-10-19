@@ -97,7 +97,7 @@ function Boards(){
                 </Box>
                 <Box className="h-full flex flex-col gap-4">
                     <Box>
-                        <CustomButton id="btnAddNewItem" functionClick={() => dispatch(setAddItemsModalVisibility(true))}>
+                        <CustomButton id="btnAddNewItem" title={t("add")} functionClick={() => dispatch(setAddItemsModalVisibility(true))}>
                             <AddCircleOutlinedIcon color="secondary" className="group-hover:text-white ease-in-out z-10"/>
                         </CustomButton>
                     </Box>

@@ -48,7 +48,7 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
               <TextBox row={row.title} col={t("title")} />
               <TextBox row={row.author} col={t("author")} />
               <TextBox row={t(`genres.${genre}`)} col={t("genre")} />
-              <div className="grid grid-cols-[150px_auto]">
+              <div className="flex flex-col">
                 <Typography variant="caption" component="span">{t("rating")}:</Typography>
                 <RatingStars starsValue={row.rating}/>
               </div>

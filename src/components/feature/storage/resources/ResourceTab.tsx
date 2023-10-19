@@ -95,7 +95,7 @@ function ResourceTab() {
       <CustomModal title={t("add_new_resource")} btnId="btnAddResource" btnTitle={t("save")} btnFunction={addNewResource} open={modals.addResourcesModal.visibility} initialValues={initialResourcesValues} setValues={setResourceValues}>
         <ResourceFields onValChanges={onValChanges} />
       </CustomModal>
-      {window.innerWidth >= 1024 ? (
+      {window.innerWidth >= 768 ? (
         <ResourcesTable rows={resources.resourcesList} />
       ) : (
         <ResourceCard rows={resources.resourcesList} />

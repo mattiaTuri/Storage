@@ -119,7 +119,7 @@ function BookTab() {
       <CustomModal title={t("add_new_book")} btnId="btnAddBook" btnTitle={t("save")} btnFunction={addNewBook} open={modals.addBooksModal.visibility} initialValues={initialBooksValues} setValues={setBookValues}>
         <BooksField bookValues={bookValues} onValChanges={onValChanges} onValSelected={onValSelected} onValChangesYear={onValChangesYear} onValRating={onValRating}/>
       </CustomModal>
-      {window.innerWidth >= 1024 ? (
+      {window.innerWidth >= 768 ? (
         <BooksTable rows={books.booksList} />
       ) : (
         <BookCard rows={books.booksList} />
