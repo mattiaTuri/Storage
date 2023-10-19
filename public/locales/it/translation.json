@@ -53,14 +53,17 @@
     "complete": "Completati",
     "creation_date": "Data di creazione",
     "genres":{
+        "adventure": "Avventura",
+        "biographical": "Biografia",
         "dystopian": "Distopico",
         "fantasy": "Fantasy",
-        "sci_fi": "Fantascienza",
-        "yellow": "Giallo",
+        "horror": "Horror",
         "historian": "Storico",
         "personal_grow": "Crescita personale",
         "psychological": "Psicologico",
-        "writing": "Scrittura"
+        "sci_fi": "Fantascienza",
+        "writing": "Scrittura",
+        "yellow": "Giallo"
     },
     "errors":{
         "empty_field": "Questo campo non può essere vuoto",

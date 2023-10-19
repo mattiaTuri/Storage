@@ -67,34 +67,6 @@ p, input{
   height: 40px !important;
 }
 
-/*
-LIGHT MODE
-
-white 
-sfondo grigio componenti  #f4f4f7
-grey    #bbc3ce
-black   #474862
-blue    #0066ff
-yellow  #efa135
-
-
-DARK MODE
-
-purple #522aa7
-white
-grey
-black #030204
-252627
-48443e
-
-LIGHT MODE
-text, icon = #474862
-
-
-
-DARK MODE
-sidebar, bordo tabelle = #262626
-body = #121212
-text, icon = white
-
-*/
+.MuiList-root[aria-labelledby="genre-filter-label"], .MuiList-root[aria-labelledby="genre-label"]{
+  height: 250px;
+}
