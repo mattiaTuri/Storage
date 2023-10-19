@@ -51,9 +51,11 @@
     "new": "Nuovi",
     "active": "Attivi",
     "complete": "Completati",
+    "creation_date": "Data di creazione",
     "genres":{
         "dystopian": "Distopico",
         "fantasy": "Fantasy",
+        "sci_fi": "Fantascienza",
         "yellow": "Giallo",
         "historian": "Storico",
         "personal_grow": "Crescita personale",

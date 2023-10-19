@@ -3,35 +3,10 @@ import Box from "@mui/material/Box"
 import { useTranslation } from "react-i18next";
 import { TableFilterProps } from "../../../models/ComponentsModels";
 import SelectBox from "../../shared/SelectBox";
+import { genresList } from "../../../date/genresList";
 
 function TableFilter({genreName, setGenreName} : TableFilterProps){
     const { t } = useTranslation();
-    const genresList = [
-        {
-          "key": "dystopian",
-          "translation":t("genres.dystopian"),
-        },
-        {
-          "key": "fantasy",
-          "translation":t("genres.fantasy"),
-        },
-        {
-          "key": "yellow",
-          "translation":t("genres.yellow"),
-        },
-        {
-          "key": "historian",
-          "translation":t("genres.historian"),
-        },
-        {
-          "key": "personal_grow",
-          "translation":t("genres.personal_grow"),
-        },
-        {
-          "key": "psychological",
-          "translation":t("genres.psychological"),
-        },
-      ];
 
       const multipleSelectionGenre = (event: SelectChangeEvent<typeof genreName>) => {
         const {

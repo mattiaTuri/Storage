@@ -6,11 +6,14 @@ import { errorsSelector } from "../../../store/errors/selector";
 import { setGenreError } from "../../../store/errors/errorsSlice";
 import { useDispatch } from "react-redux";
 import SelectBox from "../../shared/SelectBox";
+import { booksSelector } from "../../../store/books/selector";
+import { genresList } from "../../../date/genresList";
 
 function ItemsField({itemValues, setItemValues}:any){
     const { t } = useTranslation();
     const errors = useSelector(errorsSelector)
     const dispatch = useDispatch()
+    const books = useSelector(booksSelector)
    
     const onChangeVal = (event:any) => {
         setItemValues({ ...itemValues, [event.target.name]: event.target.value });
@@ -20,33 +23,6 @@ function ItemsField({itemValues, setItemValues}:any){
         dispatch(setGenreError({genreLabel:"", genreErrorVisibility:false}))
         setItemValues({ ...itemValues, [event.target.name]: event.target.value });
       }
-
-      const genresList = [
-        {
-          "key": "dystopian",
-          "translation":t("genres.dystopian"),
-        },
-        {
-          "key": "fantasy",
-          "translation":t("genres.fantasy"),
-        },
-        {
-          "key": "yellow",
-          "translation":t("genres.yellow"),
-        },
-        {
-          "key": "historian",
-          "translation":t("genres.historian"),
-        },
-        {
-          "key": "personal_grow",
-          "translation":t("genres.personal_grow"),
-        },
-        {
-          "key": "psychological",
-          "translation":t("genres.psychological"),
-        },
-      ];
     
     return (
         <Box className="flex flex-col gap-10 mt-10">

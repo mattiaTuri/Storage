@@ -23,7 +23,6 @@ export const addItem:any = createAsyncThunk (
             author,
             genre
         });
-
         return item;
     }
 )

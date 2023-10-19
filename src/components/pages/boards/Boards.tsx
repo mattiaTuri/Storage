@@ -87,9 +87,11 @@ function Boards(){
                     </Typography>
                 </Box>
                 <Box className="h-full flex flex-col gap-4">
-                    <CustomButton id="btnAddNewItem" functionClick={() => dispatch(setAddItemsModalVisibility(true))}>
-                        <AddCircleOutlinedIcon color="secondary" className="group-hover:text-white ease-in-out z-10"/>
-                    </CustomButton>
+                    <Box>
+                        <CustomButton id="btnAddNewItem" functionClick={() => dispatch(setAddItemsModalVisibility(true))}>
+                            <AddCircleOutlinedIcon color="secondary" className="group-hover:text-white ease-in-out z-10"/>
+                        </CustomButton>
+                    </Box>
                     <CustomModal title={t("add_new_item")} btnId="btnAddItem" btnTitle={t("save")} btnFunction={addNewItem} open={modals.addItemsModal.visibility} initialValues={initialItemValues} setValues={setItemValues}>
                         <ItemsField itemValues={itemValues} setItemValues={setItemValues}/>
                     </CustomModal>

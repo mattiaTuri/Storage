@@ -14,6 +14,7 @@ import { useState } from "react";
 import i18n from "../../../i18n";
 import { updateUser } from "../../../controller/userApi";
 import SelectBox from "../../shared/SelectBox";
+import { languagesList } from "../../../date/languagesList";
 
 function Settings() {
   const { t } = useTranslation();
@@ -41,21 +42,6 @@ function Settings() {
       setLoadComplete(false);
     }, 5000);
   };
-
-  const languagesList = [
-    {
-      "key": "it",
-      "translation":t("italian"),
-    },
-    {
-      "key": "en",
-      "translation":t("english"),
-    },
-    {
-      "key": "spa",
-      "translation":t("spanish"),
-    },
-  ];
 
   return (
     <Container maxWidth="xl" className="h-full overflow-auto">

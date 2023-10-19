@@ -6,8 +6,12 @@ import Typography from "@mui/material/Typography";
 import { SelectProps } from "../../models/ComponentsModels";
 import Box from "@mui/material/Box";
 import { Icon } from "@iconify/react";
+import { useTranslation } from "react-i18next";
 
 function SelectBox({id, label, selectLabel, fixedLabel, name, value, onChange, labelError, errorVisibility, objList, saveIconLoading, multiple} : SelectProps){
+
+  const {t} = useTranslation()
+
       return (
         <Box className="w-full">
           <FormControl className="w-full">
@@ -52,7 +56,7 @@ function SelectBox({id, label, selectLabel, fixedLabel, name, value, onChange, l
               {objList.map((elem: any) => {
                 return (
                   <MenuItem key={elem.key} value={elem.key}>
-                    {elem.translation}
+                    {t(elem.translation)}
                   </MenuItem>
                 );
               })}

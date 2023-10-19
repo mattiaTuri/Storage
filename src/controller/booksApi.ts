@@ -10,7 +10,6 @@ export const getBooksList:any = createAsyncThunk(
         response.forEach((elem:any) => {
             booksList.push(elem.val())
         })
-
         return booksList   
     }
 )

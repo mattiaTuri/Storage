@@ -51,9 +51,11 @@
     "new": "New",
     "active": "Active",
     "complete": "Complete",
+    "creation_date": "Creation date",
     "genres":{
         "dystopian": "Dystopian",
         "fantasy": "Fantasy",
+        "sci_fi": "Sci-fi",
         "yellow": "Yellow",
         "historian": "Historian",
         "personal_grow": "Personal grow",

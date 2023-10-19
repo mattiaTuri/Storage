@@ -5,7 +5,7 @@ import { addBook, filterBooks, getBooksList, removeBook } from "../../controller
 export const booksSlice = createSlice({
     name:"books",
     initialState: {
-        booksList: [] as BooksProps[],
+        booksList: [] as BooksProps[],     
         loading:false
     },
     reducers:{},

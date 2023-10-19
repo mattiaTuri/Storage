@@ -8,6 +8,7 @@ import RatingStars from "../../../shared/RatingStars";
 import { ChangeEvent } from "react";
 import { BooksProps } from "../../../../models/Book";
 import SelectBox from "../../../shared/SelectBox";
+import { genresList } from "../../../../date/genresList";
 
 interface BooksFieldProps {
   bookValues: BooksProps
@@ -20,37 +21,6 @@ interface BooksFieldProps {
 function BooksField({ bookValues, onValChanges, onValSelected, onValChangesYear, onValRating }: BooksFieldProps) {
   const { t } = useTranslation()
   const errors = useSelector(errorsSelector)
-
-  const genresList = [
-    {
-      "key": "dystopian",
-      "translation":t("genres.dystopian"),
-    },
-    {
-      "key": "fantasy",
-      "translation":t("genres.fantasy"),
-    },
-    {
-      "key": "yellow",
-      "translation":t("genres.yellow"),
-    },
-    {
-      "key": "historian",
-      "translation":t("genres.historian"),
-    },
-    {
-      "key": "personal_grow",
-      "translation":t("genres.personal_grow"),
-    },
-    {
-      "key": "psychological",
-      "translation":t("genres.psychological"),
-    },
-    {
-      "key": "writing",
-      "translation":t("genres.writing"),
-    },
-  ];
 
   return (
     <Box
