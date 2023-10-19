@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addItem, getItemsList } from "../../controller/boardsApi";
+import { addItem, editItem, getItemsList } from "../../controller/boardsApi";
 
 export const boardsItemsSlice = createSlice({
     name:"boardsItems",
@@ -15,6 +15,9 @@ export const boardsItemsSlice = createSlice({
         })
         builder.addCase(addItem.fulfilled, (state, action) => {
             state.items.push(action.payload);       
+        })
+        builder.addCase(editItem.fulfilled, (state, action) => {
+            state.items = action.payload;      
         })
     }
 })

@@ -12,7 +12,7 @@ import { modalsSelector } from "../../../store/modals/selector";
 import { useDispatch } from "react-redux";
 import { setAddItemsModalVisibility } from "../../../store/modals/modalsSlice";
 import { boardsItemsSelector } from "../../../store/boardsItems/selector";
-import { addItem } from "../../../controller/boardsApi";
+import { addItem, editItem } from "../../../controller/boardsApi";
 import CardBoards from "../../feature/boards/CardBoards";
 
 function Boards(){
@@ -28,6 +28,8 @@ function Boards(){
         title: "",
         author: "",
         genre: "",
+        column: 0,
+        row:0
       };
 
     const [itemValues, setItemValues] = useState<any>(initialItemValues)
@@ -52,6 +54,7 @@ function Boards(){
             }       
         }
         setColumns(booksBoardCol)
+        console.log("change")
     }, [boardsItems.items])
 
     const handleOnDragEnd = (result:DropResult) => {
@@ -60,15 +63,21 @@ function Boards(){
         if(!destination) return
 
         const column = columns[source.droppableId]
-        const newBooks = [...column.books]
+        const newBooks = JSON.parse(JSON.stringify(column.books));
         const [removed] = newBooks.splice(source.index, 1)
         newBooks.splice(destination.index, 0, removed)
 
+        for(let i = 0; i<newBooks.length; i++){
+            newBooks[i].row = i
+        }
+  
         setColumns({...columns, [source.droppableId]:{...column, books:newBooks}})
+        dispatch(editItem(newBooks))
     }
 
     const addNewItem = () => {
-        dispatch(addItem(itemValues));
+        const numberOfEl = columns["col-1"].books.length
+        dispatch(addItem({itemValues, numberOfEl}));
         setItemValues(initialItemValues)
         dispatch(setAddItemsModalVisibility(false))
     }

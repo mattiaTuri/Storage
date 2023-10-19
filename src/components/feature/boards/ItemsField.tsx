@@ -13,7 +13,6 @@ function ItemsField({itemValues, setItemValues}:any){
     const { t } = useTranslation();
     const errors = useSelector(errorsSelector)
     const dispatch = useDispatch()
-    const books = useSelector(booksSelector)
    
     const onChangeVal = (event:any) => {
         setItemValues({ ...itemValues, [event.target.name]: event.target.value });
