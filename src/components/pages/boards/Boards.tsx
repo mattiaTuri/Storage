@@ -147,7 +147,7 @@ function Boards() {
             {t("boards").toUpperCase()}
           </Typography>
         </Box>
-        <Box className="h-full flex flex-col gap-4">
+        <Box className="h-full flex flex-col gap-4 overflow-hidden">
           <Box>
             <CustomButton
               id="btnAddNewItem"
@@ -176,7 +176,10 @@ function Boards() {
               {columns != null &&
                 Object.entries(columns).map(([columnId, col]: any) => {
                   return (
-                    <Box key={columnId} className="flex flex-col">
+                    <Box
+                      key={columnId}
+                      className="flex flex-col overflow-y-scroll"
+                    >
                       <Box className="border-b">
                         <Typography component="p">{col.colName}</Typography>
                       </Box>
