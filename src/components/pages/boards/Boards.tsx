@@ -108,7 +108,7 @@ function Boards() {
 
       for (let i = 0; i < column1.books.length; i++) {
         column1.books[i].row = i;
-        column2.books[i].column = start.id;
+        column1.books[i].column = start.id;
       }
 
       for (let i = 0; i < column2.books.length; i++) {
