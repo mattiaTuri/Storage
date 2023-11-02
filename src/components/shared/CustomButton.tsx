@@ -11,6 +11,7 @@ function CustomButton({
   return (
     <Button
       id={id}
+      size="small"
       variant="outlined"
       sx={{
         border: 2,
@@ -27,13 +28,15 @@ function CustomButton({
       onClick={functionClick}
     >
       {children}
-      {title && <Typography
-        component="span"
-        className="group-hover:text-white duration-500 ease-in-out z-10"
-        color="text.primary"
-      >
-        {title}
-      </Typography>}   
+      {title && (
+        <Typography
+          component="span"
+          className="group-hover:text-white duration-500 ease-in-out z-10"
+          color="text.primary"
+        >
+          {title}
+        </Typography>
+      )}
     </Button>
   );
 }
