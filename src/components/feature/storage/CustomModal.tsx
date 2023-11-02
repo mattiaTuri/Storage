@@ -6,8 +6,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import CustomButton from "../../shared/CustomButton";
 import { t } from "i18next";
 import { ModalProps } from "../../../models/ComponentsModels";
-import { setGenreError, setLinkError, setReadingYearError, setTagError, setTitleError } from "../../../store/errors/errorsSlice";
-import { setAddBooksModalVisibility, setAddItemsModalVisibility, setAddResourcesModalVisibility, setFiltersBooksModalVisibility, setFiltersResourcesModalVisibility } from "../../../store/modals/modalsSlice";
+import {
+  setGenreError,
+  setLinkError,
+  setReadingYearError,
+  setTagError,
+  setTitleError,
+} from "../../../store/errors/errorsSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,23 +25,34 @@ const style = {
   backgroundColor: "background.paper",
 };
 
-function CustomModal({ title, btnId, btnFunction, btnTitle, children, open, initialValues, setValues}: ModalProps) {
+function CustomModal({
+  title,
+  btnId,
+  btnFunction,
+  btnTitle,
+  children,
+  open,
+  initialValues,
+  setValues,
+  closeFunction,
+}: ModalProps) {
   const dispatch = useDispatch();
 
   const cancelModal = () => {
-    dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
-    dispatch(setGenreError({genreLabel:"", genreErrorVisibility:false}))
-    dispatch(setReadingYearError({readingYearLabel:"", readingYearErrorVisibility:false}))
-    dispatch(setLinkError({linkError:"", linkErrorVisibility:false}))
-    dispatch(setTagError({tagError:"", tagErrorVisibility:false}))
-    dispatch(setAddBooksModalVisibility(false))
-    dispatch(setAddResourcesModalVisibility(false))
-    dispatch(setFiltersBooksModalVisibility(false))
-    dispatch(setFiltersResourcesModalVisibility(false))
-    dispatch(setAddItemsModalVisibility(false))
+    closeFunction();
+    dispatch(setTitleError({ titleLabel: "", titleErrorVisibility: false }));
+    dispatch(setGenreError({ genreLabel: "", genreErrorVisibility: false }));
+    dispatch(
+      setReadingYearError({
+        readingYearLabel: "",
+        readingYearErrorVisibility: false,
+      })
+    );
+    dispatch(setLinkError({ linkError: "", linkErrorVisibility: false }));
+    dispatch(setTagError({ tagError: "", tagErrorVisibility: false }));
 
-    setValues(initialValues)
-  }
+    setValues(initialValues);
+  };
 
   return (
     <Modal open={open}>
@@ -45,11 +61,14 @@ function CustomModal({ title, btnId, btnFunction, btnTitle, children, open, init
           <Typography id="modal-title" variant="h6" component="span">
             {title}
           </Typography>
-          <CustomButton id="closeModalButton" functionClick={() => cancelModal()}>
+          <CustomButton
+            id="closeModalButton"
+            functionClick={() => cancelModal()}
+          >
             <CloseIcon
-                color="secondary"
-                className="z-10 ease-in-out group-hover:text-white"
-              />
+              color="secondary"
+              className="z-10 ease-in-out group-hover:text-white"
+            />
           </CustomButton>
         </div>
         {children}

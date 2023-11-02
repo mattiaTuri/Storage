@@ -33,8 +33,19 @@ export const addItem: any = createAsyncThunk(
   }
 );
 
-export const editItem: any = createAsyncThunk(
-  "boardsItems/editItem",
+export const editItemPos: any = createAsyncThunk(
+  "boardsItems/editItemPos",
+  async (items: any) => {
+    items.forEach((item: any) => {
+      const updates: any = {};
+      updates["boards/" + item.id] = item;
+      update(ref(database), updates);
+    });
+  }
+);
+
+export const updateItem: any = createAsyncThunk(
+  "boardsItems/updateItem",
   async (items: any) => {
     items.forEach((item: any) => {
       const updates: any = {};

@@ -12,7 +12,11 @@ import { modalsSelector } from "../../../store/modals/selector";
 import { useDispatch } from "react-redux";
 import { setAddItemsModalVisibility } from "../../../store/modals/modalsSlice";
 import { boardsItemsSelector } from "../../../store/boardsItems/selector";
-import { addItem, editItem } from "../../../controller/boardsApi";
+import {
+  addItem,
+  editItemPos,
+  getItemsList,
+} from "../../../controller/boardsApi";
 import CardBoards from "../../feature/boards/CardBoards";
 
 function Boards() {
@@ -82,7 +86,8 @@ function Boards() {
         ...columns,
         [source.droppableId]: { ...column, books: newBooks },
       });
-      dispatch(editItem(newBooks));
+      dispatch(editItemPos(newBooks));
+      dispatch(getItemsList());
     } else {
       const sourceList = start.books.filter(
         (elem: any, index: number) => index !== source.index
@@ -122,8 +127,10 @@ function Boards() {
         [destination.droppableId]: column2,
       });
 
-      dispatch(editItem(newSourceList));
-      dispatch(editItem(newDestinationList));
+      const newList = newSourceList.concat(newDestinationList);
+
+      dispatch(editItemPos(newList));
+      dispatch(getItemsList());
     }
   };
 
@@ -168,6 +175,7 @@ function Boards() {
             open={modals.addItemsModal.visibility}
             initialValues={initialItemValues}
             setValues={setItemValues}
+            closeFunction={() => dispatch(setAddItemsModalVisibility(false))}
           >
             <ItemsField itemValues={itemValues} setItemValues={setItemValues} />
           </CustomModal>

@@ -7,20 +7,30 @@ import { useTranslation } from "react-i18next";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import CustomButton from "../../shared/CustomButton";
 import { Menu, MenuItem, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../../../controller/boardsApi";
+import {
+  editItemPos,
+  getItemsList,
+  removeItem,
+  updateItem,
+} from "../../../controller/boardsApi";
 import { useSelector } from "react-redux";
 import { boardsItemsSelector } from "../../../store/boardsItems/selector";
+import CustomModal from "../storage/CustomModal";
+import ItemsField from "./ItemsField";
 
 function CardBoards({ book, index }: any) {
   const { id, title, author, genre, column } = book;
   const { t } = useTranslation();
-
+  const boardsItems = useSelector(boardsItemsSelector);
   const [openMenu, setOpenMenu] = useState(null);
+  const [itemValues, setItemValues] = useState(book);
   const open = Boolean(openMenu);
   const dispatch = useDispatch();
-  const boardsItems = useSelector(boardsItemsSelector);
+
+  const [openEditModal, setOpenEditModal] = useState<boolean>(false);
+
   const openItemMenu = (event: any) => {
     setOpenMenu(event.currentTarget);
   };
@@ -30,12 +40,12 @@ function CardBoards({ book, index }: any) {
     setOpenMenu(null);
   };
 
-  const editItem = () => {
-    setOpenMenu(null);
-  };
-
   const saveItem = () => {
+    const items = [itemValues];
+    dispatch(editItemPos(items));
+    dispatch(getItemsList());
     setOpenMenu(null);
+    setOpenEditModal(false);
   };
 
   return (
@@ -72,7 +82,9 @@ function CardBoards({ book, index }: any) {
                   "aria-labelledby": "basic-button",
                 }}
               >
-                <MenuItem onClick={editItem}>{t("edit")}</MenuItem>
+                <MenuItem onClick={() => setOpenEditModal(true)}>
+                  {t("edit")}
+                </MenuItem>
                 <MenuItem onClick={deleteItem}>{t("cancel")}</MenuItem>
                 <MenuItem
                   onClick={saveItem}
@@ -82,6 +94,21 @@ function CardBoards({ book, index }: any) {
                 </MenuItem>
               </Menu>
             </Box>
+            <CustomModal
+              title={t("edit_book")}
+              btnId="btnEditBook"
+              btnTitle={t("save")}
+              btnFunction={saveItem}
+              open={openEditModal}
+              initialValues={book}
+              setValues={setItemValues}
+              closeFunction={() => setOpenEditModal(false)}
+            >
+              <ItemsField
+                itemValues={itemValues}
+                setItemValues={setItemValues}
+              />
+            </CustomModal>
             <Typography className="lg:order-first" component="span">
               {title}
             </Typography>

@@ -10,7 +10,11 @@ import { addResource } from "../../../../controller/resourcesApi";
 import ResourceFields from "./ResourceFields";
 import { useTranslation } from "react-i18next";
 import ResourceCard from "./ResourceCard";
-import { setTitleError, setLinkError, setTagError } from "../../../../store/errors/errorsSlice";
+import {
+  setTitleError,
+  setLinkError,
+  setTagError,
+} from "../../../../store/errors/errorsSlice";
 import { setAddResourcesModalVisibility } from "../../../../store/modals/modalsSlice";
 import { modalsSelector } from "../../../../store/modals/selector";
 import ResourcesTable from "./ResourcesTable";
@@ -19,63 +23,114 @@ function ResourceTab() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const resources = useSelector(resourcesSelector);
-  const modals = useSelector(modalsSelector)
-  const initialResourcesValues:ResourcesProps={
+  const modals = useSelector(modalsSelector);
+  const initialResourcesValues: ResourcesProps = {
     id: "",
     title: "",
     link: "",
     description: "",
     tag: "",
-  }
+  };
 
-  const [resourceValues, setResourceValues] = useState<ResourcesProps>(initialResourcesValues)
+  const [resourceValues, setResourceValues] = useState<ResourcesProps>(
+    initialResourcesValues
+  );
 
   const addNewResource = () => {
-    const resourceExist = resources.resourcesList.find((resource) => resource.title === resourceValues.title)
-    if(!resourceExist && resourceValues.title !== "" && resourceValues.link !== "" && resourceValues.tag !== ""){
+    const resourceExist = resources.resourcesList.find(
+      (resource) => resource.title === resourceValues.title
+    );
+    if (
+      !resourceExist &&
+      resourceValues.title !== "" &&
+      resourceValues.link !== "" &&
+      resourceValues.tag !== ""
+    ) {
       dispatch(addResource(resourceValues));
-      setResourceValues(initialResourcesValues)
-    }else{
-      resourceValues.title === "" && dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
-      resourceValues.link === "" && dispatch(setLinkError({linkLabel:t("errors.empty_field"), linkErrorVisibility:true}))
-      resourceValues.tag === "" && dispatch(setTagError({tagLabel:t("errors.empty_field"), tagErrorVisibility:true}))
+      setResourceValues(initialResourcesValues);
+    } else {
+      resourceValues.title === "" &&
+        dispatch(
+          setTitleError({
+            titleLabel: t("errors.empty_field"),
+            titleErrorVisibility: true,
+          })
+        );
+      resourceValues.link === "" &&
+        dispatch(
+          setLinkError({
+            linkLabel: t("errors.empty_field"),
+            linkErrorVisibility: true,
+          })
+        );
+      resourceValues.tag === "" &&
+        dispatch(
+          setTagError({
+            tagLabel: t("errors.empty_field"),
+            tagErrorVisibility: true,
+          })
+        );
     }
   };
 
   const onValChanges = (event: any) => {
-    if(event.target.name === "title"){
-      const resourceExist = resources.resourcesList.find((resource) => resource.title === event.target.value)
-      if(resourceExist){
-        dispatch(setTitleError({titleLabel:t("errors.resource_present"), titleErrorVisibility:true}))
-      }else{     
-        if(event.target.value === ""){
-          dispatch(setTitleError({titleLabel:t("errors.empty_field"), titleErrorVisibility:true}))
-        }else{
-          dispatch(setTitleError({titleLabel:"", titleErrorVisibility:false}))
+    if (event.target.name === "title") {
+      const resourceExist = resources.resourcesList.find(
+        (resource) => resource.title === event.target.value
+      );
+      if (resourceExist) {
+        dispatch(
+          setTitleError({
+            titleLabel: t("errors.resource_present"),
+            titleErrorVisibility: true,
+          })
+        );
+      } else {
+        if (event.target.value === "") {
+          dispatch(
+            setTitleError({
+              titleLabel: t("errors.empty_field"),
+              titleErrorVisibility: true,
+            })
+          );
+        } else {
+          dispatch(
+            setTitleError({ titleLabel: "", titleErrorVisibility: false })
+          );
         }
       }
     }
 
-    if(event.target.name === "link"){
-      if(event.target.value === ""){
-        dispatch(setLinkError({linkLabel:t("errors.empty_field"), linkErrorVisibility:true}))
-      }else{
-        dispatch(setLinkError({linkLabel:"", linkErrorVisibility:false}))
+    if (event.target.name === "link") {
+      if (event.target.value === "") {
+        dispatch(
+          setLinkError({
+            linkLabel: t("errors.empty_field"),
+            linkErrorVisibility: true,
+          })
+        );
+      } else {
+        dispatch(setLinkError({ linkLabel: "", linkErrorVisibility: false }));
       }
     }
 
-    if(event.target.name === "tag"){
-      if(event.target.value === ""){
-        dispatch(setTagError({tagLabel:t("errors.empty_field"), tagErrorVisibility:true}))
-      }else{
-        dispatch(setTagError({tagLabel:"", tagErrorVisibility:false}))
+    if (event.target.name === "tag") {
+      if (event.target.value === "") {
+        dispatch(
+          setTagError({
+            tagLabel: t("errors.empty_field"),
+            tagErrorVisibility: true,
+          })
+        );
+      } else {
+        dispatch(setTagError({ tagLabel: "", tagErrorVisibility: false }));
       }
     }
 
-      setResourceValues({
-        ...resourceValues,
-        [event.target.name]: event.target.value,
-      });
+    setResourceValues({
+      ...resourceValues,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
@@ -92,7 +147,16 @@ function ResourceTab() {
           />
         </CustomButton>
       </Box>
-      <CustomModal title={t("add_new_resource")} btnId="btnAddResource" btnTitle={t("save")} btnFunction={addNewResource} open={modals.addResourcesModal.visibility} initialValues={initialResourcesValues} setValues={setResourceValues}>
+      <CustomModal
+        title={t("add_new_resource")}
+        btnId="btnAddResource"
+        btnTitle={t("save")}
+        btnFunction={addNewResource}
+        open={modals.addResourcesModal.visibility}
+        initialValues={initialResourcesValues}
+        setValues={setResourceValues}
+        closeFunction={() => dispatch(setAddResourcesModalVisibility(false))}
+      >
         <ResourceFields onValChanges={onValChanges} />
       </CustomModal>
       {window.innerWidth >= 768 ? (
