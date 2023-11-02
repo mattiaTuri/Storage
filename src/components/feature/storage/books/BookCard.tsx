@@ -41,7 +41,7 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
   return (
     <Box className="flex flex-col gap-4">
       {rangeElements.map((row: any) => {
-        const genre = row.genre
+        const genre = row.genre;
         return (
           <Card key={row.id}>
             <CardContent className="flex flex-col gap-1">
@@ -49,8 +49,10 @@ function BookCard({ rows }: { rows: BooksProps[] }) {
               <TextBox row={row.author} col={t("author")} />
               <TextBox row={t(`genres.${genre}`)} col={t("genre")} />
               <div className="flex flex-col">
-                <Typography variant="caption" component="span">{t("rating")}:</Typography>
-                <RatingStars starsValue={row.rating}/>
+                <Typography variant="caption" component="span">
+                  {t("rating")}:
+                </Typography>
+                <RatingStars starsValue={row.rating} />
               </div>
               <TextBox row={row.reading_year} col={t("reading_year")} />
               <ActionDeleteBook id={row.id} />

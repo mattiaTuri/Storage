@@ -8,6 +8,10 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import CustomButton from "../../shared/CustomButton";
 import { Menu, MenuItem, Typography } from "@mui/material";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeItem } from "../../../controller/boardsApi";
+import { useSelector } from "react-redux";
+import { boardsItemsSelector } from "../../../store/boardsItems/selector";
 
 function CardBoards({ book, index }: any) {
   const { id, title, author, genre, column } = book;
@@ -15,12 +19,25 @@ function CardBoards({ book, index }: any) {
 
   const [openMenu, setOpenMenu] = useState(null);
   const open = Boolean(openMenu);
-  const handleClick = (event: any) => {
+  const dispatch = useDispatch();
+  const boardsItems = useSelector(boardsItemsSelector);
+  const openItemMenu = (event: any) => {
     setOpenMenu(event.currentTarget);
   };
-  const closeItemMenu = () => {
+
+  const deleteItem = () => {
+    dispatch(removeItem({ id, boardsItems }));
     setOpenMenu(null);
   };
+
+  const editItem = () => {
+    setOpenMenu(null);
+  };
+
+  const saveItem = () => {
+    setOpenMenu(null);
+  };
+
   return (
     <Draggable key={id} draggableId={id} index={index}>
       {(provided) => (
@@ -39,7 +56,7 @@ function CardBoards({ book, index }: any) {
             <Box>
               <CustomButton
                 id="btnMenuList"
-                functionClick={(e) => handleClick(e)}
+                functionClick={(e) => openItemMenu(e)}
               >
                 <MoreHorizIcon
                   color="secondary"
@@ -50,15 +67,15 @@ function CardBoards({ book, index }: any) {
                 id="basic-menu"
                 anchorEl={openMenu}
                 open={open}
-                onClose={closeItemMenu}
+                onClose={() => setOpenMenu(null)}
                 MenuListProps={{
                   "aria-labelledby": "basic-button",
                 }}
               >
-                <MenuItem onClick={closeItemMenu}>{t("edit")}</MenuItem>
-                <MenuItem onClick={closeItemMenu}>{t("cancel")}</MenuItem>
+                <MenuItem onClick={editItem}>{t("edit")}</MenuItem>
+                <MenuItem onClick={deleteItem}>{t("cancel")}</MenuItem>
                 <MenuItem
-                  onClick={closeItemMenu}
+                  onClick={saveItem}
                   disabled={column === "complete" ? false : true}
                 >
                   {t("save")}
