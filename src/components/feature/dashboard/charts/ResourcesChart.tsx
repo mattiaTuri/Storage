@@ -25,7 +25,12 @@ function ResourcesChart({ resources }: { resources: any }) {
     const tagList = resources.resourcesList.map(
       (elem: ResourcesProps) => elem.tag
     );
-    setChartData(getChartValue(tagList));
+    const newTagList = getChartValue(tagList);
+    // const p = newTagList.map((genre) => {
+    //   const name = genre.key;
+    //   return { name: name, value: genre.value };
+    // });
+    setChartData(newTagList);
   }, [resources.resourcesList]);
 
   const option = {

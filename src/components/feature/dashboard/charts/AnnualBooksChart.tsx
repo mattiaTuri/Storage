@@ -11,8 +11,8 @@ import { useState } from "react";
 function AnnualBooksChart() {
   echarts.use([GridComponent, BarChart, CanvasRenderer]);
 
-  const books = useSelector(booksSelector)
-  const [years] = useState<string[]>(getLastFiverYears())
+  const books = useSelector(booksSelector);
+  const [years] = useState<string[]>(getLastFiverYears());
 
   const option = {
     color: "#0066ff",

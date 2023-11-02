@@ -48,6 +48,7 @@ function ResourceTab() {
     ) {
       dispatch(addResource(resourceValues));
       setResourceValues(initialResourcesValues);
+      dispatch(setAddResourcesModalVisibility(false));
     } else {
       resourceValues.title === "" &&
         dispatch(

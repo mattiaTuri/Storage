@@ -22,7 +22,7 @@ function BookChart({ books }: { books: any }) {
     const genresList = books.booksList.map((elem: BooksProps) => elem.genre);
     const newGenresList = getChartValue(genresList);
     const genresTranslated = newGenresList.map((genre) => {
-      const name = genre.key;
+      const name = genre.name;
       return { name: t(`genres.${name}`), value: genre.value };
     });
     setChartData(genresTranslated);
@@ -65,7 +65,7 @@ function BookChart({ books }: { books: any }) {
   };
 
   return (
-    <Card className="border border-[#434343] relative" >
+    <Card className="border border-[#434343] relative">
       {books.loading ? (
         <CardContent className="h-full">
           <Box className="flex flex-col justify-center items-center">
