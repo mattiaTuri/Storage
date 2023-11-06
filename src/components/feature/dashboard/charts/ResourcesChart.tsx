@@ -26,10 +26,6 @@ function ResourcesChart({ resources }: { resources: any }) {
       (elem: ResourcesProps) => elem.tag
     );
     const newTagList = getChartValue(tagList);
-    // const p = newTagList.map((genre) => {
-    //   const name = genre.key;
-    //   return { name: name, value: genre.value };
-    // });
     setChartData(newTagList);
   }, [resources.resourcesList]);
 

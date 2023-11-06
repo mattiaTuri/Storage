@@ -36,15 +36,6 @@ function SummaryCard() {
           primaryColor="#0066ff"
           secondaryColor="#17c0fd"
         />
-        <StatisticsNumberBox
-          title="Tasks"
-          tab=""
-          link=""
-          data={0}
-          loading={books.loading}
-          primaryColor="#522aa7"
-          secondaryColor="#6d39de"
-        />
       </CardContent>
     </Card>
   );
