@@ -17,56 +17,68 @@
   src: url("../../public/fonts/Poppins-Black.ttf");
 }
 
-*{
+* {
   padding: 0;
-  margin:0;
+  margin: 0;
   box-sizing: border-box;
 }
 
-h2, button, .MuiPickersCalendarHeader-label, span, .MuiDataGrid-columnHeaderTitle, a {
+h2,
+button,
+.MuiPickersCalendarHeader-label,
+span,
+.MuiDataGrid-columnHeaderTitle,
+a {
   font-family: "Poppins-Bold" !important;
 }
 
-h1{
+h1 {
   font-family: "Poppins-Black" !important;
 }
 
-p, input{
+p,
+input {
   font-family: "Poppins-Regular" !important;
 }
 
-.MuiDataGrid-root{
+.MuiDataGrid-root {
   position: absolute !important;
   width: 100%;
   height: 100%;
 }
 
-@media screen and (min-width:1024px) {
-  .echarts-for-react{
+@media screen and (min-width: 1024px) {
+  .echarts-for-react {
     height: 100% !important;
     width: 100%;
-    position:absolute !important;
+    position: absolute !important;
   }
 
-  .bar-chart{
+  .bar-chart {
     bottom: 40px;
   }
 }
 
-.MuiDataGrid-cell{
+.MuiDataGrid-cell {
   white-space: normal !important;
   word-break: break-all;
 }
 
-.MuiSvgIcon-root[data-testid="AddCircleOutlinedIcon"] > path, .MuiSvgIcon-root[data-testid="CloseIcon"] > path{
+.MuiSvgIcon-root[data-testid="AddCircleOutlinedIcon"] > path,
+.MuiSvgIcon-root[data-testid="CloseIcon"] > path {
   transition-duration: 500ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.MuiFormControl-root[data-settings-input] > .MuiInputBase-root, .MuiInputBase-root[data-settings-select]{
+.MuiFormControl-root[data-settings-input] > .MuiInputBase-root,
+.MuiInputBase-root[data-settings-select] {
   height: 40px !important;
 }
 
-.MuiList-root[aria-labelledby="genre-filter-label"], .MuiList-root[aria-labelledby="genre-label"]{
+.MuiList-root[aria-labelledby="genre-label"] {
   height: 250px;
+}
+
+.MuiList-root[aria-labelledby="genre-filter-label"] {
+  height: max-content;
 }
