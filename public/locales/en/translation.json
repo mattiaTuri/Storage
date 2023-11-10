@@ -52,6 +52,7 @@
   "active": "Active",
   "complete": "Complete",
   "edit_book": "Edit book",
+  "rate_book": "Rate book",
   "genres": {
     "adventure": "Adventure",
     "biographical": "Biographical",

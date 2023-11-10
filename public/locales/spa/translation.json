@@ -55,6 +55,7 @@
   "complete": "Completado",
   "creation_date": "Fecha de creación",
   "edit_book": "Editar libro",
+  "rate_book": "Analizar libro",
   "genres": {
     "adventure": "Aventura",
     "biographical": "Biografía",

@@ -18,34 +18,140 @@ import {
 import { useSelector } from "react-redux";
 import { boardsItemsSelector } from "../../../store/boardsItems/selector";
 import CustomModal from "../storage/CustomModal";
-import ItemsField from "./ItemsField";
+import CardFields from "./CardFields";
+import BooksField from "../storage/books/BookFields";
+import {
+  setGenreError,
+  setReadingYearError,
+  setTitleError,
+} from "../../../store/errors/errorsSlice";
+import { booksSelector } from "../../../store/books/selector";
+import { addBook } from "../../../controller/booksApi";
 
 function CardBoards({ book, index }: any) {
   const { id, title, author, genre, column } = book;
   const { t } = useTranslation();
   const boardsItems = useSelector(boardsItemsSelector);
-  const [openMenu, setOpenMenu] = useState(null);
-  const [itemValues, setItemValues] = useState(book);
-  const open = Boolean(openMenu);
+  const [openCardMenu, setOpenCardMenu] = useState(null);
+  const [bookValues, setBookValues] = useState(book);
+  const books = useSelector(booksSelector);
+  const open = Boolean(openCardMenu);
   const dispatch = useDispatch();
 
   const [openEditModal, setOpenEditModal] = useState<boolean>(false);
-
+  const [openSaveModal, setOpenSaveModal] = useState<boolean>(false);
   const openItemMenu = (event: any) => {
-    setOpenMenu(event.currentTarget);
+    setOpenCardMenu(event.currentTarget);
   };
 
   const deleteItem = () => {
     dispatch(removeItem({ id, boardsItems }));
-    setOpenMenu(null);
+    setOpenCardMenu(null);
   };
 
-  const saveItem = () => {
-    const items = [itemValues];
-    dispatch(editItemPos(items));
+  const saveEditedBook = () => {
+    const book = [bookValues];
+    dispatch(editItemPos(book));
     dispatch(getItemsList());
-    setOpenMenu(null);
+    setOpenCardMenu(null);
     setOpenEditModal(false);
+  };
+
+  const saveBookOnTable = () => {
+    const result = books.booksList.find(
+      (book) => book.title === bookValues.title
+    );
+    if (
+      bookValues.title !== "" &&
+      !result &&
+      bookValues.genre !== "" &&
+      bookValues.reading_year.length === 4
+    ) {
+      dispatch(addBook(bookValues));
+      dispatch(removeItem({ id, boardsItems }));
+      dispatch(getItemsList());
+      setOpenCardMenu(null);
+      setOpenSaveModal(false);
+    } else {
+      bookValues.title === "" &&
+        dispatch(
+          setTitleError({
+            titleLabel: t("errors.empty_field"),
+            titleErrorVisibility: true,
+          })
+        );
+      bookValues.genre === "" &&
+        dispatch(
+          setGenreError({
+            genreLabel: t("errors.empty_field"),
+            genreErrorVisibility: true,
+          })
+        );
+      bookValues.reading_year.length !== 4 &&
+        dispatch(
+          setReadingYearError({
+            readingYearLabel: t("errors.digit_year"),
+            readingYearErrorVisibility: true,
+          })
+        );
+    }
+  };
+
+  const onValChanges = (event: any) => {
+    if (event.target.name === "title") {
+      const result = books.booksList.find(
+        (book) => book.title === event.target.value
+      );
+      if (result) {
+        dispatch(
+          setTitleError({
+            titleLabel: t("errors.book_present"),
+            titleErrorVisibility: true,
+          })
+        );
+      } else {
+        if (event.target.value === "") {
+          dispatch(
+            setTitleError({
+              titleLabel: t("errors.empty_field"),
+              titleErrorVisibility: true,
+            })
+          );
+        } else {
+          dispatch(
+            setTitleError({ titleLabel: "", titleErrorVisibility: false })
+          );
+        }
+      }
+    }
+    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+  };
+
+  const onValSelected = (event: any) => {
+    dispatch(setGenreError({ genreLabel: "", genreErrorVisibility: false }));
+    setBookValues({ ...bookValues, [event.target.name]: event.target.value });
+  };
+
+  const onValChangesYear = (event: any) => {
+    const year = event.target.value;
+    const regex = /[a-z]/;
+    if (!regex.test(year))
+      setBookValues({ ...bookValues, [event.target.name]: year });
+
+    if (year.length === 4)
+      dispatch(
+        setReadingYearError({
+          readingYearLabel: t(""),
+          readingYearErrorVisibility: false,
+        })
+      );
+  };
+
+  const onValRating = (event: any) => {
+    setBookValues({
+      ...bookValues,
+      [event.target.name]: Number(event.target.value),
+    });
   };
 
   return (
@@ -75,9 +181,9 @@ function CardBoards({ book, index }: any) {
               </CustomButton>
               <Menu
                 id="basic-menu"
-                anchorEl={openMenu}
+                anchorEl={openCardMenu}
                 open={open}
-                onClose={() => setOpenMenu(null)}
+                onClose={() => setOpenCardMenu(null)}
                 MenuListProps={{
                   "aria-labelledby": "basic-button",
                 }}
@@ -87,7 +193,7 @@ function CardBoards({ book, index }: any) {
                 </MenuItem>
                 <MenuItem onClick={deleteItem}>{t("cancel")}</MenuItem>
                 <MenuItem
-                  onClick={saveItem}
+                  onClick={() => setOpenSaveModal(true)}
                   disabled={column === "complete" ? false : true}
                 >
                   {t("save")}
@@ -98,15 +204,33 @@ function CardBoards({ book, index }: any) {
               title={t("edit_book")}
               btnId="btnEditBook"
               btnTitle={t("save")}
-              btnFunction={saveItem}
+              btnFunction={saveEditedBook}
               open={openEditModal}
               initialValues={book}
-              setValues={setItemValues}
+              setValues={setBookValues}
               closeFunction={() => setOpenEditModal(false)}
             >
-              <ItemsField
-                itemValues={itemValues}
-                setItemValues={setItemValues}
+              <CardFields
+                itemValues={bookValues}
+                setItemValues={setBookValues}
+              />
+            </CustomModal>
+            <CustomModal
+              title={t("rate_book")}
+              btnId="btnRateBook"
+              btnTitle={t("save")}
+              btnFunction={saveBookOnTable}
+              open={openSaveModal}
+              initialValues={book}
+              setValues={setBookValues}
+              closeFunction={() => setOpenSaveModal(false)}
+            >
+              <BooksField
+                bookValues={bookValues}
+                onValChanges={onValChanges}
+                onValSelected={onValSelected}
+                onValChangesYear={onValChangesYear}
+                onValRating={onValRating}
               />
             </CustomModal>
             <Typography className="lg:order-first" component="span">

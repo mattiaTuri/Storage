@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import SelectBox from "../../shared/SelectBox";
 import { genresList } from "../../../date/genresList";
 
-function ItemsField({ itemValues, setItemValues }: any) {
+function CardFields({ itemValues, setItemValues }: any) {
   const { t } = useTranslation();
   const errors = useSelector(errorsSelector);
   const dispatch = useDispatch();
@@ -61,4 +61,4 @@ function ItemsField({ itemValues, setItemValues }: any) {
   );
 }
 
-export default ItemsField;
+export default CardFields;

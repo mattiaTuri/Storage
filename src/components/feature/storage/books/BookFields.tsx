@@ -39,6 +39,7 @@ function BooksField({
           id="title"
           label={`${t("title")} *`}
           name="title"
+          value={bookValues.title}
           onChange={(e) => onValChanges(e)}
           autofocus={true}
           labelError={errors.titleError.label}
@@ -48,6 +49,7 @@ function BooksField({
           id="author"
           label={t("author")}
           name="author"
+          value={bookValues.author}
           onChange={(e) => onValChanges(e)}
           autofocus={false}
           labelError={""}

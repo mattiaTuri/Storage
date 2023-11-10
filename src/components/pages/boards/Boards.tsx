@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import CustomButton from "../../shared/CustomButton";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CustomModal from "../../feature/storage/CustomModal";
-import ItemsField from "../../feature/boards/ItemsField";
+import ItemsField from "../../feature/boards/CardFields";
 import { useSelector } from "react-redux";
 import { modalsSelector } from "../../../store/modals/selector";
 import { useDispatch } from "react-redux";
@@ -33,6 +33,8 @@ function Boards() {
     genre: "",
     column: "new",
     row: 0,
+    reading_year: "",
+    rating: 0,
   };
 
   const [itemValues, setItemValues] = useState<any>(initialItemValues);
