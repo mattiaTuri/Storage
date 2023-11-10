@@ -19,9 +19,8 @@ import {
   setReadingYearError,
   setTitleError,
 } from "../../../../store/errors/errorsSlice";
-import TableFilter from "../TableFilter";
+import TableFilter from "./TableFilter";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import FilterListOffIcon from "@mui/icons-material/FilterListOff";
 import {
   setAddBooksModalVisibility,
   setFiltersBooksModalVisibility,
@@ -146,11 +145,6 @@ function BookTab() {
     dispatch(setFiltersBooksModalVisibility(false));
   };
 
-  const ClearFilter = () => {
-    setMultipleGenre([]);
-    dispatch(getBooksList());
-  };
-
   return (
     <Box sx={{ width: "100%" }} className="flex flex-col h-full">
       <Box className="flex items-center justify-between my-4">
@@ -160,12 +154,6 @@ function BookTab() {
             functionClick={() => dispatch(setFiltersBooksModalVisibility(true))}
           >
             <FilterListIcon
-              color="secondary"
-              className="z-10 ease-in-out group-hover:text-white"
-            />
-          </CustomButton>
-          <CustomButton id="clearFilter" functionClick={() => ClearFilter()}>
-            <FilterListOffIcon
               color="secondary"
               className="z-10 ease-in-out group-hover:text-white"
             />
@@ -189,12 +177,11 @@ function BookTab() {
         btnFunction={ApplyFilter}
         open={modals.filtersBooksModal.visibility}
         initialValues={[]}
-        setValues={setMultipleGenre}
         closeFunction={() => dispatch(setFiltersBooksModalVisibility(false))}
       >
         <TableFilter
-          genreName={multipleGenre}
-          setGenreName={setMultipleGenre}
+          multipleGenre={multipleGenre}
+          setMultipleGenre={setMultipleGenre}
         />
       </CustomModal>
       <CustomModal

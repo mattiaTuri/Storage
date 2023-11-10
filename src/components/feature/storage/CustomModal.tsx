@@ -51,7 +51,7 @@ function CustomModal({
     dispatch(setLinkError({ linkError: "", linkErrorVisibility: false }));
     dispatch(setTagError({ tagError: "", tagErrorVisibility: false }));
 
-    setValues(initialValues);
+    setValues && setValues(initialValues);
   };
 
   return (

@@ -37,7 +37,7 @@ export interface ModalProps {
   children: ReactNode;
   open: boolean;
   initialValues: any;
-  setValues: Dispatch<SetStateAction<any>>;
+  setValues?: Dispatch<SetStateAction<any>>;
   closeFunction: () => void;
 }
 
@@ -91,8 +91,8 @@ export interface SidebarLinkProps {
 }
 
 export interface TableFilterProps {
-  genreName: string[];
-  setGenreName: Dispatch<SetStateAction<string[]>>;
+  multipleGenre: string[];
+  setMultipleGenre: Dispatch<SetStateAction<string[]>>;
 }
 
 export interface RatingStarsProps {
