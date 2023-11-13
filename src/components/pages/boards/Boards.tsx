@@ -181,7 +181,7 @@ function Boards() {
           >
             <ItemsField itemValues={itemValues} setItemValues={setItemValues} />
           </CustomModal>
-          <Card className="grid grid-cols-3 gap-10 h-full p-4">
+          <Card className="flex flex-col lg:grid lg:grid-cols-3 gap-10 h-full p-4">
             <DragDropContext onDragEnd={handleOnDragEnd}>
               {columns != null &&
                 Object.entries(columns).map(([columnId, col]: any) => {

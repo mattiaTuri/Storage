@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import GridViewIcon from "@mui/icons-material/GridView";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useTranslation } from "react-i18next";
@@ -55,6 +56,15 @@ function LeftMenu({ openMenu, setOpenMenu }: LeftMenuProps) {
               clickFunction={() => setOpenMenu(false)}
             >
               <MenuBookIcon />
+            </MenuLink>
+            <MenuLink
+              id="boards"
+              href="boards"
+              fontSize={25}
+              link={t("boards")}
+              clickFunction={() => setOpenMenu(false)}
+            >
+              <GridViewIcon />
             </MenuLink>
             <MenuLink
               id="settings"
