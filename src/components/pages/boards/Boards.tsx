@@ -196,7 +196,7 @@ function Boards() {
                       <Droppable droppableId={columnId} key={columnId}>
                         {(provided) => (
                           <Box
-                            className="flex flex-col items-center"
+                            className="flex flex-col items-center min-h-[100px]"
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                             sx={{
