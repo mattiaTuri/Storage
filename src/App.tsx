@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./components/core/sidebar/Sidebar";
-import NavbarMobile from "./components/core/navbarMobile/NavbarMobile";
+import Navbar from "./components/core/navbarMobile/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUser } from "./controller/userApi";
@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     dispatch(getBooksList());
     dispatch(getResourcesList());
-    dispatch(getItemsList())
+    dispatch(getItemsList());
     dispatch(getUser());
   }, []);
 
@@ -34,7 +34,7 @@ function App() {
           className="lg:h-screen lg:flex"
         >
           <Sidebar />
-          <NavbarMobile />
+          <Navbar />
           <Outlet />
         </Box>
       </ThemeProvider>

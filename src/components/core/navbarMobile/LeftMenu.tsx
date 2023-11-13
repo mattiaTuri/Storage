@@ -38,7 +38,7 @@ function LeftMenu({ openMenu, setOpenMenu }: LeftMenuProps) {
               <CloseIcon color="secondary" />
             </IconButton>
           </div>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 items-center">
             <MenuLink
               id="dashboard"
               href="/"

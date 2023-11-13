@@ -5,7 +5,7 @@ import LeftMenu from "./LeftMenu";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
-function NavbarMobile() {
+function Navbar() {
   const { t } = useTranslation();
   const [openMenu, setOpenMenu] = useState<boolean>(false);
 
@@ -33,4 +33,4 @@ function NavbarMobile() {
   );
 }
 
-export default NavbarMobile;
+export default Navbar;
