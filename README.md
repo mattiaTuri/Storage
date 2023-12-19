@@ -3,9 +3,9 @@
 ## Table of Contents
 
 - [Description](#description)
-- [Database Reference](#database-reference)
+- [Database reference](#database-reference)
 - [Folder structure](#folder-structure)
-- [Used Technologies](#used-technologies)
+- [Technologies used](#technologies-used)
 
 ## Description
 
@@ -20,8 +20,6 @@ The dashboard displays an overview of the data in the application, specifically:
 - a graph showing how many books have been read in the last 5 years, dividing them by year
 - a pie chart showing the books in the app by grouping them by genre
 - a pie chart showing the resources in the app grouping them by tags
-
-This projects serves as a manager for managing books and resources, with the option to add new items and remove them. It provides an overview with charts and data collection, and a system page with multi-language and light/dark theme.The website also provides a kanban board page where you can create a new book and move it along three columns: new, active, and complete. When a book is marked as complete, it is moved to the reference table.
 
 #### `Storage`
 
@@ -78,7 +76,7 @@ The setting menu contains user and system data.
 
 https://storage-dun.vercel.app/
 
-## Database Reference
+## Database reference
 
 #### Book model
 
@@ -164,7 +162,7 @@ This folder contains the css files where is present the global.css.
 
 This folder is for the theming of the entire application.
 
-## Used Technologies
+## Technologies used
 
 This app is made by React v18.2 with TypeScript.
 
