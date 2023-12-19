@@ -9,7 +9,7 @@ import { getResourcesList } from "./controller/resourcesApi";
 import Box from "@mui/material/Box";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { dark, light } from "./components/theme/theme";
+import { dark, light } from "./theme/theme";
 import { userSelector } from "./store/user/selector";
 import Loader from "./components/shared/Loader";
 import { getItemsList } from "./controller/boardsApi";
