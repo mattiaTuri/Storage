@@ -2,6 +2,7 @@ import { TFunction } from "i18next";
 import { User } from "./User";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { SelectChangeEvent } from "@mui/material";
+import { DropResult } from "react-beautiful-dnd";
 
 export interface StatisticsNumberBoxProps {
   title: string;
@@ -98,4 +99,14 @@ export interface TableFilterProps {
 export interface RatingStarsProps {
   starsValue?: number;
   functionChange?: (e: any) => void;
+}
+
+export interface LeftMenuProps {
+  openMenu: boolean;
+  setOpenMenu: (action: boolean) => void;
+}
+
+export interface CambanBoardProps {
+  columns: any;
+  handleOnDragEnd: (result: DropResult) => void;
 }

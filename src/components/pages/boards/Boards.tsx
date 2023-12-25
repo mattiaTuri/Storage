@@ -1,6 +1,6 @@
-import { Card, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import { DropResult } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CustomButton from "../../shared/CustomButton";
@@ -17,7 +17,8 @@ import {
   editItemPos,
   getItemsList,
 } from "../../../controller/boardsApi";
-import CardBoards from "../../feature/boards/CardBoards";
+import CambanBoard from "../../feature/boards/CambanBoard";
+import { BoardProps } from "../../../models/Boards";
 
 function Boards() {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ function Boards() {
   const dispatch = useDispatch();
   let booksBoardCol: any = null;
 
-  const initialItemValues: any = {
+  const initialItemValues: BoardProps = {
     id: "",
     title: "",
     author: "",
@@ -37,7 +38,7 @@ function Boards() {
     rating: 0,
   };
 
-  const [itemValues, setItemValues] = useState<any>(initialItemValues);
+  const [itemValues, setItemValues] = useState<BoardProps>(initialItemValues);
   const [columns, setColumns] = useState<any>();
 
   useEffect(() => {
@@ -45,20 +46,22 @@ function Boards() {
       new: {
         id: "new",
         colName: t("new"),
-        books: boardsItems.items.filter((elem: any) => elem.column === "new"),
+        books: boardsItems.items.filter(
+          (elem: BoardProps) => elem.column === "new"
+        ),
       },
       active: {
         id: "active",
         colName: t("active"),
         books: boardsItems.items.filter(
-          (elem: any) => elem.column === "active"
+          (elem: BoardProps) => elem.column === "active"
         ),
       },
       complete: {
         id: "complete",
         colName: t("complete"),
         books: boardsItems.items.filter(
-          (elem: any) => elem.column === "complete"
+          (elem: BoardProps) => elem.column === "complete"
         ),
       },
     };
@@ -181,49 +184,7 @@ function Boards() {
           >
             <ItemsField itemValues={itemValues} setItemValues={setItemValues} />
           </CustomModal>
-          <Card className="flex flex-col lg:grid lg:grid-cols-3 gap-10 h-full p-4">
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-              {columns != null &&
-                Object.entries(columns).map(([columnId, col]: any) => {
-                  return (
-                    <Box
-                      key={columnId}
-                      className="flex flex-col overflow-y-scroll"
-                    >
-                      <Box className="border-b">
-                        <Typography component="p">{col.colName}</Typography>
-                      </Box>
-                      <Droppable droppableId={columnId} key={columnId}>
-                        {(provided) => (
-                          <Box
-                            className="flex flex-col items-center min-h-[100px]"
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                            sx={{
-                              height: "100%",
-                              backgroundColor: "background.default",
-                              borderRadius: "4px",
-                            }}
-                          >
-                            {col.books.length > 0 &&
-                              col.books.map((book: any, index: number) => {
-                                return (
-                                  <CardBoards
-                                    key={index}
-                                    book={book}
-                                    index={index}
-                                  />
-                                );
-                              })}
-                            {provided.placeholder}
-                          </Box>
-                        )}
-                      </Droppable>
-                    </Box>
-                  );
-                })}
-            </DragDropContext>
-          </Card>
+          <CambanBoard columns={columns} handleOnDragEnd={handleOnDragEnd} />
         </Box>
       </Box>
     </Container>

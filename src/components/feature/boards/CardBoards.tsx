@@ -7,13 +7,12 @@ import { useTranslation } from "react-i18next";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import CustomButton from "../../shared/CustomButton";
 import { Menu, MenuItem, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   editItemPos,
   getItemsList,
   removeItem,
-  updateItem,
 } from "../../../controller/boardsApi";
 import { useSelector } from "react-redux";
 import { boardsItemsSelector } from "../../../store/boardsItems/selector";

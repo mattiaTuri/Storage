@@ -11,11 +11,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useTranslation } from "react-i18next";
 import MenuLink from "../../shared/MenuLink";
-
-interface LeftMenuProps {
-  openMenu: boolean;
-  setOpenMenu: (action: boolean) => void;
-}
+import { LeftMenuProps } from "../../../models/ComponentsModels";
 
 function LeftMenu({ openMenu, setOpenMenu }: LeftMenuProps) {
   const { t } = useTranslation();
